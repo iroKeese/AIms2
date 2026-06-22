@@ -1,0 +1,2 @@
+SessionID	TreatmentNumber	Table	LumpSumPayment	ExchangeRate	ShowUpFee	TreatmentNumber	TreatmentID	Period	NumPeriods	RepeatTreatment	Repetition	CompletionCode	HeaderFS	TextFS	OptionViewTime	DelegationChoiceTime	OptionChoiceTime	i	j
+260206_1528	329	globals	0	1	0	329	331	1	1	0	1	"CKEV52BR"	128	96	5	5	8	9	11

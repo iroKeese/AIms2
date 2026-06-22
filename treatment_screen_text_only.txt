@@ -1,0 +1,14 @@
+Source: export..txt
+Scope: participant-visible text that differs by treatment (EV algorithm vs preference-based algorithm)
+
+EV treatment (EVAlgorithm = 1)
+- If you decide to have the computer select a lottery for you, its choice will be determined by an algorithm. This algorithm works out how much each option would yield on average, and selects the option for which this is highest.
+- Comprehension question option text shown for the correct algorithm description: It works out how much each option would yield on average, and selects the option for which this is highest.
+
+Preference-based treatment (EVAlgorithm = 0)
+- If you decide to have the computer select a lottery for you, its choice will be determined by an algorithm. This algorithm analyses your choices from Part 1 and selects the best option for you in light of your Part-1 choices.
+- Comprehension question option text shown for the correct algorithm description: It selects the best option for you in light of your Part-1 choices.
+
+Notes
+- These treatment-dependent strings are used in the Part 2 instruction screen and in repeated Part 2 comprehension-question screens.
+- All other participant-facing instruction text appears treatment-invariant in export..txt.

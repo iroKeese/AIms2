@@ -1,0 +1,1222 @@
+Source: export..txt
+Scope: Participant-visible on-screen text grouped by stage/screen, with treatment-specific wording resolved.
+
+# EV treatment (EVAlgorithm = 1)
+
+## Stage: Welcome
+
+Welcome!
+In this study, we ask you to make several decisions. Participation will take approximately 20 minutes.
+Please make sure on every screen that you can see and read all the text.
+For that purpose, use Ctrl+"-" and Ctrl+"+" until you have the optimal resolution for each screen.
+Please test it now and remember this information, as it may become relevant on a later screen.
+- button: OK
+
+## Stage: Captcha1
+To confirm you are not a robot, please indicate below what the following picture is meant to represent:
+- format: !radio: 2 = "a banana"; 3 = "a traffic light"; 4 = "darts games"; 5 = "a bicycle"; 6 = "a robot"; 7 = "nothing, it's randomly placed shapes";
+- button: OK
+
+## Stage: out
+Unfortunately, you failed to complete the captcha on the previous screen. We therefore have to assume you are a bot. Therefore, you cannot continue with this study.
+- button: OK
+
+## Stage: Overview1
+The study consists of 3 parts.
+In Parts 1 and 2: You participate in different decision-making tasks.
+In Part 3: You answer a short questionnaire.
+Payment: You will receive GBP 2 for completing the study. In addition to this you will receive a bonus payment of up to GBP 8.90 that depends on your decisions in Part 2 and on chance. The bonus payment will be distributed within 24 hours. Note that throughout the study, we will be speaking of points rather than Pounds. At the end of the study, your earned points from Part 2 will be converted into Pounds as follows: 100 Points = £1.00.
+- button: continue
+
+## Stage: Overview2
+Voluntary participation: Participation in this study is entirely voluntary. You can stop the study at any point. To do so, just close the window in your web browser. This decision is not accompanied with any disadvantages for you, except that we will not be able to pay you for your participation.
+Anonymity: All responses are being collected in an anonymised manner, will be treated as confidential and only be used for research purposes. It is not possible under any circumstances to draw conclusions about your person.
+Data protection: The data collected as part of this study will be anonymised and stored on servers of the University of Konstanz. The consent to collect and process the data cannot be reversed, as the anonymisation does not allow us to delete participant-specific data.
+For questions or comments, please contact online-exp@twi-kreuzlingen.ch
+You can only participate if you agree to participate and to the data processing described above. After reading the instructions, if you decide that you no longer want to participate, please return the study to allow others to participate.
+- format: !radio: 1 = "Yes, I agree to participate in this study and to the processing of my data as described above."; 0 = "No, I do not agree to participate in this study and to the processing of my data as described above.";
+- button: confirm
+
+## Stage: out2
+Unfortunately, you did not agree to participate in this study and to the processing of your data as described. Therefore, you cannot continue with this study.
+- button: OK
+
+## Stage: BotCheck2
+Bots are increasingly sophisticated and in order to filter out bots, please select `Disagree' on the following question:
+- format: !radio: 1 = "Strongly disagree"; 2 = "Disagree"; 3 = "Agree"; 4 = "Strongly Agree";
+Further, to make sure your system allows you to interact with the system well, please click on the white line in such a way that the appearing blue dot is close to a value of 50.
+- text: 50
+- text: 0
+- text: 100
+- button: OK
+Sorry, you have to place it closer to 50.
+- button: OK
+
+## Stage: out3
+Unfortunately, your system does not seem to allow you to interact with our interface well enough, as you failed to place the blue dot anywhere near the midpoint on the previous page's line. Therefore, you cannot continue with this study.
+- button: OK
+
+## Stage: InstructionsPart1a
+Part 1
+In the first part of the study, you will answer 12 questions, in which you can choose between two options.
+The questions in this part are hypothetical , but the choices may be meaningful for Part 2 (recall that your bonus payment from the experiment depends on what happens in Part 2).
+- button: Continue
+
+
+
+## Stage: InstructionsPart1b
+Part 1 - Instructions (1/2)
+Please make sure you read the instructions carefully. You will have to answer several comprehension questions correctly afterwards in order to continue with the study.
+In each of the 12 questions of Part 1, you will see a table with two rows that are representing the two options you can choose between (you can find an example of such a table below).
+Each option has 10 different states , corresponding to the 10 columns of the table. A fair 10-sided die will determine which of the 10 states is realised. Therefore, each state has an equal (10%) probability of becoming relevant. The numbers in the table are the payoffs you would receive (if this was not the example table and if this part were played out for real). All payoffs are in points. Recall that 100 Points = £1.00.
+- text: State:
+- text: <><State|1>
+- text: <>Option <Index|1>
+- text: <><State1 | 1>
+- text: <><State2 | 1>
+- text: <><State3 | 1>
+- text: <><State4 | 1>
+- text: <><State5 | 1>
+- text: <><State6 | 1>
+- text: <><State7 | 1>
+- text: <><State8 | 1>
+- text: <><State9 | 1>
+- text: <><State10 | 1>
+As you know this is an example only. In the tables relevant for your payment, the values will be replaced by different ones.
+- button: Continue
+
+## Stage: InstructionsPart1c
+Part 1 - Instructions (2/2)
+Let's assume you choose Option <1 + reducedLotterySetsUnscrambled.find( OptionsetID == 0 & Option == 4, Up) | 1> . The die is thrown and shows a 5, which means that state 5 determines your payoff from the chosen option. Therefore, the payoff you receive is <reducedLotterySetsUnscrambled.find( OptionsetID == 0 & Option == 4, State5) | 1> points.
+- text: State:
+- text: <><State|1>
+- text: <>Option <OrderNumber | 1>
+- text: <><State1 | 1>
+- text: <><State2 | 1>
+- text: <><State3 | 1>
+- text: <><State4 | 1>
+- text: <><State5 | 1>
+- text: <><State6 | 1>
+- text: <><State7 | 1>
+- text: <><State8 | 1>
+- text: <><State9 | 1>
+- text: <><State10 | 1>
+As you know this is an example only. In the tables relevant for your payment, the values will be replaced by different ones.
+- button: Continue
+
+
+
+## Stage: ComprehensionQs
+
+
+Before starting with the main study, please answer the following questions concerning the instructions you just read.
+Comprehension Question 1
+Imagine person X chooses Option <2 - reducedLotterySetsUnscrambled.find( OptionsetID == 0 & Option == 3, Up) | 1> . The 10-sided die is rolled and lands on a 8.
+- text: State:
+- text: <><State|1>
+- text: <>Option <OrderNumber | 1>
+- text: <><State1 | 1>
+- text: <><State2 | 1>
+- text: <><State3 | 1>
+- text: <><State4 | 1>
+- text: <><State5 | 1>
+- text: <><State6 | 1>
+- text: <><State7 | 1>
+- text: <><State8 | 1>
+- text: <><State9 | 1>
+- text: <><State10 | 1>
+Which payoff would the person receive (if this wasn't hypothetical)?
+- format: !radio: 275 = "275"; 205 = "205"; 0 = "0"; 525 = "525"; 505 = "505";
+Comprehension Question 2
+What is the probability of each state in the table being realised?
+- format: !radio: 1 = "1%"; 5 = "5%"; 10 = "10%"; 20 = "20%"; 25 = "25%";
+- button: next
+Comprehension Question 3
+Please tick the correct statement:
+- format: !radio: 1 = "I will be paid based on one of my decisions in Part 1."; 2 = "I will be paid based on multiple decisions from Part 1."; 3 = "I will not be paid based on my decisions in Part 1, but my answers may be relevant for Part 2 (and Part 2 will deteremine my bonus payment)."; 4 = "I will not be paid based on my decisions in Part 1, but my answers may be relevant for Part 2 (I definitely will not receive any bonus payment from Part 2).";
+- button: back
+- button: continue
+Before starting with the main study, please answer the following questions concerning the instructions you just read.
+Comprehension Question 1
+Imagine person X chooses Option <1 + reducedLotterySetsUnscrambled.find( OptionsetID == 0 & Option == 4, Up) | 1> . The 10-sided die is rolled and lands on a 8.
+- text: State:
+- text: <><State|1>
+- text: <>Option <OrderNumber | 1>
+- text: <><State1 | 1>
+- text: <><State2 | 1>
+- text: <><State3 | 1>
+- text: <><State4 | 1>
+- text: <><State5 | 1>
+- text: <><State6 | 1>
+- text: <><State7 | 1>
+- text: <><State8 | 1>
+- text: <><State9 | 1>
+- text: <><State10 | 1>
+Which payoff would the person receive (if this wasn't hypothetical)?
+- format: !radio: 275 = "275"; 205 = "205"; 0 = "0"; 525 = "525"; 505 = "505";
+Comprehension Question 2
+What is the probability of each state in the table being realised?
+- format: !radio: 1 = "1%"; 5 = "5%"; 10 = "10%"; 20 = "20%"; 25 = "25%";
+- button: next
+Comprehension Question 3
+Please tick the correct statement:
+- format: !radio: 1 = "I will be paid based on one of my decisions in Part 1."; 2 = "I will be paid based on multiple decisions from Part 1."; 3 = "I will not be paid based on my decisions in Part 1, but my answers may be relevant for Part 2 (and Part 2 will deteremine my bonus payment)."; 4 = "I will not be paid based on my decisions in Part 1, but my answers may be relevant for Part 2 (I definitely will not receive any bonus payment from Part 2).";
+- button: back
+- button: continue
+
+
+
+## Stage: ComprehensionQsReplay
+
+
+You answered at least one of the questions incorrectly. Please try again and answer the following questions concerning the instructions you just read.
+- button: OK
+Comprehension Question 1
+Imagine person X chooses Option <2 - reducedLotterySetsUnscrambled.find( OptionsetID == 0 & Option == 3, Up) | 1> . The 10-sided die is rolled and lands on a 8.
+- text: State:
+- text: <><State|1>
+- text: <>Option <OrderNumber | 1>
+- text: <><State1 | 1>
+- text: <><State2 | 1>
+- text: <><State3 | 1>
+- text: <><State4 | 1>
+- text: <><State5 | 1>
+- text: <><State6 | 1>
+- text: <><State7 | 1>
+- text: <><State8 | 1>
+- text: <><State9 | 1>
+- text: <><State10 | 1>
+Which payoff would the person receive (if this wasn't hypothetical)?
+- format: !radio: 275 = "275"; 205 = "205"; 0 = "0"; 525 = "525"; 505 = "505";
+Comprehension Question 2
+What is the probability of each state in the table being realised?
+- format: !radio: 1 = "1%"; 5 = "5%"; 10 = "10%"; 20 = "20%"; 25 = "25%";
+- button: next
+Comprehension Question 3
+Please tick the correct statement:
+- format: !radio: 1 = "I will be paid based on one of my decisions in Part 1."; 2 = "I will be paid based on multiple decisions from Part 1."; 3 = "I will not be paid based on my decisions in Part 1, but my answers may be relevant for Part 2 (and Part 2 will deteremine my bonus payment)."; 4 = "I will not be paid based on my decisions in Part 1, but my answers may be relevant for Part 2 (I definitely will not receive any bonus payment from Part 2).";
+- button: back
+- button: OK
+
+
+
+## Stage: Part1
+
+
+- text: <>Part 1, Decision <Screen|1>
+Please imagine the following situation: You can choose between the two options shown in the table below. Which of them do you prefer?
+- text: <>State <State|1>
+- text: <>Option <OrderNumber | 1>
+- text: <><State1 | 1>
+- text: <><State2 | 1>
+- text: <><State3 | 1>
+- text: <><State4 | 1>
+- text: <><State5 | 1>
+- text: <><State6 | 1>
+- text: <><State7 | 1>
+- text: <><State8 | 1>
+- text: <><State9 | 1>
+- text: <><State10 | 1>
+- button: OK
+- text: <>Part 1, Decision <Screen|1>
+You still have to select an option.
+- button: OK
+On a scale from 0 (not at all) to 10 (completely), how confident were you in the choice you just made?
+- format: !radioline: 0 = "0"; 10 = "10"; 11;
+- button: Next
+
+
+
+## Stage: InstructionsPart2a
+
+
+Thank you! You have successfully completed Part 1 of this study. Before you proceed to Part 2, we would like to ask a final question on your choices in Part 1:
+On a scale from 0 (not at all) to 10 (completely), how satisfied were you with your choices overall?
+- format: !radioline: 0 = "0"; 10 = "10"; 11;
+- button: OK
+
+
+
+## Stage: InstructionsPart2b
+
+
+Part 2 - Instructions (1/3)
+Please make sure you read the instructions carefully. You again will have to answer several comprehension questions correctly afterwards in order to continue with the study.
+In Part 2 of the study, you will complete 8 tasks . In each task, you will be presented with a table of options again, much like in Part 1. However, in Part 2, each table consists of 8 options . Recall that in this part, Points you earn will be converted to money payment using an exchange rate of 50 Points = £1.00.
+In principle, the logic of the table and the way how payoffs are determined are exactly the same as in Part 1: each option has 10 outcomes, and a roll of a 10-sided die will determine the actual payoff your chosen option will yield. The main difference to Part 1 is that in Part 2, you can either choose an option yourself, or delegate the decision to a computer. In addition, if you decide to choose the option yourself, you will be facing a time limit.
+- button: Continue
+
+
+
+## Stage: InstructionsPart2c
+
+
+Part 2 - Instructions (2/3)
+Details. Each task proceeds as follows:
+1. You are shown the table of options for < | 1> seconds.
+2. You have < | 1> seconds to decide on how your option should be selected:
+(a) you select the lottery yourself
+(b) you have a computer select the lottery for you
+3. The table of options is shown for another < | 1> seconds. If you picked (a), you need to choose an option during these < | 1> seconds.
+If you decide to have the computer select a lottery for you, its choice will be determined by an algorithm. This algorithm works out how much each option would yield on average, and selects the option for which this is highest.
+- button: Continue
+
+
+
+## Stage: InstructionsPart2d
+
+
+Part 2 - Instructions (3/3)
+Note that having the computer select the option for you does not come with any additional costs. You will make the decision on whether it is you or the computer who selects the option for each task anew, and your decision in one task will not affect any other task in any way.
+After completing a task, regardless of whether you decided to select the option yourself or have the computer select it for you, you will be shown the selected option, the outcome of the die roll, and the Points you will earn if this task is randomly selected for payment.
+Lastly, you will be asked after every task to rate your satisfaction with the lottery selection for that task on a scale of 1 to 5 diamonds, where 1 diamond means "not satisfied at all" and 5 diamonds means "completely satisfied".
+- button: Continue
+
+
+
+## Stage: ComprehensionQsP2
+
+
+Before starting with Part 2, please answer the following questions concerning the instructions you just read.
+Comprehension Question 1
+If you decide to have the computer select an option for you in a given task, what does the computer algorithm do?
+- format: <>!radio: 0 = "It selects an option at random."; 1 = "It works out how much each option would yield on average, and selects the option for which this is highest.";
+Comprehension Question 2
+After completing a task....
+- format: !radio: 0 = "I will not be given any information."; 2 = "I will be shown the selected option, the outcome of the die roll, and the points I will earn if this task is selected for payment."; 1 = "I will be shown the selected option, the outcome of the die roll, and the points I will earn if this task is selected for payment. If I chose to make the selection myself, I additionally get information on what the computer would have chosen.";
+- button: Next
+Comprehension Question 3
+After you complete all 8 tasks, your Points will be determined based on the outcome(s) of...
+- format: !radio: 8 = "All 8 tasks."; 1 = "One randomly chosen task.";
+Comprehension Question 4
+What is the cost of having the computer make the choice of the option?
+- format: !radio: 0 = "It does not cost anything"; 5 = "5 Points"; 10 = "10 Points"; 20 = "20 Points";
+Note: if you do not see the comprehension questions again, you have answered them correctly.
+- button: Back
+- button: Continue
+Before starting with Part 2, please answer the following questions concerning the instructions you just read.
+Comprehension Question 1
+If you decide to have the computer select an option for you in a given task, what does the computer algorithm do?
+- format: <>!radio: 0 = "It selects an option at random."; 1 = "It works out how much each option would yield on average, and selects the option for which this is highest.";
+Comprehension Question 2
+After completing a task....
+- format: !radio: 0 = "I will not be given any information."; 2 = "I will be shown the selected option, the outcome of the die roll, and the points I will earn if this task is selected for payment."; 1 = "I will be shown the selected option, the outcome of the die roll, and the points I will earn if this task is selected for payment. If I chose to make the selection myself, I additionally get information on what the computer would have chosen.";
+- button: Next
+Comprehension Question 3
+After you complete all 8 tasks, your Points will be determined based on the outcome(s) of...
+- format: !radio: 8 = "All 8 tasks."; 1 = "One randomly chosen task.";
+Comprehension Question 4
+What is the cost of having the computer make the choice of the option?
+- format: !radio: 0 = "It does not cost anything"; 5 = "5 Points"; 10 = "10 Points"; 20 = "20 Points";
+Note: if you do not see the comprehension questions again, you have answered them correctly.
+- button: Back
+- button: Continue
+
+
+
+## Stage: ComprehensionQsP2Replay
+
+
+You answered at least on of the questions incorrectly. Please try again and answer the following questions concerning the instructions you just read.
+Comprehension Question 1
+If you decide to have the computer select an option for you in a given task, what does the computer algorithm do?
+- format: <>!radio: 0 = "It selects an option at random."; 1 = "It works out how much each option would yield on average, and selects the option for which this is highest.";
+Comprehension Question 2
+After completing a task....
+- format: !radio: 0 = "I will not be given any information."; 2 = "I will be shown the selected option, the outcome of the die roll, and the points I will earn if this task is selected for payment."; 1 = "I will be shown the selected option, the outcome of the die roll, and the points I will earn if this task is selected for payment. If I chose to make the selection myself, I additionally get information on what the computer would have chosen.";
+- button: Next
+Comprehension Question 3
+After you complete all 8 tasks, your Points will be determined based on the outcome(s) of...
+- format: !radio: 8 = "All 8 tasks."; 1 = "One randomly chosen task.";
+Comprehension Question 4
+What is the cost of having the computer make the choice of the option?
+- format: !radio: 0 = "It does not cost anything"; 5 = "5 Points"; 10 = "10 Points"; 20 = "20 Points";
+- button: Back
+- button: Continue
+Before starting with Part 2, please answer the following questions concerning the instructions you just read.
+Comprehension Question 1
+If you decide to have the computer select an option for you in a given task, what does the computer algorithm do?
+- format: <>!radio: 0 = "It selects an option at random."; 1 = "It works out how much each option would yield on average, and selects the option for which this is highest.";
+Comprehension Question 2
+After completing a task....
+- format: !radio: 0 = "I will not be given any information."; 2 = "I will be shown the selected option, the outcome of the die roll, and the points I will earn if this task is selected for payment."; 1 = "I will be shown the selected option, the outcome of the die roll, and the points I will earn if this task is selected for payment. If I chose to make the selection myself, I additionally get information on what the computer would have chosen.";
+- button: Next
+Comprehension Question 3
+After you complete all 8 tasks, your Points will be determined based on the outcome(s) of...
+- format: !radio: 8 = "All 8 tasks."; 1 = "One randomly chosen task.";
+Comprehension Question 4
+What is the cost of having the computer make the choice of the option?
+- format: !radio: 0 = "It does not cost anything"; 5 = "5 Points"; 10 = "10 Points"; 20 = "20 Points";
+- button: Back
+- button: Continue
+
+
+
+## Stage: IntroPart2
+
+
+On the next page, you will see the first table of 8 options.
+You will have < | 1> seconds to look at it. When the < | 1> seconds are over, you have < | 1> seconds to decide on whether you want to choose an option yourself or have the computer choose the option for you. If you fail to enter your decision during those < | 1> seconds, you will have to choose the option yourself.
+After those < | 1> + < | 1> = < + | 1> seconds, you have another < | 1> seconds to choose your preferred option in case you do not have the computer choose it. If you fail to make a choice and the task is randomly selected for payment, you will not receive any bonus payment.
+Once you are on the next page, the table will apear and the < | 1>-second countdown will begin (immediately followed by the other decisions and countdowns).
+- button: Continue
+
+
+
+## Stage: Part2
+
+
+This was Part 2, task:
+- format: 1
+- button: Continue
+This was the selected option:
+- text: State:
+- text: <><State|1>
+- text: <>Option <Option | 1>
+- text: <><State1 | 1>
+- text: <><State2 | 1>
+- text: <><State3 | 1>
+- text: <><State4 | 1>
+- text: <><State5 | 1>
+- text: <><State6 | 1>
+- text: <><State7 | 1>
+- text: <><State8 | 1>
+- text: <><State9 | 1>
+- text: <><State10 | 1>
+The die roll selected:
+- format: <>!text: 1 = "State <|1>";
+If this decision becomes payoff-relevant, your bonus payment is:
+- format: <>!text: 1 = "<|1> Points";
+- button: OK
+You failed to select an option from the table.
+If this decision becomes payoff-relevant, your bonus payment is 0.
+- button: OK
+On a scale of 1 to 5 diamonds, where 1 diamond means "not satisfied at all" and 5 diamonds means "completely satisfied"...
+How satisfied are you with the selected Option in this task?
+- button: Continue
+- text: <>Part 2, Decision <NthDecision | 1>
+- text: State:
+- text: <><State|1>
+- text: <>Option <Option | 1>
+- text: <><State1 | 1>
+- text: <><State2 | 1>
+- text: <><State3 | 1>
+- text: <><State4 | 1>
+- text: <><State5 | 1>
+- text: <><State6 | 1>
+- text: <><State7 | 1>
+- text: <><State8 | 1>
+- text: <><State9 | 1>
+- text: <><State10 | 1>
+<2*|1> I would like to...
+- text: <><index | !text: 1="make my own choice"; 2="have the computer do it";>
+- text: State:
+- text: <><State|1>
+- text: <>Option <Option | 1>
+- text: <><State1 | 1>
+- text: <><State2 | 1>
+- text: <><State3 | 1>
+- text: <><State4 | 1>
+- text: <><State5 | 1>
+- text: <><State6 | 1>
+- text: <><State7 | 1>
+- text: <><State8 | 1>
+- text: <><State9 | 1>
+- text: <><State10 | 1>
+- button: OK
+<2*|1> Please wait for the computer to select an Option.
+
+
+
+## Stage: Hypothetic10
+
+
+Thank you for completing Part 2. You are now entering Part 3.
+Please think about the following hypothetical scenario.
+Imagine that you had to do another 10 tasks like the ones you have just completed. This time, however, you do not get to choose for every individual task whether you want to select the Option yourself of have the computer select it for you, but you have to choose one of these two ways of selecting the options for all 10 tasks.
+<2*|1> I would want the Options to be selected by...
+- text: <><index | !text: 1="myself"; 2="the computer";>
+<2*|1> ...in all 10 tasks.
+- button: Next
+
+
+
+## Stage: ReasonsForHypDelegationChoice
+
+
+You just chose <DelegateHyp10 | !text: 1 = ""; 0 = "not ";>to delegate the 10 tasks to the computer. To understand this choice a little better, we would like to ask you some questions:
+Please estimate the number of tasks (out of 10) in which the computer would choose an Option that would differ from the Option you would prefer (on average):
+- format: .1
+Please estimate the number of tasks (out of 10) in which the computer would choose an Option that would be completely weird:
+- format: .1
+On a scale from 0 (not at all) to 10 (totally), how ready was the computer to take financially risky decisions?
+- format: !radioline: 0 = "0"; 10 = "10"; 11;
+- button: Next
+
+
+
+## Stage: ReasonsForHypDelegationChoice2
+
+
+[Continued:] You just chose <DelegateHyp10 | !text: 1 = ""; 0 = "not ";>to delegate the 10 tasks to the computer. To understand this choice a little better, we would like to ask you some questions:
+To further understand why you chose <DelegateHyp10 | !text: 1 = ""; 0 = "not ";>to delegate the 10 tasks to the computer, please tick all reasons that apply:
+- format: <>!checkbox: 1 = "I don't fully trust <DelegateHyp10 | !text: 1 = "myself"; 0 = "the computer";>";
+- format: <>!checkbox: 1 = "I thought <DelegateHyp10 | !text: 1 = "the computer could do a better job than me"; 0 = "I could do a better job than the computer";>";
+- format: <>!checkbox: 1 = "I find it unpleasant that I don't know how exactly the computer chooses an option for me";
+- format: <>!checkbox: 1 = "I would have preferred more information about how the computer makes its decisions";
+- format: <>!checkbox: 1 = "I <DelegateHyp10 | !text: 1 = "didn't want"; 0 = "wanted";> to be responsible for choosing <DelegateHyp10 | !text: 1 = "an"; 0 = "the";> option";
+- format: <>!checkbox: 1 = "I didn't want to be responsible if a low payment results";
+- format: <>!checkbox: 1 = "I don't like relying on <DelegateHyp10 | !text: 1 = "myself"; 0 = "computers";>";
+- format: <>!checkbox: 1 = "I don't like to be analysed by an algorithm";
+- format: <>!checkbox: 1 = "I wanted to see how well <DelegateHyp10 | !text: 1 = "the computer"; 0 = "I";> can do";
+- format: <>!checkbox: 1 = "Doing it myself would have been too tedious";
+- format: <>!checkbox: 1 = "Other (please specify below):";
+- format: !string
+- button: Next
+
+
+## Stage: Qaire1
+
+
+You are almost done with Part 3. Please answer the following questions.Your answers will not affect your payoff.
+On a scale from 0 (not at all) to 10 (completely), how well do the following statements describe you?
+I am generally willing to take risks in financial matters
+- format: !radioline: 0 = "0"; 10 = "10"; 11;
+I am experienced in financial markets and frequently make investment decisions.
+- format: !radioline: 0 = "0"; 10 = "10"; 11;
+I am solely responsible for financial decisions in my household.
+- format: !radioline: 0 = "0"; 10 = "10"; 11;
+I frequently use/interact with AI.
+- format: !radioline: 0 = "0"; 10 = "10"; 11;
+- button: Next
+
+
+
+## Stage: Qaire2
+
+
+Gender
+- format: !radio: 1 = "Female"; 0 = "Male"; .5 = "Non-binary / third gender"; -1 = "Prefer not to say";
+How old are you?
+- format: 1
+What is the highest level of education you have completed?
+- format: !radio: 0 = "No formal qualifications"; 1 = "Secondary education (e.g., GED/GCSE)"; 2 = "High school diploma / A-levels"; 3 = "Technical / community college"; 4 = "Undergraduate degree (BA / BSc / other)"; 5 = "Graduate degree (MA / MSc / MPhil / other)"; 6 = "Doctorate degree (PhD / other)";
+What is your yearly household income?
+- format: !radio: 5 = "Less than £10.000"; 15 = "£10.000 - £19.999"; 25 = "£20.000 - £29.999"; 35 = "£30.000 - £39.999"; 45 = "£40.000 - £49.999"; 55 = "£50.000 - £59.999"; 65 = "£60.000 - £69.999"; 75 = "£70.000 - £79.999"; 85 = "£80.000 - £89.999"; 95 = "£90.000 - £99.999"; 105 = "more than £100.000"; -1 = "Prefer not to say";
+- button: Next
+
+
+
+## Stage: Qaire3
+
+
+We care about the quality of our study data. Therefore, we would like to know whether we can rely on your answers.
+Please indicate your agreement with the following statement:
+I provided thoughtful answers to all the questions in this study. Note that your answer to this question will NOT affect your approval nor your payment, and we also will NOT share your answers with Prolific.
+- format: !radio: 1 = "Strongly disagree"; 2 = "Disagree"; 3 = "Somewhat disagree"; 4 = "Neither agree nor disagree"; 5 = "Somewhat agree"; 6 = "Agree"; 7 = "Strongly agree";
+At any point during this study, did you use an AI tool (e.g., ChatGPT, Gemini, Copilot, etc.) to assist you with understanding the task or making decisions?
+Note that your answer to this question will NOT affect your approval nor your payment, and we also will NOT share your answers with Prolific.
+- format: !radio: 1 = "Yes"; 0 = "No";
+- button: Next
+
+
+
+## Stage: Qaire3a
+
+
+You just indicated that you have used an AI tool at some point during this study. May we ask what exactly you used AI for?
+- format: !string
+- button: Next
+
+
+
+## Stage: Qaire4_FALSE
+
+
+For a different survey, we are collecting common phrases in rare dialects.
+Please translate the following sentence into Manx ( please ignore this question if you cannot translate this sentence without the use of any technical devices):
+It is so nice to meet you.
+- format: !string
+- button: Next
+
+
+
+## Stage: THANKYOU
+
+
+Thank you for participating in this study!
+Do you have any feedback concerning the comprehension of this study?
+- format: !string
+The random-number generator selected task <RandomPeriod | 1> for payment.
+In this task, you chose the following option:
+- text: <>State <State|1>
+- text: <>Option <Option | 1>
+- text: <><State[1] | 1>
+- text: <><State[2] | 1>
+- text: <><State[3] | 1>
+- text: <><State[4] | 1>
+- text: <><State[5] | 1>
+- text: <><State[6] | 1>
+- text: <><State[7] | 1>
+- text: <><State[8] | 1>
+- text: <><State[9] | 1>
+- text: <><State[10] | 1>
+The die roll selected:
+- format: <>!text: 1 = "State <|1>";
+Accordingly, your bonus payment is:
+- format: <>!text: 1 = "<|1> Points";
+Therefore, your final payment is: £2.00 (show up fee) + £<RelevantPayoff/100 | .01> (bonus payment).
+- button: Proceed
+Thank you for participating in this study!
+Do you have any feedback concerning the comprehension of this study?.
+- format: !string
+The random-number generator selected task <RandomPeriod | 1> for payment.
+In this task, you failed to chose an option.
+Accordingly, your bonus payment is:
+- format: <>!text: 1 = "<|1> Points";
+Therefore, your final payment is: £2.00.
+- button: Proceed
+
+
+Please go to the Prolific website and enter the following completion code in order to claim your payment:
+- format: 20
+
+
+# Preference-based treatment (EVAlgorithm = 0)
+
+
+
+
+Please wait for the experiment to continue.
+
+## Stage: Welcome
+
+
+Welcome!
+In this study, we ask you to make several decisions. Participation will take approximately 20 minutes.
+Please make sure on every screen that you can see and read all the text.
+For that purpose, use Ctrl+"-" and Ctrl+"+" until you have the optimal resolution for each screen.
+Please test it now and remember this information, as it may become relevant on a later screen.
+- button: OK
+
+
+
+## Stage: Captcha1
+
+
+To confirm you are not a robot, please indicate below what the following picture is meant to represent:
+- format: !radio: 2 = "a banana"; 3 = "a traffic light"; 4 = "darts games"; 5 = "a bicycle"; 6 = "a robot"; 7 = "nothing, it's randomly placed shapes";
+- button: OK
+
+
+
+## Stage: out
+
+
+Unfortunately, you failed to complete the captcha on the previous screen. We therefore have to assume you are a bot. Therefore, you cannot continue with this study.
+- button: OK
+
+
+
+## Stage: Overview1
+
+
+The study consists of 3 parts.
+In Parts 1 and 2: You participate in different decision-making tasks.
+In Part 3: You answer a short questionnaire.
+Payment: You will receive GBP 2 for completing the study. In addition to this you will receive a bonus payment of up to GBP 8.90 that depends on your decisions in Part 2 and on chance. The bonus payment will be distributed within 24 hours. Note that throughout the study, we will be speaking of points rather than Pounds. At the end of the study, your earned points from Part 2 will be converted into Pounds as follows: 100 Points = £1.00.
+- button: continue
+
+
+
+## Stage: Overview2
+
+
+Voluntary participation: Participation in this study is entirely voluntary. You can stop the study at any point. To do so, just close the window in your web browser. This decision is not accompanied with any disadvantages for you, except that we will not be able to pay you for your participation.
+Anonymity: All responses are being collected in an anonymised manner, will be treated as confidential and only be used for research purposes. It is not possible under any circumstances to draw conclusions about your person.
+Data protection: The data collected as part of this study will be anonymised and stored on servers of the University of Konstanz. The consent to collect and process the data cannot be reversed, as the anonymisation does not allow us to delete participant-specific data.
+For questions or comments, please contact online-exp@twi-kreuzlingen.ch
+You can only participate if you agree to participate and to the data processing described above. After reading the instructions, if you decide that you no longer want to participate, please return the study to allow others to participate.
+- format: !radio: 1 = "Yes, I agree to participate in this study and to the processing of my data as described above."; 0 = "No, I do not agree to participate in this study and to the processing of my data as described above.";
+- button: confirm
+
+
+
+## Stage: out2
+
+
+Unfortunately, you did not agree to participate in this study and to the processing of your data as described. Therefore, you cannot continue with this study.
+- button: OK
+
+
+
+## Stage: BotCheck2
+
+
+Bots are increasingly sophisticated and in order to filter out bots, please select `Disagree' on the following question:
+- format: !radio: 1 = "Strongly disagree"; 2 = "Disagree"; 3 = "Agree"; 4 = "Strongly Agree";
+Further, to make sure your system allows you to interact with the system well, please click on the white line in such a way that the appearing blue dot is close to a value of 50.
+- text: 50
+- text: 0
+- text: 100
+- button: OK
+Sorry, you have to place it closer to 50.
+- button: OK
+
+
+
+## Stage: out3
+
+
+Unfortunately, your system does not seem to allow you to interact with our interface well enough, as you failed to place the blue dot anywhere near the midpoint on the previous page's line. Therefore, you cannot continue with this study.
+- button: OK
+
+
+
+## Stage: InstructionsPart1a
+
+
+Part 1
+In the first part of the study, you will answer 12 questions, in which you can choose between two options.
+The questions in this part are hypothetical , but the choices may be meaningful for Part 2 (recall that your bonus payment from the experiment depends on what happens in Part 2).
+- button: Continue
+
+
+
+## Stage: InstructionsPart1b
+
+
+Part 1 - Instructions (1/2)
+Please make sure you read the instructions carefully. You will have to answer several comprehension questions correctly afterwards in order to continue with the study.
+In each of the 12 questions of Part 1, you will see a table with two rows that are representing the two options you can choose between (you can find an example of such a table below).
+Each option has 10 different states , corresponding to the 10 columns of the table. A fair 10-sided die will determine which of the 10 states is realised. Therefore, each state has an equal (10%) probability of becoming relevant. The numbers in the table are the payoffs you would receive (if this was not the example table and if this part were played out for real). All payoffs are in points. Recall that 100 Points = £1.00.
+- text: State:
+- text: <><State|1>
+- text: <>Option <Index|1>
+- text: <><State1 | 1>
+- text: <><State2 | 1>
+- text: <><State3 | 1>
+- text: <><State4 | 1>
+- text: <><State5 | 1>
+- text: <><State6 | 1>
+- text: <><State7 | 1>
+- text: <><State8 | 1>
+- text: <><State9 | 1>
+- text: <><State10 | 1>
+As you know this is an example only. In the tables relevant for your payment, the values will be replaced by different ones.
+- button: Continue
+
+
+
+## Stage: InstructionsPart1c
+
+
+Part 1 - Instructions (2/2)
+Let's assume you choose Option <1 + reducedLotterySetsUnscrambled.find( OptionsetID == 0 & Option == 4, Up) | 1> . The die is thrown and shows a 5, which means that state 5 determines your payoff from the chosen option. Therefore, the payoff you receive is <reducedLotterySetsUnscrambled.find( OptionsetID == 0 & Option == 4, State5) | 1> points.
+- text: State:
+- text: <><State|1>
+- text: <>Option <OrderNumber | 1>
+- text: <><State1 | 1>
+- text: <><State2 | 1>
+- text: <><State3 | 1>
+- text: <><State4 | 1>
+- text: <><State5 | 1>
+- text: <><State6 | 1>
+- text: <><State7 | 1>
+- text: <><State8 | 1>
+- text: <><State9 | 1>
+- text: <><State10 | 1>
+As you know this is an example only. In the tables relevant for your payment, the values will be replaced by different ones.
+- button: Continue
+
+
+
+## Stage: ComprehensionQs
+
+
+Before starting with the main study, please answer the following questions concerning the instructions you just read.
+Comprehension Question 1
+Imagine person X chooses Option <2 - reducedLotterySetsUnscrambled.find( OptionsetID == 0 & Option == 3, Up) | 1> . The 10-sided die is rolled and lands on a 8.
+- text: State:
+- text: <><State|1>
+- text: <>Option <OrderNumber | 1>
+- text: <><State1 | 1>
+- text: <><State2 | 1>
+- text: <><State3 | 1>
+- text: <><State4 | 1>
+- text: <><State5 | 1>
+- text: <><State6 | 1>
+- text: <><State7 | 1>
+- text: <><State8 | 1>
+- text: <><State9 | 1>
+- text: <><State10 | 1>
+Which payoff would the person receive (if this wasn't hypothetical)?
+- format: !radio: 275 = "275"; 205 = "205"; 0 = "0"; 525 = "525"; 505 = "505";
+Comprehension Question 2
+What is the probability of each state in the table being realised?
+- format: !radio: 1 = "1%"; 5 = "5%"; 10 = "10%"; 20 = "20%"; 25 = "25%";
+- button: next
+Comprehension Question 3
+Please tick the correct statement:
+- format: !radio: 1 = "I will be paid based on one of my decisions in Part 1."; 2 = "I will be paid based on multiple decisions from Part 1."; 3 = "I will not be paid based on my decisions in Part 1, but my answers may be relevant for Part 2 (and Part 2 will deteremine my bonus payment)."; 4 = "I will not be paid based on my decisions in Part 1, but my answers may be relevant for Part 2 (I definitely will not receive any bonus payment from Part 2).";
+- button: back
+- button: continue
+Before starting with the main study, please answer the following questions concerning the instructions you just read.
+Comprehension Question 1
+Imagine person X chooses Option <1 + reducedLotterySetsUnscrambled.find( OptionsetID == 0 & Option == 4, Up) | 1> . The 10-sided die is rolled and lands on a 8.
+- text: State:
+- text: <><State|1>
+- text: <>Option <OrderNumber | 1>
+- text: <><State1 | 1>
+- text: <><State2 | 1>
+- text: <><State3 | 1>
+- text: <><State4 | 1>
+- text: <><State5 | 1>
+- text: <><State6 | 1>
+- text: <><State7 | 1>
+- text: <><State8 | 1>
+- text: <><State9 | 1>
+- text: <><State10 | 1>
+Which payoff would the person receive (if this wasn't hypothetical)?
+- format: !radio: 275 = "275"; 205 = "205"; 0 = "0"; 525 = "525"; 505 = "505";
+Comprehension Question 2
+What is the probability of each state in the table being realised?
+- format: !radio: 1 = "1%"; 5 = "5%"; 10 = "10%"; 20 = "20%"; 25 = "25%";
+- button: next
+Comprehension Question 3
+Please tick the correct statement:
+- format: !radio: 1 = "I will be paid based on one of my decisions in Part 1."; 2 = "I will be paid based on multiple decisions from Part 1."; 3 = "I will not be paid based on my decisions in Part 1, but my answers may be relevant for Part 2 (and Part 2 will deteremine my bonus payment)."; 4 = "I will not be paid based on my decisions in Part 1, but my answers may be relevant for Part 2 (I definitely will not receive any bonus payment from Part 2).";
+- button: back
+- button: continue
+
+
+
+## Stage: ComprehensionQsReplay
+
+
+You answered at least one of the questions incorrectly. Please try again and answer the following questions concerning the instructions you just read.
+- button: OK
+Comprehension Question 1
+Imagine person X chooses Option <2 - reducedLotterySetsUnscrambled.find( OptionsetID == 0 & Option == 3, Up) | 1> . The 10-sided die is rolled and lands on a 8.
+- text: State:
+- text: <><State|1>
+- text: <>Option <OrderNumber | 1>
+- text: <><State1 | 1>
+- text: <><State2 | 1>
+- text: <><State3 | 1>
+- text: <><State4 | 1>
+- text: <><State5 | 1>
+- text: <><State6 | 1>
+- text: <><State7 | 1>
+- text: <><State8 | 1>
+- text: <><State9 | 1>
+- text: <><State10 | 1>
+Which payoff would the person receive (if this wasn't hypothetical)?
+- format: !radio: 275 = "275"; 205 = "205"; 0 = "0"; 525 = "525"; 505 = "505";
+Comprehension Question 2
+What is the probability of each state in the table being realised?
+- format: !radio: 1 = "1%"; 5 = "5%"; 10 = "10%"; 20 = "20%"; 25 = "25%";
+- button: next
+Comprehension Question 3
+Please tick the correct statement:
+- format: !radio: 1 = "I will be paid based on one of my decisions in Part 1."; 2 = "I will be paid based on multiple decisions from Part 1."; 3 = "I will not be paid based on my decisions in Part 1, but my answers may be relevant for Part 2 (and Part 2 will deteremine my bonus payment)."; 4 = "I will not be paid based on my decisions in Part 1, but my answers may be relevant for Part 2 (I definitely will not receive any bonus payment from Part 2).";
+- button: back
+- button: OK
+
+
+
+## Stage: Part1
+
+
+- text: <>Part 1, Decision <Screen|1>
+Please imagine the following situation: You can choose between the two options shown in the table below. Which of them do you prefer?
+- text: <>State <State|1>
+- text: <>Option <OrderNumber | 1>
+- text: <><State1 | 1>
+- text: <><State2 | 1>
+- text: <><State3 | 1>
+- text: <><State4 | 1>
+- text: <><State5 | 1>
+- text: <><State6 | 1>
+- text: <><State7 | 1>
+- text: <><State8 | 1>
+- text: <><State9 | 1>
+- text: <><State10 | 1>
+- button: OK
+- text: <>Part 1, Decision <Screen|1>
+You still have to select an option.
+- button: OK
+On a scale from 0 (not at all) to 10 (completely), how confident were you in the choice you just made?
+- format: !radioline: 0 = "0"; 10 = "10"; 11;
+- button: Next
+
+
+
+## Stage: InstructionsPart2a
+
+
+Thank you! You have successfully completed Part 1 of this study. Before you proceed to Part 2, we would like to ask a final question on your choices in Part 1:
+On a scale from 0 (not at all) to 10 (completely), how satisfied were you with your choices overall?
+- format: !radioline: 0 = "0"; 10 = "10"; 11;
+- button: OK
+
+
+
+## Stage: InstructionsPart2b
+
+
+Part 2 - Instructions (1/3)
+Please make sure you read the instructions carefully. You again will have to answer several comprehension questions correctly afterwards in order to continue with the study.
+In Part 2 of the study, you will complete 8 tasks . In each task, you will be presented with a table of options again, much like in Part 1. However, in Part 2, each table consists of 8 options . Recall that in this part, Points you earn will be converted to money payment using an exchange rate of 50 Points = £1.00.
+In principle, the logic of the table and the way how payoffs are determined are exactly the same as in Part 1: each option has 10 outcomes, and a roll of a 10-sided die will determine the actual payoff your chosen option will yield. The main difference to Part 1 is that in Part 2, you can either choose an option yourself, or delegate the decision to a computer. In addition, if you decide to choose the option yourself, you will be facing a time limit.
+- button: Continue
+
+
+
+## Stage: InstructionsPart2c
+
+
+Part 2 - Instructions (2/3)
+Details. Each task proceeds as follows:
+1. You are shown the table of options for < | 1> seconds.
+2. You have < | 1> seconds to decide on how your option should be selected:
+(a) you select the lottery yourself
+(b) you have a computer select the lottery for you
+3. The table of options is shown for another < | 1> seconds. If you picked (a), you need to choose an option during these < | 1> seconds.
+If you decide to have the computer select a lottery for you, its choice will be determined by an algorithm. This algorithm analyses your choices from Part 1 and selects the best option for you in light of your Part-1 choices.
+- button: Continue
+
+
+
+## Stage: InstructionsPart2d
+
+
+Part 2 - Instructions (3/3)
+Note that having the computer select the option for you does not come with any additional costs. You will make the decision on whether it is you or the computer who selects the option for each task anew, and your decision in one task will not affect any other task in any way.
+After completing a task, regardless of whether you decided to select the option yourself or have the computer select it for you, you will be shown the selected option, the outcome of the die roll, and the Points you will earn if this task is randomly selected for payment.
+Lastly, you will be asked after every task to rate your satisfaction with the lottery selection for that task on a scale of 1 to 5 diamonds, where 1 diamond means "not satisfied at all" and 5 diamonds means "completely satisfied".
+- button: Continue
+
+
+
+## Stage: ComprehensionQsP2
+
+
+Before starting with Part 2, please answer the following questions concerning the instructions you just read.
+Comprehension Question 1
+If you decide to have the computer select an option for you in a given task, what does the computer algorithm do?
+- format: <>!radio: 0 = "It selects an option at random."; 1 = "It selects the best option for you in light of your Part-1 choices.";
+Comprehension Question 2
+After completing a task....
+- format: !radio: 0 = "I will not be given any information."; 2 = "I will be shown the selected option, the outcome of the die roll, and the points I will earn if this task is selected for payment."; 1 = "I will be shown the selected option, the outcome of the die roll, and the points I will earn if this task is selected for payment. If I chose to make the selection myself, I additionally get information on what the computer would have chosen.";
+- button: Next
+Comprehension Question 3
+After you complete all 8 tasks, your Points will be determined based on the outcome(s) of...
+- format: !radio: 8 = "All 8 tasks."; 1 = "One randomly chosen task.";
+Comprehension Question 4
+What is the cost of having the computer make the choice of the option?
+- format: !radio: 0 = "It does not cost anything"; 5 = "5 Points"; 10 = "10 Points"; 20 = "20 Points";
+Note: if you do not see the comprehension questions again, you have answered them correctly.
+- button: Back
+- button: Continue
+Before starting with Part 2, please answer the following questions concerning the instructions you just read.
+Comprehension Question 1
+If you decide to have the computer select an option for you in a given task, what does the computer algorithm do?
+- format: <>!radio: 0 = "It selects an option at random."; 1 = "It selects the best option for you in light of your Part-1 choices.";
+Comprehension Question 2
+After completing a task....
+- format: !radio: 0 = "I will not be given any information."; 2 = "I will be shown the selected option, the outcome of the die roll, and the points I will earn if this task is selected for payment."; 1 = "I will be shown the selected option, the outcome of the die roll, and the points I will earn if this task is selected for payment. If I chose to make the selection myself, I additionally get information on what the computer would have chosen.";
+- button: Next
+Comprehension Question 3
+After you complete all 8 tasks, your Points will be determined based on the outcome(s) of...
+- format: !radio: 8 = "All 8 tasks."; 1 = "One randomly chosen task.";
+Comprehension Question 4
+What is the cost of having the computer make the choice of the option?
+- format: !radio: 0 = "It does not cost anything"; 5 = "5 Points"; 10 = "10 Points"; 20 = "20 Points";
+Note: if you do not see the comprehension questions again, you have answered them correctly.
+- button: Back
+- button: Continue
+
+
+
+## Stage: ComprehensionQsP2Replay
+
+
+You answered at least on of the questions incorrectly. Please try again and answer the following questions concerning the instructions you just read.
+Comprehension Question 1
+If you decide to have the computer select an option for you in a given task, what does the computer algorithm do?
+- format: <>!radio: 0 = "It selects an option at random."; 1 = "It selects the best option for you in light of your Part-1 choices.";
+Comprehension Question 2
+After completing a task....
+- format: !radio: 0 = "I will not be given any information."; 2 = "I will be shown the selected option, the outcome of the die roll, and the points I will earn if this task is selected for payment."; 1 = "I will be shown the selected option, the outcome of the die roll, and the points I will earn if this task is selected for payment. If I chose to make the selection myself, I additionally get information on what the computer would have chosen.";
+- button: Next
+Comprehension Question 3
+After you complete all 8 tasks, your Points will be determined based on the outcome(s) of...
+- format: !radio: 8 = "All 8 tasks."; 1 = "One randomly chosen task.";
+Comprehension Question 4
+What is the cost of having the computer make the choice of the option?
+- format: !radio: 0 = "It does not cost anything"; 5 = "5 Points"; 10 = "10 Points"; 20 = "20 Points";
+- button: Back
+- button: Continue
+Before starting with Part 2, please answer the following questions concerning the instructions you just read.
+Comprehension Question 1
+If you decide to have the computer select an option for you in a given task, what does the computer algorithm do?
+- format: <>!radio: 0 = "It selects an option at random."; 1 = "It selects the best option for you in light of your Part-1 choices.";
+Comprehension Question 2
+After completing a task....
+- format: !radio: 0 = "I will not be given any information."; 2 = "I will be shown the selected option, the outcome of the die roll, and the points I will earn if this task is selected for payment."; 1 = "I will be shown the selected option, the outcome of the die roll, and the points I will earn if this task is selected for payment. If I chose to make the selection myself, I additionally get information on what the computer would have chosen.";
+- button: Next
+Comprehension Question 3
+After you complete all 8 tasks, your Points will be determined based on the outcome(s) of...
+- format: !radio: 8 = "All 8 tasks."; 1 = "One randomly chosen task.";
+Comprehension Question 4
+What is the cost of having the computer make the choice of the option?
+- format: !radio: 0 = "It does not cost anything"; 5 = "5 Points"; 10 = "10 Points"; 20 = "20 Points";
+- button: Back
+- button: Continue
+
+
+
+## Stage: IntroPart2
+
+
+On the next page, you will see the first table of 8 options.
+You will have < | 1> seconds to look at it. When the < | 1> seconds are over, you have < | 1> seconds to decide on whether you want to choose an option yourself or have the computer choose the option for you. If you fail to enter your decision during those < | 1> seconds, you will have to choose the option yourself.
+After those < | 1> + < | 1> = < + | 1> seconds, you have another < | 1> seconds to choose your preferred option in case you do not have the computer choose it. If you fail to make a choice and the task is randomly selected for payment, you will not receive any bonus payment.
+Once you are on the next page, the table will apear and the < | 1>-second countdown will begin (immediately followed by the other decisions and countdowns).
+- button: Continue
+
+
+
+## Stage: Part2
+
+
+This was Part 2, task:
+- format: 1
+- button: Continue
+This was the selected option:
+- text: State:
+- text: <><State|1>
+- text: <>Option <Option | 1>
+- text: <><State1 | 1>
+- text: <><State2 | 1>
+- text: <><State3 | 1>
+- text: <><State4 | 1>
+- text: <><State5 | 1>
+- text: <><State6 | 1>
+- text: <><State7 | 1>
+- text: <><State8 | 1>
+- text: <><State9 | 1>
+- text: <><State10 | 1>
+The die roll selected:
+- format: <>!text: 1 = "State <|1>";
+If this decision becomes payoff-relevant, your bonus payment is:
+- format: <>!text: 1 = "<|1> Points";
+- button: OK
+You failed to select an option from the table.
+If this decision becomes payoff-relevant, your bonus payment is 0.
+- button: OK
+On a scale of 1 to 5 diamonds, where 1 diamond means "not satisfied at all" and 5 diamonds means "completely satisfied"...
+How satisfied are you with the selected Option in this task?
+- button: Continue
+- text: <>Part 2, Decision <NthDecision | 1>
+- text: State:
+- text: <><State|1>
+- text: <>Option <Option | 1>
+- text: <><State1 | 1>
+- text: <><State2 | 1>
+- text: <><State3 | 1>
+- text: <><State4 | 1>
+- text: <><State5 | 1>
+- text: <><State6 | 1>
+- text: <><State7 | 1>
+- text: <><State8 | 1>
+- text: <><State9 | 1>
+- text: <><State10 | 1>
+<2*|1> I would like to...
+- text: <><index | !text: 1="make my own choice"; 2="have the computer do it";>
+- text: State:
+- text: <><State|1>
+- text: <>Option <Option | 1>
+- text: <><State1 | 1>
+- text: <><State2 | 1>
+- text: <><State3 | 1>
+- text: <><State4 | 1>
+- text: <><State5 | 1>
+- text: <><State6 | 1>
+- text: <><State7 | 1>
+- text: <><State8 | 1>
+- text: <><State9 | 1>
+- text: <><State10 | 1>
+- button: OK
+<2*|1> Please wait for the computer to select an Option.
+
+
+
+## Stage: Hypothetic10
+
+
+Thank you for completing Part 2. You are now entering Part 3.
+Please think about the following hypothetical scenario.
+Imagine that you had to do another 10 tasks like the ones you have just completed. This time, however, you do not get to choose for every individual task whether you want to select the Option yourself of have the computer select it for you, but you have to choose one of these two ways of selecting the options for all 10 tasks.
+<2*|1> I would want the Options to be selected by...
+- text: <><index | !text: 1="myself"; 2="the computer";>
+<2*|1> ...in all 10 tasks.
+- button: Next
+
+
+
+## Stage: ReasonsForHypDelegationChoice
+
+
+You just chose <DelegateHyp10 | !text: 1 = ""; 0 = "not ";>to delegate the 10 tasks to the computer. To understand this choice a little better, we would like to ask you some questions:
+Please estimate the number of tasks (out of 10) in which the computer would choose an Option that would differ from the Option you would prefer (on average):
+- format: .1
+Please estimate the number of tasks (out of 10) in which the computer would choose an Option that would be completely weird:
+- format: .1
+On a scale from 0 (not at all) to 10 (totally), how ready was the computer to take financially risky decisions?
+- format: !radioline: 0 = "0"; 10 = "10"; 11;
+- button: Next
+
+
+
+## Stage: ReasonsForHypDelegationChoice2
+
+
+[Continued:] You just chose <DelegateHyp10 | !text: 1 = ""; 0 = "not ";>to delegate the 10 tasks to the computer. To understand this choice a little better, we would like to ask you some questions:
+To further understand why you chose <DelegateHyp10 | !text: 1 = ""; 0 = "not ";>to delegate the 10 tasks to the computer, please tick all reasons that apply:
+- format: <>!checkbox: 1 = "I don't fully trust <DelegateHyp10 | !text: 1 = "myself"; 0 = "the computer";>";
+- format: <>!checkbox: 1 = "I thought <DelegateHyp10 | !text: 1 = "the computer could do a better job than me"; 0 = "I could do a better job than the computer";>";
+- format: <>!checkbox: 1 = "I find it unpleasant that I don't know how exactly the computer chooses an option for me";
+- format: <>!checkbox: 1 = "I would have preferred more information about how the computer makes its decisions";
+- format: <>!checkbox: 1 = "I <DelegateHyp10 | !text: 1 = "didn't want"; 0 = "wanted";> to be responsible for choosing <DelegateHyp10 | !text: 1 = "an"; 0 = "the";> option";
+- format: <>!checkbox: 1 = "I didn't want to be responsible if a low payment results";
+- format: <>!checkbox: 1 = "I don't like relying on <DelegateHyp10 | !text: 1 = "myself"; 0 = "computers";>";
+- format: <>!checkbox: 1 = "I don't like to be analysed by an algorithm";
+- format: <>!checkbox: 1 = "I wanted to see how well <DelegateHyp10 | !text: 1 = "the computer"; 0 = "I";> can do";
+- format: <>!checkbox: 1 = "Doing it myself would have been too tedious";
+- format: <>!checkbox: 1 = "Other (please specify below):";
+- format: !string
+- button: Next
+[Continued:] You just chose <DelegateHyp10 | !text: 1 = ""; 0 = "not ";>to delegate the 10 tasks to the computer. To understand this choice a little better, we would like to ask you some questions:
+To further understand why you chose <DelegateHyp10 | !text: 1 = ""; 0 = "not ";>to delegate the 10 tasks to the computer, please tick all reasons that apply:
+- format: <>!checkbox: 1 = "I don't fully trust <DelegateHyp10 | !text: 1 = "myself"; 0 = "the computer";>";
+- format: <>!checkbox: 1 = "I thought <DelegateHyp10 | !text: 1 = "the computer could do a better job than me"; 0 = "I could do a better job than the computer";>";
+- format: <>!checkbox: 1 = "I find it unpleasant that I don't know how exactly the computer chooses an option for me";
+- format: <>!checkbox: 1 = "I would have preferred more information about how the computer makes its decisions";
+- format: <>!checkbox: 1 = "I <DelegateHyp10 | !text: 1 = "didn't want"; 0 = "wanted";> to be responsible for choosing <DelegateHyp10 | !text: 1 = "an"; 0 = "the";> option";
+- format: <>!checkbox: 1 = "I didn't want to be responsible if a low payment results";
+- format: <>!checkbox: 1 = "I don't like relying on <DelegateHyp10 | !text: 1 = "myself"; 0 = "computers";>";
+- format: <>!checkbox: 1 = "I don't like to be analysed by an algorithm";
+- format: <>!checkbox: 1 = "I wanted to see how well <DelegateHyp10 | !text: 1 = "the computer"; 0 = "I";> can do";
+- format: <>!checkbox: 1 = "Other (please specify below):";
+- format: !string
+- button: Next
+
+
+
+## Stage: Qaire1
+
+
+You are almost done with Part 3. Please answer the following questions.Your answers will not affect your payoff.
+On a scale from 0 (not at all) to 10 (completely), how well do the following statements describe you?
+I am generally willing to take risks in financial matters
+- format: !radioline: 0 = "0"; 10 = "10"; 11;
+I am experienced in financial markets and frequently make investment decisions.
+- format: !radioline: 0 = "0"; 10 = "10"; 11;
+I am solely responsible for financial decisions in my household.
+- format: !radioline: 0 = "0"; 10 = "10"; 11;
+I frequently use/interact with AI.
+- format: !radioline: 0 = "0"; 10 = "10"; 11;
+- button: Next
+
+
+
+## Stage: Qaire2
+
+
+Gender
+- format: !radio: 1 = "Female"; 0 = "Male"; .5 = "Non-binary / third gender"; -1 = "Prefer not to say";
+How old are you?
+- format: 1
+What is the highest level of education you have completed?
+- format: !radio: 0 = "No formal qualifications"; 1 = "Secondary education (e.g., GED/GCSE)"; 2 = "High school diploma / A-levels"; 3 = "Technical / community college"; 4 = "Undergraduate degree (BA / BSc / other)"; 5 = "Graduate degree (MA / MSc / MPhil / other)"; 6 = "Doctorate degree (PhD / other)";
+What is your yearly household income?
+- format: !radio: 5 = "Less than £10.000"; 15 = "£10.000 - £19.999"; 25 = "£20.000 - £29.999"; 35 = "£30.000 - £39.999"; 45 = "£40.000 - £49.999"; 55 = "£50.000 - £59.999"; 65 = "£60.000 - £69.999"; 75 = "£70.000 - £79.999"; 85 = "£80.000 - £89.999"; 95 = "£90.000 - £99.999"; 105 = "more than £100.000"; -1 = "Prefer not to say";
+- button: Next
+
+
+
+## Stage: Qaire3
+
+
+We care about the quality of our study data. Therefore, we would like to know whether we can rely on your answers.
+Please indicate your agreement with the following statement:
+I provided thoughtful answers to all the questions in this study. Note that your answer to this question will NOT affect your approval nor your payment, and we also will NOT share your answers with Prolific.
+- format: !radio: 1 = "Strongly disagree"; 2 = "Disagree"; 3 = "Somewhat disagree"; 4 = "Neither agree nor disagree"; 5 = "Somewhat agree"; 6 = "Agree"; 7 = "Strongly agree";
+At any point during this study, did you use an AI tool (e.g., ChatGPT, Gemini, Copilot, etc.) to assist you with understanding the task or making decisions?
+Note that your answer to this question will NOT affect your approval nor your payment, and we also will NOT share your answers with Prolific.
+- format: !radio: 1 = "Yes"; 0 = "No";
+- button: Next
+
+
+
+## Stage: Qaire3a
+
+
+You just indicated that you have used an AI tool at some point during this study. May we ask what exactly you used AI for?
+- format: !string
+- button: Next
+
+
+
+## Stage: Qaire4_FALSE
+
+
+For a different survey, we are collecting common phrases in rare dialects.
+Please translate the following sentence into Manx ( please ignore this question if you cannot translate this sentence without the use of any technical devices):
+It is so nice to meet you.
+- format: !string
+- button: Next
+
+
+
+## Stage: THANKYOU
+
+
+Thank you for participating in this study!
+Do you have any feedback concerning the comprehension of this study?
+- format: !string
+The random-number generator selected task <RandomPeriod | 1> for payment.
+In this task, you chose the following option:
+- text: <>State <State|1>
+- text: <>Option <Option | 1>
+- text: <><State[1] | 1>
+- text: <><State[2] | 1>
+- text: <><State[3] | 1>
+- text: <><State[4] | 1>
+- text: <><State[5] | 1>
+- text: <><State[6] | 1>
+- text: <><State[7] | 1>
+- text: <><State[8] | 1>
+- text: <><State[9] | 1>
+- text: <><State[10] | 1>
+The die roll selected:
+- format: <>!text: 1 = "State <|1>";
+Accordingly, your bonus payment is:
+- format: <>!text: 1 = "<|1> Points";
+Therefore, your final payment is: £2.00 (show up fee) + £<RelevantPayoff/100 | .01> (bonus payment).
+- button: Proceed
+Thank you for participating in this study!
+Do you have any feedback concerning the comprehension of this study?.
+- format: !string
+The random-number generator selected task <RandomPeriod | 1> for payment.
+In this task, you failed to chose an option.
+Accordingly, your bonus payment is:
+- format: <>!text: 1 = "<|1> Points";
+Therefore, your final payment is: £2.00.
+- button: Proceed
+
+
+Please go to the Prolific website and enter the following completion code in order to claim your payment:
+- format: 20

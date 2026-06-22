@@ -1,0 +1,4 @@
+SessionID	TreatmentNumber	Table	TreatmentID	BaseTreatment	StartMethod	FileName	BackupFileName	NumberOfSubjects	TreatmentNumber	StartTimeString	EndTimeString	ErrorString	MessageString	ClientToStart
+260206_1528	1	treatments	1	1	"menu"	"C:\\Users\\Administrator\\Nextcloud\\0_zTreeOnline\\iw\\1_schedule_welcome.ztt"	"C:\\Users\\Administrator\\Nextcloud\\0_zTreeOnline\\expdata\\files_Fri_02-06-2026_15-28-25-48\\@260206_1528_1_schedule_welcome.ztt"	0	1	"2026-02-06T14:30:10.235+00:00"	"2026-02-06T14:30:10.240+00:00"	""	""	0
+260206_1528	1	treatments	2	2	"welcome()"	"C:\\Users\\Administrator\\Nextcloud\\0_zTreeOnline\\iw\\emptyWelcome.ztt"	""	-1	-1	""	""	""	""	0
+260206_1528	1	treatments	3	3	"whenever(>(clients.count(and(==(StateString, \"Ready\"), ==(DoneAIxperience, 0))), 0))"	"C:\\Users\\Administrator\\Nextcloud\\0_zTreeOnline\\iw\\AIxperienceReal.ztt"	""	1	-1	""	""	""	"whenever( >(clients.count(and(==(StateString, \"Ready\"), ==(DoneAIxperience, 0))), 0) ) failed"	0

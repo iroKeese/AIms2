@@ -1,0 +1,152 @@
+\documentclass[12pt,a4paper]{article}
+
+% Packages
+\usepackage{libertine}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{natbib}  % For bibliography management
+\usepackage{graphicx} % For including figures
+\usepackage{booktabs} % For nicer tables
+\usepackage{amsmath}  % For math
+\usepackage{setspace} % For line spacing
+\usepackage{geometry} % For page margins
+\usepackage{hyperref} % For hyperlinks
+\usepackage{floatflt}
+\long\def\symbolfootnote[#1]#2{\begingroup%
+	\def\thefootnote{\fnsymbol{footnote}}\footnote[#1]{#2}\endgroup}
+
+% Page setup
+%\geometry{a4paper, margin=1in}
+%\setstretch{1.5} % 1.5 line spacing
+
+% Title information
+\title{When personalization deters delegation to algorithms: Evidence from a preregistered experiment}
+\author{Irenaeus Wolff\footnote{University of Konstanz} \and Lara Suraci\footnote{DG Cities}}
+\date{\today}
+\newcommand{\mytitle}{{\Large \textsc{When personalization deters delegation to algorithms: Evidence from a preregistered experiment}}}
+
+%opening
+\title{\mytitle}
+%\author{Wania Lefuloff}
+\date{}
+
+%Fuer Zeilenabstand
+\usepackage{setspace}
+%\doublespacing
+
+%Fuer 1.5 inch margins
+%\usepackage[a4paper]{geometry}
+%\geometry{top=1.5in, bottom=1.5in, left=1.2in, right=1.2in}
+
+\begin{document}
+	
+	%  \maketitle
+	\thispagestyle{empty}
+	\begin{center}
+		\mytitle\symbolfootnote[4]{We are grateful to all the many people who helped us write this paper, first and foremost Chris Starmer and Robin Cubitt.}
+		\vspace{.55cm}\\
+		Irenaeus Wolff \& Lara Suraci
+		\\\vspace{.35cm}
+		\begin{small}
+			\textit{Thurgau Institute of Economics (TWI) / University of Konstanz\\ Hafenstrasse 6, 8280 Kreuzlingen, Switzerland\\ wolff@twi-kreuzlingen.ch}\vspace{.03cm}\\
+			\vspace{.6cm}
+			{This version: 23$^{\text{rd}}$ March, 2026}
+			\vspace{.6cm}
+		\end{small}
+	\end{center}
+
+% Abstract
+\input{Abstract.tex}
+
+% Introduction
+%\section{Introduction}
+\input{Introduction_section.tex}
+
+% Literature Review
+%\section{Literature Review}
+\label{sec:literature}
+\input{Literature_Review_section.tex}
+
+% Method
+%\section{Method}
+\label{sec:method}
+\input{Method_section.tex}
+
+% Results
+%\section{Results}
+\label{sec:results}
+\input{Results_section.tex}
+
+% Tables
+\input{Table1_DescriptiveStats.tex}
+\input{Table2_RegressionResults.tex}
+\input{Table3_NeverDelegators.tex}
+\input{Table4_WinStayLoseShift.tex}
+\input{Table5_Correlations.tex}
+
+% Figures
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.8\textwidth]{Figure1_AverageDelegation.pdf}
+\caption{Average Delegation Over Decisions}
+\label{fig:over_time}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.8\textwidth]{Figure2_DistributionDelegation.pdf}
+\caption{Distribution of Average Delegation}
+\label{fig:distribution}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.8\textwidth]{Figure3_ECDF.pdf}
+\caption{ECDF of Average Delegation}
+\label{fig:ecdf}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.8\textwidth]{Figure4_DelegationGroups.pdf}
+\caption{Delegation Groups by Treatment}
+\label{fig:groups}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.8\textwidth]{Figure5_WinStayLoseShift.pdf}
+\caption{Win-Stay, Lose-Shift Patterns}
+\label{fig:win_stay}
+\end{figure}
+
+% Discussion
+\section{Discussion}
+\label{sec:discussion}
+\input{Discussion_section.tex}
+
+% Conclusion
+\section{Conclusion}
+\label{sec:conclusion}
+\input{Conclusion_section.tex}
+
+% References
+\bibliographystyle{apalike}
+\bibliography{references}
+
+% Appendices
+\appendix
+
+\section{Additional Regression Tables}
+[Additional regression results]
+
+\section{Experimental Materials}
+[Instructions, example lottery choices, questionnaire items]
+
+\section{Additional Analyses}
+[Detailed never-delegator analysis, win-stay/lose-shift by individual, correlation matrices]
+
+\section{Preregistration Document}
+[Link to AsPredicted registration, deviations from preregistration]
+
+\end{document}
