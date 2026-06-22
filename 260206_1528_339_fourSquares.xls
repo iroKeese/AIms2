@@ -1,0 +1,5 @@
+SessionID	TreatmentNumber	Table	Period	Index	Red	Green	Blue
+260206_1528	339	fourSquares	1	1	150	0	150
+260206_1528	339	fourSquares	1	2	0	100	200
+260206_1528	339	fourSquares	1	3	250	225	150
+260206_1528	339	fourSquares	1	4	200	100	0

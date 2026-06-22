@@ -1,0 +1,49 @@
+\section{Method}
+
+\subsection{Participants}
+
+We recruited 240 participants from the Prolific platform, an online participant pool widely used in behavioral research. Participants were required to be UK residents and to have English as their primary language. Following preregistered exclusion criteria, we excluded participants who: (1) failed the slider check on the first attempt, (2) failed comprehension questions after two attempts, (3) did not agree to provide thoughtful answers, (4) disclosed using AI to answer the study, (5) had completion times more than two standard deviations below the mean log completion time, or (6) had incomplete data. After applying these exclusions, the final sample consisted of 233 participants (118 in the EV algorithm condition, 115 in the preference algorithm condition). Participants had a mean age of 42.75 years (SD = 13.72), and 48.3\% were female.
+
+\subsection{Experimental Design}
+
+The study employed a between-subjects design with two conditions: (1) an expected value (EV)-maximizing algorithm and (2) a preference-based algorithm that incorporated individual's revealed preferences. The experiment consisted of two parts. In Part 1, participants made 12 lottery choices to elicit their risk preferences. In Part 2, participants made 10 lottery choices with the option to delegate to an algorithm. The algorithm type (EV vs. preference) was randomly assigned at the participant level.
+
+In the EV algorithm condition, the algorithm always selected the lottery with the highest expected value. In the preference algorithm condition, the algorithm used the participant's revealed preferences from Part 1 to select the lottery that maximized expected utility according to the participant's estimated utility function.
+
+Participants received real monetary payments based on one randomly selected decision from either Part 1 or Part 2, ensuring incentive compatibility.
+
+\subsection{Procedure}
+
+The experiment proceeded as follows:
+
+\begin{enumerate}
+    \item \textbf{Introduction and Consent}: Participants read an information sheet and provided informed consent.
+    \item \textbf{Attention Checks}: Participants completed a slider check and comprehension questions to ensure they understood the task.
+    \item \textbf{Part 1 (Preference Elicitation)}: Participants made 12 lottery choices between pairs of lotteries. These choices were used to estimate their risk preferences.
+    \item \textbf{Part 2 (Delegation Decisions)}: Participants made 10 lottery choices. For each decision, they could either choose a lottery themselves or delegate to the algorithm. After each decision, participants received feedback on the outcome and their payoff.
+    \item \textbf{Post-Experiment Questionnaire}: Participants completed a questionnaire collecting demographic information (age, gender, education, income), risk attitudes, trust propensity, technology affinity, satisfaction with their choices, and reasons for (non-)delegation.
+    \item \textbf{Debriefing}: Participants were informed about the purpose of the study and received their payment information.
+\end{enumerate}
+
+\subsection{Measures}
+
+\subsubsection{Primary Dependent Variable}
+
+The primary dependent variable was delegation frequency, measured in two ways: (1) delegation in the first decision (binary) and (2) average delegation rate across all 10 decisions in Part 2 (continuous, ranging from 0 to 1).
+
+\subsubsection{Secondary Measures}
+
+\begin{itemize}
+    \item \textbf{Non-dominated choices}: When participants chose not to delegate, we measured whether they selected a dominated lottery (i.e., a lottery that was strictly worse than another available option).
+    \item \textbf{Win-stay/lose-shift behavior}: We examined whether participants stayed with their previous choice (delegation vs. non-delegation) after a win (positive payoff) or loss (zero payoff).
+    \item \textbf{Satisfaction ratings}: Participants rated their satisfaction with their Part 1 choices on a scale from 1 (very dissatisfied) to 7 (very satisfied).
+    \item \textbf{Individual characteristics}: We measured risk attitudes, trust propensity, technology affinity, and demographic variables as potential moderators of delegation behavior.
+\end{itemize}
+
+\subsection{Statistical Analysis}
+
+All analyses were preregistered on AsPredicted (registration link to be added). For the primary hypothesis, we used a Boschloo test to compare delegation rates between conditions in the first decision, and a Wilcoxon-Mann-Whitney test to compare average delegation frequencies across all decisions. We also estimated linear probability models with decision fixed effects and standard errors clustered at the participant level.
+
+For secondary analyses, we examined win-stay/lose-shift patterns using linear probability models with fixed effects for decision sets and decision numbers, and standard errors clustered at the participant level. We also analyzed never-delegators (participants who never delegated) and examined their characteristics using t-tests and chi-square tests.
+
+All statistical tests reported exact p-values, and we did not use significance thresholds or categories (e.g., ``significant'' vs. ``non-significant'') in our reporting.

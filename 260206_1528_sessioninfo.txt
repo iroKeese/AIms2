@@ -1,0 +1,15 @@
+session	260206_1528
+homeDir	C:\Users\Administrator\Nextcloud\0_zTreeOnline\zTree\Batch files
+xlsDir	C:\Users\Administrator\Nextcloud\0_zTreeOnline\expdata\files_Fri_02-06-2026_15-28-25-48
+sbjDir	C:\Users\Administrator\Nextcloud\0_zTreeOnline\expdata\files_Fri_02-06-2026_15-28-25-48
+adrDir	C:\Users\Administrator\Nextcloud\0_zTreeOnline\expdata\files_Fri_02-06-2026_15-28-25-48
+payDir	C:\Users\Administrator\Nextcloud\0_zTreeOnline\expdata\files_Fri_02-06-2026_15-28-25-48
+gsfDir	C:\Users\Administrator\Nextcloud\0_zTreeOnline\expdata\files_Fri_02-06-2026_15-28-25-48
+zttDir	C:\Users\Administrator\Nextcloud\0_zTreeOnline\expdata\files_Fri_02-06-2026_15-28-25-48
+treatmentDir	C:\Users\Administrator\Nextcloud\0_zTreeOnline\zTree\Batch files
+tempDir	C:\Users\Administrator\Nextcloud\0_zTreeOnline\expdata\files_Fri_02-06-2026_15-28-25-48
+leafDir	C:\Users\Administrator\Nextcloud\0_zTreeOnline\zTree\Batch files
+mediaDir	C:\Users\Administrator\Nextcloud\0_zTreeOnline\zTree\Batch files
+initDir	C:\Users\Administrator\Nextcloud\0_zTreeOnline\zTree\Batch files
+webserverPort	8000
+webserverDocs	

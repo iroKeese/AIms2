@@ -1,0 +1,12 @@
+Declaration of generative AI and AI-assisted technologies in the manuscript preparation process.
+
+Statement: During the preparation of this work the author(s) used [NAME OF TOOL / SERVICE] in order to [REASON]. After using this tool/service, the author(s) reviewed and edited the content as needed and take(s) full responsibility for the content of the published article.
+
+Manuscripts must include a statement that all procedures were performed in compliance with relevant laws and institutional guidelines and have been approved by the appropriate institutional committee(s). The statement should contain the date and reference number of the ethical approval(s) obtained.
+
+Manuscripts must also include a statement that the privacy rights of human subjects have been observed and that informed consent was obtained for experimentation with human subjects.
+
+
+Submit highlights as a separate editable file in the online submission system with the word "highlights" included in the file name.
+
+Highlights should consist of 3 to 5 bullet points, each a maximum of 85 characters, including spaces.

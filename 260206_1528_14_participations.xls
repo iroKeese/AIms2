@@ -1,0 +1,14 @@
+SessionID	TreatmentNumber	Table	ParticipationID	ClientNumber	Subject	TreatmentNumber	StartInPeriod	FinishedPeriod
+260206_1528	14	participations	1	1	1	2	1	1
+260206_1528	14	participations	2	1	1	3	1	0
+260206_1528	14	participations	3	2	1	4	1	1
+260206_1528	14	participations	4	2	1	5	1	0
+260206_1528	14	participations	5	3	1	6	1	1
+260206_1528	14	participations	6	3	1	7	1	0
+260206_1528	14	participations	7	4	1	8	1	1
+260206_1528	14	participations	8	4	1	9	1	0
+260206_1528	14	participations	9	5	1	10	1	1
+260206_1528	14	participations	10	5	1	11	1	0
+260206_1528	14	participations	11	6	1	12	1	1
+260206_1528	14	participations	12	6	1	13	1	0
+260206_1528	14	participations	13	7	1	14	1	1

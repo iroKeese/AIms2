@@ -1,0 +1,268 @@
+---
+title: "AIms Study: Pre-registered & Exploratory Analysis"
+author: "GitHub Copilot"
+date: "`r Sys.Date()`"
+output:
+  pdf_document:
+    toc: true
+    toc_depth: '3'
+  html_document:
+    toc: true
+    toc_depth: 3
+    number_sections: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=TRUE, warning=FALSE, message=FALSE, fig.width=8, fig.height=5)
+library(tidyverse)
+library(lubridate)
+library(broom)
+library(fixest)
+```
+
+# 1. Data Loading and Variable Mapping
+
+```{r load-data}
+all_subj <- read_csv('allSubjects.csv')
+lottery <- read_delim('260206_1528_537_lotteryChoices.xls', delim='\t')
+demo <- read_csv('prolific_demographic_export_approved.csv')
+
+# Basic sanity checks
+cat('allSubjects rows:', nrow(all_subj), '\n')
+cat('lotteryChoices rows:', nrow(lottery), '\n')
+cat('demographics rows:', nrow(demo), '\n')
+```
+
+## 1.1 Data cleaning and mapping variables
+
+```{r clean-data}
+# Core participant-level dataset
+participants <- all_subj %>%
+  mutate(
+    condition = case_when(
+      EVAlgorithm == 1 ~ 'EV',
+      PrefAlgorithm == 1 ~ 'PREF',
+      TRUE ~ NA_character_
+    ),
+    comp_ok = (CompQ205a == 205 & CompQ10a == 10 & CompQ3a == 3),
+    slider_ok = (BotCheck1attempt == 1),
+    not_ai = (AIUsageInStudy == 0),
+    complete_ok = (LeaveStage == 0)
+  ) %>%
+  left_join(demo %>% select(`Participant id`, Age, Sex, `Country of residence`, `Employment status`),
+            by = c('ProlificID' = 'Participant id'))
+
+# Confirm condition counts
+participants %>% count(condition)
+```
+
+# 2. Pre-registered Exclusion Filters
+
+```{r exclusion-summary}
+initial_n <- nrow(participants)
+filtered <- participants %>%
+  filter(slider_ok, comp_ok, not_ai, complete_ok)
+filtered_n <- nrow(filtered)
+
+exclusion_report <- tibble(
+  step = c('initial', 'slider+comprehension+AI+complete'),
+  n = c(initial_n, filtered_n)
+)
+exclusion_report
+```
+
+# 3. Delegation Outcomes in Lottery Choices
+
+```{r delegation-aggregation}
+# Keep part 2 choices only (decision-taking tasks) and join participant condition
+decisions <- lottery %>%
+  filter(Part == 2) %>%
+  left_join(filtered %>% select(ProlificID, condition, participant_TreatmentNumber = TreatmentNumber),
+            by = 'ProlificID') %>%
+  mutate(TreatmentNumber = participant_TreatmentNumber,
+         delegated = as.integer(Delegated == 1),
+         round = WithinPartDecisionNumber) %>%
+  select(-participant_TreatmentNumber)
+
+# Per participant round-level delegation
+participant_delegate <- decisions %>%
+  group_by(ProlificID, TreatmentNumber, condition) %>%
+  summarize(
+    n_rounds = n(),
+    delegated_round1 = delegated[round == 1][1],
+    mean_delegation = mean(delegated, na.rm=TRUE),
+    .groups='drop'
+  )
+
+# Check per-participant number of decisions
+participant_delegate %>% summarise(min=n_rounds, max=n_rounds, median=n_rounds)
+```
+
+# 4. Primary Pre-Registered Tests
+
+## 4.1 Delegation in Round 1: EV vs PREF
+
+```{r round1-tests}
+round1 <- decisions %>%
+  filter(round == 1, !is.na(condition)) %>%
+  count(condition, delegated) %>%
+  pivot_wider(names_from = delegated, values_from = n, values_fill = 0)
+
+# Normalize column names to delegation/no_delegation
+colnames(round1) <- sub('^0$', 'no_delegation', colnames(round1))
+colnames(round1) <- sub('^1$', 'delegation', colnames(round1))
+
+# If delegated is logical, rename TRUE/FALSE
+colnames(round1) <- sub('^FALSE$', 'no_delegation', colnames(round1))
+colnames(round1) <- sub('^TRUE$', 'delegation', colnames(round1))
+
+if (!all(c('EV', 'PREF') %in% round1$condition) || nrow(round1) < 2) {
+  cat('Round1 cohort does not have both EV and PREF groups or no data to run Fisher test.\n')
+  print(round1)
+  fisher_result <- NULL
+} else if (!all(c('delegation','no_delegation') %in% colnames(round1))) {
+  cat('Round1 structure missing delegation/no_delegation columns; check delegated coding.\n')
+  print(round1)
+  fisher_result <- NULL
+} else {
+  m <- round1 %>%
+    arrange(condition) %>%
+    select(delegation, no_delegation) %>%
+    as.matrix()
+
+  rownames(m) <- round1 %>% arrange(condition) %>% pull(condition)
+  colnames(m) <- c('delegation','no_delegation')
+
+  cat('Round1 contingency table (rows=condition, cols=delegation/no_delegation):\n')
+  print(m)
+
+  if (nrow(m) < 2 || ncol(m) < 2) {
+    cat('Contingency table is not 2x2; cannot run Fisher test.\n')
+    fisher_result <- NULL
+  } else {
+    fisher_result <- fisher.test(m, alternative='two.sided')
+    fisher_result
+  }
+}
+```
+
+## 4.2 Average Delegation Frequency Over Part 2
+
+```{r avg-delegation-tests}
+# Use participant-level mean delegation from part2
+mean_by_condition <- participant_delegate %>% group_by(condition) %>% summarize(n=n(), mean_delegation=mean(mean_delegation), sd=sd(mean_delegation))
+mean_by_condition
+
+condition_levels <- participant_delegate %>% pull(condition) %>% unique() %>% na.omit()
+if (length(condition_levels) != 2) {
+  cat('Wilcoxon test skipped: condition factor does not have exactly 2 levels.\n')
+  cat('condition levels:', paste(condition_levels, collapse=', '), '\n')
+  wilcox_result <- NULL
+} else {
+  wilcox_result <- wilcox.test(mean_delegation ~ condition, data=participant_delegate, exact = FALSE)
+  wilcox_result
+}
+```
+
+## 4.3 Pre-registered regression with clustering
+
+```{r logit-regression}
+# Add prior 0 outcomes measure in part2 for each decision
+decisions2 <- decisions %>%
+  arrange(SessionID, TreatmentNumber, round) %>%
+  group_by(SessionID, TreatmentNumber, ProlificID) %>%
+  mutate(
+    prior_zero = lag(cummean(as.integer(RelevantPayoff == 0)), default=0),
+    round_factor = factor(round)
+  ) %>%
+  ungroup() %>%
+  filter(!is.na(condition))
+
+# LPM with participant clustering and decision fixed effects using fixest
+if (nrow(decisions2) == 0) {
+  cat('Regression skipped: decisions2 has 0 observations after filtering.\n')
+  reg <- NULL
+} else {
+  reg <- feols(delegated ~ condition * round + prior_zero + (1 | OptionsetID), 
+               data = decisions2, cluster = ~TreatmentNumber)
+  summary(reg)
+}
+```
+
+# 5. Secondary Pre-registered Hypothesis: Forgiveness after 0 payoff
+
+```{r conditional-switching}
+# Coach: compute previous round payoff and current decision to delegate
+# derive whether last choice had 0 payoff and whether participant switches from delegation to non-delegation
+s <- decisions2 %>%
+  group_by(SessionID, TreatmentNumber, ProlificID) %>%
+  arrange(round) %>%
+  mutate(prev_delegated = lag(delegated),
+         prev_zero = lag(RelevantPayoff == 0),
+         switched = (prev_delegated == 1 & delegated == 0)) %>%
+  ungroup() %>%
+  filter(!is.na(prev_delegated))
+
+forgiveness <- s %>%
+  filter(prev_zero == TRUE) %>%
+  group_by(condition) %>%
+  summarize(n=n(), switch_rate=mean(switched, na.rm=TRUE))
+forgiveness
+
+# Compare with logistic regression
+if (nrow(s) == 0) {
+  cat('Switch regression skipped: no observations in forgiveness dataset.\n')
+  switch_reg <- NULL
+} else {
+  switch_reg <- feols(switched ~ condition + prev_zero + condition:prev_zero, data=s, cluster=~TreatmentNumber)
+  summary(switch_reg)
+}
+```
+
+# 6. Exploratory Feature Analysis
+
+```{r feature-exploratory}
+# Merge education and demographics
+available_cols <- colnames(participants)
+need_cols <- c('SessionID','TreatmentNumber','ProlificID','condition')
+use_cols <- intersect(c(need_cols,'Age','Female','Education','HHIncome','AIUsageInStudy'), available_cols)
+feat <- participants %>% select(all_of(intersect(c('SessionID','TreatmentNumber','ProlificID','condition'), colnames(participants))))
+if ('Age' %in% colnames(participants)) feat <- feat %>% mutate(Age = participants$Age)
+if ('Female' %in% colnames(participants)) feat <- feat %>% mutate(Female = participants$Female)
+if ('Education' %in% colnames(participants)) feat <- feat %>% mutate(Education = participants$Education)
+if ('HHIncome' %in% colnames(participants)) feat <- feat %>% mutate(HHIncome = participants$HHIncome)
+if ('AIUsageInStudy' %in% colnames(participants)) feat <- feat %>% mutate(AIUsageInStudy = participants$AIUsageInStudy)
+
+if ('Female' %in% colnames(feat)) {
+  feat <- feat %>% mutate(Female = if_else(Female == 1, 'Female', 'Not Female'))
+}
+
+# Participant aggregate mean delegation
+feat <- feat %>% left_join(participant_delegate %>% select(ProlificID, mean_delegation),
+                            by = 'ProlificID')
+
+features <- c('condition', intersect(c('Age','Female','Education','HHIncome'), names(feat)))
+if (length(features) < 2 || !('mean_delegation' %in% names(feat))) {
+  cat('Exploratory feature model skipped: insufficient features or outcome missing.\n')
+  feat_model <- NULL
+} else {
+  if (n_distinct(feat$mean_delegation, na.rm=TRUE) <= 1) {
+    cat('Exploratory feature model skipped: dependent variable is constant.\n')
+    feat_model <- NULL
+  } else {
+    formula <- as.formula(paste('mean_delegation ~', paste(features, collapse=' + ')))
+    feat_model <- feols(formula, data=feat, na.action='na.omit')
+    summary(feat_model)
+  }
+}
+```
+
+# 7. Results Summary
+
+```{r results-summary}
+cat('Final pre-registered analysis sample size (participant-level):', nrow(participant_delegate), '\n')
+cat('Round1 Fisher p-value:', fisher_result$p.value, '\n')
+cat('Mann-Whitney p-value:', wilcox_result$p.value, '\n')
+cat('Mean delegation (EV):', mean_by_condition$mean_delegation[mean_by_condition$condition=='EV'], '\n')
+cat('Mean delegation (PREF):', mean_by_condition$mean_delegation[mean_by_condition$condition=='PREF'], '\n')
+```

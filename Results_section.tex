@@ -1,0 +1,59 @@
+\section{Results}
+
+\subsection{Descriptive Statistics}
+
+The final sample consisted of 233 participants (118 in the EV algorithm condition, 115 in the preference algorithm condition). Participants had a mean age of 42.75 years (SD = 13.72), and 48.3\% were female. There were no significant differences in demographic characteristics between the two conditions, indicating successful randomization.
+
+Overall, participants delegated in 49.6\% of decisions on average. However, there was substantial heterogeneity: 9.4\% of participants (22 out of 233) never delegated, while the remaining 90.6\% delegated at least once. Never-delegators were more common in the preference condition (15.7\%, 18 out of 115) than in the EV condition (3.4\%, 4 out of 118). The distribution of delegation rates varied considerably across participants (see Figure~\ref{fig:distribution}).
+
+\subsection{Primary Hypothesis Test}
+
+\subsubsection{Round 1 Delegation}
+
+In the first decision, participants delegated significantly more to the EV algorithm (66.9\%) than to the preference algorithm (55.8\%), a difference of 11.2 percentage points. A Boschloo test yielded p = 0.0413, supporting the preregistered hypothesis for the first decision.
+
+\subsubsection{Periods 2-10 Delegation}
+
+In contrast, there was no difference in delegation rates between the two conditions in decisions 2 through 10. The average delegation rate was 47.9\% in the EV condition and 47.5\% in the preference condition, a difference of 0.4 percentage points (Boschloo test, p = 0.4413).
+
+\subsubsection{Overall Delegation}
+
+When considering all 10 decisions together, the average delegation rate was 50.5\% in the EV condition and 48.6\% in the preference condition. A Wilcoxon-Mann-Whitney test yielded W = 6428, p = 0.2425, with an effect size of r = 0.236.
+
+\subsubsection{Regression Analysis}
+
+Linear probability models with decision fixed effects and clustered standard errors confirmed these patterns. The treatment effect was not significant when considering all decisions ($\beta = 0.0176$, SE = 0.0439, p = 0.6893) or when excluding the first decision ($\beta = 0.0025$, SE = 0.0446, p = 0.9554). The interaction between treatment and decision number was also not significant ($\beta = -0.0123$, SE = 0.0083, p = 0.1378), suggesting that the treatment effect did not systematically change over time (see Table~\ref{tab:regression}).
+
+Figure~\ref{fig:over_time} shows the average delegation rate by decision number for both conditions, illustrating the initial difference in decision 1 and the convergence in subsequent decisions.
+
+\subsection{Economic Implications}
+
+From an economic perspective, the preference algorithm should be preferred by participants because it incorporates their revealed preferences and thus should lead to lottery choices with higher expected utility. However, participants initially chose the objective EV algorithm more often, creating an interesting tension between what participants choose and what would be optimal for them.
+
+Both algorithms would improve decision quality compared to self-choice. When participants chose not to delegate, they selected dominated lotteries 65.4\% of the time, indicating substantial room for improvement through algorithmic assistance.
+
+\subsection{Never-Delegators}
+
+A small but notable proportion of participants (8.8\%, 22 out of 250) never delegated to the algorithm. Never-delegators were more common in the preference condition (14.8\%, 18 out of 122) than in the EV condition (3.1\%, 4 out of 128). Never-delegators did not differ significantly from other participants in terms of age (t = 0.329, p = 0.7451), gender, education, or income. They also did not differ in risk attitudes, trust propensity, or technology affinity. However, never-delegators reported higher satisfaction with their Part 1 choices, suggesting that they were more confident in their own decision-making ability.
+
+The most common reasons for non-delegation were lack of trust in the algorithm and a desire to maintain control over decisions (see Table~\ref{tab:never_delegators}).
+
+\subsection{Win-Stay, Lose-Shift Patterns}
+
+We examined whether participants' delegation decisions followed win-stay/lose-shift patterns. Overall, participants tended to stay with their previous choice after positive outcomes, but there were algorithm-specific differences in response to wins and losses.
+
+A linear probability model with fixed effects for decision sets and decision numbers revealed a significant interaction between algorithm type and previous outcome ($\beta = -0.1016$, SE = 0.0494, p = 0.0410). Specifically, with the EV algorithm, participants switched more after a win (stay rate = 54.7\%) than with the preference algorithm (stay rate = 73.1\%). After a loss, stay rates were similar across algorithms (EV: 66.1\%, preference: 64.9\%) (see Table~\ref{tab:win_stay} and Figure~\ref{fig:win_stay}).
+
+\subsection{Additional Analyses}
+
+\subsubsection{Choice Quality}
+
+When participants chose not to delegate, they frequently made suboptimal choices. Only 34.6\% of non-delegated choices were non-dominated, meaning that 65.4\% were dominated by another available option. There was no significant difference in choice quality between the two conditions when participants chose not to delegate.
+
+\subsubsection{Individual Differences}
+
+We examined whether individual characteristics were associated with delegation behavior. Age, gender, education, income, risk attitudes, trust propensity, and technology affinity were not significantly correlated with delegation frequency (all p > 0.05). This suggests that delegation decisions were not driven by these individual differences.
+
+\subsection{Summary}
+
+In summary, the preregistered hypothesis was supported for the first decision but not for decisions 2 through 10. Participants initially delegated more to the EV algorithm than to the preference algorithm, but this difference did not persist. A large proportion of participants never delegated, and those who did delegate showed different behavioral patterns depending on the algorithm type. Both algorithms would improve decision quality compared to self-choice, as participants frequently made dominated choices when choosing themselves.
