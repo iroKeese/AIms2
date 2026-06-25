@@ -25,8 +25,6 @@ library(ggplot2)
 library(tidyr)
 library(texreg)
 library(scales)
-library(lubridate)
-library(broom)
 ```
 
 ```{r housekeeping, echo=FALSE}
@@ -91,7 +89,12 @@ choicesAv %>%
     color = "Algorithm",
     title = "Average Delegation over Decisions (Part 2)"
   ) + scale_color_brewer(palette = "Dark2") +
+#   scale_color_manual(
+#     values = c("#4E79A7", "#59A14F")
+# ) +
   theme_minimal()
+
+
 ```
 NB: at least 65% suboptimal choices without delegation
 
@@ -420,6 +423,8 @@ TimeAndDelegations <- choices %>%
   distinct()
 
 cor.test(TimeAndDelegations$TimeInSeconds, TimeAndDelegations$sumDelegations)
+
+
 ```
 not more conscientious judging by time taken.
 
@@ -665,6 +670,7 @@ plot_DelTypes <- ggplot(plot_data, aes(x = factor(EVAlgorithm), y = rel_freq, fi
   ) +
   geom_bar(stat = "identity", position = "dodge") +
   scale_y_continuous(labels = scales::percent_format()) +
+#  scale_fill_brewer(palette = "Set2") +
   theme_minimal()
 
 ggsave("DelegatorTypesByTrmt.png",
@@ -775,74 +781,6 @@ p2 <- ggplot(df_deleg, aes(x = factor(lagWin), y = rel_stay, fill = as.factor(EV
 p1
 p2
 
-choices %>%
-  filter(Part == 2, WithinPartDecisionNumber > 1) %>%
-  group_by(EVAlgorithm, lagWin) %>%
-  summarise(
-    avg_stay_rate = mean(stay, na.rm = TRUE),
-    se = sqrt(avg_stay_rate * (1 - avg_stay_rate) / n()),
-    ci_low = avg_stay_rate - 1.96 * se,
-    ci_high = avg_stay_rate + 1.96 * se,
-    n = n(),
-    .groups = "drop"
-  ) %>%
-  mutate(avg_stay_pct = 100 * avg_stay_rate) %>%
-  arrange(EVAlgorithm, lagWin)
-
-# Basis-Daten (Filter)
-df_base <- choices %>%
-  filter(WithinPartDecisionNumber > 1)
-
-# Funktion zur Berechnung relativer Stay-Frequenzen
-calc_rel_stay <- function(df) {
-  df %>%
-    group_by(Algorithm, lagWin) %>%
-    summarise(rel_stay = mean(stay, na.rm = TRUE),
-              n = n(),
-              .groups = "drop")
-}
-
-# Filter nur für sumDelegations > 0
-df_base_deleg <- df_base %>%
-  filter(sumDelegations > 0)
-
-# Plot 1: lagDelegated == 0
-df_lag0 <- df_base_deleg %>%
-  filter(lagDelegated == 0) %>%
-  calc_rel_stay()
-
-p_lag0 <- ggplot(df_lag0, aes(x = factor(lagWin), y = rel_stay, fill = as.factor(Algorithm))) +
-  geom_col(position = "dodge") +
-  scale_fill_manual(
-    values = c("Pref" = "#4E79A7", "EV" = "#D55E00")
-  ) +
-  labs(title = "After Non-Delegation",
-       x = "lagWin",
-       y = "Relative Stay Frequency",
-       fill = "Algorithm") +
-  theme_minimal()
-
-# Plot 2: lagDelegated == 1
-df_lag1 <- df_base_deleg %>%
-  filter(lagDelegated == 1) %>%
-  calc_rel_stay()
-
-p_lag1 <- ggplot(df_lag1, aes(x = factor(lagWin), y = rel_stay, fill = as.factor(Algorithm))) +
-  geom_col(position = "dodge") +
-  scale_fill_manual(
-    values = c("Pref" = "#4E79A7", "EV" = "#D55E00")
-  ) +
-  labs(title = "After Delegation",
-       x = "lagWin",
-       y = "Relative Stay Frequency",
-       fill = "Algorithm") +
-  theme_minimal()
-
-# Optional: Display the plots
-# p_lag0
-# p_lag1
-ggsave("WinStay_lagDeleg.pdf", p_lag1, width = 6, height = 4, dpi = 300)
-ggsave("WinStay_lagNonDeleg.pdf", p_lag0, width = 6, height = 4, dpi = 300)
 ```
 with the EVAlgorithm, I switch much more after a "win" than with the PrefAlgorithm (I generally switch less [n.sign.] in EV, put have a slight tendency [n.sign.] to switch /more/ often after wins; that is reversed by the [sign.] interaction term under Pref)
 looking at satisfaction: when I'm dissatisfied, I switch less with the EVAlgorithm (p = 0.054; this is like last time); having said that, satisfaction doesn't do much at all
@@ -915,6 +853,7 @@ click_rates_algo <- person_level %>%
     n = n(),
     .groups = "drop"
   )
+
 
 fig46 <- ggplot(click_rates_algo,
        aes(x = item, y = rate, fill = factor(sumDeleg0))) +
@@ -1062,8 +1001,8 @@ EVAlgorithm:truePChoices	                -0.095940	0.071561	-1.340675	0.1813374
 ```{r}
 table(analysis_data$EVAlgorithm, analysis_data$ProbOfAbsurdComputerChoices)
 ggplot(analysis_data,
-        aes(x = ProbOfAbsurdComputerChoices,
-            color = factor(EVAlgorithm))) +
+       aes(x = ProbOfAbsurdComputerChoices,
+           color = factor(EVAlgorithm))) +
   stat_ecdf(size = 1) +
   labs(
     x = "ProbOfAbsurdComputerChoices",
@@ -1097,7 +1036,7 @@ avg_data <- plot_data %>%
     n = n()
   )
 
-ggplot(avg_data, aes(x = ProbOfBadComputerChoices, y = DelegateHypH10_mean)) +
+ggplot(avg_data, aes(x = ProbOfBadComputerChoices, y = DelegateHyp10_mean)) +
   geom_point(size = 3) +
   geom_text(aes(label = paste0("n=", n)), vjust = -0.7, size = 3) +
   labs(
@@ -1177,3 +1116,4 @@ screenreg(
   subjects2$Other[subjects2$sumDeleg0 == 1]
   subjects2$OtherText[subjects2$sumDeleg0 == 0]
 ```
+

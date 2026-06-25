@@ -25,8 +25,6 @@ library(ggplot2)
 library(tidyr)
 library(texreg)
 library(scales)
-library(lubridate)
-library(broom)
 ```
 
 ```{r housekeeping, echo=FALSE}
@@ -91,7 +89,12 @@ choicesAv %>%
     color = "Algorithm",
     title = "Average Delegation over Decisions (Part 2)"
   ) + scale_color_brewer(palette = "Dark2") +
+#   scale_color_manual(
+#     values = c("#4E79A7", "#59A14F")
+# ) +
   theme_minimal()
+
+
 ```
 NB: at least 65% suboptimal choices without delegation
 
@@ -106,6 +109,48 @@ tab <- table(
 prop.table(tab, margin = 2)
 
 exact.test(tab, method = "Boschloo", alternative = "greater", to.plot = F)$p.value
+
+choices <- choices %>%
+  mutate(Algorithm = ifelse(EVAlgorithm == 1, "EV", "Pref"))
+
+# Filter for first round decisions in Part 2
+first_round_data <- choices %>%
+  filter(Part == 2 & WithinPartDecisionNumber == 1)
+
+# Create the plot
+FirstRdPlot <- first_round_data %>%
+  ggplot(aes(x = Algorithm, y = Delegated, fill = Algorithm)) +
+  stat_summary(
+    fun = mean,
+    geom = "bar",
+    width = 0.6,
+    color = "black"
+  ) +
+  stat_summary(
+    fun.data = mean_cl_boot,
+    geom = "errorbar",
+    width = 0.2
+  ) +
+  scale_x_discrete(limits = c("Pref", "EV")) +
+  scale_fill_manual(
+    values = c("Pref" = "#4E79A7", "EV" = "#D55E00")
+  ) +
+  scale_y_continuous(limits = c(0, 1), labels = scales::percent_format(accuracy = 1)) +
+  labs(
+    x = "EV Algorithm",
+    y = "Delegation",
+    title = "First-Round Delegation by Algorithm"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none")
+
+# Display the plot
+print(FirstRdPlot)
+
+# Save the plot
+ggsave("FirstRdPlot.pdf", FirstRdPlot, width = 6, height = 4, dpi = 300)
+ggsave("FirstRdPlot.png", FirstRdPlot, width = 6, height = 4, dpi = 300)
+
 
 delegAv <- choices %>%
   filter(Part == 2) %>%
@@ -233,34 +278,6 @@ delRegPreReg <- feols(
 )
 summary(delRegPreReg)
 
-choicesP1 <- choicesP1 %>%
-  mutate(EVChoice = case_when(
-    grepl("^P", ChoiceType) & PBetChosen == 1 ~ 1,
-    grepl("^D", ChoiceType) & PBetChosen == 0 ~ 1,
-    TRUE ~ 0
-  ))
-
-choicesP1 <- choicesP1 %>%
-  mutate(truePChoice = case_when(
-    grepl("^D", ChoiceType) & PBetChosen == 1 ~ 1,
-    TRUE ~ 0
-  ))
-
-choices <- choices %>%
-  left_join(
-    choicesP1 %>%
-      group_by(ProlificID) %>%
-      summarise(EVChoices = sum(EVChoice), .groups = "drop"),
-    by = c("ProlificID")
-  )
-
-choices <- choices %>%
-  left_join(
-    choicesP1 %>%
-      group_by(ProlificID) %>%
-      summarise(truePChoices = sum(truePChoice), .groups = "drop"),
-    by = c("ProlificID")
-  )
 
 choices <- choices %>%
   left_join(
@@ -291,113 +308,12 @@ choices <- choices %>%
   )
 
 delRegWConf <- feols(
-  Delegated ~ EVAlgorithm*(WithinPartDecisionNumber+ConfidenceP1 + ProbOfAbsurdComputerChoices + ProbOfBadComputerChoices + EVChoices + truePChoices) | OptionsetID,
+  Delegated ~ EVAlgorithm*(WithinPartDecisionNumber+ConfidenceP1 + ProbOfAbsurdComputerChoices + ProbOfBadComputerChoices + PBet_count) | OptionsetID,
   cluster = ~ProlificID,
   data = subset(choices, Part == 2)
 )
 summary(delRegWConf)
 ```
-
-```{r fig.width=7, fig.height=4.5}
-# All regression coefficients with condition-specific marginal effects
-coefs_wc <- coef(delRegWConf)
-vcm_wc   <- vcov(delRegWConf)
-
-# Helper function for computing SE of sum of two coefficients
-se_sum <- function(v1, v2) sqrt(vcm_wc[v1, v1] + vcm_wc[v2, v2] + 2 * vcm_wc[v1, v2])
-
-# Map coefficient names with readable labels
-coef_spec <- data.frame(
-  var_name = c("WithinPartDecisionNumber", "ConfidenceP1", "ProbOfBadComputerChoices", 
-               "ProbOfAbsurdComputerChoices", "EVChoices", "truePChoices"),
-  var_label = c("Decision round", "Confidence (Part 1)", 
-                "Number of non-preferred choices", "Number of completely weird choices", 
-                "EV-maximising choices (Part 1)", "P-bet choices when not EV-maximizing (Part 1)"),
-  stringsAsFactors = FALSE
-)
-
-# Build results data frame
-plot_data <- data.frame()
-for (i in seq_len(nrow(coef_spec))) {
-  var_name <- coef_spec$var_name[i]
-  var_label <- coef_spec$var_label[i]
-  
-  # Preference-based condition (main effect)
-  pb_est <- coefs_wc[var_name]
-  pb_se  <- sqrt(vcm_wc[var_name, var_name])
-  
-  # EV condition (main + interaction)
-  int_name <- paste0("EVAlgorithm:", var_name)
-  if (int_name %in% names(coefs_wc)) {
-    ev_est <- pb_est + coefs_wc[int_name]
-    ev_se  <- se_sum(var_name, int_name)
-  } else {
-    ev_est <- pb_est
-    ev_se  <- pb_se
-  }
-  
-  plot_data <- rbind(plot_data, data.frame(
-    Variable = var_label,
-    Condition = c("Preference-based", "EV"),
-    Estimate = c(pb_est, ev_est),
-    SE = c(pb_se, ev_se),
-    stringsAsFactors = FALSE
-  ))
-}
-
-plot_data <- plot_data %>%
-  mutate(
-    Variable = factor(Variable, levels = coef_spec$var_label),
-    Condition = factor(Condition, levels = c("Preference-based", "EV")),
-    CI_lo = Estimate - 1.96 * SE,
-    CI_hi = Estimate + 1.96 * SE,
-    y_pos = as.numeric(Variable) + ifelse(Condition == "Preference-based", 0.15, -0.15)
-  )
-
-p_all <- ggplot(plot_data) +
-  geom_vline(xintercept = 0, linetype = "dashed", color = "gray70") +
-  geom_linerange(aes(xmin = CI_lo, xmax = CI_hi, y = y_pos, color = Condition),
-                 linewidth = 0.6, lineend = "round") +
-  geom_point(aes(x = Estimate, y = y_pos, color = Condition, shape = Condition),
-             size = 2.5) +
-  scale_y_continuous(breaks = seq_len(nrow(coef_spec)), 
-                     labels = levels(plot_data$Variable),
-                     expand = c(0.15, 0)) +
-  scale_color_manual(values = c("Preference-based" = "#E66100", "EV" = "#5D3A9B")) +
-  scale_shape_manual(values  = c("Preference-based" = 16, "EV" = 17)) +
-  labs(x = "Effect on delegation probability",
-       y = NULL, color = NULL, shape = NULL,
-       caption = "95% confidence intervals. Linear probability model with task fixed effects and participant-clustered SEs.\nEV-condition effects are main effect + interaction term.") +
-  theme_bw(base_size = 10) +
-  theme(legend.position = "bottom", 
-        panel.grid.major.y = element_blank(),
-        plot.caption = element_text(hjust = 0, size = 9))
-
-p_all
-ggsave("CoefPlotBadAbsurd.pdf", p_all, width = 7, height = 4.5)
-```
-The different drivers are interesting, as the following plots show that people expect (slightly) /more/ weird and bad choices under /EV/
-```{r}
-p_prob <- subjects %>%
-  pivot_longer(cols = c(ProbOfBadComputerChoices, ProbOfAbsurdComputerChoices),
-               names_to = "variable", values_to = "value") %>%
-  ggplot(aes(x = value, fill = factor(EVAlgorithm))) +
-  geom_density(alpha = 0.5) +
-  facet_wrap(~ variable, labeller = labeller(variable = c(
-    ProbOfBadComputerChoices    = "Non-preferred choices",
-    ProbOfAbsurdComputerChoices = "Completely weird choices"
-  ))) +
-  scale_fill_manual(values = c("0" = "#E66100", "1" = "#5D3A9B"),
-                    labels = c("0" = "Preference-based", "1" = "EV"),
-                    name = "Condition") +
-  labs(x = "Proportion", y = "Density") +
-  theme_bw() +
-  theme(legend.position = "bottom")
-
-p_prob
-ggsave("ExpectedBadAndAbsurdChoicesByTrmt.pdf", p_prob, width = 7, height = 4)
-```
-
 
 ### the non-delegators
 ```{r}
@@ -420,26 +336,23 @@ TimeAndDelegations <- choices %>%
   distinct()
 
 cor.test(TimeAndDelegations$TimeInSeconds, TimeAndDelegations$sumDelegations)
+
+
 ```
 not more conscientious judging by time taken.
-
-### the EV-maxxers
-```{r}
-# EVChoices introduced in chunk Hypothesis testing
-choices %>%
-  distinct(ProlificID, .keep_all = TRUE) %>%
-  ggplot(aes(x = EVChoices)) +
-  stat_ecdf(linewidth = 1) +
-  scale_x_continuous(breaks = 0:12, limits = c(0, 12)) +
-  theme_minimal()
-```
-There is heterogeneity. About 25% of people choose the EV-maximizing option at least 9/12 times, about 37.5% at least 8/12 times...
-
 ```{r}
 # 1. Daten vorbereiten: Pro Teilnehmer nur eine Zeile mit sumDelegations und den gewünschten Variablen
+choices <- choices %>%
+  group_by(ProlificID) %>%
+  mutate(
+    P105_count = sum(ChoiceType == "P105")
+  ) %>%
+  ungroup()
+
 analysis_data <- choices %>%
   group_by(ProlificID) %>%
   summarise(
+    Algorithm = first(Algorithm),
     EVAlgorithm = first(EVAlgorithm),
     sumDelegations = first(sumDelegations),
     Female = first(Female),
@@ -449,7 +362,7 @@ analysis_data <- choices %>%
     ProbOfBadComputerChoices = first(ProbOfBadComputerChoices), 
     ProbOfAbsurdComputerChoices = first(ProbOfAbsurdComputerChoices), 
     ComputerRiskTaking = first(ComputerRiskTaking),
-    PBetChoices = first(PBet_count),
+    PBetChoices = first(P105_count),
     TimeInSeconds = first(TimeInSeconds)
   ) %>%
   ungroup() %>%
@@ -523,6 +436,25 @@ chisq.test(table(analysis_data$DelegationGroup, analysis_data$Education))
 
 # e) BadComputerChoices (numerisch)
 t.test(ProbOfBadComputerChoices ~ DelegationGroup, data = analysis_data)
+ks.test(
+  as.numeric(analysis_data$ProbOfBadComputerChoices[analysis_data$DelegationGroup == "Keine Delegation"]),
+  as.numeric(analysis_data$ProbOfBadComputerChoices[analysis_data$DelegationGroup == "Mit Delegation"])
+)
+
+## EXKURS: BadComputerChoices by Treatment
+t.test(ProbOfBadComputerChoices ~ Algorithm, data = analysis_data)
+ggplot(analysis_data, aes(x = ProbOfBadComputerChoices, color = Algorithm)) +
+  stat_ecdf(geom = "step") +
+  labs(title = "ECDF von Bad Computer Choices nach Trmt",
+       x = "Prob Bad Computer Choices",
+       y = "F(x)",
+       color = "Algorithm") +
+  theme_minimal()
+
+ks.test(
+  as.numeric(analysis_data$ProbOfBadComputerChoices[analysis_data$Algorithm == "EV"]),
+  as.numeric(analysis_data$ProbOfBadComputerChoices[analysis_data$Algorithm == "Pref"])
+) # p = 0.5876
 
 # f) AbsurdComputerChoices (numerisch)
 t.test(ProbOfAbsurdComputerChoices ~ DelegationGroup, data = analysis_data)
@@ -665,6 +597,7 @@ plot_DelTypes <- ggplot(plot_data, aes(x = factor(EVAlgorithm), y = rel_freq, fi
   ) +
   geom_bar(stat = "identity", position = "dodge") +
   scale_y_continuous(labels = scales::percent_format()) +
+#  scale_fill_brewer(palette = "Set2") +
   theme_minimal()
 
 ggsave("DelegatorTypesByTrmt.png",
@@ -672,6 +605,19 @@ ggsave("DelegatorTypesByTrmt.png",
        width = 6, height = 4,   # in inches
        dpi = 300)
 ```
+
+### the EV-maxxers
+```{r}
+# EVMaxxes incorporated in chunk Hypothesis testing above
+choices %>%
+  distinct(ProlificID, .keep_all = TRUE) %>%
+  ggplot(aes(x = PBet_count)) +
+  stat_ecdf(size = 1) +
+  scale_x_continuous(breaks = 0:12, limits = c(0, 12)) +
+  theme_minimal()
+```
+There are hardly any EV-maxxers at all! Only some 20% of people choose the EV-maximizing option at least half of the time...
+
 ### win-stay, lose-shift
 
 ```{r}
@@ -843,6 +789,8 @@ p_lag1 <- ggplot(df_lag1, aes(x = factor(lagWin), y = rel_stay, fill = as.factor
 # p_lag1
 ggsave("WinStay_lagDeleg.pdf", p_lag1, width = 6, height = 4, dpi = 300)
 ggsave("WinStay_lagNonDeleg.pdf", p_lag0, width = 6, height = 4, dpi = 300)
+
+
 ```
 with the EVAlgorithm, I switch much more after a "win" than with the PrefAlgorithm (I generally switch less [n.sign.] in EV, put have a slight tendency [n.sign.] to switch /more/ often after wins; that is reversed by the [sign.] interaction term under Pref)
 looking at satisfaction: when I'm dissatisfied, I switch less with the EVAlgorithm (p = 0.054; this is like last time); having said that, satisfaction doesn't do much at all
@@ -1031,7 +979,6 @@ ggsave("ReasonsByTrmtAndNeverDelegator2.png",
        width = 8, height = 4,   # in inches
        dpi = 300)
 
-
 ```
 if at all, never-delegators are more satisfied with their Part-1 choices.
 
@@ -1040,30 +987,27 @@ if at all, never-delegators are more satisfied with their Part-1 choices.
 Done. Für die einzelnen Entscheidungen: Je sicherer ich in Teil 1 bzgl. der Entscheidung war, desto eher werde ich an den EV-Algorithmus delegieren (?!?), kein Zusammenhang für den PrefAlgorithm.
 
 - ich traue dem Algorithmus nicht zu, meine Präferenzen einzufangen [measurement? Wahrscheinlichkeiten für einen hypothetischen Teil wie beim 1. Exp?]
--> ProbOfBadChoices haben keinen Einfluss auf Never-delegation, aber:
+-> ProbOfBadChoices haben keinen Einfluss auf Never-delegation, aber [delRegWConf, at the end of the Hypothesis testing chunk]:
 
-EVAlgorithm	                               0.856469	0.891957	0.960213	0.3379475	
-WithinPartDecisionNumber                	-0.009920	0.005711	-1.737089	0.0836987	.
-ConfidenceP1                            	-0.025275	0.012620	-2.002676	0.0463759	*
-ProbOfAbsurdComputerChoices                0.009864	0.018425	0.535348	0.5929221	
-ProbOfBadComputerChoices                	-0.060048	0.016324	-3.678547	0.0002916	***
-EVChoices	                                 0.067083	0.058904	1.138847	0.2559415	
-truePChoices	                             0.058960	0.054107	1.089695	0.2769783	
-EVAlgorithm:WithinPartDecisionNumber	    -0.012262	0.008341	-1.470058	0.1429009	
-EVAlgorithm:ConfidenceP1	                 0.043682	0.015740	2.775229	0.0059660	**
-EVAlgorithm:ProbOfAbsurdComputerChoices	  -0.072908	0.023059	-3.161780	0.0017772	**
-EVAlgorithm:ProbOfBadComputerChoices	     0.036186	0.020603	1.756318	0.0803535	.
-EVAlgorithm:EVChoices	                    -0.089742	0.077330	-1.160496	0.2470398	
-EVAlgorithm:truePChoices	                -0.095940	0.071561	-1.340675	0.1813374
+EVAlgorithm                             	-0.036028	0.203132	-0.177362	0.85937853	
+WithinPartDecisionNumber	                -0.009924	0.005705	-1.739501	0.08327301	.
+Confidence.y	                            -0.023419	0.013064	-1.792664	0.07432937	.
+ProbOfAbsurdComputerChoices       	       0.006830	0.018303	0.373168	0.70936379	
+ProbOfBadComputerChoices	                -0.058319	0.016170	-3.606519	0.00037995	***
+P105_count	                               0.004795	0.012610	0.380233	0.70412009	
+EVAlgorithm:WithinPartDecisionNumber	    -0.012264	0.008335	-1.471492	0.14251336	
+EVAlgorithm:Confidence.y	                 0.041738	0.016028	2.604073	0.00980698	**
+EVAlgorithm:ProbOfAbsurdComputerChoices	  -0.070006	0.022913	-3.055368	0.00251080	**
+EVAlgorithm:ProbOfBadComputerChoices	     0.034684	0.020373	1.702429	0.09001442	.
 
--> im Pref-Alg: je sicherer ich in meiner Lottery-Choice war, desto weniger delegiere ich (p = 0.046)
+-> im Pref-Alg: je sicherer ich in meiner Lottery-Choice war, desto weniger delegiere ich (p = 0.074)
 -> im EV-Alg: andersherum! 
 -> ausserdem: Je eher ich dem Computer schlechte Entscheidungen zutraue, desto weniger delegiere ich im Pref-Alg, während im EV-Alg die Angst vor absurden Entscheidungen Delegation verhindert (Das kommt nicht daher, dass im EV-Alg-Trmt keine hohen ProbOfAbsurdComputerChoices vorkommen - das EV-Alg-Trmt first order stochastically dominates the Pref-based treatment in terms of this variable!)
 ```{r}
 table(analysis_data$EVAlgorithm, analysis_data$ProbOfAbsurdComputerChoices)
 ggplot(analysis_data,
-        aes(x = ProbOfAbsurdComputerChoices,
-            color = factor(EVAlgorithm))) +
+       aes(x = ProbOfAbsurdComputerChoices,
+           color = factor(EVAlgorithm))) +
   stat_ecdf(size = 1) +
   labs(
     x = "ProbOfAbsurdComputerChoices",
@@ -1097,7 +1041,7 @@ avg_data <- plot_data %>%
     n = n()
   )
 
-ggplot(avg_data, aes(x = ProbOfBadComputerChoices, y = DelegateHypH10_mean)) +
+ggplot(avg_data, aes(x = ProbOfBadComputerChoices, y = DelegateHyp10_mean)) +
   geom_point(size = 3) +
   geom_text(aes(label = paste0("n=", n)), vjust = -0.7, size = 3) +
   labs(
@@ -1177,3 +1121,4 @@ screenreg(
   subjects2$Other[subjects2$sumDeleg0 == 1]
   subjects2$OtherText[subjects2$sumDeleg0 == 0]
 ```
+
