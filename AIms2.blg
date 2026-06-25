@@ -3,9 +3,10 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: AIms2.aux
 The style file: apalike.bst
 Database file #1: library.bib
+Warning--I didn't find a database entry for "DeanMorgenstern2022"
 You've used 38 entries,
             1935 wiz_defined-function locations,
-            721 strings with 11034 characters,
+            723 strings with 11072 characters,
 and the built_in function-call counts, 15298 in all, are:
 = -- 1459
 > -- 696
@@ -44,3 +45,4 @@ warning$ -- 0
 while$ -- 112
 width$ -- 0
 write$ -- 497
+(There was 1 warning)
