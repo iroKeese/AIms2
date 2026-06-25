@@ -1,0 +1,1124 @@
+---
+title: "AImsII"
+author: "Irenaeus Wolff"
+date: "2026-02-06"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+header-includes:
+- \usepackage{fvextra}
+- \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,breakanywhere,commandchars=\\\{\}}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  tidy = FALSE,
+  echo = TRUE)
+```
+
+```{r load-packages, message=FALSE, warning=FALSE}
+library(dplyr)
+library(Exact)
+library(fixest)
+library(ggplot2)
+library(tidyr)
+library(texreg)
+library(scales)
+```
+
+```{r housekeeping, echo=FALSE}
+# Housekeeping:
+rm(list = ls())  # cleans ALL objects in current R environment
+```
+
+### Load data
+```{r load cleaned}
+# load cleaned dataset
+choices <- read.delim("~/work/zz_nextcloud/y_AImsAndAixperience/Experiments/ProlificData/files_Fri_02-06-2026_15-28-25-48/260206_1528_537_lotteryChoices.xls")
+choicesP1 <- subset(choices, Part == 1)
+subjects <- read.csv("~/work/zz_nextcloud/y_AImsAndAixperience/Experiments/ProlificData/files_Fri_02-06-2026_15-28-25-48/allSubjects.csv", header = T)
+prolificData <- read.csv("~/work/zz_nextcloud/y_AImsAndAixperience/Experiments/ProlificData/files_Fri_02-06-2026_15-28-25-48/prolific_demographic_export_approved.csv")
+```
+
+### Exclude observations based on preregistration
+```{r}
+prolificData$logCompleTime <- log(prolificData$Time.taken)
+prolificData$tooFast <- 1*(prolificData$logCompleTime < mean(log(prolificData$Time.taken)) - 2*sd(log(prolificData$Time.taken)))
+
+choices <- subset(choices, BotCheck1attempt == 1 & Part1CQsPassedOnAttempt <= 2 & Part2CQsPassedOnAttempt <= 2 & Reliable >= 6 & AIUsageInStudy == 0 & Delegated >= 0 & ProlificID %in% prolificData$Participant.id[prolificData$tooFast == 0])
+subjects <- subset(subjects, ProlificID %in% choices$ProlificID)
+choicesP1 <- subset(choicesP1, ProlificID %in% choices$ProlificID)
+table(subjects$EVAlgorithm)
+# STILL TO BE DONE: Exclusion by log time (-> TotalSecondsInExperiment)
+```
+
+### overview delegation and (non-)dominated choices
+```{r}
+choices <- choices %>%
+  mutate(Algorithm = ifelse(EVAlgorithm == 1, "EV", "Pref"))
+
+choicesAv <- choices %>%
+  filter(Part == 2) %>%
+    group_by(Algorithm, Part, WithinPartDecisionNumber) %>%
+    summarise(
+      avDeleg = mean(Delegated, na.rm = T),
+      avNonDom = mean( Nondominated[Delegated == 0 & Option > 0], na.rm = T)
+  )
+choicesAv
+
+choices %>%
+  filter(Part == 2) %>%
+    group_by(Algorithm) %>%
+    summarise(
+      avNonDom = mean( Nondominated[Delegated == 0 & Option > 0], na.rm = T)
+  )
+
+choicesAv %>%
+  ggplot(aes(
+    x = WithinPartDecisionNumber,
+    y = avDeleg,
+    color = factor(Algorithm),
+    group = Algorithm
+  )) +
+  geom_line(linewidth = 1) +
+  geom_point() +
+  labs(
+    x = "Decision Number",
+    y = "Average Delegation",
+    color = "Algorithm",
+    title = "Average Delegation over Decisions (Part 2)"
+  ) + scale_color_brewer(palette = "Dark2") +
+#   scale_color_manual(
+#     values = c("#4E79A7", "#59A14F")
+# ) +
+  theme_minimal()
+
+
+```
+NB: at least 65% suboptimal choices without delegation
+
+
+### Hypothesis testing
+```{r}
+tab <- table(
+  Delegated = choices$Delegated[choices$Part == 2 & choices$WithinPartDecisionNumber == 1],
+  EVAlgorithm = choices$EVAlgorithm[choices$Part == 2 & choices$WithinPartDecisionNumber == 1]
+)
+
+prop.table(tab, margin = 2)
+
+exact.test(tab, method = "Boschloo", alternative = "greater", to.plot = F)$p.value
+
+choices <- choices %>%
+  mutate(Algorithm = ifelse(EVAlgorithm == 1, "EV", "Pref"))
+
+# Filter for first round decisions in Part 2
+first_round_data <- choices %>%
+  filter(Part == 2 & WithinPartDecisionNumber == 1)
+
+# Create the plot
+FirstRdPlot <- first_round_data %>%
+  ggplot(aes(x = Algorithm, y = Delegated, fill = Algorithm)) +
+  stat_summary(
+    fun = mean,
+    geom = "bar",
+    width = 0.6,
+    color = "black"
+  ) +
+  stat_summary(
+    fun.data = mean_cl_boot,
+    geom = "errorbar",
+    width = 0.2
+  ) +
+  scale_x_discrete(limits = c("Pref", "EV")) +
+  scale_fill_manual(
+    values = c("Pref" = "#4E79A7", "EV" = "#D55E00")
+  ) +
+  scale_y_continuous(limits = c(0, 1), labels = scales::percent_format(accuracy = 1)) +
+  labs(
+    x = "EV Algorithm",
+    y = "Delegation",
+    title = "First-Round Delegation by Algorithm"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none")
+
+# Display the plot
+print(FirstRdPlot)
+
+# Save the plot
+ggsave("FirstRdPlot.pdf", FirstRdPlot, width = 6, height = 4, dpi = 300)
+ggsave("FirstRdPlot.png", FirstRdPlot, width = 6, height = 4, dpi = 300)
+
+
+delegAv <- choices %>%
+  filter(Part == 2) %>%
+    group_by(Algorithm, ProlificID) %>%
+    summarise(
+      avDeleg = mean(Delegated, na.rm = T),
+  ) %>% mutate(Algorithm = factor(Algorithm, levels = c("Pref", "EV")))
+
+delegAv %>%
+  ggplot(aes(x = Algorithm, y = avDeleg, fill = Algorithm)) +
+  stat_summary(
+    fun = mean,
+    geom = "bar",
+    width = 0.6,
+    color = "black"
+  ) +
+  stat_summary(
+    fun.data = mean_cl_boot,
+    geom = "errorbar",
+    width = 0.2
+  ) +
+  scale_fill_manual(
+    values = c("Pref" = "#4E79A7", "EV" = "#D55E00")
+  ) +
+  labs(
+    x = "Algorithm",
+    y = "Average Delegation",
+    title = "Average Delegation by Algorithm (Part 2)"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none")
+
+delegAv %>%
+  ggplot(aes(x = Algorithm, y = avDeleg, fill = Algorithm)) +
+  geom_violin(trim = FALSE, alpha = 0.6) +
+  geom_boxplot(
+    width = 0.15,
+    outlier.shape = NA,
+    alpha = 0.8
+  ) +
+  scale_fill_manual(
+    values = c("Pref" = "#4E79A7", "EV" = "#D55E00")
+  ) +
+  labs(
+    x = "Algorithm",
+    y = "Average Delegation",
+    title = "Distribution of Average Delegation by Algorithm (Part 2)"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none")
+
+delegAv %>%
+  ggplot(aes(x = avDeleg, color = Algorithm)) +
+  stat_ecdf(linewidth = 1) +
+  scale_color_manual(
+    values = c("Pref" = "#4E79A7", "EV" = "#D55E00")
+  ) +
+  labs(
+    x = "Average Delegation",
+    y = "Cumulative Probability",
+    color = "Algorithm",
+    title = "ECDF of Average Delegation (Part 2)"
+  ) +
+  theme_minimal()
+
+
+wilcox.test(
+  avDeleg ~ Algorithm,
+  data = delegAv,
+  alternative = "less"
+)
+
+# LPM with FE and cluster
+delReg <- feols(
+  Delegated ~ EVAlgorithm*WithinPartDecisionNumber | OptionsetID,
+  cluster = ~ProlificID,
+  data = subset(choices, Part == 2)
+)
+summary(delReg)
+
+delRegPlainTrmt <- feols(
+  Delegated ~ EVAlgorithm | OptionsetID,
+  cluster = ~ProlificID,
+  data = subset(choices, Part == 2)
+)
+summary(delRegPlainTrmt)
+
+delRegPlainTrmtNoP1 <- feols(
+  Delegated ~ EVAlgorithm | OptionsetID,
+  cluster = ~ProlificID,
+  data = subset(choices, Part == 2 & WithinPartDecisionNumber > 1)
+)
+summary(delRegPlainTrmtNoP1)
+
+delRegP1 <- feols(
+  Delegated ~ EVAlgorithm | OptionsetID,
+  cluster = ~ProlificID,
+  data = subset(choices, Part == 2 & WithinPartDecisionNumber == 1)
+)
+summary(delRegP1)
+
+choices <- choices %>%
+  arrange(ProlificID, WithinPartDecisionNumber) %>%
+  group_by(ProlificID) %>%
+  mutate(
+    # Indikatoren
+    delegated_round = (Delegated == 1),
+    zero_payoff = (RelevantPayoff == 0 & Delegated == 1),
+    
+    # Kumulative Summen (nur Vergangenheit!)
+    cum_delegated = lag(cumsum(delegated_round), default = 0),
+    cum_zero = lag(cumsum(zero_payoff), default = 0),
+    
+    # Rate (optional)
+    zero_rate = ifelse(cum_delegated > 0,
+                       cum_zero / cum_delegated,
+                       NA)
+  ) %>%
+  ungroup()
+
+delRegPreReg <- feols(
+  Delegated ~ EVAlgorithm*(WithinPartDecisionNumber + zero_rate) | OptionsetID,
+  cluster = ~ProlificID,
+  data = subset(choices, Part == 2)
+)
+summary(delRegPreReg)
+
+
+choices <- choices %>%
+  left_join(
+    choicesP1 %>% select(ProlificID, OptionsetID, Confidence),
+    by = c("ProlificID", "OptionsetID")
+  )
+
+# Schritt 1: Anzahl der P105-Einträge pro ProlificID in choicesP1 berechnen
+PBetCounts <- choicesP1 %>%
+  group_by(ProlificID) %>%
+  summarise(PBet_count = sum(PBetChosen))
+
+# Schritt 2: Diese Anzahl in choices eintragen (per left_join)
+choices <- choices %>%
+  left_join(PBetCounts, by = "ProlificID") 
+
+choices <- choices %>%
+  left_join(
+    subjects %>%
+      select(ProlificID, Female, Age, Education, HHIncome, ProbOfBadComputerChoices, ProbOfAbsurdComputerChoices, ComputerRiskTaking),
+    by = c("ProlificID" = "ProlificID")
+  )
+
+choices <- choices %>%
+  left_join(
+    choicesP1 %>% select(ProlificID, OptionsetID, ConfidenceP1 = Confidence),
+    by = c("ProlificID", "OptionsetID")
+  )
+
+delRegWConf <- feols(
+  Delegated ~ EVAlgorithm*(WithinPartDecisionNumber+ConfidenceP1 + ProbOfAbsurdComputerChoices + ProbOfBadComputerChoices + PBet_count) | OptionsetID,
+  cluster = ~ProlificID,
+  data = subset(choices, Part == 2)
+)
+summary(delRegWConf)
+```
+
+### the non-delegators
+```{r}
+choices <- choices %>%
+  group_by(ProlificID) %>%
+  mutate(
+    sumDelegations = sum(Delegated)
+  ) %>%
+  ungroup()
+
+choices <- choices %>%
+  left_join(
+    prolificData %>%
+      select(Participant.id, TimeInSeconds = Time.taken),
+    by = c("ProlificID" = "Participant.id")
+  )
+
+TimeAndDelegations <- choices %>%
+  select(ProlificID, TimeInSeconds, sumDelegations) %>%
+  distinct()
+
+cor.test(TimeAndDelegations$TimeInSeconds, TimeAndDelegations$sumDelegations)
+
+
+```
+not more conscientious judging by time taken.
+```{r}
+# 1. Daten vorbereiten: Pro Teilnehmer nur eine Zeile mit sumDelegations und den gewünschten Variablen
+choices <- choices %>%
+  group_by(ProlificID) %>%
+  mutate(
+    P105_count = sum(ChoiceType == "P105")
+  ) %>%
+  ungroup()
+
+analysis_data <- choices %>%
+  group_by(ProlificID) %>%
+  summarise(
+    Algorithm = first(Algorithm),
+    EVAlgorithm = first(EVAlgorithm),
+    sumDelegations = first(sumDelegations),
+    Female = first(Female),
+    Age = first(Age),
+    HHIncome = first(HHIncome),
+    Education = first(Education),
+    ProbOfBadComputerChoices = first(ProbOfBadComputerChoices), 
+    ProbOfAbsurdComputerChoices = first(ProbOfAbsurdComputerChoices), 
+    ComputerRiskTaking = first(ComputerRiskTaking),
+    PBetChoices = first(P105_count),
+    TimeInSeconds = first(TimeInSeconds)
+  ) %>%
+  ungroup() %>%
+  mutate(
+    DelegationGroup = ifelse(sumDelegations == 0, "Keine Delegation", "Mit Delegation")
+  )
+analysis_data$Female2 <- analysis_data$Female
+analysis_data$Female2[analysis_data$Female < 0 | analysis_data$Female == 0.5] <- NA
+analysis_data$HHIncome2 <- analysis_data$HHIncome
+analysis_data$HHIncome2[analysis_data$HHIncome < 0] <- NA
+analysis_data$HHIncomeLow <- 1*(analysis_data$HHIncome <= 45)
+analysis_data$EduLow <- 1*(analysis_data$Education <= 3)
+analysis_data$NonDelegator <- 1*(analysis_data$DelegationGroup == "Keine Delegation")
+analysis_data$DelegatorType <- if_else(analysis_data$sumDelegations == 0, "NeverDelegator", if_else(analysis_data$sumDelegations == 8, "AlwaysDelegator", "SometimesDelegator"))
+analysis_data$DelegatorType <- factor(analysis_data$DelegatorType, levels = c("NeverDelegator", "SometimesDelegator", "AlwaysDelegator"))
+
+prop.table(table(analysis_data$DelegatorType, analysis_data$EVAlgorithm),2)
+t.test(TimeInSeconds~NonDelegator, analysis_data) # 1113 (SometimesOrAlways) vs 1237 (NonDelegators) seconds 
+
+analysis_data <- analysis_data %>%
+  left_join(
+    subjects %>% select(ProlificID, RiskTaking, FinMarketExperience, FinanciallyResponsible, AIXperience),
+    by = "ProlificID"
+  )
+
+summary(lm(NonDelegator~Female2+Age+HHIncomeLow*HHIncome2 + EduLow*Education + PBetChoices + RiskTaking, data = analysis_data))
+summary(lm(NonDelegator~ProbOfBadComputerChoices + ProbOfAbsurdComputerChoices + Female2+Age+HHIncomeLow*HHIncome2 + EduLow*Education + PBetChoices, data = analysis_data))
+summary(lm(NonDelegator~EVAlgorithm*(ProbOfBadComputerChoices + ProbOfAbsurdComputerChoices) + Female2+Age+HHIncomeLow*HHIncome2 + EduLow*Education + PBetChoices, data = analysis_data))
+summary(lm(NonDelegator~EVAlgorithm*(ProbOfBadComputerChoices + ProbOfAbsurdComputerChoices) + Female2+Age+HHIncomeLow*HHIncome2 + EduLow*Education + PBetChoices + RiskTaking + FinMarketExperience + FinanciallyResponsible + AIXperience, data = analysis_data))
+summary(lm(NonDelegator~EVAlgorithm*(RiskTaking + FinMarketExperience + FinanciallyResponsible + AIXperience), data = analysis_data))
+
+
+# 2. Deskriptive Statistik pro Gruppe
+summary_stats <- analysis_data %>%
+  group_by(DelegationGroup) %>%
+  summarise(
+    MeanAge = mean(Age, na.rm = TRUE),
+    SDAge = sd(Age, na.rm = TRUE),
+    PropFemale = mean(Female, na.rm = TRUE),
+    MeanBadComputerChoices = mean(ProbOfBadComputerChoices, na.rm = TRUE),
+    MeanAbsurdComputerChoices = mean(ProbOfAbsurdComputerChoices, na.rm = TRUE),
+    MeanComputerRiskTaking = mean(ComputerRiskTaking, na.rm = TRUE),
+    MeanPBetChoices = mean(PBetChoices, na.rm = TRUE),
+    N = n()
+  )
+
+print(summary_stats)
+
+# 3. Statistische Tests pro Variable
+# a) Female (binär)
+# fisher.test(table(analysis_data$DelegationGroup, analysis_data$Female))
+
+# Kontingenztabelle erstellen
+female_table <- table(
+  DelegationGroup = analysis_data$DelegationGroup,
+  Female = analysis_data$Female
+)
+prop.table(female_table,2)[,c(2,4)]
+exact.test(female_table[,c(2,4)], method = "Boschloo", to.plot = F)$p.value
+
+# b) Age (numerisch)
+t.test(Age ~ DelegationGroup, data = analysis_data)
+
+# c) HHIncome (kategorial)
+table(analysis_data$DelegationGroup, analysis_data$HHIncome)
+chisq.test(table(analysis_data$DelegationGroup, analysis_data$HHIncome))
+
+# d) Education (kategorial)
+table(analysis_data$DelegationGroup, analysis_data$Education)
+chisq.test(table(analysis_data$DelegationGroup, analysis_data$Education))
+
+# e) BadComputerChoices (numerisch)
+t.test(ProbOfBadComputerChoices ~ DelegationGroup, data = analysis_data)
+ks.test(
+  as.numeric(analysis_data$ProbOfBadComputerChoices[analysis_data$DelegationGroup == "Keine Delegation"]),
+  as.numeric(analysis_data$ProbOfBadComputerChoices[analysis_data$DelegationGroup == "Mit Delegation"])
+)
+
+## EXKURS: BadComputerChoices by Treatment
+t.test(ProbOfBadComputerChoices ~ Algorithm, data = analysis_data)
+ggplot(analysis_data, aes(x = ProbOfBadComputerChoices, color = Algorithm)) +
+  stat_ecdf(geom = "step") +
+  labs(title = "ECDF von Bad Computer Choices nach Trmt",
+       x = "Prob Bad Computer Choices",
+       y = "F(x)",
+       color = "Algorithm") +
+  theme_minimal()
+
+ks.test(
+  as.numeric(analysis_data$ProbOfBadComputerChoices[analysis_data$Algorithm == "EV"]),
+  as.numeric(analysis_data$ProbOfBadComputerChoices[analysis_data$Algorithm == "Pref"])
+) # p = 0.5876
+
+# f) AbsurdComputerChoices (numerisch)
+t.test(ProbOfAbsurdComputerChoices ~ DelegationGroup, data = analysis_data)
+# 1.95 vs 1.649, p = 0.4559
+ggplot(analysis_data, aes(x = ProbOfAbsurdComputerChoices, color = DelegationGroup)) +
+  stat_ecdf(geom = "step") +
+  labs(title = "ECDF von Absurd Computer Choices nach Delegationsgruppe",
+       x = "Prob Absurd Computer Choices",
+       y = "F(x)",
+       color = "Delegation") +
+  theme_minimal()
+
+ks.test(
+  as.numeric(analysis_data$ProbOfAbsurdComputerChoices[analysis_data$DelegationGroup == "Keine Delegation"]),
+  as.numeric(analysis_data$ProbOfAbsurdComputerChoices[analysis_data$DelegationGroup == "Mit Delegation"])
+) # p = 0.5876
+
+choices %>%
+  distinct(ProlificID, .keep_all = TRUE) %>%
+  mutate(
+    sumDelegations_group = ifelse(sumDelegations == 0, "sumDelegations = 0", "sumDelegations > 0"),
+    hasPositiveProb = ProbOfBadComputerChoices > 0
+  ) %>%
+  group_by(sumDelegations_group, hasPositiveProb) %>%
+  summarise(Anzahl = n(), .groups = "drop") %>%
+  pivot_wider(
+    names_from = hasPositiveProb,
+    values_from = Anzahl,
+    names_prefix = "Prob_"
+  ) %>%
+  mutate(
+    Total = Prob_TRUE + Prob_FALSE,
+    Prob_TRUE_pct = round(Prob_TRUE / Total * 100, 1),
+    Prob_FALSE_pct = round(Prob_FALSE / Total * 100, 1)
+  ) %>%
+  select(-Total, -Prob_TRUE, -Prob_FALSE)
+
+
+ggplot(analysis_data, aes(x = PBetChoices, color = DelegationGroup)) +
+  stat_ecdf(geom = "step") +
+  labs(title = "ECDF von N. P-Bet Choices nach Delegationsgruppe",
+       x = "P-Bet Choices",
+       y = "F(x)",
+       color = "Delegation") +
+  theme_minimal()
+
+
+# 1. HHIncome
+ggplot(analysis_data, aes(x = HHIncome, color = DelegationGroup)) +
+  stat_ecdf(geom = "step") +
+  labs(title = "ECDF von HHIncome nach Delegationsgruppe",
+       x = "HHIncome (geordnet)",
+       y = "F(x)",
+       color = "Delegation") +
+  theme_minimal()
+
+# 2. Education
+ggplot(analysis_data, aes(x = Education, color = DelegationGroup)) +
+  stat_ecdf(geom = "step") +
+  labs(title = "ECDF von Education nach Delegationsgruppe",
+       x = "Education (geordnet)",
+       y = "F(x)",
+       color = "Delegation") +
+  theme_minimal()
+
+# KS-Test für HHIncome
+ks.test(
+  as.numeric(analysis_data$HHIncome[analysis_data$DelegationGroup == "Keine Delegation"]),
+  as.numeric(analysis_data$HHIncome[analysis_data$DelegationGroup == "Mit Delegation"])
+)
+
+# KS-Test für Education
+ks.test(
+  as.numeric(analysis_data$Education[analysis_data$DelegationGroup == "Keine Delegation"]),
+  as.numeric(analysis_data$Education[analysis_data$DelegationGroup == "Mit Delegation"])
+)
+
+# Step 1: Filter for non-delegated choices and calculate frequency of non-dominated choices
+nonDelegatedChoices <- choices %>%
+  filter(Delegated == 0, Option > 0) %>%
+  group_by(ProlificID, Algorithm) %>%
+  summarise(
+    nonDomCount = sum(Nondominated, na.rm = TRUE),
+    totalNonDelegated = n(),
+    .groups = "drop"
+  ) %>%
+  mutate(freqNonDom = nonDomCount / totalNonDelegated)
+
+# Step 2: Join with delegation status
+nonDelegatedChoices <- nonDelegatedChoices %>%
+  left_join(
+    choices %>%
+      select(ProlificID, sumDelegations) %>%
+      distinct(),
+    by = "ProlificID"
+  )
+
+# Step 3: Group by delegation status and calculate mean frequency
+nonDelegatedChoices %>%
+  group_by(sumDelegations == 0, Algorithm) %>%
+  summarise(
+    meanFreqNonDom = mean(freqNonDom, na.rm = TRUE),
+    sdFreqNonDom = sd(freqNonDom, na.rm = TRUE),
+    n = n(),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    delegationGroup = ifelse(`sumDelegations == 0`, "Never-delegators", "Sometimes-delegators")
+  ) %>%
+  select(delegationGroup, Algorithm, meanFreqNonDom, sdFreqNonDom, n)
+
+plot_data <- analysis_data %>%
+  group_by(EVAlgorithm, DelegatorType) %>%
+  summarise(n = n(), .groups = "drop") %>%
+  group_by(EVAlgorithm) %>%
+  mutate(rel_freq = n / sum(n))
+
+plot_data <- plot_data %>%
+  mutate(
+    DelegatorType = factor(DelegatorType,
+                           levels = c("AlwaysDelegator", "SometimesDelegator", "NeverDelegator"))
+  )
+
+ggplot(analysis_data, aes(x = EVAlgorithm, fill = DelegatorType)) +
+  geom_bar(position = "fill") +
+  labs(
+    x = "EV Algorithm",
+    y = "Relative Frequency",
+    fill = "Delegator Type"
+  ) +
+  scale_y_continuous(labels = scales::percent_format()) +
+  theme_minimal()
+
+plot_DelTypes <- ggplot(plot_data, aes(x = factor(EVAlgorithm), y = rel_freq, fill = factor(DelegatorType, levels = c("NeverDelegator", "SometimesDelegator", "AlwaysDelegator")))) +
+  labs(
+    title = "Delegator Types by Algorithm",
+    x = "EV Algorithm",
+    y = "Relative Frequency",
+    fill = "Delegator Type"
+  ) +
+  geom_bar(stat = "identity", position = "dodge") +
+  scale_y_continuous(labels = scales::percent_format()) +
+#  scale_fill_brewer(palette = "Set2") +
+  theme_minimal()
+
+ggsave("DelegatorTypesByTrmt.png",
+       plot = plot_DelTypes,
+       width = 6, height = 4,   # in inches
+       dpi = 300)
+```
+
+### the EV-maxxers
+```{r}
+# EVMaxxes incorporated in chunk Hypothesis testing above
+choices %>%
+  distinct(ProlificID, .keep_all = TRUE) %>%
+  ggplot(aes(x = PBet_count)) +
+  stat_ecdf(size = 1) +
+  scale_x_continuous(breaks = 0:12, limits = c(0, 12)) +
+  theme_minimal()
+```
+There are hardly any EV-maxxers at all! Only some 20% of people choose the EV-maximizing option at least half of the time...
+
+### win-stay, lose-shift
+
+```{r}
+choices <- choices %>%
+  group_by(ProlificID) %>%
+  arrange(WithinPartDecisionNumber, .by_group = TRUE) %>%
+  mutate(
+    lagDelegated         = lag(Delegated, 1),
+    lagRelevantPayoff    = lag(RelevantPayoff, 1),
+    lagSatisfactionRating = lag(SatisfactionRating, 1)
+  ) %>%
+  ungroup()
+
+choices$stay <- 1*(choices$Delegated == choices$lagDelegated)
+choices$lagWin <- 1*(choices$RelevantPayoff > 0)
+
+winStayReg <- feols(
+  stay ~ EVAlgorithm*lagWin | OptionsetID + WithinPartDecisionNumber,
+  cluster = ~ProlificID,
+  data = subset(choices, Part == 2 & WithinPartDecisionNumber > 1)
+)
+summary(winStayReg)
+
+winStayReg10 <- feols(
+  stay ~ lagDelegated*I(1-lagWin) | OptionsetID + WithinPartDecisionNumber,
+  cluster = ~ProlificID,
+  data = subset(choices, EVAlgorithm == 1 & Part == 2 & WithinPartDecisionNumber > 1)
+)
+summary(winStayReg10)
+
+winStayReg20 <- feols(
+  stay ~ lagDelegated*I(1-lagWin) | OptionsetID + WithinPartDecisionNumber,
+  cluster = ~ProlificID,
+  data = subset(choices, EVAlgorithm == 0 & Part == 2 & WithinPartDecisionNumber > 1)
+)
+summary(winStayReg20)
+
+
+winStayReg2 <- feols(
+  stay ~ EVAlgorithm*lagSatisfactionRating | OptionsetID + WithinPartDecisionNumber,
+  cluster = ~ProlificID,
+  data = subset(choices, Part == 2 & WithinPartDecisionNumber > 1)
+)
+summary(winStayReg2)
+
+choices %>%
+  group_by(EVAlgorithm, lagDelegated, lagWin) %>%
+  summarise(
+    stayRate = mean(stay == 1, na.rm = TRUE),
+    n = n(),
+    .groups = "drop"
+  )
+
+choices %>%
+  filter((WithinPartDecisionNumber == 2)) %>%
+  group_by(EVAlgorithm, lagDelegated, lagWin) %>%
+  summarise(
+    stayRate = mean(stay == 1, na.rm = TRUE),
+    n = n(),
+    .groups = "drop"
+  )
+
+# Basis-Daten (Filter)
+df_base <- choices %>%
+  filter(WithinPartDecisionNumber > 1)
+
+# Funktion zur Berechnung relativer Stay-Frequenzen
+calc_rel_stay <- function(df) {
+  df %>%
+    group_by(EVAlgorithm, lagWin) %>%
+    summarise(rel_stay = mean(stay, na.rm = TRUE),
+              n = n(),
+              .groups = "drop")
+}
+
+# Datensätze
+df_all <- calc_rel_stay(df_base)
+
+df_deleg <- df_base %>%
+  filter(sumDelegations > 0) %>%
+  calc_rel_stay()
+
+p1 <- ggplot(df_all, aes(x = factor(lagWin), y = rel_stay, fill = as.factor(EVAlgorithm))) +
+  geom_col(position = "dodge") +
+  labs(title = "Relative Stay Frequency (alle)",
+       x = "lagWin",
+       y = "Relative Stay Frequency",
+       fill = "EVAlgorithm") +
+  theme_minimal()
+
+# Plot 2: Nur sumDelegations > 0 (Balken)
+p2 <- ggplot(df_deleg, aes(x = factor(lagWin), y = rel_stay, fill = as.factor(EVAlgorithm))) +
+  geom_col(position = "dodge") +
+  labs(title = "Relative Stay Frequency (sumDelegations > 0)",
+       x = "lagWin",
+       y = "Relative Stay Frequency",
+       fill = "EVAlgorithm") +
+  theme_minimal()
+
+# Anzeigen
+p1
+p2
+
+choices %>%
+  filter(Part == 2, WithinPartDecisionNumber > 1) %>%
+  group_by(EVAlgorithm, lagWin) %>%
+  summarise(
+    avg_stay_rate = mean(stay, na.rm = TRUE),
+    se = sqrt(avg_stay_rate * (1 - avg_stay_rate) / n()),
+    ci_low = avg_stay_rate - 1.96 * se,
+    ci_high = avg_stay_rate + 1.96 * se,
+    n = n(),
+    .groups = "drop"
+  ) %>%
+  mutate(avg_stay_pct = 100 * avg_stay_rate) %>%
+  arrange(EVAlgorithm, lagWin)
+
+# Basis-Daten (Filter)
+df_base <- choices %>%
+  filter(WithinPartDecisionNumber > 1)
+
+# Funktion zur Berechnung relativer Stay-Frequenzen
+calc_rel_stay <- function(df) {
+  df %>%
+    group_by(Algorithm, lagWin) %>%
+    summarise(rel_stay = mean(stay, na.rm = TRUE),
+              n = n(),
+              .groups = "drop")
+}
+
+# Filter nur für sumDelegations > 0
+df_base_deleg <- df_base %>%
+  filter(sumDelegations > 0)
+
+# Plot 1: lagDelegated == 0
+df_lag0 <- df_base_deleg %>%
+  filter(lagDelegated == 0) %>%
+  calc_rel_stay()
+
+p_lag0 <- ggplot(df_lag0, aes(x = factor(lagWin), y = rel_stay, fill = as.factor(Algorithm))) +
+  geom_col(position = "dodge") +
+  scale_fill_manual(
+    values = c("Pref" = "#4E79A7", "EV" = "#D55E00")
+  ) +
+  labs(title = "After Non-Delegation",
+       x = "lagWin",
+       y = "Relative Stay Frequency",
+       fill = "Algorithm") +
+  theme_minimal()
+
+# Plot 2: lagDelegated == 1
+df_lag1 <- df_base_deleg %>%
+  filter(lagDelegated == 1) %>%
+  calc_rel_stay()
+
+p_lag1 <- ggplot(df_lag1, aes(x = factor(lagWin), y = rel_stay, fill = as.factor(Algorithm))) +
+  geom_col(position = "dodge") +
+  scale_fill_manual(
+    values = c("Pref" = "#4E79A7", "EV" = "#D55E00")
+  ) +
+  labs(title = "After Delegation",
+       x = "lagWin",
+       y = "Relative Stay Frequency",
+       fill = "Algorithm") +
+  theme_minimal()
+
+# Optional: Display the plots
+# p_lag0
+# p_lag1
+ggsave("WinStay_lagDeleg.pdf", p_lag1, width = 6, height = 4, dpi = 300)
+ggsave("WinStay_lagNonDeleg.pdf", p_lag0, width = 6, height = 4, dpi = 300)
+
+
+```
+with the EVAlgorithm, I switch much more after a "win" than with the PrefAlgorithm (I generally switch less [n.sign.] in EV, put have a slight tendency [n.sign.] to switch /more/ often after wins; that is reversed by the [sign.] interaction term under Pref)
+looking at satisfaction: when I'm dissatisfied, I switch less with the EVAlgorithm (p = 0.054; this is like last time); having said that, satisfaction doesn't do much at all
+
+### hypothetic choices, never delegate, and reasons
+
+```{r}
+NeverDelegate <- choices %>%
+  select(ProlificID, sumDelegations) %>%
+  distinct() %>%  # eine Zeile pro Person
+  mutate(sumDeleg0 = (sumDelegations == 0))
+
+subjects2 <- subjects %>%
+  left_join(NeverDelegate, by = "ProlificID")
+
+subjects2 %>%
+  group_by(EVAlgorithm, sumDeleg0) %>%
+  summarise(
+    SatisfiedPart1 = mean(SatisfiedPart1, na.rm = TRUE),
+    n = n(),
+    .groups = "drop"
+  )
+
+subjects2$SelfHyp10 <- 1-subjects2$DelegateHyp10
+
+subjects_long <- subjects2 %>%
+  pivot_longer(
+    cols = DontTrust:Other,
+    names_to = "item",
+    values_to = "clicked"
+  )
+
+click_rates_sumDeleg0 <- subjects_long %>%
+  group_by(sumDeleg0, item) %>%
+  summarise(
+    rate = mean(clicked, na.rm = TRUE),
+    n = n_distinct(ProlificID),
+    .groups = "drop"
+  )
+
+fig47 <- ggplot(click_rates_sumDeleg0, aes(x = item, y = rate, fill = factor(sumDeleg0))) +
+  # geom_col(fill = "steelblue") +
+  geom_col(position = "dodge") +
+  labs(x = "Item",
+       y = "Rel. frecuency",
+       fill = "Never Delegate",
+       title = "Reasons (aggregated)") +
+  scale_y_continuous(labels = percent_format(accuracy = 1)) +
+  # facet_wrap(~ sumDeleg0, labeller = labeller(sumDeleg0 = c(`TRUE` = "Never Delegate", `FALSE` = "Delegated"))) +
+  theme_minimal() +
+  theme(legend.position = "none") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+ggsave("ReasonsByNeverDelegator.png",
+       plot = fig47,
+       width = 6, height = 4,   # in inches
+       dpi = 300)
+
+
+person_level <- subjects_long %>%
+  group_by(ProlificID, EVAlgorithm, sumDeleg0, item) %>%
+  summarise(
+    clicked_person = mean(clicked, na.rm = TRUE),
+    .groups = "drop"
+  )
+click_rates_algo <- person_level %>%
+  group_by(EVAlgorithm, sumDeleg0, item) %>%
+  summarise(
+    rate = mean(clicked_person, na.rm = TRUE),
+    n = n(),
+    .groups = "drop"
+  )
+
+fig46 <- ggplot(click_rates_algo,
+       aes(x = item, y = rate, fill = factor(sumDeleg0))) +
+  geom_col(position = "dodge") +
+  facet_wrap(~ EVAlgorithm,
+             labeller = labeller(EVAlgorithm = c(
+               `1` = "EV Algorithm",
+               `0` = "Preference Algorithm"
+             ))) +
+  scale_y_continuous(labels = percent_format(accuracy = 1)) +
+  labs(title = "Reasons by treatments",
+       x = "Item",
+       y = "Rel. frecuency",
+       fill = "Never Delegate") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+ggsave("ReasonsByTrmtAndNeverDelegator.png",
+       plot = fig46,
+       width = 8, height = 4,   # in inches
+       dpi = 300)
+
+
+click_rates_DelegateHyp <- subjects_long %>%
+  group_by(SelfHyp10, item) %>%
+  summarise(
+    rate = mean(clicked, na.rm = TRUE),
+    n = n_distinct(ProlificID),
+    .groups = "drop"
+  )
+
+ggplot(click_rates_DelegateHyp, aes(x = item, y = rate, fill = factor(SelfHyp10))) +
+  geom_col(position = "dodge") +
+  scale_y_continuous(labels = percent_format(accuracy = 1)) +
+  labs(x = "Item", y = "Klickrate", fill = "SelfHyp10") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+click_rates_both <- subjects_long %>%
+  group_by(sumDeleg0, SelfHyp10, item) %>%
+  summarise(
+    rate = mean(clicked, na.rm = TRUE),
+    n = n_distinct(ProlificID),
+    .groups = "drop"
+  )
+
+ggplot(click_rates_both, aes(x = item, y = rate, fill = factor(SelfHyp10))) +
+  geom_col(position = "dodge") +
+  facet_wrap(~ sumDeleg0, labeller = labeller(sumDeleg0 = c(`TRUE` = "Never Delegate", `FALSE` = "Delegated"))) +
+  scale_y_continuous(labels = percent_format(accuracy = 1)) +
+  labs(x = "Item", y = "Klickrate", fill = "SelfHyp10") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+# Correct n per condition
+n_labels <- subjects_long %>%
+  group_by(sumDeleg0, EVAlgorithm) %>%
+  summarise(n = n_distinct(ProlificID), .groups = "drop") %>%
+  mutate(
+    group = case_when(
+      sumDeleg0 == TRUE  & EVAlgorithm == 0 ~ "Prefs--Never-delegators",
+      sumDeleg0 == TRUE  & EVAlgorithm == 1 ~ "EV--Never-delegators",
+      sumDeleg0 == FALSE & EVAlgorithm == 0 ~ "Prefs--Delegators",
+      sumDeleg0 == FALSE & EVAlgorithm == 1 ~ "EV--Delegators"
+    ),
+    group_label = paste0(group, " (n=", n, ")")
+  )
+
+# Named vectors for colours and labels
+group_colors <- c(
+  "Prefs--Delegators"       = "#9dc3e6",
+  "Prefs--Never-delegators" = "#1f4e79",
+  "EV--Delegators"          = "#f4b183",
+  "EV--Never-delegators"    = "#833c00"
+)
+
+label_map <- setNames(n_labels$group_label, n_labels$group)
+
+# Main data with group variable as ordered factor
+click_rates_both <- subjects_long %>%
+  group_by(sumDeleg0, EVAlgorithm, item) %>%
+  summarise(
+    rate = mean(clicked, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    group = case_when(
+      sumDeleg0 == TRUE  & EVAlgorithm == 0 ~ "Prefs--Never-delegators",
+      sumDeleg0 == TRUE  & EVAlgorithm == 1 ~ "EV--Never-delegators",
+      sumDeleg0 == FALSE & EVAlgorithm == 0 ~ "Prefs--Delegators",
+      sumDeleg0 == FALSE & EVAlgorithm == 1 ~ "EV--Delegators"
+    ),
+    group = factor(group, levels = names(group_colors))  # enforces bar order
+  )
+
+fig4_one <- ggplot(click_rates_both, aes(x = item, y = rate, fill = group)) +
+  geom_col(position = position_dodge(width = 0.7), width = 0.7) +  # width == dodge width removes gaps
+  scale_fill_manual(
+    values = group_colors,
+    labels = label_map,
+    breaks = names(group_colors),
+    name = "Condition"
+  ) +
+  scale_y_continuous(labels = percent_format(accuracy = 1)) +
+  labs(x = "Item", y = "Click rate") +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    legend.position = "right"
+  )
+
+ggsave("ReasonsByTrmtAndNeverDelegator2.png",
+       plot = fig4_one,
+       width = 8, height = 4,   # in inches
+       dpi = 300)
+
+```
+if at all, never-delegators are more satisfied with their Part-1 choices.
+
+### Reasons for non-delegation
+- die Teil-1-Entscheidungen waren voller fehlerhafter Entscheidungen [measurement nach T1: wie zufrieden/sicher? waren Sie sich mit/in ihren Entscheidungen?]
+Done. Für die einzelnen Entscheidungen: Je sicherer ich in Teil 1 bzgl. der Entscheidung war, desto eher werde ich an den EV-Algorithmus delegieren (?!?), kein Zusammenhang für den PrefAlgorithm.
+
+- ich traue dem Algorithmus nicht zu, meine Präferenzen einzufangen [measurement? Wahrscheinlichkeiten für einen hypothetischen Teil wie beim 1. Exp?]
+-> ProbOfBadChoices haben keinen Einfluss auf Never-delegation, aber [delRegWConf, at the end of the Hypothesis testing chunk]:
+
+EVAlgorithm                             	-0.036028	0.203132	-0.177362	0.85937853	
+WithinPartDecisionNumber	                -0.009924	0.005705	-1.739501	0.08327301	.
+Confidence.y	                            -0.023419	0.013064	-1.792664	0.07432937	.
+ProbOfAbsurdComputerChoices       	       0.006830	0.018303	0.373168	0.70936379	
+ProbOfBadComputerChoices	                -0.058319	0.016170	-3.606519	0.00037995	***
+P105_count	                               0.004795	0.012610	0.380233	0.70412009	
+EVAlgorithm:WithinPartDecisionNumber	    -0.012264	0.008335	-1.471492	0.14251336	
+EVAlgorithm:Confidence.y	                 0.041738	0.016028	2.604073	0.00980698	**
+EVAlgorithm:ProbOfAbsurdComputerChoices	  -0.070006	0.022913	-3.055368	0.00251080	**
+EVAlgorithm:ProbOfBadComputerChoices	     0.034684	0.020373	1.702429	0.09001442	.
+
+-> im Pref-Alg: je sicherer ich in meiner Lottery-Choice war, desto weniger delegiere ich (p = 0.074)
+-> im EV-Alg: andersherum! 
+-> ausserdem: Je eher ich dem Computer schlechte Entscheidungen zutraue, desto weniger delegiere ich im Pref-Alg, während im EV-Alg die Angst vor absurden Entscheidungen Delegation verhindert (Das kommt nicht daher, dass im EV-Alg-Trmt keine hohen ProbOfAbsurdComputerChoices vorkommen - das EV-Alg-Trmt first order stochastically dominates the Pref-based treatment in terms of this variable!)
+```{r}
+table(analysis_data$EVAlgorithm, analysis_data$ProbOfAbsurdComputerChoices)
+ggplot(analysis_data,
+       aes(x = ProbOfAbsurdComputerChoices,
+           color = factor(EVAlgorithm))) +
+  stat_ecdf(size = 1) +
+  labs(
+    x = "ProbOfAbsurdComputerChoices",
+    y = "ECDF",
+    color = "EVAlgorithm",
+    title = "ECDF von ProbOfAbsurdComputerChoices nach EVAlgorithm"
+  ) +
+  theme_minimal()
+```
+
+- ich traue dem Algorithmus zu gut zu, meine Präferenzen einzufangen, und das schreckt mich ab [vermutlich das gleiche measurement wie eben]
+-> eher nein, denn das würde bedeuten, dass bei ProbOfBadComputerChoices == 0 Delegation niedriger wäre als bei höheren Werten, aber das Gegenteil ist der Fall. 
+```{r}
+# 1. ProbOfBadComputerChoices pro Person aus choices
+person_data <- choices %>%
+  group_by(ProlificID) %>%
+  summarise(ProbOfBadComputerChoices = first(ProbOfBadComputerChoices)) %>%
+  ungroup()
+
+# Mit DelegateHyp10 und sumDeleg0 joinen
+plot_data <- person_data %>%
+  left_join(subjects %>% select(ProlificID, DelegateHyp10), by = "ProlificID") %>%
+  left_join(NeverDelegate %>% select(ProlificID, sumDeleg0), by = "ProlificID") %>%
+  filter(sumDeleg0 == TRUE)   # nur Personen, die sumDeleg0 == TRUE haben
+
+# 3. Mitteln pro ProbOfBadComputerChoices
+avg_data <- plot_data %>%
+  group_by(ProbOfBadComputerChoices) %>%
+  summarise(
+    DelegateHyp10_mean = mean(DelegateHyp10, na.rm = TRUE),
+    n = n()
+  )
+
+ggplot(avg_data, aes(x = ProbOfBadComputerChoices, y = DelegateHyp10_mean)) +
+  geom_point(size = 3) +
+  geom_text(aes(label = paste0("n=", n)), vjust = -0.7, size = 3) +
+  labs(
+    title = "Durchschnittliches DelegateHyp10 pro ProbOfBadComputerChoices",
+    x = "ProbOfBadComputerChoices",
+    y = "Durchschnittliches DelegateHyp10"
+  ) +
+  theme_minimal()
+```
+-> für die NeverDelegators kann man es nicht so wirklich angucken (die delegieren ja nicht); Auch in der DelegateHyp10 haben die meisten eine 0, da gibt es keinen klaren Zusammenhang
+
+- ich will nicht von Algorithmen analysiert werden
+-> wird von keinem NeverDelegator als Grund angeführt, auch unter den anderen so gut wie nie angeklickt.
+
+- ich will nicht, dass Algorithmen mir in meine Entscheidungen 'reinpfuschen
+-> wird von wenigen angeklickt (unter den NeverDelegators noch weniger)
+
+- Do we have any measure of how complex the lottery-selection task was in people's view?
+-> anecdotal from the comments: many said time was not enough to make a good decision
+
+- Do we have numbers on average payoffs as a function of AR, by treatment?
+```{r}
+library(doBy)
+summaryBy (RelevantPayoff ~ Delegated, choices)
+```
+-> on average, delegation led to a payoff of 243.49 points, non-delegation to a payoff of 195.18 points (25\% increase!)
+
+# reasons (for hypothetical [non-]delegation) and categorical non-delegation
+### LPM: never-delegation on reasons
+```{r, lpm_reasons}
+library(lmtest)
+library(sandwich)
+
+reason_vars <- c("DontTrust", "BetterJob", "HowExactly", "MoreInfo",
+                 "Responsibility4Choice", "Responsibility4Outcome",
+                 "DislikeRelyingOn", "Reactance2Analysis",
+                 "PerformanceCuriosity", "Tedious", "Other")
+
+# --- 1. Bivariate LPMs (one per reason, HC2 SEs) ---
+bivariate_tbl <- do.call(rbind, lapply(reason_vars, function(rv) {
+  m  <- lm(as.formula(paste("as.numeric(sumDeleg0) ~", rv)), data = subjects2)
+  ct <- coeftest(m, vcov = vcovHC(m, type = "HC2"))
+  data.frame(reason = rv,
+             coef   = round(ct[2, 1], 3),
+             se     = round(ct[2, 2], 3),
+             t      = round(ct[2, 3], 3),
+             p      = round(ct[2, 4], 3))
+}))
+print(bivariate_tbl, row.names = FALSE)
+
+# --- 2. Joint LPM: full sample + preference-treatment only ---
+f_joint   <- as.formula(paste("as.numeric(sumDeleg0) ~",
+                              paste(reason_vars, collapse = " + ")))
+lpm_all   <- lm(f_joint, data = subjects2)
+lpm_pref  <- lm(f_joint, data = subjects2[subjects2$EVAlgorithm == 0, ])
+
+vcov_all  <- vcovHC(lpm_all,  type = "HC2")
+vcov_pref <- vcovHC(lpm_pref, type = "HC2")
+
+screenreg(
+  list(lpm_all, lpm_pref),
+  override.se      = list(sqrt(diag(vcov_all)),  sqrt(diag(vcov_pref))),
+  override.pvalues = list(
+    2 * pt(abs(coef(lpm_all)  / sqrt(diag(vcov_all))),
+           df = lpm_all$df.residual,  lower.tail = FALSE),
+    2 * pt(abs(coef(lpm_pref) / sqrt(diag(vcov_pref))),
+           df = lpm_pref$df.residual, lower.tail = FALSE)
+  ),
+  custom.model.names = c("Full sample", "Pref. treatment"),
+  caption = "LPM: never-delegation ~ reasons (HC2 SEs)"
+)
+```
+
+
+```{r, OtherTexts} 
+  subjects2$OtherText[subjects2$sumDeleg0 == 1]
+  subjects2$Other[subjects2$sumDeleg0 == 1]
+  subjects2$OtherText[subjects2$sumDeleg0 == 0]
+```
+
