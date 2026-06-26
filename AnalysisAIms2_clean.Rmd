@@ -1,6 +1,6 @@
 ---
 title: "When personalization deters delegation to algorithms --- Replication analysis"
-author: "Lara Suraci and Irenaeus Wolff"
+author: "Lara Suraci & Irenaeus Wolff"
 date: "`r format(Sys.Date(), '%d %B %Y')`"
 output:
   pdf_document:
