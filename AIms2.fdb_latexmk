@@ -1,15 +1,15 @@
 # Fdb version 4
-["bibtex AIms2"] 1782468898.88473 "AIms2.aux" "AIms2.bbl" "AIms2" 1782469734.58483 0
+["bibtex AIms2"] 1782472183.3733 "AIms2.aux" "AIms2.bbl" "AIms2" 1782472188.89582 0
   "./library.bib" 1782121475.88099 70905 1976c0dbfabe01e000dcbbd44d8759ef ""
   "/usr/share/texlive/texmf-dist/bibtex/bst/base/apalike.bst" 1292289607 24635 604dafcc79f521a11ea73e506e1fbd98 ""
-  "AIms2.aux" 1782469734.23968 15037 199cece5acfef9afb61f9cd034c38b9f "pdflatex"
+  "AIms2.aux" 1782472188.41853 12482 83ca2c22178c3988a51bb7ebcd5b2bc7 "pdflatex"
   (generated)
   "AIms2.bbl"
   "AIms2.blg"
   (rewritten before read)
-["pdflatex"] 1782469729.5236 "/home/vboxuser/Aims2/AIms2/AIms2.tex" "AIms2.pdf" "AIms2" 1782469734.58514 0
+["pdflatex"] 1782472183.4871 "/home/vboxuser/Aims2/AIms2/AIms2.tex" "AIms2.pdf" "AIms2" 1782472188.89614 0
   "/etc/texmf/web2c/texmf.cnf" 1776760554.68113 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/vboxuser/Aims2/AIms2/AIms2.tex" 1782469643.98068 69292 b9aa7ef23e8571001241b30c64ae90a8 ""
+  "/home/vboxuser/Aims2/AIms2/AIms2.tex" 1782472176.37353 70748 ac59c9297a245d672b972f825554bd01 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/libertine/lbtn_3dk467.enc" 1558472472 2823 9669300fd867bc8e1e320d5385959bec ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/libertine/lbtn_kijugd.enc" 1490131464 2822 11e839d2bbb939844844619b2cff7df6 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/libertine/lbtn_lyu3x3.enc" 1490131464 2835 bfce207f80837ef8737b6a788d8bc760 ""
@@ -160,16 +160,15 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1707919699 40399 f2c302f7d2af602abb742093540a5834 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1776760582.65195 5349216 bf3a80e68d946c7acd95ff030fd9bb63 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1776760608 6831113 8eb722c7c72ca5705593ef41633ee7a8 ""
-  "AIms2.aux" 1782469734.23968 15037 199cece5acfef9afb61f9cd034c38b9f "pdflatex"
-  "AIms2.bbl" 1782468898.97573 9882 18e3e57d5aec7587dd996d42ffb26e05 "bibtex AIms2"
-  "AIms2.out" 1782469734.24068 6731 ef81ed916fbf17c98ed332609325914e "pdflatex"
-  "AIms2.tex" 1782469643.98068 69292 b9aa7ef23e8571001241b30c64ae90a8 ""
+  "AIms2.aux" 1782472188.41853 12482 83ca2c22178c3988a51bb7ebcd5b2bc7 "pdflatex"
+  "AIms2.bbl" 1782472183.48153 9882 18e3e57d5aec7587dd996d42ffb26e05 "bibtex AIms2"
+  "AIms2.out" 1782472188.42053 6716 30f932027e2c3c00fc90d74f1cf000b1 "pdflatex"
+  "AIms2.tex" 1782472176.37353 70748 ac59c9297a245d672b972f825554bd01 ""
   "CoefPlotBadAbsurd.pdf" 1782469728.58568 5810 f820f5a0eeb603b36ca3e98ae3f27626 ""
   "ExpectedBadAndAbsurdChoicesByTrmt.pdf" 1782469728.58668 20432 8d1b8e25dd8cc265ca7734cf2ca28f7d ""
   "Figure1_AverageDelegation.pdf" 1782469728.58668 5848 4ab600f5921597a9741d5ad34334550e ""
   "Figure3_ECDF.pdf" 1782469728.58668 4856 fc814dd090e68f29939fb5f0e5d53b04 ""
   "Figure_ExampleScreens.pdf" 1782121475.33699 82083 aff7f41bcdbf194cb09fd098200b6eaf ""
-  "ReasonsByTrmtAndNeverDelegator2.png" 1782121475.87499 158758 96d7e47cf667dd8ef36c4787e49146fd ""
   (generated)
   "AIms2.aux"
   "AIms2.log"

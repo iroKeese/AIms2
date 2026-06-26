@@ -326,11 +326,6 @@ INPUT ./Figure3_ECDF.pdf
 INPUT ./Figure3_ECDF.pdf
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/public/libertine/LinLibertineT-tlf-ot1.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/libertine/LinLibertineT-tlf-ot1--base.tfm
-INPUT ./ReasonsByTrmtAndNeverDelegator2.png
-INPUT ./ReasonsByTrmtAndNeverDelegator2.png
-INPUT ./ReasonsByTrmtAndNeverDelegator2.png
-INPUT ./ReasonsByTrmtAndNeverDelegator2.png
-INPUT ./ReasonsByTrmtAndNeverDelegator2.png
 INPUT ./CoefPlotBadAbsurd.pdf
 INPUT ./CoefPlotBadAbsurd.pdf
 INPUT ./CoefPlotBadAbsurd.pdf

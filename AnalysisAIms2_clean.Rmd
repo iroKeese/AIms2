@@ -690,6 +690,22 @@ wilcox.test(ProbOfBadComputerChoices ~ EVAlgorithm, data = subjects)
 # Expected COMPLETELY WEIRD choices: EV vs. Preference-based
 t.test(ProbOfAbsurdComputerChoices ~ EVAlgorithm, data = subjects)
 wilcox.test(ProbOfAbsurdComputerChoices ~ EVAlgorithm, data = subjects)
+
+# Within the preference-based condition: do never-delegators expect the
+# personalized algorithm to make MORE non-preferred choices than delegators?
+# (If not, categorical non-delegation is not driven by distrust in the
+#  algorithm's ability to capture one's preferences.)
+analysis_data %>%
+  filter(EVAlgorithm == 0) %>%
+  group_by(NonDelegator) %>%
+  summarise(
+    n                 = n(),
+    mean_nonpreferred = mean(ProbOfBadComputerChoices, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+t.test(ProbOfBadComputerChoices ~ NonDelegator,
+       data = subset(analysis_data, EVAlgorithm == 0))
 ```
 
 \newpage
