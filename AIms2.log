@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.4.21)  25 JUN 2026 16:16
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.4.21)  26 JUN 2026 10:15
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -640,22 +640,22 @@ File: Figure3_ECDF.pdf Graphic file (type pdf)
 Package pdftex.def Info: Figure3_ECDF.pdf  used on input line 259.
 (pdftex.def)             Requested size: 304.19952pt x 217.28586pt.
  [15 <./Figure3_ECDF.pdf>] [16]
-<ReasonsByTrmtAndNeverDelegator2.png, id=431, 578.16pt x 289.08pt>
+<ReasonsByTrmtAndNeverDelegator2.png, id=435, 578.16pt x 289.08pt>
 File: ReasonsByTrmtAndNeverDelegator2.png Graphic file (type png)
 <use ReasonsByTrmtAndNeverDelegator2.png>
-Package pdftex.def Info: ReasonsByTrmtAndNeverDelegator2.png  used on input line 295.
+Package pdftex.def Info: ReasonsByTrmtAndNeverDelegator2.png  used on input line 297.
 (pdftex.def)             Requested size: 390.0pt x 194.99706pt.
  [17] [18 <./ReasonsByTrmtAndNeverDelegator2.png>] [19] [20] [21] [22]
-<CoefPlotBadAbsurd.pdf, id=468, 505.89pt x 325.215pt>
+<CoefPlotBadAbsurd.pdf, id=472, 505.89pt x 325.215pt>
 File: CoefPlotBadAbsurd.pdf Graphic file (type pdf)
 <use CoefPlotBadAbsurd.pdf>
-Package pdftex.def Info: CoefPlotBadAbsurd.pdf  used on input line 409.
+Package pdftex.def Info: CoefPlotBadAbsurd.pdf  used on input line 413.
 (pdftex.def)             Requested size: 292.5pt x 188.03926pt.
  [23 <./CoefPlotBadAbsurd.pdf>]
-<ExpectedBadAndAbsurdChoicesByTrmt.pdf, id=480, 505.89pt x 289.08pt>
+<ExpectedBadAndAbsurdChoicesByTrmt.pdf, id=484, 505.89pt x 289.08pt>
 File: ExpectedBadAndAbsurdChoicesByTrmt.pdf Graphic file (type pdf)
 <use ExpectedBadAndAbsurdChoicesByTrmt.pdf>
-Package pdftex.def Info: ExpectedBadAndAbsurdChoicesByTrmt.pdf  used on input line 416.
+Package pdftex.def Info: ExpectedBadAndAbsurdChoicesByTrmt.pdf  used on input line 420.
 (pdftex.def)             Requested size: 292.5pt x 167.14601pt.
  (./AIms2.bbl [24
 
@@ -672,18 +672,18 @@ Package rerunfilecheck Info: File `AIms2.out' has not changed.
 (rerunfilecheck)             Checksum: EF81ED916FBF17C98ED332609325914E;6731.
  ) 
 Here is how much of TeX's memory you used:
- 15874 strings out of 476106
- 260054 string characters out of 5793933
+ 15877 strings out of 476106
+ 260135 string characters out of 5793933
  1936975 words of memory out of 5000000
  37133 multiletter control sequences out of 15000+600000
- 626141 words of font info for 331 fonts, out of 8000000 for 9000
+ 626518 words of font info for 333 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 75i,8n,79p,1625b,663s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,8n,79p,1679b,663s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/libertine/LinLibertineMT.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/libertine/LinLibertineT.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/libertine/LinLibertineTB.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/libertine/LinLibertineTI.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on AIms2.pdf (27 pages, 662413 bytes).
+Output written on AIms2.pdf (27 pages, 665462 bytes).
 PDF statistics:
- 590 PDF objects out of 1000 (max. 8388607)
- 522 compressed objects within 6 object streams
+ 594 PDF objects out of 1000 (max. 8388607)
+ 526 compressed objects within 6 object streams
  115 named destinations out of 1000 (max. 500000)
  72463 words of extra memory for PDF output out of 74296 (max. 10000000)
 
