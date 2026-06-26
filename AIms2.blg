@@ -3,46 +3,44 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: AIms2.aux
 The style file: apalike.bst
 Database file #1: library.bib
-Warning--I didn't find a database entry for "DeanMorgenstern2022"
-You've used 38 entries,
+You've used 39 entries,
             1935 wiz_defined-function locations,
-            723 strings with 11072 characters,
-and the built_in function-call counts, 15298 in all, are:
-= -- 1459
-> -- 696
+            727 strings with 11191 characters,
+and the built_in function-call counts, 15717 in all, are:
+= -- 1499
+> -- 714
 < -- 14
-+ -- 240
-- -- 234
-* -- 1364
-:= -- 2735
-add.period$ -- 117
-call.type$ -- 38
-change.case$ -- 307
-chr.to.int$ -- 38
-cite$ -- 38
-duplicate$ -- 530
-empty$ -- 1042
-format.name$ -- 290
-if$ -- 2935
++ -- 246
+- -- 240
+* -- 1404
+:= -- 2808
+add.period$ -- 120
+call.type$ -- 39
+change.case$ -- 315
+chr.to.int$ -- 39
+cite$ -- 39
+duplicate$ -- 544
+empty$ -- 1072
+format.name$ -- 297
+if$ -- 3017
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 35
-newline$ -- 194
-num.names$ -- 114
-pop$ -- 232
+missing$ -- 36
+newline$ -- 199
+num.names$ -- 117
+pop$ -- 238
 preamble$ -- 1
-purify$ -- 307
+purify$ -- 315
 quote$ -- 0
-skip$ -- 383
+skip$ -- 393
 stack$ -- 0
-substring$ -- 1078
-swap$ -- 37
+substring$ -- 1111
+swap$ -- 38
 text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 228
+type$ -- 234
 warning$ -- 0
-while$ -- 112
+while$ -- 115
 width$ -- 0
-write$ -- 497
-(There was 1 warning)
+write$ -- 510
