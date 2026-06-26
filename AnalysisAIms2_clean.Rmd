@@ -1,0 +1,818 @@
+---
+title: "When personalization deters delegation to algorithms --- Replication analysis"
+author: "Lara Suraci and Irenaeus Wolff"
+date: "`r format(Sys.Date(), '%d %B %Y')`"
+output:
+  pdf_document:
+    toc: true
+    toc_depth: 2
+    number_sections: true
+  html_document:
+    df_print: paged
+    toc: true
+header-includes:
+- \usepackage{fvextra}
+- \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,breakanywhere,commandchars=\\\{\}}
+---
+
+<!--
+============================================================================
+REPLICATION PACKAGE -- "When personalization deters delegation to algorithms:
+Evidence from a preregistered experiment" (Suraci & Wolff)
+
+This script reproduces every figure and the in-text statistics reported in the
+paper. It is organised to follow the structure of the Results section.
+
+Required raw data files (expected in the same folder as this script):
+  * 260206_1528_537_lotteryChoices.xls     (decision-level data, tab-separated)
+  * allSubjects.csv                        (participant-level data)
+  * prolific_demographic_export_approved.csv (Prolific demographics / timing)
+
+Figures produced (file names match the \includegraphics calls in AIms2.tex):
+  * Figure1_AverageDelegation.pdf          (Fig. 1 -- main text)
+  * Figure3_ECDF.pdf                       (Fig. 3 -- main text)
+  * ReasonsByTrmtAndNeverDelegator2.png    (Fig. 4 -- main text)
+  * CoefPlotBadAbsurd.pdf                  (Fig. A.1 -- appendix)
+  * ExpectedBadAndAbsurdChoicesByTrmt.pdf  (Fig. A.2 -- appendix)
+
+Note: Figure_ExampleScreens.pdf is composed of experiment screenshots and is
+not generated here.
+============================================================================
+-->
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  tidy = FALSE,
+  echo = TRUE,
+  message = FALSE,
+  warning = FALSE
+)
+```
+
+```{r load-packages}
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(scales)
+library(Exact)     # Boschloo exact test
+library(fixest)    # LPM with fixed effects + clustered SE
+library(lmtest)    # robust coefficient tests
+library(sandwich)  # HC2 standard errors
+library(texreg)    # regression tables
+```
+
+```{r housekeeping, echo=FALSE}
+rm(list = ls())
+```
+
+\newpage
+
+# Data import and preparation
+
+## Shared plotting constants
+
+To keep figures visually consistent we fix the treatment colour palette once.
+
+```{r plot-constants}
+# Treatment colours used throughout (Pref = preference-based, EV = optimisation)
+col_pref <- "#4E79A7"
+col_ev   <- "#D55E00"
+algo_cols <- c("Pref" = col_pref, "EV" = col_ev)
+```
+
+## Load raw data
+
+Paths are relative to this script's location (replication-package layout).
+
+```{r load-data}
+choices <- read.delim("260206_1528_537_lotteryChoices.xls")
+subjects <- read.csv("allSubjects.csv", header = TRUE)
+prolificData <- read.csv("prolific_demographic_export_approved.csv")
+
+choicesP1 <- subset(choices, Part == 1)
+```
+
+## Preregistered exclusions
+
+We apply the preregistered exclusion rules: failed bot/slider check at first
+attempt, failed comprehension checks after the second attempt, failure to
+confirm careful participation (`Reliable < 6`), disclosed AI usage, incomplete
+data (`Delegated < 0`), and the log-time "too fast" rule.
+
+```{r exclusions}
+# "Too fast" flag based on the preregistered log-completion-time rule
+prolificData$logCompleTime <- log(prolificData$Time.taken)
+prolificData$tooFast <- 1 * (
+  prolificData$logCompleTime <
+    mean(log(prolificData$Time.taken)) - 2 * sd(log(prolificData$Time.taken))
+)
+
+keep_ids <- prolificData$Participant.id[prolificData$tooFast == 0]
+
+choices <- subset(
+  choices,
+  BotCheck1attempt == 1 &
+    Part1CQsPassedOnAttempt <= 2 &
+    Part2CQsPassedOnAttempt <= 2 &
+    Reliable >= 6 &
+    AIUsageInStudy == 0 &
+    Delegated >= 0 &
+    ProlificID %in% keep_ids
+)
+
+subjects  <- subset(subjects,  ProlificID %in% choices$ProlificID)
+choicesP1 <- subset(choicesP1, ProlificID %in% choices$ProlificID)
+
+# Final analysis sample (paper: N = 233; EV = 118, Pref = 115)
+cat("Final sample size per condition (1 = EV, 0 = Preference-based):\n")
+table(subjects$EVAlgorithm)
+
+# Convenience label for the algorithm condition
+choices <- choices %>%
+  mutate(Algorithm = ifelse(EVAlgorithm == 1, "EV", "Pref"))
+```
+
+## Build participant-level Part-1 preference measures
+
+These variables (revealed risk preferences from Part 1, per-task confidence,
+and post-task expectations) are merged onto the decision-level `choices` data
+for use in the regressions and the appendix coefficient plot.
+
+```{r part1-measures}
+# EV-maximising choice in each Part-1 task
+choicesP1 <- choicesP1 %>%
+  mutate(EVChoice = case_when(
+    grepl("^P", ChoiceType) & PBetChosen == 1 ~ 1,
+    grepl("^D", ChoiceType) & PBetChosen == 0 ~ 1,
+    TRUE ~ 0
+  ))
+
+# "True" P-bet choice (less-risky choice when it was NOT EV-maximising)
+choicesP1 <- choicesP1 %>%
+  mutate(truePChoice = case_when(
+    grepl("^D", ChoiceType) & PBetChosen == 1 ~ 1,
+    TRUE ~ 0
+  ))
+
+# Participant-level Part-1 summaries
+p1_summaries <- choicesP1 %>%
+  group_by(ProlificID) %>%
+  summarise(
+    EVChoices    = sum(EVChoice),
+    truePChoices = sum(truePChoice),
+    PBet_count   = sum(PBetChosen),
+    .groups = "drop"
+  )
+
+choices <- choices %>%
+  left_join(p1_summaries, by = "ProlificID") %>%
+  # per-task Part-1 confidence (matched on participant x option set)
+  left_join(
+    choicesP1 %>% select(ProlificID, OptionsetID, ConfidenceP1 = Confidence),
+    by = c("ProlificID", "OptionsetID")
+  ) %>%
+  # participant-level demographics and post-task expectations
+  left_join(
+    subjects %>% select(
+      ProlificID, Female, Age, Education, HHIncome,
+      ProbOfBadComputerChoices, ProbOfAbsurdComputerChoices, ComputerRiskTaking
+    ),
+    by = "ProlificID"
+  )
+```
+
+\newpage
+
+# Descriptive overview
+
+## Choice quality and payoffs
+
+Choice quality among non-delegated decisions and the payoff advantage of
+delegation (paper, Section "Primary test: first-contact delegation").
+
+```{r descriptives-choicequality}
+# Share of non-dominated self-chosen options, by condition
+choices %>%
+  filter(Part == 2) %>%
+  group_by(Algorithm) %>%
+  summarise(
+    avNonDom = mean(Nondominated[Delegated == 0 & Option > 0], na.rm = TRUE),
+    .groups = "drop"
+  )
+
+# Average payoff: delegated vs. non-delegated decisions
+# (paper: 243.49 points delegated vs. 195.18 points non-delegated, ~25% higher)
+choices %>%
+  filter(Part == 2) %>%
+  group_by(Delegated) %>%
+  summarise(meanPayoff = mean(RelevantPayoff, na.rm = TRUE), .groups = "drop")
+```
+
+## Round-level delegation profile
+
+```{r round-level-table}
+choicesAv <- choices %>%
+  filter(Part == 2) %>%
+  group_by(Algorithm, WithinPartDecisionNumber) %>%
+  summarise(
+    avDeleg  = mean(Delegated, na.rm = TRUE),
+    avNonDom = mean(Nondominated[Delegated == 0 & Option > 0], na.rm = TRUE),
+    .groups = "drop"
+  )
+choicesAv
+```
+
+## Figure 1 --- Average delegation over decisions
+
+```{r figure1-average-delegation, fig.width=7, fig.height=4.5}
+fig1 <- choicesAv %>%
+  mutate(Algorithm = factor(Algorithm, levels = c("EV", "Pref"),
+                            labels = c("EV", "Preference-based"))) %>%
+  ggplot(aes(x = WithinPartDecisionNumber, y = avDeleg,
+             color = Algorithm, group = Algorithm)) +
+  geom_line(linewidth = 1) +
+  geom_point(size = 2) +
+  scale_x_continuous(breaks = 1:8) +
+  scale_color_manual(values = c("EV" = col_ev, "Preference-based" = col_pref)) +
+  labs(x = "Decision number (Part 2)",
+       y = "Average delegation",
+       color = "Algorithm") +
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "bottom")
+
+fig1
+ggsave("Figure1_AverageDelegation.pdf", fig1, width = 7, height = 4.5)
+```
+
+\newpage
+
+# Primary test 1 --- First-contact delegation (round 1)
+
+Preregistered one-sided Boschloo exact test on round-1 delegation
+(paper: 66.9% vs. 55.8%, p = 0.0413).
+
+```{r boschloo-round1}
+tab <- table(
+  Delegated   = choices$Delegated[choices$Part == 2 & choices$WithinPartDecisionNumber == 1],
+  EVAlgorithm = choices$EVAlgorithm[choices$Part == 2 & choices$WithinPartDecisionNumber == 1]
+)
+
+# Delegation share by condition (column 2 = EV)
+prop.table(tab, margin = 2)
+
+# One-sided Boschloo exact test (H1: EV > Pref)
+exact.test(tab, method = "Boschloo", alternative = "greater", to.plot = FALSE)$p.value
+```
+
+\newpage
+
+# Primary test 2 --- Delegation across repeated decisions
+
+## Participant-level Wilcoxon--Mann--Whitney test
+
+Preregistered one-sided WMW test on participant-average delegation
+(paper: W = 6428, p = 0.2425).
+
+```{r wmw-test}
+delegAv <- choices %>%
+  filter(Part == 2) %>%
+  group_by(Algorithm, ProlificID) %>%
+  summarise(avDeleg = mean(Delegated, na.rm = TRUE), .groups = "drop") %>%
+  mutate(Algorithm = factor(Algorithm, levels = c("Pref", "EV")))
+
+wilcox.test(avDeleg ~ Algorithm, data = delegAv, alternative = "less")
+```
+
+## Figure 3 --- ECDF of participant-level average delegation
+
+```{r figure3-ecdf, fig.width=7, fig.height=4.5}
+fig3 <- delegAv %>%
+  mutate(Algorithm = factor(Algorithm, levels = c("EV", "Pref"),
+                            labels = c("EV", "Preference-based"))) %>%
+  ggplot(aes(x = avDeleg, color = Algorithm)) +
+  stat_ecdf(linewidth = 1) +
+  scale_color_manual(values = c("EV" = col_ev, "Preference-based" = col_pref)) +
+  labs(x = "Participant-level average delegation",
+       y = "Cumulative probability",
+       color = "Algorithm") +
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "bottom")
+
+fig3
+ggsave("Figure3_ECDF.pdf", fig3, width = 7, height = 4.5)
+```
+
+## Preregistered regression specification
+
+LPM with decision-set fixed effects and participant-clustered SEs. We first
+construct the feedback-history regressor (running share of zero outcomes among
+prior delegated choices).
+
+```{r feedback-history}
+choices <- choices %>%
+  arrange(ProlificID, WithinPartDecisionNumber) %>%
+  group_by(ProlificID) %>%
+  mutate(
+    delegated_round = (Delegated == 1),
+    zero_payoff     = (RelevantPayoff == 0 & Delegated == 1),
+    cum_delegated   = lag(cumsum(delegated_round), default = 0),
+    cum_zero        = lag(cumsum(zero_payoff), default = 0),
+    zero_rate       = ifelse(cum_delegated > 0, cum_zero / cum_delegated, NA)
+  ) %>%
+  ungroup()
+```
+
+```{r preregistered-regression}
+# Preregistered model: treatment x (period + feedback history)
+delRegPreReg <- feols(
+  Delegated ~ EVAlgorithm * (WithinPartDecisionNumber + zero_rate) | OptionsetID,
+  cluster = ~ProlificID,
+  data = subset(choices, Part == 2)
+)
+summary(delRegPreReg)
+```
+
+## Supporting regressions
+
+Plain treatment effect (all rounds; excluding round 1; round 1 only). The
+round-1-only LPM reproduces the Boschloo result
+($\beta = 0.113$, one-sided $p = 0.041$).
+
+```{r supporting-regressions}
+# All rounds, treatment only
+delRegPlainTrmt <- feols(
+  Delegated ~ EVAlgorithm | OptionsetID,
+  cluster = ~ProlificID,
+  data = subset(choices, Part == 2)
+)
+
+# Excluding round 1
+delRegPlainTrmtNoP1 <- feols(
+  Delegated ~ EVAlgorithm | OptionsetID,
+  cluster = ~ProlificID,
+  data = subset(choices, Part == 2 & WithinPartDecisionNumber > 1)
+)
+
+# Round 1 only (mirrors the Boschloo test)
+delRegP1 <- feols(
+  Delegated ~ EVAlgorithm | OptionsetID,
+  cluster = ~ProlificID,
+  data = subset(choices, Part == 2 & WithinPartDecisionNumber == 1)
+)
+
+screenreg(
+  list(delRegPlainTrmt, delRegPlainTrmtNoP1, delRegP1),
+  custom.model.names = c("All rounds", "Rounds 2-8", "Round 1 only"),
+  caption = "Treatment effect on delegation (LPM, task FE, clustered SE)"
+)
+```
+
+\newpage
+
+# Categorical non-delegation
+
+We classify participants as never-, sometimes-, or always-delegators and
+compare never-delegation across conditions (paper: 15.7% Pref vs. 3.4% EV).
+
+```{r delegator-types}
+choices <- choices %>%
+  group_by(ProlificID) %>%
+  mutate(sumDelegations = sum(Delegated)) %>%
+  ungroup() %>%
+  left_join(
+    prolificData %>% select(Participant.id, TimeInSeconds = Time.taken),
+    by = c("ProlificID" = "Participant.id")
+  )
+
+analysis_data <- choices %>%
+  group_by(ProlificID) %>%
+  summarise(
+    EVAlgorithm                 = first(EVAlgorithm),
+    sumDelegations              = first(sumDelegations),
+    Female                      = first(Female),
+    Age                         = first(Age),
+    HHIncome                    = first(HHIncome),
+    Education                   = first(Education),
+    ProbOfBadComputerChoices    = first(ProbOfBadComputerChoices),
+    ProbOfAbsurdComputerChoices = first(ProbOfAbsurdComputerChoices),
+    ComputerRiskTaking          = first(ComputerRiskTaking),
+    PBetChoices                 = first(PBet_count),
+    TimeInSeconds               = first(TimeInSeconds),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    DelegationGroup = ifelse(sumDelegations == 0, "Never", "AtLeastOnce"),
+    NonDelegator    = 1 * (sumDelegations == 0),
+    DelegatorType   = factor(
+      if_else(sumDelegations == 0, "NeverDelegator",
+              if_else(sumDelegations == 8, "AlwaysDelegator", "SometimesDelegator")),
+      levels = c("NeverDelegator", "SometimesDelegator", "AlwaysDelegator")
+    )
+  ) %>%
+  left_join(
+    subjects %>% select(ProlificID, RiskTaking, FinMarketExperience,
+                        FinanciallyResponsible, AIXperience),
+    by = "ProlificID"
+  )
+
+# Distribution of delegator types by condition (column 2 = EV)
+prop.table(table(analysis_data$DelegatorType, analysis_data$EVAlgorithm), margin = 2)
+```
+
+## Comparisons of never-delegators vs. delegators
+
+The following tests reproduce the in-text comparisons (age, income, education,
+time, gender, risk-taking, reliability, AI experience, Part-1 satisfaction).
+
+```{r nondelegator-tests}
+# Age
+t.test(Age ~ DelegationGroup, data = analysis_data)
+
+# Time in experiment
+t.test(TimeInSeconds ~ NonDelegator, data = analysis_data)
+
+# Household income (categorical)
+chisq.test(table(analysis_data$DelegationGroup, analysis_data$HHIncome))
+
+# Education (categorical)
+chisq.test(table(analysis_data$DelegationGroup, analysis_data$Education))
+
+# Gender: never-delegation rate among males vs. females (Boschloo)
+female_table <- table(
+  DelegationGroup = analysis_data$DelegationGroup,
+  Female          = analysis_data$Female
+)
+exact.test(female_table[, c(2, 4)], method = "Boschloo", to.plot = FALSE)$p.value
+
+# Self-reported financial risk-taking, reliability, AI experience
+t.test(RiskTaking  ~ NonDelegator, data = analysis_data)
+t.test(FinanciallyResponsible ~ NonDelegator, data = analysis_data)
+t.test(AIXperience ~ NonDelegator, data = analysis_data)
+```
+
+```{r nondelegator-satisfaction-pref}
+# Within the preference-based condition: Part-1 satisfaction by delegation type
+NeverDelegate <- choices %>%
+  select(ProlificID, sumDelegations) %>%
+  distinct() %>%
+  mutate(sumDeleg0 = (sumDelegations == 0))
+
+subjects2 <- subjects %>% left_join(NeverDelegate, by = "ProlificID")
+
+subjects2 %>%
+  filter(EVAlgorithm == 0) %>%
+  group_by(sumDeleg0) %>%
+  summarise(SatisfiedPart1 = mean(SatisfiedPart1, na.rm = TRUE),
+            n = n(), .groups = "drop")
+```
+
+\newpage
+
+# Responses to feedback (win-stay / lose-shift)
+
+Win-stay/lose-shift model on rounds 2--8 (paper, Section "Responses to
+feedback").
+
+```{r win-stay-lose-shift}
+choices <- choices %>%
+  group_by(ProlificID) %>%
+  arrange(WithinPartDecisionNumber, .by_group = TRUE) %>%
+  mutate(
+    lagDelegated          = lag(Delegated, 1),
+    lagRelevantPayoff     = lag(RelevantPayoff, 1),
+    lagSatisfactionRating = lag(SatisfactionRating, 1)
+  ) %>%
+  ungroup()
+
+choices$stay <- 1 * (choices$Delegated == choices$lagDelegated)
+
+# "Prior win": the outcome of the PREVIOUS round was strictly positive.
+# (lagWin is defined from the lagged payoff, i.e. the genuine win-stay/lose-shift
+# notion of reacting to the previously experienced outcome.)
+choices$lagWin <- 1 * (choices$lagRelevantPayoff > 0)
+
+# Pooled model: treatment x prior win
+winStayReg <- feols(
+  stay ~ EVAlgorithm * lagWin | OptionsetID + WithinPartDecisionNumber,
+  cluster = ~ProlificID,
+  data = subset(choices, Part == 2 & WithinPartDecisionNumber > 1)
+)
+summary(winStayReg)
+```
+
+Separately by treatment, distinguishing whether the previous round was
+delegated (`lagDelegated == 1`, i.e. "the algorithm" produced the outcome) from
+a self-made choice. This separates lose-shift after one's own loss from
+lose-shift after a delegated (algorithmic) loss.
+
+```{r win-stay-by-treatment}
+# EV condition
+winStayReg_EV <- feols(
+  stay ~ lagDelegated * I(1 - lagWin) | OptionsetID + WithinPartDecisionNumber,
+  cluster = ~ProlificID,
+  data = subset(choices, EVAlgorithm == 1 & Part == 2 & WithinPartDecisionNumber > 1)
+)
+summary(winStayReg_EV)
+
+# Preference-based condition
+winStayReg_Pref <- feols(
+  stay ~ lagDelegated * I(1 - lagWin) | OptionsetID + WithinPartDecisionNumber,
+  cluster = ~ProlificID,
+  data = subset(choices, EVAlgorithm == 0 & Part == 2 & WithinPartDecisionNumber > 1)
+)
+summary(winStayReg_Pref)
+```
+
+```{r win-stay-rates}
+# Average stay rates by condition, prior delegation, and prior win/loss
+choices %>%
+  filter(Part == 2, WithinPartDecisionNumber > 1) %>%
+  group_by(EVAlgorithm, lagDelegated, lagWin) %>%
+  summarise(avg_stay_rate = mean(stay, na.rm = TRUE),
+            n = n(), .groups = "drop") %>%
+  arrange(EVAlgorithm, lagDelegated, lagWin)
+```
+
+
+\newpage
+
+# Exploratory mechanisms
+
+## Coefficient model (interaction with performance expectations)
+
+LPM of individual delegation decisions interacting treatment with participants'
+algorithmic performance expectations, controlling for round, per-choice Part-1
+confidence, revealed Part-1 risk preferences, and task fixed effects.
+
+```{r mechanism-regression}
+delRegWConf <- feols(
+  Delegated ~ EVAlgorithm * (WithinPartDecisionNumber + ConfidenceP1 +
+    ProbOfAbsurdComputerChoices + ProbOfBadComputerChoices +
+    EVChoices + truePChoices) | OptionsetID,
+  cluster = ~ProlificID,
+  data = subset(choices, Part == 2)
+)
+summary(delRegWConf)
+```
+
+## Figure A.1 --- Condition-specific marginal effects
+
+```{r figureA1-coefplot, fig.width=7, fig.height=4.5}
+coefs_wc <- coef(delRegWConf)
+vcm_wc   <- vcov(delRegWConf)
+
+# SE of the sum of two coefficients (main effect + interaction)
+se_sum <- function(v1, v2) {
+  sqrt(vcm_wc[v1, v1] + vcm_wc[v2, v2] + 2 * vcm_wc[v1, v2])
+}
+
+coef_spec <- data.frame(
+  var_name = c("WithinPartDecisionNumber", "ConfidenceP1",
+               "ProbOfBadComputerChoices", "ProbOfAbsurdComputerChoices",
+               "EVChoices", "truePChoices"),
+  var_label = c("Decision round", "Confidence (Part 1)",
+                "Number of non-preferred choices",
+                "Number of completely weird choices",
+                "EV-maximising choices (Part 1)",
+                "P-bet choices when not EV-maximising (Part 1)"),
+  stringsAsFactors = FALSE
+)
+
+plot_data <- data.frame()
+for (i in seq_len(nrow(coef_spec))) {
+  var_name  <- coef_spec$var_name[i]
+  var_label <- coef_spec$var_label[i]
+
+  pb_est <- coefs_wc[var_name]
+  pb_se  <- sqrt(vcm_wc[var_name, var_name])
+
+  int_name <- paste0("EVAlgorithm:", var_name)
+  if (int_name %in% names(coefs_wc)) {
+    ev_est <- pb_est + coefs_wc[int_name]
+    ev_se  <- se_sum(var_name, int_name)
+  } else {
+    ev_est <- pb_est
+    ev_se  <- pb_se
+  }
+
+  plot_data <- rbind(plot_data, data.frame(
+    Variable  = var_label,
+    Condition = c("Preference-based", "EV"),
+    Estimate  = c(pb_est, ev_est),
+    SE        = c(pb_se, ev_se),
+    stringsAsFactors = FALSE
+  ))
+}
+
+plot_data <- plot_data %>%
+  mutate(
+    Variable  = factor(Variable, levels = coef_spec$var_label),
+    Condition = factor(Condition, levels = c("Preference-based", "EV")),
+    CI_lo = Estimate - 1.96 * SE,
+    CI_hi = Estimate + 1.96 * SE,
+    y_pos = as.numeric(Variable) +
+      ifelse(Condition == "Preference-based", 0.15, -0.15)
+  )
+
+figA1 <- ggplot(plot_data) +
+  geom_vline(xintercept = 0, linetype = "dashed", color = "gray70") +
+  geom_linerange(aes(xmin = CI_lo, xmax = CI_hi, y = y_pos, color = Condition),
+                 linewidth = 0.6, lineend = "round") +
+  geom_point(aes(x = Estimate, y = y_pos, color = Condition, shape = Condition),
+             size = 2.5) +
+  scale_y_continuous(breaks = seq_len(nrow(coef_spec)),
+                     labels = levels(plot_data$Variable),
+                     expand = c(0.15, 0)) +
+  scale_color_manual(values = c("Preference-based" = "#E66100", "EV" = "#5D3A9B")) +
+  scale_shape_manual(values = c("Preference-based" = 16, "EV" = 17)) +
+  labs(x = "Effect on delegation probability", y = NULL,
+       color = NULL, shape = NULL,
+       caption = paste0("95% confidence intervals. Linear probability model with ",
+                        "task fixed effects and participant-clustered SEs.\n",
+                        "EV-condition effects are main effect + interaction term.")) +
+  theme_bw(base_size = 10) +
+  theme(legend.position = "bottom",
+        panel.grid.major.y = element_blank(),
+        plot.caption = element_text(hjust = 0, size = 9))
+
+figA1
+ggsave("CoefPlotBadAbsurd.pdf", figA1, width = 7, height = 4.5)
+```
+
+## Figure A.2 --- Expected non-preferred and completely weird choices
+
+```{r figureA2-expectations, fig.width=7, fig.height=4}
+figA2 <- subjects %>%
+  pivot_longer(cols = c(ProbOfBadComputerChoices, ProbOfAbsurdComputerChoices),
+               names_to = "variable", values_to = "value") %>%
+  ggplot(aes(x = value, fill = factor(EVAlgorithm))) +
+  geom_density(alpha = 0.5) +
+  facet_wrap(~ variable, labeller = labeller(variable = c(
+    ProbOfBadComputerChoices    = "Non-preferred choices",
+    ProbOfAbsurdComputerChoices = "Completely weird choices"
+  ))) +
+  scale_fill_manual(values = c("0" = "#E66100", "1" = "#5D3A9B"),
+                    labels = c("0" = "Preference-based", "1" = "EV"),
+                    name = "Condition") +
+  labs(x = "Expected number of choices (out of 10)", y = "Density") +
+  theme_bw() +
+  theme(legend.position = "bottom")
+
+figA2
+ggsave("ExpectedBadAndAbsurdChoicesByTrmt.pdf", figA2, width = 7, height = 4)
+```
+
+## Treatment comparison of expected algorithmic errors
+
+Formal comparison of expected non-preferred and completely weird choices across
+treatments. A LOWER expected number of non-preferred choices under the
+preference-based algorithm would indicate that participants believe the
+personalized algorithm is doing its job (matching their preferences).
+
+```{r expectations-comparison}
+expect_tbl <- subjects %>%
+  mutate(Condition = ifelse(EVAlgorithm == 1, "EV", "Preference-based")) %>%
+  group_by(Condition) %>%
+  summarise(
+    n                  = n(),
+    mean_nonpreferred  = mean(ProbOfBadComputerChoices, na.rm = TRUE),
+    sd_nonpreferred    = sd(ProbOfBadComputerChoices, na.rm = TRUE),
+    mean_weird         = mean(ProbOfAbsurdComputerChoices, na.rm = TRUE),
+    sd_weird           = sd(ProbOfAbsurdComputerChoices, na.rm = TRUE),
+    .groups = "drop"
+  )
+expect_tbl
+
+# Expected NON-PREFERRED choices: EV vs. Preference-based
+t.test(ProbOfBadComputerChoices ~ EVAlgorithm, data = subjects)
+wilcox.test(ProbOfBadComputerChoices ~ EVAlgorithm, data = subjects)
+
+# Expected COMPLETELY WEIRD choices: EV vs. Preference-based
+t.test(ProbOfAbsurdComputerChoices ~ EVAlgorithm, data = subjects)
+wilcox.test(ProbOfAbsurdComputerChoices ~ EVAlgorithm, data = subjects)
+```
+
+\newpage
+
+# Post-task reasons
+
+## Figure 4 --- Reasons by treatment and delegation type
+
+Reason-selection frequencies for the hypothetical additional-task choice, by
+treatment (EV vs. preference-based) and delegation type (delegators vs.
+never-delegators).
+
+```{r figure4-reasons, fig.width=8, fig.height=4}
+subjects2 <- subjects %>% left_join(NeverDelegate, by = "ProlificID")
+
+subjects_long <- subjects2 %>%
+  pivot_longer(cols = DontTrust:Other, names_to = "item", values_to = "clicked")
+
+# Group sizes for legend labels
+n_labels <- subjects_long %>%
+  group_by(sumDeleg0, EVAlgorithm) %>%
+  summarise(n = n_distinct(ProlificID), .groups = "drop") %>%
+  mutate(
+    group = case_when(
+      sumDeleg0 == TRUE  & EVAlgorithm == 0 ~ "Prefs--Never-delegators",
+      sumDeleg0 == TRUE  & EVAlgorithm == 1 ~ "EV--Never-delegators",
+      sumDeleg0 == FALSE & EVAlgorithm == 0 ~ "Prefs--Delegators",
+      sumDeleg0 == FALSE & EVAlgorithm == 1 ~ "EV--Delegators"
+    ),
+    group_label = paste0(group, " (n=", n, ")")
+  )
+
+group_colors <- c(
+  "Prefs--Delegators"       = "#9dc3e6",
+  "Prefs--Never-delegators" = "#1f4e79",
+  "EV--Delegators"          = "#f4b183",
+  "EV--Never-delegators"    = "#833c00"
+)
+label_map <- setNames(n_labels$group_label, n_labels$group)
+
+click_rates_both <- subjects_long %>%
+  group_by(sumDeleg0, EVAlgorithm, item) %>%
+  summarise(rate = mean(clicked, na.rm = TRUE), .groups = "drop") %>%
+  mutate(
+    group = case_when(
+      sumDeleg0 == TRUE  & EVAlgorithm == 0 ~ "Prefs--Never-delegators",
+      sumDeleg0 == TRUE  & EVAlgorithm == 1 ~ "EV--Never-delegators",
+      sumDeleg0 == FALSE & EVAlgorithm == 0 ~ "Prefs--Delegators",
+      sumDeleg0 == FALSE & EVAlgorithm == 1 ~ "EV--Delegators"
+    ),
+    group = factor(group, levels = names(group_colors))
+  )
+
+fig4 <- ggplot(click_rates_both, aes(x = item, y = rate, fill = group)) +
+  geom_col(position = position_dodge(width = 0.7), width = 0.7) +
+  scale_fill_manual(values = group_colors, labels = label_map,
+                    breaks = names(group_colors), name = "Condition") +
+  scale_y_continuous(labels = percent_format(accuracy = 1)) +
+  labs(x = "Item", y = "Click rate") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.position = "right")
+
+fig4
+ggsave("ReasonsByTrmtAndNeverDelegator2.png", fig4, width = 8, height = 4, dpi = 300)
+```
+
+## Aggregate reason patterns
+
+In-text figures for performance, distrust, and responsibility motives by
+delegation type (delegators vs. never-delegators).
+
+```{r reasons-aggregate}
+subjects_long %>%
+  group_by(sumDeleg0, item) %>%
+  summarise(rate = mean(clicked, na.rm = TRUE), .groups = "drop") %>%
+  pivot_wider(names_from = sumDeleg0, values_from = rate) %>%
+  rename(Delegators = `FALSE`, NeverDelegators = `TRUE`)
+```
+
+## LPM: never-delegation on reasons
+
+```{r lpm-reasons}
+reason_vars <- c("DontTrust", "BetterJob", "HowExactly", "MoreInfo",
+                 "Responsibility4Choice", "Responsibility4Outcome",
+                 "DislikeRelyingOn", "Reactance2Analysis",
+                 "PerformanceCuriosity", "Tedious", "Other")
+
+# Bivariate LPMs (one per reason, HC2 SEs)
+bivariate_tbl <- do.call(rbind, lapply(reason_vars, function(rv) {
+  m  <- lm(as.formula(paste("as.numeric(sumDeleg0) ~", rv)), data = subjects2)
+  ct <- coeftest(m, vcov = vcovHC(m, type = "HC2"))
+  data.frame(reason = rv,
+             coef = round(ct[2, 1], 3), se = round(ct[2, 2], 3),
+             t = round(ct[2, 3], 3), p = round(ct[2, 4], 3))
+}))
+print(bivariate_tbl, row.names = FALSE)
+
+# Joint LPM: full sample + preference-treatment only
+f_joint  <- as.formula(paste("as.numeric(sumDeleg0) ~",
+                             paste(reason_vars, collapse = " + ")))
+lpm_all  <- lm(f_joint, data = subjects2)
+lpm_pref <- lm(f_joint, data = subjects2[subjects2$EVAlgorithm == 0, ])
+
+vcov_all  <- vcovHC(lpm_all,  type = "HC2")
+vcov_pref <- vcovHC(lpm_pref, type = "HC2")
+
+screenreg(
+  list(lpm_all, lpm_pref),
+  override.se = list(sqrt(diag(vcov_all)), sqrt(diag(vcov_pref))),
+  override.pvalues = list(
+    2 * pt(abs(coef(lpm_all)  / sqrt(diag(vcov_all))),
+           df = lpm_all$df.residual,  lower.tail = FALSE),
+    2 * pt(abs(coef(lpm_pref) / sqrt(diag(vcov_pref))),
+           df = lpm_pref$df.residual, lower.tail = FALSE)
+  ),
+  custom.model.names = c("Full sample", "Pref. treatment"),
+  caption = "LPM: never-delegation ~ reasons (HC2 SEs)"
+)
+```
+
+# Session information
+
+```{r session-info}
+sessionInfo()
+```
