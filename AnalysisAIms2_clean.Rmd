@@ -3,13 +3,13 @@ title: "When personalization deters delegation to algorithms --- Replication ana
 author: "Lara Suraci & Irenaeus Wolff"
 date: "`r format(Sys.Date(), '%d %B %Y')`"
 output:
+  html_document:
+    df_print: paged
+    toc: true
   pdf_document:
     toc: true
     toc_depth: 2
     number_sections: true
-  html_document:
-    df_print: paged
-    toc: true
 header-includes:
 - \usepackage{fvextra}
 - \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,breakanywhere,commandchars=\\\{\}}
