@@ -3,13 +3,13 @@ title: "When personalization deters delegation to algorithms --- Replication ana
 author: "Lara Suraci & Irenaeus Wolff"
 date: "`r format(Sys.Date(), '%d %B %Y')`"
 output:
+  html_document:
+    df_print: paged
+    toc: true
   pdf_document:
     toc: true
     toc_depth: 2
     number_sections: true
-  html_document:
-    df_print: paged
-    toc: true
 header-includes:
 - \usepackage{fvextra}
 - \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,breakanywhere,commandchars=\\\{\}}
@@ -574,28 +574,112 @@ delRegWConf <- feols(
 summary(delRegWConf)
 ```
 
-<!-- ## Figure A.2 --- Expected non-preferred and completely weird choices -->
+## Figure 4
 
-<!-- ```{r figureA2-expectations, fig.width=7, fig.height=4} -->
-<!-- figA2 <- subjects %>% -->
-<!--   pivot_longer(cols = c(ProbOfBadComputerChoices, ProbOfAbsurdComputerChoices), -->
-<!--                names_to = "variable", values_to = "value") %>% -->
-<!--   ggplot(aes(x = value, fill = factor(EVAlgorithm))) + -->
-<!--   geom_density(alpha = 0.5) + -->
-<!--   facet_wrap(~ variable, labeller = labeller(variable = c( -->
-<!--     ProbOfBadComputerChoices    = "Non-preferred choices", -->
-<!--     ProbOfAbsurdComputerChoices = "Completely weird choices" -->
-<!--   ))) + -->
-<!--   scale_fill_manual(values = c("0" = "#E66100", "1" = "#5D3A9B"), -->
-<!--                     labels = c("0" = "Preference-based", "1" = "EV"), -->
-<!--                     name = "Condition") + -->
-<!--   labs(x = "Expected number of choices (out of 10)", y = "Density") + -->
-<!--   theme_bw() + -->
-<!--   theme(legend.position = "bottom") -->
+```{r figureA1-coefplot, fig.width=7, fig.height=4.5}
+coefs_wc <- coef(delRegWConf)
+vcm_wc   <- vcov(delRegWConf)
 
-<!-- figA2 -->
-<!-- ggsave("ExpectedBadAndAbsurdChoicesByTrmt.pdf", figA2, width = 7, height = 4) -->
-<!-- ``` -->
+# SE of the sum of two coefficients (main effect + interaction)
+se_sum <- function(v1, v2) {
+  sqrt(vcm_wc[v1, v1] + vcm_wc[v2, v2] + 2 * vcm_wc[v1, v2])
+}
+
+coef_spec <- data.frame(
+  var_name = c("WithinPartDecisionNumber", "ConfidenceP1",
+               "ProbOfBadComputerChoices", "ProbOfAbsurdComputerChoices",
+               "EVChoices", "truePChoices"),
+  var_label = c("Decision round", "Confidence (Part 1)",
+                "Number of non-preferred choices",
+                "Number of completely weird choices",
+                "EV-maximising choices (Part 1)",
+                "P-bet choices when not EV-maximising (Part 1)"),
+  stringsAsFactors = FALSE
+)
+
+plot_data <- data.frame()
+for (i in seq_len(nrow(coef_spec))) {
+  var_name  <- coef_spec$var_name[i]
+  var_label <- coef_spec$var_label[i]
+
+  pb_est <- coefs_wc[var_name]
+  pb_se  <- sqrt(vcm_wc[var_name, var_name])
+
+  int_name <- paste0("EVAlgorithm:", var_name)
+  if (int_name %in% names(coefs_wc)) {
+    ev_est <- pb_est + coefs_wc[int_name]
+    ev_se  <- se_sum(var_name, int_name)
+  } else {
+    ev_est <- pb_est
+    ev_se  <- pb_se
+  }
+
+  plot_data <- rbind(plot_data, data.frame(
+    Variable  = var_label,
+    Condition = c("Preference-based", "EV"),
+    Estimate  = c(pb_est, ev_est),
+    SE        = c(pb_se, ev_se),
+    stringsAsFactors = FALSE
+  ))
+}
+
+plot_data <- plot_data %>%
+  mutate(
+    Variable  = factor(Variable, levels = coef_spec$var_label),
+    Condition = factor(Condition, levels = c("Preference-based", "EV")),
+    CI_lo = Estimate - 1.96 * SE,
+    CI_hi = Estimate + 1.96 * SE,
+    y_pos = as.numeric(Variable) +
+      ifelse(Condition == "Preference-based", 0.15, -0.15)
+  )
+
+figA1 <- ggplot(plot_data) +
+  geom_vline(xintercept = 0, linetype = "dashed", color = "gray70") +
+  geom_linerange(aes(xmin = CI_lo, xmax = CI_hi, y = y_pos, color = Condition),
+                 linewidth = 0.6, lineend = "round") +
+  geom_point(aes(x = Estimate, y = y_pos, color = Condition, shape = Condition),
+             size = 2.5) +
+  scale_y_continuous(breaks = seq_len(nrow(coef_spec)),
+                     labels = levels(plot_data$Variable),
+                     expand = c(0.15, 0)) +
+  scale_color_manual(values = c("Preference-based" = "#E66100", "EV" = "#5D3A9B")) +
+  scale_shape_manual(values = c("Preference-based" = 16, "EV" = 17)) +
+  labs(x = "Effect on delegation probability", y = NULL,
+       color = NULL, shape = NULL,
+       caption = paste0("95% confidence intervals. Linear probability model with ",
+                        "task fixed effects and participant-clustered SEs.\n",
+                        "EV-condition effects are main effect + interaction term.")) +
+  theme_bw(base_size = 10) +
+  theme(legend.position = "bottom",
+        panel.grid.major.y = element_blank(),
+        plot.caption = element_text(hjust = 0, size = 9))
+
+figA1
+ggsave("CoefPlotBadAbsurd.pdf", figA1, width = 7, height = 4.5)
+```
+
+## Figure A.2 --- Expected non-preferred and completely weird choices
+
+```{r figureA2-expectations, fig.width=7, fig.height=4}
+figA2 <- subjects %>%
+  pivot_longer(cols = c(ProbOfBadComputerChoices, ProbOfAbsurdComputerChoices),
+               names_to = "variable", values_to = "value") %>%
+  ggplot(aes(x = value, fill = factor(EVAlgorithm))) +
+  geom_density(alpha = 0.5) +
+  facet_wrap(~ variable, labeller = labeller(variable = c(
+    ProbOfBadComputerChoices    = "Non-preferred choices",
+    ProbOfAbsurdComputerChoices = "Completely weird choices"
+  ))) +
+  scale_fill_manual(values = c("0" = "#E66100", "1" = "#5D3A9B"),
+                    labels = c("0" = "Preference-based", "1" = "EV"),
+                    name = "Condition") +
+  labs(x = "Expected number of choices (out of 10)", y = "Density") +
+  theme_bw() +
+  theme(legend.position = "bottom")
+
+figA2
+ggsave("ExpectedBadAndAbsurdChoicesByTrmt.pdf", figA2, width = 7, height = 4)
+```
 
 ## Treatment comparison of expected algorithmic errors
 
@@ -705,7 +789,7 @@ fig4 <- ggplot(click_rates_both, aes(x = item, y = rate, fill = group)) +
         legend.position = "right")
 
 fig4
-ggsave("Figure4_ReasonsByTrmtAndNeverDelegator2.pdf", fig4, width = 8, height = 4, dpi = 300)
+ggsave("ReasonsByTrmtAndNeverDelegator2.png", fig4, width = 8, height = 4, dpi = 300)
 ```
 
 ## Aggregate reason patterns
