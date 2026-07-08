@@ -1,0 +1,7 @@
+When personalization deters delegation to algorithms: Evidence from a preregistered experiment
+
+- Personalization deters delegation to algorithms rather than increasing it
+- At first contact, delegation is lower for preference-based than EV algorithms
+- Categorical non-delegation is far more common under personalization (16% vs 3%)
+- Resistance is authority-based, not accuracy-based: users trust the personal rule
+- After feedback, the EV algorithm loses more followers: it yields zero more often

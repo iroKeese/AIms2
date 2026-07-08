@@ -1,0 +1,26 @@
+To the Editors
+Computers in Human Behavior Reports
+
+8 July 2026
+
+Dear Editors,
+
+We are pleased to submit our manuscript, "When personalization deters delegation to algorithms: Evidence from a preregistered experiment," for consideration for publication in Computers in Human Behavior Reports. The manuscript was previously submitted to Computers in Human Behavior, where the editorial assessment indicated that the theoretical development was not yet sufficient for that outlet. We have taken this feedback seriously and substantially revised the manuscript before submitting the present version.
+
+In particular, the revised manuscript now includes (i) an explicit theoretical framework that derives our preregistered hypothesis from established accounts of the intrinsic value of decision rights, procedural utility, and psychological reactance; (ii) a new "Theoretical implications" subsection in the Discussion that distinguishes accuracy-based from authority-based channels of algorithm aversion and derives testable predictions for future work; and (iii) a sharpened framing of the behavioral insight in the abstract and contributions. All substantive additions are marked in the manuscript for the editors' and reviewers' convenience.
+
+Algorithmic decision aids increasingly act on users' behalf, and in many everyday and high-stakes settings users can either retain control or delegate a decision to an algorithm. A widely held assumption among designers is that personalizing a system to a user's own preferences should increase its acceptance. Our paper provides a direct behavioral test of that assumption and finds that, contrary to the conventional view, preference-based personalization can deter delegation rather than encourage it.
+
+In a preregistered between-subjects experiment (N = 233), participants repeatedly chose whether to decide themselves or delegate to an assigned algorithm. In one condition the algorithm followed an objective expected-value-maximizing rule; in the other it was personalized, selecting according to participants' previously elicited preferences. We find that at first contact participants were significantly less willing to delegate to the personalized algorithm than to the objective one, and that categorical non-delegation (never delegating) was substantially more prevalent under personalization (15.7% vs. 3.4%). Importantly, this resistance did not stem from doubts about the personalized algorithm's accuracy: participants expected it to match their preferences better than the objective rule, yet were no more willing to delegate to it. Our evidence instead points to a desire to retain choice authority as the relevant barrier.
+
+We believe this work fits the scope and readership of Computers in Human Behavior Reports for several reasons. First, it speaks directly to the human side of human-algorithm interaction, isolating how the perceived nature of an algorithm's decision rule, rather than its objective performance, shapes adoption behavior. Second, to our knowledge it is the first study to experimentally isolate the effect of the decision rule itself (preference-based versus objective) on actual delegation behavior, rather than varying interface, control, or communication format. Third, by combining behavioral delegation data with expectation measures, the study separates accuracy-based trust from authority-based resistance, showing that personalization can improve the former while aggravating the latter---a distinction with direct consequences for how adoption barriers should be theorized and remedied. Fourth, the findings have concrete design implications for robo-advisors, healthcare decision aids, and other recommender systems that routinely choose between objective optimization and preference-based personalization.
+
+We confirm that this manuscript is original, has not been published previously, and is not under consideration for publication elsewhere. The study was preregistered (https://aspredicted.org/7un5qf.pdf) and received ethics approval from the Institutional Review Board of the Gesellschaft fuer experimentelle Wirtschaftsforschung e.V. (certificate no. 19HBJNwQ). All participants provided informed consent. We declare no conflicts of interest. We both have read and approved the manuscript and agree to its submission. Upon acceptance, the data, analysis code, and study materials will be deposited in a public repository. Our use of generative AI tools in preparing the manuscript is disclosed in the manuscript itself.
+
+We would be grateful for the opportunity to have our work considered, and we thank you for your time and consideration.
+
+Sincerely,
+
+Irenaeus Wolff (corresponding author), Thurgau Institute of Economics (TWI) / University of Konstanz
+
+Lara Suraci, DG Cities
