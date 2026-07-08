@@ -1,15 +1,15 @@
 # Fdb version 4
-["bibtex AIms2_CHBR"] 1783506778.65343 "AIms2_CHBR.aux" "AIms2_CHBR.bbl" "AIms2_CHBR" 1783506835.35045 0
+["bibtex AIms2_CHBR"] 1783512393.2262 "AIms2_CHBR.aux" "AIms2_CHBR.bbl" "AIms2_CHBR" 1783512397.52633 0
   "./library.bib" 1783503838.043 74601 dc64e7094bea819efe10a8ce0f97e973 ""
   "/usr/share/texlive/texmf-dist/bibtex/bst/base/apalike.bst" 1292289607 24635 604dafcc79f521a11ea73e506e1fbd98 ""
-  "AIms2_CHBR.aux" 1783506835.06098 11349 97d824ca2dca4d8b8f518e7b8aa71c9e "pdflatex"
+  "AIms2_CHBR.aux" 1783512397.21196 11350 856560dd61ce942e7b2ca87d48d61096 "pdflatex"
   (generated)
   "AIms2_CHBR.bbl"
   "AIms2_CHBR.blg"
   (rewritten before read)
-["pdflatex"] 1783506831.46951 "/home/vboxuser/Aims2/AIms2/AIms2_CHBR.tex" "AIms2_CHBR.pdf" "AIms2_CHBR" 1783506835.35064 0
+["pdflatex"] 1783512393.31024 "/home/vboxuser/Aims2/AIms2/AIms2_CHBR.tex" "AIms2_CHBR.pdf" "AIms2_CHBR" 1783512397.52653 0
   "/etc/texmf/web2c/texmf.cnf" 1776760554.68113 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/vboxuser/Aims2/AIms2/AIms2_CHBR.tex" 1783506830.96898 79815 558cbafa23f81572f05c1ae17289fef8 ""
+  "/home/vboxuser/Aims2/AIms2/AIms2_CHBR.tex" 1783512388.19596 82549 99ea4bbc7190d1ef832573e5aa38a99f ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/libertine/lbtn_3dk467.enc" 1558472472 2823 9669300fd867bc8e1e320d5385959bec ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/libertine/lbtn_kijugd.enc" 1490131464 2822 11e839d2bbb939844844619b2cff7df6 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/libertine/lbtn_lyu3x3.enc" 1490131464 2835 bfce207f80837ef8737b6a788d8bc760 ""
@@ -160,10 +160,10 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1707919699 40399 f2c302f7d2af602abb742093540a5834 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1776760582.65195 5349216 bf3a80e68d946c7acd95ff030fd9bb63 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1776760608 6831113 8eb722c7c72ca5705593ef41633ee7a8 ""
-  "AIms2_CHBR.aux" 1783506835.06098 11349 97d824ca2dca4d8b8f518e7b8aa71c9e "pdflatex"
-  "AIms2_CHBR.bbl" 1783506778.75698 11457 0b9b7de25f862ac75b6bb59bf6d87d97 "bibtex AIms2_CHBR"
-  "AIms2_CHBR.out" 1783506835.06198 6898 43cc9b5753345410d2058710ba75e97b "pdflatex"
-  "AIms2_CHBR.tex" 1783506830.96898 79815 558cbafa23f81572f05c1ae17289fef8 ""
+  "AIms2_CHBR.aux" 1783512397.21196 11350 856560dd61ce942e7b2ca87d48d61096 "pdflatex"
+  "AIms2_CHBR.bbl" 1783512393.30596 11457 0b9b7de25f862ac75b6bb59bf6d87d97 "bibtex AIms2_CHBR"
+  "AIms2_CHBR.out" 1783512397.21296 6898 43cc9b5753345410d2058710ba75e97b "pdflatex"
+  "AIms2_CHBR.tex" 1783512388.19596 82549 99ea4bbc7190d1ef832573e5aa38a99f ""
   "Figure1_AverageDelegation.pdf" 1782742649.807 6324 5f45847998135143c58a0c1c41a53d41 ""
   "Figure3_ECDF.pdf" 1782742649.807 4856 f1aa28827e16b1cf50d25d411757fb2f ""
   "Figure4_ReasonsByTrmtAndNeverDelegator2.pdf" 1782742649.808 5272 b3d4ff7b4eaa8b6f1ee5350f315a26ad ""
