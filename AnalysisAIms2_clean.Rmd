@@ -435,6 +435,7 @@ analysis_data <- choices %>%
   )
 
 # Distribution of delegator types by condition (column 2 = EV)
+table(analysis_data$DelegatorType, analysis_data$EVAlgorithm)
 prop.table(table(analysis_data$DelegatorType, analysis_data$EVAlgorithm), margin = 2)
 ```
 
@@ -449,6 +450,8 @@ t.test(Age ~ DelegationGroup, data = analysis_data)
 
 # Time in experiment
 t.test(TimeInSeconds ~ NonDelegator, data = analysis_data)
+wilcox.test(TimeInSeconds ~ NonDelegator, data = analysis_data)
+ks.test(TimeInSeconds ~ NonDelegator, data = analysis_data)
 
 # Household income (categorical)
 chisq.test(table(analysis_data$DelegationGroup, analysis_data$HHIncome))

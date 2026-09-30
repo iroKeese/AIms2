@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.4.11)  8 JUL 2026 17:15
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.4.11)  30 SEP 2026 13:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -676,10 +676,7 @@ ts/enc/dvips/libertine/lbtn_naooyc.enc}{/usr/share/texlive/texmf-dist/fonts/enc
 tine/lbtn_lyu3x3.enc}]
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/b/n' will be
 (Font)              scaled to size 17.28pt on input line 87.
- [2]
-LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/it' will be
-(Font)              scaled to size 12.0pt on input line 95.
- [3]
+ [2] [3]
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
 (Font)              scaled to size 14.4pt on input line 108.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/b/n' will be
@@ -716,7 +713,7 @@ t-ing an EV-maximizing rule with a preference-
  []
 
 [11]
-<Figure_ExampleScreens.pdf, id=438, 1022.82124pt x 584.1825pt>
+<Figure_ExampleScreens.pdf, id=439, 1022.82124pt x 584.1825pt>
 File: Figure_ExampleScreens.pdf Graphic file (type pdf)
 <use Figure_ExampleScreens.pdf>
 Package pdftex.def Info: Figure_ExampleScreens.pdf  used on input line 220.
@@ -744,52 +741,46 @@ g-is-tered lin-ear prob-a-bil-ity model with decision-
  []
 
 [15]
-<Figure1_AverageDelegation.pdf, id=470, 505.89pt x 325.215pt>
+<Figure1_AverageDelegation.pdf, id=471, 505.89pt x 325.215pt>
 File: Figure1_AverageDelegation.pdf Graphic file (type pdf)
 <use Figure1_AverageDelegation.pdf>
 Package pdftex.def Info: Figure1_AverageDelegation.pdf  used on input line 269.
 
 (pdftex.def)             Requested size: 312.00119pt x 200.57422pt.
  [16] [17 <./Figure1_AverageDelegation.pdf>]
-<Figure3_ECDF.pdf, id=493, 505.89pt x 325.215pt>
+<Figure3_ECDF.pdf, id=494, 505.89pt x 325.215pt>
 File: Figure3_ECDF.pdf Graphic file (type pdf)
 <use Figure3_ECDF.pdf>
 Package pdftex.def Info: Figure3_ECDF.pdf  used on input line 287.
 (pdftex.def)             Requested size: 304.19952pt x 195.55727pt.
  [18 <./Figure3_ECDF.pdf>]
-[19]
-
-LaTeX Warning: Reference `fig:expected_bad_absurd' on page 20 undefined on inpu
-t line 315.
-
-[20] [21]
-<Figure4_ReasonsByTrmtAndNeverDelegator2.pdf, id=531, 578.16pt x 289.08pt>
+[19] [20] [21]
+<Figure4_ReasonsByTrmtAndNeverDelegator2.pdf, id=532, 578.16pt x 289.08pt>
 File: Figure4_ReasonsByTrmtAndNeverDelegator2.pdf Graphic file (type pdf)
 <use Figure4_ReasonsByTrmtAndNeverDelegator2.pdf>
 Package pdftex.def Info: Figure4_ReasonsByTrmtAndNeverDelegator2.pdf  used on i
-nput line 324.
+nput line 332.
 (pdftex.def)             Requested size: 335.40024pt x 167.69739pt.
- [22 <./Figure4_ReasonsByTrmtAndNeverDelegator2.pdf>] [23] [24]
-[25] [26] [27] (./AIms2_CHBR.bbl [28] [29] [30]) [31] (./AIms2_CHBR.aux)
+ [22 <./Figure4_ReasonsByTrmtAndNeverDelegator2.pdf>] [23]
+[24] [25] [26] [27] (./AIms2_CHBR.bbl
+LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/it' will be
+(Font)              scaled to size 12.0pt on input line 7.
+ [28] [29] [30]) [31] (./AIms2_CHBR.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
-
-
-LaTeX Warning: There were undefined references.
-
 Package rerunfilecheck Info: File `AIms2_CHBR.out' has not changed.
 (rerunfilecheck)             Checksum: 43CC9B5753345410D2058710BA75E97B;6898.
  ) 
 Here is how much of TeX's memory you used:
- 15881 strings out of 476056
- 259957 string characters out of 5791604
+ 15859 strings out of 476056
+ 259383 string characters out of 5791604
  1934975 words of memory out of 5000000
- 37152 multiletter control sequences out of 15000+600000
- 625804 words of font info for 326 fonts, out of 8000000 for 9000
+ 37151 multiletter control sequences out of 15000+600000
+ 623165 words of font info for 312 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 75i,8n,79p,2154b,677s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,8n,79p,1733b,677s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/libertine/LinLibertineMT.pf
 b></usr/share/texlive/texmf-dist/fonts/type1/public/libertine/LinLibertineT.pfb
 ></usr/share/texlive/texmf-dist/fonts/type1/public/libertine/LinLibertineTB.pfb
@@ -800,10 +791,10 @@ b></usr/share/texlive/texmf-dist/fonts/type1/public/libertine/LinLibertineT.pfb
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf
 -dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on AIms2_CHBR.pdf (31 pages, 537424 bytes).
+Output written on AIms2_CHBR.pdf (31 pages, 535945 bytes).
 PDF statistics:
- 721 PDF objects out of 1000 (max. 8388607)
- 651 compressed objects within 7 object streams
+ 722 PDF objects out of 1000 (max. 8388607)
+ 652 compressed objects within 7 object streams
  125 named destinations out of 1000 (max. 500000)
  72461 words of extra memory for PDF output out of 74296 (max. 10000000)
 
