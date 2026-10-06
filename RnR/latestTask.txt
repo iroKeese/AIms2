@@ -1,0 +1,9 @@
+Summary:
+
+Abandoned the citation hunt entirely — no "winner's curse"/truth-inflation claim or citation appears anywhere.
+Reworded the power paragraph to be purely descriptive: power to detect the pilot's full effect (~91–96%) vs. power to detect the effect we actually observed, 11.1pp (~40–52%), with no claim that we "expected" or "conjectured" a halving.
+Reframed the average-delegation (WMW) null correctly: it's attributed to genuine convergence to zero after round 1 (per the existing regression/Figure 1 evidence), not to low power — and the decent power (71–77%) for a persistent ~10pp effect is now used as support for that genuine-zero reading, not as an excuse.
+Merged this single corrected paragraph into both files as requested: "Fourth" in AIms2_CHBR_R1.tex, "Fifth" in AIms2_CHBR_R1_Reviewer2.tex (after its existing confound paragraph) — now word-for-word identical in both.
+Updated Reviewer1_response.md to match.
+Verified brace balance in both .tex files — no breakage.
+Everything else in the two files (the Reviewer-2-specific effect sizes, robustness checks, mechanism evidence, etc., which live only in the copy) is untouched, as intended.
