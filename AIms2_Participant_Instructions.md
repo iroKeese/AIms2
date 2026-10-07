@@ -30,6 +30,7 @@ To confirm you are not a robot, please indicate below what the following picture
 - a bicycle
 - a robot
 - nothing, it's randomly placed shapes
+
 [OK]
 
 ***
@@ -62,6 +63,7 @@ For questions or comments, please contact online-exp@twi-kreuzlingen.ch
 
 - Yes, I agree to participate in this study and to the processing of my data as described above.
 - No, I do not agree to participate in this study and to the processing of my data as described above.
+
 [confirm]
 
 ***
@@ -93,6 +95,8 @@ Further, to make sure your system allows you to interact with the system well, p
 In the first part of the study, you will answer 12 questions, in which you can choose between two options.
 
 The questions in this part are **hypothetical**, but the choices **may be meaningful for Part 2** (recall that your bonus payment from the experiment depends on what happens in Part 2).
+
+[Continue]
 
 ***
 
@@ -155,7 +159,7 @@ What is the probability of each state in the table being realised?
 - 20%
 - 25%
 
-[next]
+[Next]
 
 ***
 
@@ -181,8 +185,10 @@ Part 1, Decision {Number of the decision, changes from 1 to 12}
 *Please imagine the following situation:* You can choose between the two options shown in the table below. Which of them do you prefer?
 
 {Table corresponding to the randomly selected task}
+
 [OK]
 
+***
 {On an interim screen:}
 On a scale from 0 (not at all) to 10 (completely), how confident were you in the choice you just made?
 
@@ -194,7 +200,9 @@ On a scale from 0 (not at all) to 10 (completely), how confident were you in the
 **Thank you! You have successfully completed Part 1 of this study. Before you proceed to Part 2, we would like to ask a final question on your choices in Part 1:**
 
 On a scale from 0 (not at all) to 10 (completely), how satisfied were you with your choices overall?
+
 {Number field}
+
 [OK]
 
 ***
@@ -285,6 +293,7 @@ What is the cost of having the computer make the choice of the option?
 *Note: if you do not see the comprehension questions again, you have answered them correctly.*
 
 [Back][Continue]
+
 ***
 {In case any of the comprehension questions were answered wrongly, the participant saw a replay of all questions, headed by the statement: *You answered at least one of the questions incorrectly. Please try again and answer the following questions concerning the instructions you just read.*}
 ***
@@ -323,6 +332,7 @@ On a scale of 1 to 5 diamonds, where **1 diamond means not satisfied at all** an
 
 How **satisfied** are you with the selected Option in this task?
 {5 empty diamonds shown}
+
 [Continue]
 
 ***
