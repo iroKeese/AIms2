@@ -109,8 +109,11 @@ In each of the 12 questions of Part 1, you will see a table with two rows that a
 Each **option** has **10 different states**, corresponding to the 10 columns of the table. A fair 10-sided die will determine which of the 10 states is realised. Therefore, each state has an equal (10%) probability of becoming relevant. The numbers in the table are the payoffs you would receive (if this was not the example table and if this part were played out for real). All payoffs are in points. Recall that 100 Points = £1.00.
 
 [State: 1 2 3 4 5 6 7 8 9 10
+
 Option 1    275	275	275	275	275	215	215	205	0	0
+
 Option 2    525	525	505	505	505	0	0	0	0	0]
+
 {Note that we randomized which Option was Option 1/2 (top row/bottom row)}
 
 *As you know this is an example only. In the tables relevant for your payment, the values will be replaced by different ones.*
@@ -176,6 +179,7 @@ Please tick the correct statement:
 
 ***
 {In case any of the comprehension questions were answered wrongly, the participant saw a replay of all questions, headed by the statement: *You answered at least one of the questions incorrectly. Please try again and answer the following questions concerning the instructions you just read.*}
+
 ***
 
 ## [Part 1: Main Decision Tasks]
@@ -193,6 +197,7 @@ Part 1, Decision {Number of the decision, changes from 1 to 12}
 On a scale from 0 (not at all) to 10 (completely), how confident were you in the choice you just made?
 
 [Next]{Then back to the Main Decision Task screen}
+
 ***
 
 ## Transition to Part 2
@@ -296,6 +301,7 @@ What is the cost of having the computer make the choice of the option?
 
 ***
 {In case any of the comprehension questions were answered wrongly, the participant saw a replay of all questions, headed by the statement: *You answered at least one of the questions incorrectly. Please try again and answer the following questions concerning the instructions you just read.*}
+
 ***
 
 ## [Part 2: Main Decision Tasks]
@@ -472,6 +478,8 @@ At any point during this study, did you use an AI tool (e.g., ChatGPT, Gemini, C
 
 - Yes
 - No
+
+[Next]
 
 ***
 {Only if "Yes" was chosen in response to the AI question:}
