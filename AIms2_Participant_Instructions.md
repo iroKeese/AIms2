@@ -1,5 +1,5 @@
-# AIms2 Experiment - Participant Instructions
-
+---
+title: "AIms2 Experiment - Participant Instructions"
 ---
 
 ## [Welcome]
@@ -16,7 +16,7 @@ Please test it now and remember this information, as it may become relevant on a
 
 [OK]
 
----
+***
 
 ## [Bot Verification]
 
@@ -32,7 +32,7 @@ To confirm you are not a robot, please indicate below what the following picture
 - nothing, it's randomly placed shapes
 [OK]
 
----
+***
 
 ## [Overview and Payment]
 
@@ -46,7 +46,7 @@ The study consists of 3 parts.
 
 [continue]
 
----
+***
 
 ## [Consent and Data Protection]
 
@@ -64,7 +64,7 @@ For questions or comments, please contact online-exp@twi-kreuzlingen.ch
 - No, I do not agree to participate in this study and to the processing of my data as described above.
 [confirm]
 
----
+***
 
 ## [Bot Check 2]
 
@@ -83,7 +83,7 @@ Further, to make sure your system allows you to interact with the system well, p
 
 [OK]
 
----
+***
 
 
 ## [Part 1: Introduction]
@@ -94,7 +94,7 @@ In the first part of the study, you will answer 12 questions, in which you can c
 
 The questions in this part are **hypothetical**, but the choices **may be meaningful for Part 2** (recall that your bonus payment from the experiment depends on what happens in Part 2).
 
----
+***
 
 ## [Part 1: Instructions (1/2)]
 
@@ -113,7 +113,7 @@ Option 2    525	525	505	505	505	0	0	0	0	0]
 
 [Continue]
 
----
+***
 
 ## [Part 1: Instructions (2/2)]
 
@@ -125,7 +125,7 @@ Let's assume you choose *Option {2}*. The die is thrown and shows a 5, which mea
 
 [Continue]
 
----
+***
 
 ## [Part 1: Comprehension Questions]
 
@@ -157,7 +157,7 @@ What is the probability of each state in the table being realised?
 
 [next]
 
----
+***
 
 **Comprehension Question 3**
 
@@ -170,9 +170,9 @@ Please tick the correct statement:
 
 [back][continue]
 
----
+***
 {In case any of the comprehension questions were answered wrongly, the participant saw a replay of all questions, headed by the statement: *You answered at least one of the questions incorrectly. Please try again and answer the following questions concerning the instructions you just read.*}
----
+***
 
 ## [Part 1: Main Decision Tasks]
 
@@ -187,7 +187,7 @@ Part 1, Decision {Number of the decision, changes from 1 to 12}
 On a scale from 0 (not at all) to 10 (completely), how confident were you in the choice you just made?
 
 [Next]{Then back to the Main Decision Task screen}
----
+***
 
 ## Transition to Part 2
 
@@ -197,7 +197,7 @@ On a scale from 0 (not at all) to 10 (completely), how satisfied were you with y
 {Number field}
 [OK]
 
----
+***
 
 ## [Part 2: Instructions (1/3)]
 
@@ -211,7 +211,7 @@ In principle, the logic of the table and the way how payoffs are determined are 
 
 [Continue]
 
----
+***
 
 ## [Part 2: Instructions (2/3)]
 
@@ -229,7 +229,7 @@ If you decide to have the computer select a lottery for you, its choice will be 
 
 [Continue]
 
----
+***
 
 ## [Part 2: Instructions (3/3)]
 
@@ -243,7 +243,7 @@ Lastly, you will be asked after every task to rate your satisfaction with the lo
 
 [Continue]
 
----
+***
 
 ## [Part 2: Comprehension Questions]
 
@@ -266,7 +266,7 @@ After completing a task....
 
 [Next]
 
---- 
+***
 
 **Comprehension Question 3**
 
@@ -285,9 +285,9 @@ What is the cost of having the computer make the choice of the option?
 *Note: if you do not see the comprehension questions again, you have answered them correctly.*
 
 [Back][Continue]
----
+***
 {In case any of the comprehension questions were answered wrongly, the participant saw a replay of all questions, headed by the statement: *You answered at least one of the questions incorrectly. Please try again and answer the following questions concerning the instructions you just read.*}
----
+***
 
 ## [Part 2: Main Decision Tasks]
 
@@ -301,7 +301,7 @@ After those 5 + 5 = 10 seconds, you have another 8 seconds to choose your prefer
 
 [Continue]
 
---- 
+***
 ## [Part 2: Main Decision Screens]
 Part 2, Decision {1 to 8}
 {View} Time Remaining: {Countdown}
@@ -325,7 +325,7 @@ How **satisfied** are you with the selected Option in this task?
 {5 empty diamonds shown}
 [Continue]
 
----
+***
 
 ## [Hypothetical Scenario]
 
@@ -343,7 +343,7 @@ Imagine that you had to do **another 10 tasks** like the ones you have just comp
 
 [Next]
 
----
+***
 
 ## [Hypothetical Delegation Follow-up Questions]
 
@@ -360,7 +360,7 @@ On a scale from 0 (not at all) to 10 (totally), how ready was the computer to ta
 
 [Next]
 
---- 
+***
 
 [Continued:] You just chose to delegate the 10 tasks to the computer. To understand this choice a little better, we would like to ask you some questions:
 
@@ -381,7 +381,7 @@ To further understand why you chose {not} to delegate the 10 tasks to the comput
 
 [Next]
 
----
+***
 
 ## [Part 3: Questionnaire]
 
@@ -400,7 +400,7 @@ On a scale from 0 (not at all) to 10 (completely), how well do the following sta
 
 [Next]
 
----
+***
 
 ## [Demographics]
 
@@ -438,7 +438,7 @@ What is your yearly household income?
 
 [Next]
 
----
+***
 
 ## [Data Quality Check]
 
@@ -463,14 +463,14 @@ At any point during this study, did you use an AI tool (e.g., ChatGPT, Gemini, C
 - Yes
 - No
 
----
+***
 {Only if "Yes" was chosen in response to the AI question:}
 You just indicated that you have used an AI tool at some point during this study. May we ask what exactly you used AI for?
 {Open-text field}
 
 [Next]
 
----
+***
 
 ## [Payment Information and Thank You]
 
@@ -491,7 +491,7 @@ Therefore, your final payment is: £2.00 (show up fee) + £{amount} (bonus payme
 
 [Proceed]
 
----
+***
 
 ## [Final screen]
 
@@ -499,6 +499,6 @@ Please go to the Prolific website and enter the following completion code in ord
 
 {Completion Code}
 
----
+***
 
 *End of Participant Instructions*
