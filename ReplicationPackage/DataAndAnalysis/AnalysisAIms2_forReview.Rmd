@@ -27,6 +27,13 @@ Required raw data files (expected in the same folder as this script):
   * 260206_1528_537_lotteryChoices.xls     (decision-level data, tab-separated)
   * allSubjects.csv                        (participant-level data)
   * prolific_demographic_export_approved.csv (Prolific demographics / timing)
+  * pilot_data_complete_iw.csv             (earlier, non-preregistered pilot study;
+                                             only needed for the retrospective power
+                                             analysis near the end of this script)
+  * FullTaskTableWithExemplaryOrdering.ods (Part-1/Part-2 payoff matrices; only
+                                             needed for the Appendix task-matrix
+                                             chunk near the end of this script;
+                                             requires the readODS package)
 
 Figures produced (file names match the \includegraphics calls in AIms2.tex):
   * Figure1_AverageDelegation.pdf          (Fig. 1 -- main text)
@@ -59,6 +66,7 @@ library(fixest)    # LPM with fixed effects + clustered SE
 library(lmtest)    # robust coefficient tests
 library(sandwich)  # HC2 standard errors
 library(texreg)    # regression tables
+# library(readODS) # only needed for the Appendix task-matrix chunk near the end
 ```
 
 ```{r housekeeping, echo=FALSE}
@@ -268,6 +276,27 @@ prop.table(tab, margin = 2)
 exact.test(tab, method = "Boschloo", alternative = "greater", to.plot = FALSE)$p.value
 ```
 
+## Effect size and CI for the round-1 contrast
+
+Risk difference (Wald 95% CI) and odds ratio (Fisher's exact two-sided 95% CI), as
+reported in the manuscript's new Table 1 (RD = 11.1pp [-1.3, 23.7]; OR = 1.60 [0.91, 2.84]).
+
+```{r boschloo-round1-effectsize}
+p_ev   <- prop.table(tab, margin = 2)["1", "1"]
+p_pref <- prop.table(tab, margin = 2)["1", "0"]
+n_ev   <- sum(tab[, "1"])
+n_pref <- sum(tab[, "0"])
+
+# Risk difference + Wald 95% CI
+rd <- p_ev - p_pref
+se_rd <- sqrt(p_ev * (1 - p_ev) / n_ev + p_pref * (1 - p_pref) / n_pref)
+cat("Risk difference:", round(rd, 4), "\n")
+cat("Wald 95% CI:", round(rd - 1.96 * se_rd, 4), "to", round(rd + 1.96 * se_rd, 4), "\n")
+
+# Odds ratio + Fisher's exact two-sided 95% CI
+fisher.test(tab)
+```
+
 \newpage
 
 # Primary test 2 --- Delegation across repeated decisions
@@ -285,6 +314,35 @@ delegAv <- choices %>%
   mutate(Algorithm = factor(Algorithm, levels = c("Pref", "EV")))
 
 wilcox.test(avDeleg ~ Algorithm, data = delegAv, alternative = "less")
+```
+
+## Effect size and CI for the WMW test
+
+Rank-biserial correlation with a bootstrap 95% CI, as reported in the manuscript's new
+Table 1 ($r_{rb} \approx 0.05$, bootstrap CI [-0.09, 0.21]).
+
+```{r wmw-effectsize}
+rank_biserial <- function(x, y) {
+  n1 <- length(x); n2 <- length(y)
+  U <- wilcox.test(x, y)$statistic
+  1 - (2 * U) / (n1 * n2)
+}
+
+x_pref <- delegAv$avDeleg[delegAv$Algorithm == "Pref"]
+x_ev   <- delegAv$avDeleg[delegAv$Algorithm == "EV"]
+
+r_rb <- rank_biserial(x_pref, x_ev)
+cat("Rank-biserial r:", round(r_rb, 4), "\n")
+
+set.seed(1)
+B <- 2000
+boot_r <- replicate(B, {
+  xb <- sample(x_pref, replace = TRUE)
+  yb <- sample(x_ev,   replace = TRUE)
+  rank_biserial(xb, yb)
+})
+cat("Bootstrap 95% CI:", round(quantile(boot_r, 0.025), 4), "to",
+    round(quantile(boot_r, 0.975), 4), "\n")
 ```
 
 ## Risk aversion
@@ -349,6 +407,25 @@ delRegPreReg <- feols(
   data = subset(choices, Part == 2)
 )
 summary(delRegPreReg)
+```
+
+## Robustness check: logistic regression
+
+Re-estimating the preregistered LPM as a logistic regression with the same fixed
+effects and cluster-robust SEs (paper: EVAlgorithm OR = 0.79, $p = 0.467$;
+zero-outcome-history OR = 0.19, $p < 0.001$).
+
+```{r logit-robustness}
+delRegLogit <- feglm(
+  Delegated ~ EVAlgorithm * (WithinPartDecisionNumber + zero_rate) | OptionsetID,
+  family = "logit",
+  cluster = ~ProlificID,
+  data = subset(choices, Part == 2)
+)
+summary(delRegLogit)
+
+# Odds ratios
+exp(coef(delRegLogit))
 ```
 
 ## Supporting regressions
@@ -439,6 +516,35 @@ table(analysis_data$DelegatorType, analysis_data$EVAlgorithm)
 prop.table(table(analysis_data$DelegatorType, analysis_data$EVAlgorithm), margin = 2)
 ```
 
+## Significance test and effect size for categorical non-delegation
+
+Fisher's exact test, risk difference (Wald 95% CI), and odds ratio (Fisher's exact 95%
+CI), as newly added to the manuscript (paper: $p = 0.0014$; RD = 12.3pp [4.9, 19.7];
+OR = 5.25 [1.65, 22.07]).
+
+```{r nondelegation-significance}
+nondeleg_tab <- table(
+  NonDelegator = factor(analysis_data$NonDelegator, levels = c(1, 0)),
+  EVAlgorithm  = factor(analysis_data$EVAlgorithm,  levels = c(0, 1))
+)
+nondeleg_tab   # rows: never-delegator yes/no; columns: 0 = Pref, 1 = EV
+
+# Odds ratio of never-delegating, Pref relative to EV (expect OR ~ 5.25)
+fisher.test(nondeleg_tab)
+
+p_pref_nd <- prop.table(nondeleg_tab, margin = 2)["1", "0"]
+p_ev_nd   <- prop.table(nondeleg_tab, margin = 2)["1", "1"]
+n_pref_nd <- sum(nondeleg_tab[, "0"])
+n_ev_nd   <- sum(nondeleg_tab[, "1"])
+# (row "1" = never-delegator; column "0" = Pref, "1" = EV)
+
+rd_nd <- p_pref_nd - p_ev_nd
+se_rd_nd <- sqrt(p_pref_nd * (1 - p_pref_nd) / n_pref_nd + p_ev_nd * (1 - p_ev_nd) / n_ev_nd)
+cat("Risk difference:", round(rd_nd, 4), "\n")
+cat("Wald 95% CI:", round(rd_nd - 1.96 * se_rd_nd, 4), "to",
+    round(rd_nd + 1.96 * se_rd_nd, 4), "\n")
+```
+
 ## Comparisons of never-delegators vs. delegators
 
 The following tests reproduce the in-text comparisons (age, income, education,
@@ -470,6 +576,64 @@ exact.test(female_table[, c(2, 4)], method = "Boschloo", to.plot = FALSE)$p.valu
 t.test(RiskTaking  ~ NonDelegator, data = analysis_data)
 t.test(FinanciallyResponsible ~ NonDelegator, data = analysis_data)
 t.test(AIXperience ~ NonDelegator, data = analysis_data)
+```
+
+### Non-parametric robustness check (Wilcoxon) for the comparisons above
+
+As newly added to the manuscript footnote (paper: age $p=0.649$; time $p=0.105$;
+risk-taking $p=0.854$; reliability $p=0.956$; AI experience $p=0.445$). Note: the
+manuscript's "reliability" item corresponds to `Reliable` in `subjects`/`choices`,
+merged in here for completeness; if not already present in `analysis_data`, join it
+from `subjects` first.
+
+```{r nondelegator-tests-nonparametric}
+wilcox.test(Age ~ NonDelegator, data = analysis_data)
+wilcox.test(TimeInSeconds ~ NonDelegator, data = analysis_data)
+wilcox.test(RiskTaking ~ NonDelegator, data = analysis_data)
+wilcox.test(AIXperience ~ NonDelegator, data = analysis_data)
+
+# Reliability (Reliable), if not yet merged into analysis_data:
+if (!"Reliable" %in% names(analysis_data)) {
+  analysis_data <- analysis_data %>%
+    left_join(subjects %>% select(ProlificID, Reliable), by = "ProlificID")
+}
+t.test(Reliable ~ NonDelegator, data = analysis_data)
+wilcox.test(Reliable ~ NonDelegator, data = analysis_data)
+```
+
+## Choice quality among never-delegators (new Limitations check)
+
+Tests whether never-delegators' own non-dominated choice rate (among their self-made
+Part-2 decisions) differs from that of participants who delegated at least once, used in
+the manuscript to argue against a task-difficulty confound for categorical
+non-delegation (paper: 34.7% vs. 33.6%; Welch $t = -0.25$, $p = 0.806$; Wilcoxon
+$p = 0.669$).
+
+```{r choicequality-by-nondelegator}
+selfchoice <- choices %>%
+  filter(Part == 2, Delegated == 0, Option > 0) %>%
+  left_join(
+    analysis_data %>% select(ProlificID, DelegatorType),
+    by = "ProlificID"
+  )
+
+# Decision-level check, by delegator type
+selfchoice %>%
+  group_by(DelegatorType) %>%
+  summarise(avNonDom = mean(Nondominated, na.rm = TRUE), n = n(), .groups = "drop")
+
+# Participant-level average non-dominated rate, Never vs. AtLeastOnce
+partavg <- selfchoice %>%
+  group_by(ProlificID) %>%
+  summarise(Nondominated = mean(Nondominated, na.rm = TRUE), .groups = "drop") %>%
+  left_join(analysis_data %>% select(ProlificID, DelegationGroup), by = "ProlificID")
+
+partavg %>%
+  group_by(DelegationGroup) %>%
+  summarise(Nondominated = mean(Nondominated, na.rm = TRUE), n = n(), .groups = "drop")
+
+t.test(Nondominated ~ DelegationGroup, data = partavg)
+wilcox.test(Nondominated ~ DelegationGroup, data = partavg)
 ```
 
 ```{r nondelegator-satisfaction-pref}
@@ -765,7 +929,188 @@ screenreg(
 )
 ```
 
-# Session information
+\newpage
+
+# Exclusion-criterion breakdown (Method section)
+
+Reconstructs the exact breakdown of the 7 excluded participants by criterion, as
+reported in the Method section (paper: 1 bot/slider failure, 4 careful-participation
+failures [`Reliable < 6`], 3 disclosed-AI-usage cases, 0 comprehension-only failures,
+0 incomplete-data cases, 0 log-time exclusions; final $N = 233$, with 1 participant
+overlapping careful-participation-failure and AI-disclosure). This chunk re-reads the
+raw files independently of the exclusions already applied above (using `_raw` suffixes),
+so it is self-contained and can be run at any point in the script.
+
+```{r exclusion-breakdown}
+choices_raw      <- read.delim("260206_1528_537_lotteryChoices.xls")
+prolificData_raw <- read.csv("prolific_demographic_export_approved.csv")
+
+cat("N recruited (Prolific export):", nrow(prolificData_raw), "\n")
+
+choices_raw <- subset(choices_raw, ProlificID %in% prolificData_raw$Participant.id)
+
+part2_raw <- subset(choices_raw, Part == 2)
+partvars <- part2_raw[!duplicated(part2_raw$ProlificID),
+                       c("ProlificID", "BotCheck1attempt", "Part1CQsPassedOnAttempt",
+                         "Part2CQsPassedOnAttempt", "Reliable", "AIUsageInStudy")]
+
+# Incomplete-data flag: participant has zero valid (Delegated >= 0) Part-2 rows
+valid_counts <- aggregate(Delegated ~ ProlificID, data = part2_raw,
+                           FUN = function(x) sum(x >= 0))
+names(valid_counts)[2] <- "nValid"
+partvars <- merge(partvars, valid_counts, by = "ProlificID", all.x = TRUE)
+partvars$incomplete <- is.na(partvars$nValid) | partvars$nValid == 0
+
+# Log-completion-time "too fast" rule
+prolificData_raw$logCompleTime <- log(prolificData_raw$Time.taken)
+prolificData_raw$tooFast <- 1 * (
+  prolificData_raw$logCompleTime <
+    mean(log(prolificData_raw$Time.taken)) - 2 * sd(log(prolificData_raw$Time.taken))
+)
+partvars <- merge(partvars, prolificData_raw[, c("Participant.id", "tooFast")],
+                   by.x = "ProlificID", by.y = "Participant.id", all.x = TRUE)
+
+partvars$failBot      <- partvars$BotCheck1attempt != 1
+partvars$failComp     <- partvars$Part1CQsPassedOnAttempt > 2 |
+                          partvars$Part2CQsPassedOnAttempt > 2
+partvars$failCareful  <- partvars$Reliable < 6
+partvars$disclosedAI  <- partvars$AIUsageInStudy != 0
+
+excluded <- subset(
+  partvars,
+  failBot | failComp | failCareful | disclosedAI | incomplete | tooFast == 1
+)
+
+cat("\nTotal excluded:", nrow(excluded), "\n")
+cat("Fail bot/slider check:", sum(excluded$failBot), "\n")
+cat("Fail comprehension check only:", sum(excluded$failComp), "\n")
+cat("Fail careful-participation check (Reliable < 6):", sum(excluded$failCareful), "\n")
+cat("Disclosed AI usage:", sum(excluded$disclosedAI), "\n")
+cat("Incomplete data:", sum(excluded$incomplete), "\n")
+cat("Too fast (log-time rule):", sum(excluded$tooFast == 1, na.rm = TRUE), "\n")
+cat("Overlap (careful-participation AND disclosed AI):",
+    sum(excluded$failCareful & excluded$disclosedAI), "\n")
+cat("Final analysis N:", nrow(partvars) - nrow(excluded), "\n")
+```
+
+\newpage
+
+# Retrospective power analysis (pilot-based, new Limitations paragraph)
+
+Reconstructs the ex-ante power analysis reported as a new Limitations paragraph: using
+only the pilot's effect sizes (not the present study's own results, to avoid the
+retrospective-power fallacy; Hoenig \& Heisey, 2001), we compute the minimum detectable
+effect (MDE) at 80% power for $n = 100$--120/arm, and the power to re-detect an effect of
+the pilot's observed magnitude. Pilot data: `pilot_data_complete_iw.csv` (an earlier,
+non-preregistered study reported in Suraci's PhD thesis).
+
+```{r pilot-data}
+pilot <- read.csv("pilot_data_complete_iw.csv")
+pilot <- subset(pilot, returned == 1)
+cat("Pilot N (returned == 1):", nrow(pilot), "\n")
+
+# EV treatments = 1,2; preference-based (RDU) treatments = 3,4
+pilot$EValgo <- 1 * (pilot$treatment %in% c(1, 2))
+cat("\nPilot N by condition (0 = Pref, 1 = EV):\n")
+print(table(pilot$EValgo))
+
+# First-contact delegation (randomized-order "1st" decision)
+cat("\nFirst-contact delegation rate by condition (paper: 45.8% Pref vs. 67.4% EV):\n")
+print(aggregate(decision1st ~ EValgo, data = pilot, mean))
+
+# Average delegation across all 8 (randomized-order) decisions
+decisioncols <- c("decision1st", "decision2nd", "decision3rd", "decision4th",
+                   "decision5th", "decision6th", "decision7th", "decision8th")
+pilot$avgDeleg <- rowMeans(pilot[, decisioncols], na.rm = TRUE)
+cat("\nAverage delegation rate by condition (paper: 35.3% Pref vs. 54.5% EV):\n")
+print(aggregate(avgDeleg ~ EValgo, data = pilot, mean))
+```
+
+## Minimum detectable effect (MDE) at 80% power
+
+A pure design-stage quantity: depends only on $n$, $\alpha$, and a baseline rate, not on
+anything observed in the present study (paper: ~16-17pp for first contact,
+~10-11pp for average delegation).
+
+```{r power-mde}
+p_pref_firstcontact <- aggregate(decision1st ~ EValgo, data = pilot, mean)[1, 2]
+
+for (n in c(100, 120)) {
+  pt <- power.prop.test(n = n, p1 = p_pref_firstcontact, p2 = NULL,
+                         power = 0.80, sig.level = 0.05, alternative = "one.sided")
+  cat("n =", n, " MDE (first-contact-type proportion) =",
+      round(pt$p2 - p_pref_firstcontact, 4), "\n")
+}
+```
+
+## MDE and power for the average-delegation comparison
+
+Approximated with a one-sided two-sample $t$-test using the pilot's pooled
+within-condition SD of participant-average delegation (paper: MDE ~10-11pp;
+99.7-99.9% power to re-detect the pilot's ~19pp gap).
+
+```{r power-avgdeleg}
+sd_pilot    <- sqrt(mean(tapply(pilot$avgDeleg, pilot$EValgo, var)))
+delta_pilot <- diff(tapply(pilot$avgDeleg, pilot$EValgo, mean))
+cat("Pilot pooled SD:", round(sd_pilot, 4), " pilot gap:", round(delta_pilot, 4), "\n")
+
+for (n in c(100, 120)) {
+  m <- power.t.test(n = n, sd = sd_pilot, power = 0.80, sig.level = 0.05,
+                    alternative = "one.sided")
+  r <- power.t.test(n = n, delta = delta_pilot, sd = sd_pilot, sig.level = 0.05,
+                    alternative = "one.sided")
+  cat("n =", n, " MDE =", round(m$delta, 4), " power to re-detect pilot gap =",
+      round(r$power, 4), "\n")
+}
+```
+
+## Power to re-detect the pilot's observed effect
+
+Not a retrospective-power computation on the present study's own effect (which would be
+circular); this uses only the pilot's pre-existing effect size as input (paper: 93-96% under the normal approximation, 91-95% by exact-test simulation).
+
+```{r power-redetect}
+p_ev_firstcontact <- aggregate(decision1st ~ EValgo, data = pilot, mean)[2, 2]
+
+for (n in c(100, 120)) {
+  pt <- power.prop.test(n = n, p1 = p_pref_firstcontact, p2 = p_ev_firstcontact,
+                         sig.level = 0.05, alternative = "one.sided")
+  cat("n =", n, " power to re-detect pilot's first-contact gap =",
+      round(pt$power, 4), "\n")
+}
+```
+
+\newpage
+
+# Appendix task matrices (Part-1 and Part-2 payoff tables)
+
+Regenerates the full numeric Part-1 (12 binary-choice tasks) and Part-2 (8 option sets)
+payoff matrices reported in the manuscript's new Appendix, directly from the prepared
+task-construction file `FullTaskTableWithExemplaryOrdering.ods`. Requires the `readODS`
+package (`install.packages("readODS")` if not already installed).
+
+```{r appendix-tables}
+library(readODS)
+task_table <- read_ods("FullTaskTableWithExemplaryOrdering.ods", col_names = FALSE)
+
+# Part-1 block (rows 3:26): 12 tasks x 2 options, excluding the OptionsetID == 0
+# instruction rows
+part1 <- task_table[3:26, ]
+names(part1) <- c("OptionsetID", "Option", paste0("S", 1:10), "Part1DecisionNumber")
+part1 <- part1[part1$OptionsetID != 0, ]
+cat("Part-1 table: ", nrow(part1), "rows (expect 24 = 12 tasks x 2 options)\n")
+part1
+
+# Part-2 block (from row 33): keep only option sets actually used
+# (Part2DecisionNumber != -99)
+part2_tab <- task_table[33:nrow(task_table), ]
+names(part2_tab) <- c("OptionsetID", "Option", paste0("S", 1:10),
+                       "Part1DecisionNumber", "Part2DecisionNumber")
+part2_tab <- subset(part2_tab, !is.na(OptionsetID) & OptionsetID != 0 &
+                       Part2DecisionNumber != -99)
+cat("Part-2 table: ", nrow(part2_tab), "rows (expect 64 = 8 option sets x 8 options)\n")
+part2_tab
+```
 
 ```{r session-info}
 sessionInfo()

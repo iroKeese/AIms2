@@ -1,0 +1,40 @@
+variable,type,non_missing,unique_values,values_summary,description
+SessionID,character,5240,1,top: 260206_1528,Session identifier.
+TreatmentNumber,integer,5240,1,"min=537, max=537",Treatment index from z-Tree.
+Table,character,5240,1,top: lotteryChoices,z-Tree source table name (lotteryChoices).
+Part,integer,5240,2,"min=1, max=2","Experiment part index (e.g., 1 or 2)."
+ProlificID,character,5240,252,Deleted.,Participant identifier from Prolific.
+OptionsetID,integer,5240,12,"min=1, max=12",Identifier of the lottery option set shown on this decision.
+ChoiceType,character,5240,3,top: Dollar150 | P105 | Dollar119,"Type/label of decision item shown (e.g., P105, Dollar150)."
+WithinPartDecisionNumber,integer,5240,12,"min=1, max=12",Decision order index within the part.
+Delegated,integer,5240,3,"min=-99, max=1","Delegation status for this decision row (typically 1 delegated, 0 self-chosen, -99 n/a)."
+PBetChosen,integer,5240,3,"min=-99, max=1",Indicator whether p-bet type was chosen (coding includes -99 for n/a).
+EVMax,integer,5240,3,"min=-99, max=1",Indicator that EV-maximizing option was chosen (coding includes -99 for n/a).
+PrefAlgoChoice,integer,5240,8,"min=-99, max=8",Indicator aligned with preference-algorithm recommendation (coding includes -99 for n/a).
+Option,integer,5240,9,"min=-99, max=8",Chosen option index/label in the displayed option set.
+OrderNumber,integer,5240,3,"min=-99, max=2",Display order number of this option/decision row.
+Option1onTop,integer,5240,3,"min=-99, max=1",Randomization/order flag for option presentation.
+Nondominated,integer,5240,3,"min=-99, max=1",Indicator whether selected option is non-dominated.
+State[1],integer,5240,26,"min=-99, max=890",State-contingent payoff/value entry for one of the 10 states in this lottery row.
+State[2],integer,5240,26,"min=-99, max=890",State-contingent payoff/value entry for one of the 10 states in this lottery row.
+State[3],integer,5240,29,"min=-99, max=860",State-contingent payoff/value entry for one of the 10 states in this lottery row.
+State[4],integer,5240,23,"min=-99, max=800",State-contingent payoff/value entry for one of the 10 states in this lottery row.
+State[5],integer,5240,22,"min=-99, max=830",State-contingent payoff/value entry for one of the 10 states in this lottery row.
+State[6],integer,5240,18,"min=-99, max=610",State-contingent payoff/value entry for one of the 10 states in this lottery row.
+State[7],integer,5240,17,"min=-99, max=800",State-contingent payoff/value entry for one of the 10 states in this lottery row.
+State[8],integer,5240,14,"min=-99, max=860",State-contingent payoff/value entry for one of the 10 states in this lottery row.
+State[9],integer,5240,18,"min=-99, max=625",State-contingent payoff/value entry for one of the 10 states in this lottery row.
+State[10],integer,5240,17,"min=-99, max=890",State-contingent payoff/value entry for one of the 10 states in this lottery row.
+ClientID,integer,5240,252,"min=1, max=276",Client identifier in z-Tree session.
+EVAlgorithm,integer,5240,2,"min=0, max=1","Treatment flag: 1 EV-maximizing algorithm condition, 0 otherwise."
+PrefAlgorithm,integer,5240,2,"min=0, max=1","Treatment flag: 1 preference-based algorithm condition, 0 otherwise."
+AlgorithmChoice,integer,5240,1,"min=0, max=0",Not used. Created for a potential follow-up treatment.
+BotCheck1attempt,integer,5240,3,"min=0, max=2",Attempt count/flag from bot check stage.
+PayoffRelevantState,integer,5240,11,"min=-99, max=10",Random state drawn for payoff realization.
+RelevantPayoff,integer,5240,33,"min=-99, max=890",Payoff from this row when payoff-relevant.
+Confidence,integer,5240,11,"min=0, max=10",Confidence rating associated with this decision (only Part 1).
+Part1CQsPassedOnAttempt,integer,5240,4,"min=-99, max=2",Part-1 comprehension check pass attempt index.
+Part2CQsPassedOnAttempt,integer,5240,3,"min=0, max=2",Part-2 comprehension check pass attempt index.
+SatisfactionRating,integer,5240,7,"min=-99, max=5",Post-task satisfaction rating w.r.t. choice after outcome revelation (only Part 2).
+Reliable,integer,5240,7,"min=-99, max=7",Self-reported reliability of answers/inputs throughout the experiment.
+AIUsageInStudy,integer,5240,3,"min=-99, max=1",Indicator whether participant reported AI use in study.

@@ -43,7 +43,7 @@ all three primary/secondary results and added them to the text:
   (Fisher's exact two-sided 95% CI [0.91, 2.84]). We note explicitly that a two-sided CI
   spanning zero is not in tension with the significant one-sided preregistered test —
   different coverage conventions.
-- **Average delegation (WMW)**: rank-biserial r ≈ 0.05 (bootstrap 95% CI [−0.20, 0.10]),
+- **Average delegation (WMW)**: rank-biserial r ≈ 0.05 (bootstrap 95% CI [−0.09, 0.21]),
   i.e., a small effect whose CI comfortably spans zero, consistent with the null result.
 - **Categorical non-delegation**: risk difference 12.3 pp (Wald 95% CI [4.9, 19.7]);
   OR = 5.25 (Fisher's exact 95% CI [1.65, 22.07]).
