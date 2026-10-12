@@ -428,39 +428,20 @@ summary(delRegLogit)
 exp(coef(delRegLogit))
 ```
 
-## Supporting regressions
+## Supporting regression
 
 Plain treatment effect (all rounds; excluding round 1; round 1 only). The
 round-1-only LPM reproduces the Boschloo result
 ($\beta = 0.113$, one-sided $p = 0.041$).
 
-```{r supporting-regressions}
-# All rounds, treatment only
-delRegPlainTrmt <- feols(
-  Delegated ~ EVAlgorithm | OptionsetID,
-  cluster = ~ProlificID,
-  data = subset(choices, Part == 2)
-)
-
-# Excluding round 1
-delRegPlainTrmtNoP1 <- feols(
-  Delegated ~ EVAlgorithm | OptionsetID,
-  cluster = ~ProlificID,
-  data = subset(choices, Part == 2 & WithinPartDecisionNumber > 1)
-)
-
-# Round 1 only (mirrors the Boschloo test)
-delRegP1 <- feols(
+```{r supporting-regression}
+# 1st-round regression in the spirit of the preregistered model: treatment (fixing period to 1, and taking out the [non-existing] feedback history)
+delRegPreReg <- feols(
   Delegated ~ EVAlgorithm | OptionsetID,
   cluster = ~ProlificID,
   data = subset(choices, Part == 2 & WithinPartDecisionNumber == 1)
 )
-
-screenreg(
-  list(delRegPlainTrmt, delRegPlainTrmtNoP1, delRegP1),
-  custom.model.names = c("All rounds", "Rounds 2-8", "Round 1 only"),
-  caption = "Treatment effect on delegation (LPM, task FE, clustered SE)"
-)
+summary(delRegPreReg) # Note: two-sided p-value
 ```
 
 \newpage
@@ -995,7 +976,7 @@ cat("Final analysis N:", nrow(partvars) - nrow(excluded), "\n")
 
 \newpage
 
-# Retrospective power analysis (pilot-based, new Limitations paragraph)
+# Power analysis (pilot-based, new Limitations paragraph)
 
 Reconstructs the ex-ante power analysis reported as a new Limitations paragraph: using
 only the pilot's effect sizes (not the present study's own results, to avoid the
@@ -1080,37 +1061,37 @@ for (n in c(100, 120)) {
 }
 ```
 
-\newpage
+<!-- \newpage -->
 
-# Appendix task matrices (Part-1 and Part-2 payoff tables)
+<!-- # Appendix task matrices (Part-1 and Part-2 payoff tables) -->
 
-Regenerates the full numeric Part-1 (12 binary-choice tasks) and Part-2 (8 option sets)
-payoff matrices reported in the manuscript's new Appendix, directly from the prepared
-task-construction file `FullTaskTableWithExemplaryOrdering.ods`. Requires the `readODS`
-package (`install.packages("readODS")` if not already installed).
+<!-- Regenerates the full numeric Part-1 (12 binary-choice tasks) and Part-2 (8 option sets) -->
+<!-- payoff matrices reported in the manuscript's new Appendix, directly from the prepared -->
+<!-- task-construction file `FullTaskTableWithExemplaryOrdering.ods`. Requires the `readODS` -->
+<!-- package (`install.packages("readODS")` if not already installed). -->
 
-```{r appendix-tables}
-library(readODS)
-task_table <- read_ods("FullTaskTableWithExemplaryOrdering.ods", col_names = FALSE)
+<!-- ```{r appendix-tables} -->
+<!-- library(readODS) -->
+<!-- task_table <- read_ods("FullTaskTableWithExemplaryOrdering.ods", col_names = FALSE) -->
 
-# Part-1 block (rows 3:26): 12 tasks x 2 options, excluding the OptionsetID == 0
-# instruction rows
-part1 <- task_table[3:26, ]
-names(part1) <- c("OptionsetID", "Option", paste0("S", 1:10), "Part1DecisionNumber")
-part1 <- part1[part1$OptionsetID != 0, ]
-cat("Part-1 table: ", nrow(part1), "rows (expect 24 = 12 tasks x 2 options)\n")
-part1
+<!-- # Part-1 block (rows 3:26): 12 tasks x 2 options, excluding the OptionsetID == 0 -->
+<!-- # instruction rows -->
+<!-- part1 <- task_table[3:26, ] -->
+<!-- names(part1) <- c("OptionsetID", "Option", paste0("S", 1:10), "Part1DecisionNumber") -->
+<!-- part1 <- part1[part1$OptionsetID != 0, ] -->
+<!-- cat("Part-1 table: ", nrow(part1), "rows (expect 24 = 12 tasks x 2 options)\n") -->
+<!-- part1 -->
 
-# Part-2 block (from row 33): keep only option sets actually used
-# (Part2DecisionNumber != -99)
-part2_tab <- task_table[33:nrow(task_table), ]
-names(part2_tab) <- c("OptionsetID", "Option", paste0("S", 1:10),
-                       "Part1DecisionNumber", "Part2DecisionNumber")
-part2_tab <- subset(part2_tab, !is.na(OptionsetID) & OptionsetID != 0 &
-                       Part2DecisionNumber != -99)
-cat("Part-2 table: ", nrow(part2_tab), "rows (expect 64 = 8 option sets x 8 options)\n")
-part2_tab
-```
+<!-- # Part-2 block (from row 33): keep only option sets actually used -->
+<!-- # (Part2DecisionNumber != -99) -->
+<!-- part2_tab <- task_table[33:nrow(task_table), ] -->
+<!-- names(part2_tab) <- c("OptionsetID", "Option", paste0("S", 1:10), -->
+<!--                        "Part1DecisionNumber", "Part2DecisionNumber") -->
+<!-- part2_tab <- subset(part2_tab, !is.na(OptionsetID) & OptionsetID != 0 & -->
+<!--                        Part2DecisionNumber != -99) -->
+<!-- cat("Part-2 table: ", nrow(part2_tab), "rows (expect 64 = 8 option sets x 8 options)\n") -->
+<!-- part2_tab -->
+<!-- ``` -->
 
 ```{r session-info}
 sessionInfo()
