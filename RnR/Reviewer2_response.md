@@ -43,14 +43,20 @@ all three primary/secondary results and added them to the text:
   (Fisher's exact two-sided 95% CI [0.91, 2.84]). We note explicitly that a two-sided CI
   spanning zero is not in tension with the significant one-sided preregistered test —
   different coverage conventions.
-- **Average delegation (WMW)**: rank-biserial r ≈ 0.05 (bootstrap 95% CI [−0.09, 0.21]),
+- **Average delegation (WMW)**: rank-biserial r ≈ 0.05 (bootstrap 95% CI [−0.10, 0.20]),
   i.e., a small effect whose CI comfortably spans zero, consistent with the null result.
 - **Categorical non-delegation**: risk difference 12.3 pp (Wald 95% CI [4.9, 19.7]);
   OR = 5.25 (Fisher's exact 95% CI [1.65, 22.07]).
 
-We also added an explicit flag distinguishing the preregistered win-stay/lose-shift base
-model from the exploratory decomposition that splits by who produced the prior outcome
-(delegated vs. self-chosen), which was not specified in advance.
+We also made explicit which feedback analyses were preregistered. **Correction:** an
+earlier version of the "Responses to feedback" subsection described the win-stay/lose-shift
+model as the preregistered analysis; this was wrong. The preregistered secondary
+hypothesis is that, after delegating with a zero payoff, participants in the
+preference-based condition are more likely to switch to non-delegation in the next round
+than under any other circumstances, in particular than under the same circumstances in
+the EV condition. It is now reported first (not supported; interaction $\beta = -0.023$,
+SE = 0.067, one-sided $p = 0.633$), and the win-stay/lose-shift model including its
+decomposition by who produced the prior outcome is labeled exploratory throughout.
 
 As a **robustness check for repeated binary outcomes**, we re-estimated the preregistered
 LPM as a logistic regression with the same fixed effects and cluster-robust standard

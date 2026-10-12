@@ -96,8 +96,8 @@ from the raw session data and added them to the text, plus a new summary table
   explicitly that a two-sided 95% CI spanning zero is not in tension with a significant
   one-sided test at the same nominal level — different coverage conventions.
 - **Average delegation (WMW, prereg.):** rank-biserial $r \approx 0.05$ (bootstrap 95%
-  CI [−0.09, 0.21]), consistent with the null result.
-- **Categorical non-delegation (new, see next point):** risk difference 12.3pp (Wald
+  CI [−0.10, 0.20]), consistent with the null result.
+- **Categorical non-delegation (new, see next point; exploratory):** risk difference 12.3pp (Wald
   95% CI [4.9, 19.7]); OR = 5.25 (Fisher's exact 95% CI [1.65, 22.07]).
 
 On the question of one-sided vs. two-sided CIs for the primary tests: we decided against
@@ -141,8 +141,8 @@ convergence to zero after round 1.
 
 **Interpretation of borderline p-values.** We have not added a dedicated discussion
 of "sensitivity to the 0.05 threshold" for the round-1 result: we do not treat $\alpha =
-.05$ as a privileged cutoff whose proximity requires special comment, and we would not
-have wanted a symmetric demand for comment had the one-sided p-value instead been .059.
+0.05$ as a privileged cutoff whose proximity requires special comment, and we would not
+have wanted a symmetric demand for comment had the one-sided p-value instead been 0.059.
 We think the effect-size/CI reporting added above already gives readers everything they
 need to judge the evidential strength of the result directly, which we see as the more
 informative response to this concern than hedging around the significance threshold
@@ -339,9 +339,11 @@ in the meantime, we have re-verified a clean compile of the current source with 
 artifacts.
 
 **Insufficient statistical reporting for categorical non-delegation.** Fully addressed
-— we added an explicit significance test (two-sided Fisher's exact test, $p = 0.0014$)
-directly to the sentence introducing the categorical non-delegation contrast, alongside
-the risk-difference/OR effect sizes described under point 3 above.
+— we added an explicit significance test (a one-sided Boschloo exact test, $p < 0.001$; two-sided
+$p = 0.001$) directly to the sentence introducing the categorical non-delegation contrast,
+alongside the risk-difference/OR effect sizes described under point 3 above. We use the same
+test as for our preregistered first-contact comparison; since this outcome was not
+preregistered, we flag the test as exploratory in the text and in Table 1.
 
 **Zero-outcome-frequency mechanism "insufficiently supported."** We take this to refer
 to the claim that the EV algorithm mechanically produces more zero-payoff outcomes for

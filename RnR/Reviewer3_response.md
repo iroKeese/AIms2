@@ -51,11 +51,19 @@ the honest characterization is "underpowered," not "null."
 
 ## 5. Section 3.5: which analyses are confirmatory vs. exploratory?
 
-We have added an explicit sentence flagging that the base win-stay/lose-shift model
-(rounds 2–8, prior win only) is the preregistered secondary analysis, while the further
-decomposition distinguishing delegated from self-chosen prior outcomes (the
-loss × prior-delegation interaction, estimated separately by treatment) is exploratory
-and was not specified in advance.
+We have restructured the "Responses to feedback" subsection so that the status of every
+analysis is stated explicitly. **Correction to our earlier version of this subsection:**
+it had presented the win-stay/lose-shift model as the preregistered feedback analysis,
+which misrepresented the preregistration. The preregistered secondary hypothesis is a
+different one: after delegating to the algorithm with a payoff of zero, participants in
+the preference-based condition are more likely to switch to non-delegation in the next
+round than under any other circumstances, in particular than under the same
+circumstances in the EV condition. The subsection now reports this preregistered test
+first (it is not supported: the interaction is slightly negative and insignificant, one-sided
+$p = 0.633$), and then presents the win-stay/lose-shift model and its decomposition by
+the source of the prior outcome (delegated vs. self-chosen) together as *exploratory*,
+not specified in advance. The Introduction, Method, Discussion, and Contributions
+sections were adjusted accordingly.
 
 ## 6. "Figure?" broken reference on page 21
 

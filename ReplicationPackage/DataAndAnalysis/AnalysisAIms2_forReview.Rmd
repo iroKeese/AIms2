@@ -261,7 +261,7 @@ ggsave("Figure1_AverageDelegation.pdf", fig1, width = 7, height = 4.5)
 # Primary test 1 --- First-contact delegation (round 1)
 
 Preregistered one-sided Boschloo exact test on round-1 delegation
-(paper: 66.9% vs. 55.8%, p = 0.0413).
+(paper: 66.9% vs. 55.8%, p = 0.041).
 
 ```{r boschloo-round1}
 tab <- table(
@@ -290,8 +290,8 @@ n_pref <- sum(tab[, "0"])
 # Risk difference + Wald 95% CI
 rd <- p_ev - p_pref
 se_rd <- sqrt(p_ev * (1 - p_ev) / n_ev + p_pref * (1 - p_pref) / n_pref)
-cat("Risk difference:", round(rd, 4), "\n")
-cat("Wald 95% CI:", round(rd - 1.96 * se_rd, 4), "to", round(rd + 1.96 * se_rd, 4), "\n")
+cat("Risk difference:", round(rd, 3), "\n")
+cat("Wald 95% CI:", round(rd - 1.96 * se_rd, 3), "to", round(rd + 1.96 * se_rd, 3), "\n")
 
 # Odds ratio + Fisher's exact two-sided 95% CI
 fisher.test(tab)
@@ -304,7 +304,7 @@ fisher.test(tab)
 ## Participant-level Wilcoxon--Mann--Whitney test
 
 Preregistered one-sided WMW test on participant-average delegation
-(paper: W = 6428, p = 0.2425).
+(paper: W = 6428, p = 0.243).
 
 ```{r wmw-test}
 delegAv <- choices %>%
@@ -319,7 +319,7 @@ wilcox.test(avDeleg ~ Algorithm, data = delegAv, alternative = "less")
 ## Effect size and CI for the WMW test
 
 Rank-biserial correlation with a bootstrap 95% CI, as reported in the manuscript's new
-Table 1 ($r_{rb} \approx 0.05$, bootstrap CI [-0.09, 0.21]).
+Table 1 ($r_{rb} \approx 0.05$, bootstrap CI [-0.10, 0.20]).
 
 ```{r wmw-effectsize}
 rank_biserial <- function(x, y) {
@@ -332,7 +332,7 @@ x_pref <- delegAv$avDeleg[delegAv$Algorithm == "Pref"]
 x_ev   <- delegAv$avDeleg[delegAv$Algorithm == "EV"]
 
 r_rb <- rank_biserial(x_pref, x_ev)
-cat("Rank-biserial r:", round(r_rb, 4), "\n")
+cat("Rank-biserial r:", round(r_rb, 3), "\n")
 
 set.seed(1)
 B <- 2000
@@ -341,8 +341,8 @@ boot_r <- replicate(B, {
   yb <- sample(x_ev,   replace = TRUE)
   rank_biserial(xb, yb)
 })
-cat("Bootstrap 95% CI:", round(quantile(boot_r, 0.025), 4), "to",
-    round(quantile(boot_r, 0.975), 4), "\n")
+cat("Bootstrap 95% CI:", round(quantile(boot_r, 0.025), 3), "to",
+    round(quantile(boot_r, 0.975), 3), "\n")
 ```
 
 ## Risk aversion
@@ -412,7 +412,7 @@ summary(delRegPreReg)
 ## Robustness check: logistic regression
 
 Re-estimating the preregistered LPM as a logistic regression with the same fixed
-effects and cluster-robust SEs (paper: EVAlgorithm OR = 0.79, $p = 0.467$;
+effects and cluster-robust SEs (paper: EVAlgorithm OR = 0.79, $p = 0.549$;
 zero-outcome-history OR = 0.19, $p < 0.001$).
 
 ```{r logit-robustness}
@@ -442,6 +442,38 @@ delRegPreReg <- feols(
   data = subset(choices, Part == 2 & WithinPartDecisionNumber == 1)
 )
 summary(delRegPreReg) # Note: two-sided p-value
+```
+
+## Round-1 outcome and round-2 delegation, within treatment
+
+The regression above is correlational across the whole sample. To probe the
+feedback-driven account with variation that is not confounded by the between-treatment
+difference in decision rule, we condition on having delegated in round 1 and compare
+round-2 delegation after a zero vs. a positive round-1 payoff, separately by treatment
+(the payoff depends on which lottery state was drawn). Paper: EV 36.0% vs. 64.8%
+(Fisher's exact $p = 0.027$, OR = 0.31, 95% CI [0.10, 0.91]); Pref 50.0% vs. 72.5%
+($p = 0.099$, OR = 0.39, 95% CI [0.11, 1.29]).
+
+```{r round1-outcome-round2-delegation}
+round12 <- choices %>%
+  filter(Part == 2, WithinPartDecisionNumber %in% 1:2) %>%
+  select(ProlificID, EVAlgorithm, WithinPartDecisionNumber, Delegated, RelevantPayoff) %>%
+  pivot_wider(names_from = WithinPartDecisionNumber,
+              values_from = c(Delegated, RelevantPayoff)) %>%
+  filter(Delegated_1 == 1, !is.na(Delegated_2)) %>%
+  mutate(ZeroPayoff1 = factor(1 * (RelevantPayoff_1 == 0), levels = c(1, 0),
+                              labels = c("zero", "positive")),
+         Delegated2  = factor(Delegated_2, levels = c(1, 0),
+                              labels = c("delegated", "not")))
+
+for (trmt in c(1, 0)) {
+  cat("\n====", ifelse(trmt == 1, "EV", "Preference-based"), "====\n")
+  d <- filter(round12, EVAlgorithm == trmt)
+  tab <- table(ZeroPayoff1 = d$ZeroPayoff1, Delegated2 = d$Delegated2)
+  print(tab)
+  print(round(prop.table(tab, margin = 1), 3))   # share delegating again
+  print(fisher.test(tab))
+}
 ```
 
 \newpage
@@ -488,7 +520,7 @@ analysis_data <- choices %>%
   ) %>%
   left_join(
     subjects %>% select(ProlificID, RiskTaking, FinMarketExperience,
-                        FinanciallyResponsible, AIXperience),
+                        FinanciallyResponsible, AIXperience, Reliable),
     by = "ProlificID"
   )
 
@@ -499,46 +531,57 @@ prop.table(table(analysis_data$DelegatorType, analysis_data$EVAlgorithm), margin
 
 ## Significance test and effect size for categorical non-delegation
 
-Fisher's exact test, risk difference (Wald 95% CI), and odds ratio (Fisher's exact 95%
-CI), as newly added to the manuscript (paper: $p = 0.0014$; RD = 12.3pp [4.9, 19.7];
-OR = 5.25 [1.65, 22.07]).
+Main test: one-sided Boschloo exact test (Pref > EV) with the two treatment arms as
+the binomial groups. The outcome was not preregistered; a one-sided test is in line
+with the general prediction that personalization reduces acceptance, and it is the
+same test as for the earlier study in the footnote. The two-sided Boschloo test,
+Fisher's exact test (used for the odds ratio and its CI), and the risk difference with
+Wald 95% CI are reported alongside (paper: one-sided $p < 0.001$, two-sided
+$p = 0.001$; RD = 12.3pp [4.9, 19.7]; OR = 5.25 [1.65, 22.07]).
 
 ```{r nondelegation-significance}
+# Rows: treatment arms (the binomial groups); columns: never-delegator yes / no
 nondeleg_tab <- table(
-  NonDelegator = factor(analysis_data$NonDelegator, levels = c(1, 0)),
-  EVAlgorithm  = factor(analysis_data$EVAlgorithm,  levels = c(0, 1))
+  Treatment    = factor(analysis_data$EVAlgorithm, levels = c(0, 1),
+                        labels = c("Pref", "EV")),
+  NonDelegator = factor(analysis_data$NonDelegator, levels = c(1, 0),
+                        labels = c("Never", "NotNever"))
 )
-nondeleg_tab   # rows: never-delegator yes/no; columns: 0 = Pref, 1 = EV
+nondeleg_tab
 
-# Odds ratio of never-delegating, Pref relative to EV (expect OR ~ 5.25)
+# Main test: one-sided Boschloo (Pref > EV)
+exact.test(nondeleg_tab, method = "Boschloo", alternative = "greater",
+           to.plot = FALSE)$p.value
+# Two-sided, for reference
+exact.test(nondeleg_tab, method = "Boschloo", to.plot = FALSE)$p.value
+
+# Odds ratio and its CI (Fisher's exact; expect OR ~ 5.25)
 fisher.test(nondeleg_tab)
 
-p_pref_nd <- prop.table(nondeleg_tab, margin = 2)["1", "0"]
-p_ev_nd   <- prop.table(nondeleg_tab, margin = 2)["1", "1"]
-n_pref_nd <- sum(nondeleg_tab[, "0"])
-n_ev_nd   <- sum(nondeleg_tab[, "1"])
-# (row "1" = never-delegator; column "0" = Pref, "1" = EV)
-
-rd_nd <- p_pref_nd - p_ev_nd
-se_rd_nd <- sqrt(p_pref_nd * (1 - p_pref_nd) / n_pref_nd + p_ev_nd * (1 - p_ev_nd) / n_ev_nd)
-cat("Risk difference:", round(rd_nd, 4), "\n")
-cat("Wald 95% CI:", round(rd_nd - 1.96 * se_rd_nd, 4), "to",
-    round(rd_nd + 1.96 * se_rd_nd, 4), "\n")
+# Risk difference + Wald 95% CI
+p_pref_nd <- nondeleg_tab["Pref", "Never"] / sum(nondeleg_tab["Pref", ])
+p_ev_nd   <- nondeleg_tab["EV",   "Never"] / sum(nondeleg_tab["EV", ])
+n_pref_nd <- sum(nondeleg_tab["Pref", ])
+n_ev_nd   <- sum(nondeleg_tab["EV", ])
+rd_nd     <- p_pref_nd - p_ev_nd
+se_rd_nd  <- sqrt(p_pref_nd * (1 - p_pref_nd) / n_pref_nd +
+                  p_ev_nd * (1 - p_ev_nd) / n_ev_nd)
+cat("Risk difference:", round(rd_nd, 3), "\n")
+cat("Wald 95% CI:", round(rd_nd - 1.96 * se_rd_nd, 3), "to",
+    round(rd_nd + 1.96 * se_rd_nd, 3), "\n")
 ```
 
 ## Comparisons of never-delegators vs. delegators
 
-The following tests reproduce the in-text comparisons (age, income, education,
-time, gender, risk-taking, reliability, AI experience, Part-1 satisfaction).
+The tests below are in the order in which they appear in the text (Results,
+"Categorical non-delegation"); never-delegators are compared with participants who
+delegated at least once. Tests that are *not* reported in the text are collected in a
+separate subsection further below.
 
 ```{r nondelegator-tests}
-# Age
-t.test(Age ~ DelegationGroup, data = analysis_data)
-
-# Time in experiment
-t.test(TimeInSeconds ~ NonDelegator, data = analysis_data)
-wilcox.test(TimeInSeconds ~ NonDelegator, data = analysis_data)
-ks.test(TimeInSeconds ~ NonDelegator, data = analysis_data)
+# Age (the text lists never-delegators first: 41.8 vs. 42.9, t = -0.329)
+t.test(Age ~ factor(DelegationGroup, levels = c("Never", "AtLeastOnce")),
+       data = analysis_data)
 
 # Household income (categorical)
 chisq.test(table(analysis_data$DelegationGroup, analysis_data$HHIncome))
@@ -546,79 +589,31 @@ chisq.test(table(analysis_data$DelegationGroup, analysis_data$HHIncome))
 # Education (categorical)
 chisq.test(table(analysis_data$DelegationGroup, analysis_data$Education))
 
-# Gender: never-delegation rate among males vs. females (Boschloo)
+# Time in experiment (delegators vs. never-delegators; t = -0.971)
+t.test(TimeInSeconds ~ NonDelegator, data = analysis_data)
+
+# Gender: never-delegation rate among males vs. females (Boschloo; text: p = 0.156)
 female_table <- table(
   DelegationGroup = analysis_data$DelegationGroup,
   Female          = analysis_data$Female
 )
-exact.test(female_table[, c(2, 4)], method = "Boschloo", to.plot = FALSE)$p.value
+female_table
+exact.test(female_table[, c("0", "1")], method = "Boschloo", to.plot = FALSE)$p.value
 
-# Self-reported financial risk-taking, reliability, AI experience
-t.test(RiskTaking  ~ NonDelegator, data = analysis_data)
-t.test(FinanciallyResponsible ~ NonDelegator, data = analysis_data)
+# Self-reported willingness to take financial risks
+t.test(RiskTaking ~ NonDelegator, data = analysis_data)
+
+# Self-reported response reliability / care
+t.test(Reliable ~ NonDelegator, data = analysis_data)
+
+# Frequency of AI use / interactions
 t.test(AIXperience ~ NonDelegator, data = analysis_data)
 ```
 
-### Non-parametric robustness check (Wilcoxon) for the comparisons above
-
-As newly added to the manuscript footnote (paper: age $p=0.649$; time $p=0.105$;
-risk-taking $p=0.854$; reliability $p=0.956$; AI experience $p=0.445$). Note: the
-manuscript's "reliability" item corresponds to `Reliable` in `subjects`/`choices`,
-merged in here for completeness; if not already present in `analysis_data`, join it
-from `subjects` first.
-
-```{r nondelegator-tests-nonparametric}
-wilcox.test(Age ~ NonDelegator, data = analysis_data)
-wilcox.test(TimeInSeconds ~ NonDelegator, data = analysis_data)
-wilcox.test(RiskTaking ~ NonDelegator, data = analysis_data)
-wilcox.test(AIXperience ~ NonDelegator, data = analysis_data)
-
-# Reliability (Reliable), if not yet merged into analysis_data:
-if (!"Reliable" %in% names(analysis_data)) {
-  analysis_data <- analysis_data %>%
-    left_join(subjects %>% select(ProlificID, Reliable), by = "ProlificID")
-}
-t.test(Reliable ~ NonDelegator, data = analysis_data)
-wilcox.test(Reliable ~ NonDelegator, data = analysis_data)
-```
-
-## Choice quality among never-delegators (new Limitations check)
-
-Tests whether never-delegators' own non-dominated choice rate (among their self-made
-Part-2 decisions) differs from that of participants who delegated at least once, used in
-the manuscript to argue against a task-difficulty confound for categorical
-non-delegation (paper: 34.7% vs. 33.6%; Welch $t = -0.25$, $p = 0.806$; Wilcoxon
-$p = 0.669$).
-
-```{r choicequality-by-nondelegator}
-selfchoice <- choices %>%
-  filter(Part == 2, Delegated == 0, Option > 0) %>%
-  left_join(
-    analysis_data %>% select(ProlificID, DelegatorType),
-    by = "ProlificID"
-  )
-
-# Decision-level check, by delegator type
-selfchoice %>%
-  group_by(DelegatorType) %>%
-  summarise(avNonDom = mean(Nondominated, na.rm = TRUE), n = n(), .groups = "drop")
-
-# Participant-level average non-dominated rate, Never vs. AtLeastOnce
-partavg <- selfchoice %>%
-  group_by(ProlificID) %>%
-  summarise(Nondominated = mean(Nondominated, na.rm = TRUE), .groups = "drop") %>%
-  left_join(analysis_data %>% select(ProlificID, DelegationGroup), by = "ProlificID")
-
-partavg %>%
-  group_by(DelegationGroup) %>%
-  summarise(Nondominated = mean(Nondominated, na.rm = TRUE), n = n(), .groups = "drop")
-
-t.test(Nondominated ~ DelegationGroup, data = partavg)
-wilcox.test(Nondominated ~ DelegationGroup, data = partavg)
-```
+Within the preference-based condition: Part-1 satisfaction by delegation type (this
+chunk also creates `subjects2`, which is used in the section on reasons below).
 
 ```{r nondelegator-satisfaction-pref}
-# Within the preference-based condition: Part-1 satisfaction by delegation type
 NeverDelegate <- choices %>%
   select(ProlificID, sumDelegations) %>%
   distinct() %>%
@@ -631,14 +626,170 @@ subjects2 %>%
   group_by(sumDeleg0) %>%
   summarise(SatisfiedPart1 = mean(SatisfiedPart1, na.rm = TRUE),
             n = n(), .groups = "drop")
+
+t.test(SatisfiedPart1 ~ sumDeleg0, data = filter(subjects2, EVAlgorithm == 0))
+```
+
+### Non-parametric robustness check (Wilcoxon), as in the footnote
+
+Same comparisons, same order (paper: age $p = 0.649$; time $p = 0.105$;
+risk-taking $p = 0.854$; reliability $p = 0.956$; AI experience $p = 0.445$).
+
+```{r nondelegator-tests-nonparametric}
+wilcox.test(Age ~ NonDelegator, data = analysis_data)
+wilcox.test(TimeInSeconds ~ NonDelegator, data = analysis_data)
+wilcox.test(RiskTaking ~ NonDelegator, data = analysis_data)
+wilcox.test(Reliable ~ NonDelegator, data = analysis_data)
+wilcox.test(AIXperience ~ NonDelegator, data = analysis_data)
+```
+
+### Tests that are not reported in the text
+
+Kept for completeness; none of these appears in the manuscript.
+
+```{r nondelegator-tests-unreported}
+# Distributional test on time in experiment
+ks.test(TimeInSeconds ~ NonDelegator, data = analysis_data)
+
+# Share of household financial decisions the participant is responsible for
+t.test(FinanciallyResponsible ~ NonDelegator, data = analysis_data)
+wilcox.test(FinanciallyResponsible ~ NonDelegator, data = analysis_data)
+
+# Part-1 satisfaction (Pref condition only), non-parametric
+wilcox.test(SatisfiedPart1 ~ sumDeleg0, data = filter(subjects2, EVAlgorithm == 0))
+```
+
+## Choice quality among never-delegators (Limitations)
+
+Tests whether never-delegators' non-dominated choice rate among their self-made
+Part-2 decisions differs from that of participants who delegated at least once, used
+in the manuscript to argue against a task-difficulty confound for categorical
+non-delegation (paper: 34.7% vs. 33.6%; Welch $t = -0.25$, $p = 0.806$; Wilcoxon
+$p = 0.669$).
+
+**Note on the sample sizes.** The first table counts *decisions* and the second
+*participants*, so the numbers differ by construction. The 22 never-delegators made
+175 self-chosen decisions in total (22 x 8 = 176 minus one round without a valid
+decision). The 170 in the participant-level comparison is the number of participants
+who delegated at least once *and* made at least one valid decision themselves: of the
+211 participants who delegated at least once, 40 delegated in every valid round (38 in
+all 8 rounds, 2 with fewer valid rounds) and 1 has only a timed-out own decision, so
+they contribute no self-chosen decision (211 - 41 = 170).
+
+```{r choicequality-by-nondelegator}
+selfchoice <- choices %>%
+  filter(Part == 2, Delegated == 0, Option > 0) %>%
+  left_join(
+    analysis_data %>% select(ProlificID, DelegatorType, DelegationGroup),
+    by = "ProlificID"
+  )
+
+# Decision level, by delegator type (n_decisions = self-chosen decisions,
+# n_participants = participants contributing to them)
+selfchoice %>%
+  group_by(DelegatorType) %>%
+  summarise(avNonDom = mean(Nondominated, na.rm = TRUE),
+            n_decisions = n(),
+            n_participants = n_distinct(ProlificID), .groups = "drop")
+
+# Participant level: average non-dominated rate, Never vs. AtLeastOnce
+partavg <- selfchoice %>%
+  group_by(ProlificID, DelegationGroup) %>%
+  summarise(Nondominated = mean(Nondominated, na.rm = TRUE), .groups = "drop")
+
+partavg %>%
+  group_by(DelegationGroup) %>%
+  summarise(Nondominated = mean(Nondominated), n_participants = n(), .groups = "drop")
+
+t.test(Nondominated ~ DelegationGroup, data = partavg)
+wilcox.test(Nondominated ~ DelegationGroup, data = partavg)
 ```
 
 \newpage
 
-# Responses to feedback (win-stay / lose-shift)
+# Responses to feedback
 
-Win-stay/lose-shift model on rounds 2--8 (paper, Section "Responses to
-feedback").
+## Preregistered secondary hypothesis: switching to non-delegation after a zero payoff
+
+The preregistration (question 8) contains one secondary hypothesis: after delegating
+to the algorithm with a 0-payoff, participants in PREF are more likely to switch to
+non-delegation in the following round than under any other circumstances, in
+particular than under the same circumstances in the EV condition. The preregistration
+does not specify a test. We estimate an LPM of switching to non-delegation in rounds
+2--8 that follow a delegated round, with task and decision-number fixed effects and
+participant-clustered SEs; the preregistered prediction corresponds to a *positive*
+`PREF x ZeroPayoff` interaction (tested one-sided). Note that lags are taken over the
+available rows of a participant (16 of the 1,864 Part-2 rounds have no valid
+decision and are dropped, which affects 13 participants).
+
+```{r preregistered-switching}
+switchdat <- choices %>%
+  filter(Part == 2) %>%
+  group_by(ProlificID) %>%
+  arrange(WithinPartDecisionNumber, .by_group = TRUE) %>%
+  mutate(lagDelegated = lag(Delegated, 1),
+         lagPayoff    = lag(RelevantPayoff, 1)) %>%
+  ungroup() %>%
+  filter(WithinPartDecisionNumber > 1, !is.na(lagDelegated)) %>%
+  mutate(PREF         = 1 - EVAlgorithm,
+         ZeroPayoff   = 1 * (lagPayoff == 0),
+         SwitchToNon  = 1 * (lagDelegated == 1 & Delegated == 0))
+
+# Rounds that follow a delegated round (paper: 799 observations, 209 participants)
+afterDeleg <- filter(switchdat, lagDelegated == 1)
+c(N = nrow(afterDeleg), participants = n_distinct(afterDeleg$ProlificID))
+
+# Raw switching rates (paper: EV 30.3% / 55.6%; PREF 21.5% / 45.3%)
+afterDeleg %>%
+  group_by(PREF, ZeroPayoff) %>%
+  summarise(rate = mean(SwitchToNon), n = n(), .groups = "drop")
+
+switchReg <- feols(
+  SwitchToNon ~ PREF * ZeroPayoff | OptionsetID + WithinPartDecisionNumber,
+  cluster = ~ProlificID, data = afterDeleg
+)
+summary(switchReg)
+
+# One-sided p-value for the preregistered direction (interaction > 0);
+# paper: beta = -0.023, SE = 0.067, one-sided p = 0.633 (two-sided 0.734)
+ct <- coeftable(switchReg)
+pt(ct["PREF:ZeroPayoff", "t value"],
+   df = n_distinct(afterDeleg$ProlificID) - 1, lower.tail = FALSE)
+```
+
+Supplementary contrasts reported in the text: (a) only rounds following a zero-payoff
+delegation, PREF vs. EV (paper: beta = -0.105, SE = 0.070, two-sided p = 0.140); (b) the
+zero-payoff effect within each condition (paper: 0.254 in EV, 0.250 in PREF, both
+$p < 0.001$); (c) comparison with *all* other rounds 2--8 as the reference
+(paper: interaction beta = -0.071, SE = 0.071, one-sided p = 0.840; 1,615 observations).
+
+```{r preregistered-switching-contrasts}
+# (a) after zero-payoff delegation only
+feols(SwitchToNon ~ PREF | OptionsetID + WithinPartDecisionNumber,
+      cluster = ~ProlificID, data = filter(afterDeleg, ZeroPayoff == 1)) %>% summary()
+
+# (b) zero vs. positive payoff after delegation, by condition
+feols(SwitchToNon ~ ZeroPayoff | OptionsetID + WithinPartDecisionNumber,
+      cluster = ~ProlificID, data = filter(afterDeleg, PREF == 0)) %>% summary()  # EV
+feols(SwitchToNon ~ ZeroPayoff | OptionsetID + WithinPartDecisionNumber,
+      cluster = ~ProlificID, data = filter(afterDeleg, PREF == 1)) %>% summary()  # PREF
+
+# (c) "any other circumstances" = all rounds 2--8
+switchAll <- switchdat %>% mutate(ZeroAfterDeleg = 1 * (lagDelegated == 1 & lagPayoff == 0))
+switchRegAll <- feols(
+  SwitchToNon ~ PREF * ZeroAfterDeleg | OptionsetID + WithinPartDecisionNumber,
+  cluster = ~ProlificID, data = switchAll
+)
+summary(switchRegAll)
+ctA <- coeftable(switchRegAll)
+pt(ctA["PREF:ZeroAfterDeleg", "t value"],
+   df = n_distinct(switchAll$ProlificID) - 1, lower.tail = FALSE)
+```
+
+## Exploratory: win-stay / lose-shift
+
+Not preregistered. Win-stay/lose-shift model on rounds 2--8 (paper, Section "Responses
+to feedback"), and its decomposition by who produced the previous outcome.
 
 ```{r win-stay-lose-shift}
 choices <- choices %>%
@@ -1007,6 +1158,28 @@ cat("\nAverage delegation rate by condition (paper: 35.3% Pref vs. 54.5% EV):\n"
 print(aggregate(avgDeleg ~ EValgo, data = pilot, mean))
 ```
 
+## Pilot: categorical non-delegation (footnote and Discussion)
+
+The footnote in "Categorical non-delegation" and the Discussion report never-delegation
+in the earlier study (paper: 32/189 in preference-based vs. 17/187 in EV treatments,
+one-sided Boschloo $p = 0.014$). **Check:** with the pilot data as stored here, the
+preference-based arm has 190 participants (as in the first-contact comparison above),
+so the denominator should be 190 unless one participant was dropped in the thesis
+analysis.
+
+```{r pilot-never-delegators}
+pilot$nDeleg <- rowSums(pilot[, decisioncols])
+pilotNever <- table(
+  Treatment = factor(pilot$EValgo, levels = c(0, 1), labels = c("Pref", "EV")),
+  Never     = factor(pilot$nDeleg == 0, levels = c(TRUE, FALSE),
+                     labels = c("Never", "NotNever"))
+)
+pilotNever
+# one-sided Boschloo (Pref > EV), treatment arms as the binomial groups
+exact.test(pilotNever, method = "Boschloo", alternative = "greater",
+           to.plot = FALSE)$p.value
+```
+
 ## Minimum detectable effect (MDE) at 80% power
 
 A pure design-stage quantity: depends only on $n$, $\alpha$, and a baseline rate, not on
@@ -1020,7 +1193,7 @@ for (n in c(100, 120)) {
   pt <- power.prop.test(n = n, p1 = p_pref_firstcontact, p2 = NULL,
                          power = 0.80, sig.level = 0.05, alternative = "one.sided")
   cat("n =", n, " MDE (first-contact-type proportion) =",
-      round(pt$p2 - p_pref_firstcontact, 4), "\n")
+      round(pt$p2 - p_pref_firstcontact, 3), "\n")
 }
 ```
 
@@ -1033,15 +1206,15 @@ within-condition SD of participant-average delegation (paper: MDE ~10-11pp;
 ```{r power-avgdeleg}
 sd_pilot    <- sqrt(mean(tapply(pilot$avgDeleg, pilot$EValgo, var)))
 delta_pilot <- diff(tapply(pilot$avgDeleg, pilot$EValgo, mean))
-cat("Pilot pooled SD:", round(sd_pilot, 4), " pilot gap:", round(delta_pilot, 4), "\n")
+cat("Pilot pooled SD:", round(sd_pilot, 3), " pilot gap:", round(delta_pilot, 3), "\n")
 
 for (n in c(100, 120)) {
   m <- power.t.test(n = n, sd = sd_pilot, power = 0.80, sig.level = 0.05,
                     alternative = "one.sided")
   r <- power.t.test(n = n, delta = delta_pilot, sd = sd_pilot, sig.level = 0.05,
                     alternative = "one.sided")
-  cat("n =", n, " MDE =", round(m$delta, 4), " power to re-detect pilot gap =",
-      round(r$power, 4), "\n")
+  cat("n =", n, " MDE =", round(m$delta, 3), " power to re-detect pilot gap =",
+      round(r$power, 3), "\n")
 }
 ```
 
@@ -1057,7 +1230,7 @@ for (n in c(100, 120)) {
   pt <- power.prop.test(n = n, p1 = p_pref_firstcontact, p2 = p_ev_firstcontact,
                          sig.level = 0.05, alternative = "one.sided")
   cat("n =", n, " power to re-detect pilot's first-contact gap =",
-      round(pt$power, 4), "\n")
+      round(pt$power, 3), "\n")
 }
 ```
 
