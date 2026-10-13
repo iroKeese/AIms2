@@ -493,6 +493,30 @@ round12_d %>%
   summarise(n = n(), zeroShare = mean(Zero))
 ```
 
+what happens after non-delegation?
+```{r round1-outcome-round2-nondelegation}
+round12non <- choices %>%
+  filter(Part == 2, WithinPartDecisionNumber %in% 1:2) %>%
+  select(ProlificID, EVAlgorithm, WithinPartDecisionNumber, Delegated, RelevantPayoff) %>%
+  pivot_wider(names_from = WithinPartDecisionNumber,
+              values_from = c(Delegated, RelevantPayoff)) %>%
+  filter(Delegated_1 == 0, !is.na(Delegated_2)) %>%
+  mutate(ZeroPayoff1 = factor(1 * (RelevantPayoff_1 == 0), levels = c(1, 0),
+                              labels = c("zero", "positive")),
+         Delegated2  = factor(Delegated_2, levels = c(1, 0),
+                              labels = c("delegated", "not")))
+
+for (trmt in c(1, 0)) {
+  cat("\n====", ifelse(trmt == 1, "EV", "Preference-based"), "====\n")
+  nond <- filter(round12non, EVAlgorithm == trmt)
+  nontab <- table(ZeroPayoff1 = d$ZeroPayoff1, Delegated2 = d$Delegated2)
+  print(nontab)
+  print(round(prop.table(nontab, margin = 1), 3))   # share delegating again
+  print(fisher.test(nontab))
+}
+```
+
+
 
 
 \newpage

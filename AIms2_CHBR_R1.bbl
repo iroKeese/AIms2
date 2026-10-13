@@ -135,7 +135,7 @@ Candrian, C.%
 \APACrefYearMonthDay{2022}{}{}.
 \newblock
 {\BBOQ}\APACrefatitle {Rise of the machines: Delegating decisions to autonomous
-  AI} {Rise of the machines: Delegating decisions to autonomous ai}.{\BBCQ}
+  {AI}} {Rise of the machines: Delegating decisions to autonomous {AI}}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Computers in Human Behavior}{134}{}{107308}.
 \newblock
@@ -222,8 +222,8 @@ Chugunova, M.%
 \newblock
 \APACrefYearMonthDay{2022}{}{}.
 \newblock
-{\BBOQ}\APACrefatitle {We and It: An interdisciplinary review of the
-  experimental evidence on how humans interact with machines} {We and it: An
+{\BBOQ}\APACrefatitle {We and {It}: An interdisciplinary review of the
+  experimental evidence on how humans interact with machines} {We and {It}: An
   interdisciplinary review of the experimental evidence on how humans interact
   with machines}.{\BBCQ}
 \newblock
@@ -253,9 +253,9 @@ Deci, E\BPBI L.%
 \newblock
 \APACrefYearMonthDay{2000}{}{}.
 \newblock
-{\BBOQ}\APACrefatitle {The ``What'' and ``Why'' of Goal Pursuits: Human Needs
-  and the Self-Determination of Behavior} {The ``what'' and ``why'' of goal
-  pursuits: Human needs and the self-determination of behavior}.{\BBCQ}
+{\BBOQ}\APACrefatitle {The ``{W}hat'' and ``{W}hy'' of Goal Pursuits: Human
+  Needs and the Self-Determination of Behavior} {The ``{W}hat'' and ``{W}hy''
+  of goal pursuits: Human needs and the self-determination of behavior}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Psychological Inquiry}{11}{4}{227--268}.
 \newblock
@@ -469,8 +469,8 @@ Fischbacher, U.%
 \newblock
 \APACrefYearMonthDay{2007}{{\APACmonth{06}}}{}.
 \newblock
-{\BBOQ}\APACrefatitle {z-Tree: Zurich toolbox for ready-made economic
-  experiments} {z-tree: Zurich toolbox for ready-made economic
+{\BBOQ}\APACrefatitle {{z-Tree}: {Z}urich toolbox for ready-made economic
+  experiments} {{z-Tree}: {Z}urich toolbox for ready-made economic
   experiments}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Experimental Economics}{10}{2}{171--178}.
@@ -741,8 +741,8 @@ Ivanova-Stenzel, R.%
 \newblock
 \APACrefYearMonthDay{2025}{}{}.
 \newblock
-\APACrefbtitle {Delegating in the Age of AI: Preferences for Decision Autonomy}
-  {Delegating in the age of ai: Preferences for decision autonomy}\
+\APACrefbtitle {Delegating in the Age of {AI}: Preferences for Decision
+  Autonomy} {Delegating in the age of {AI}: Preferences for decision autonomy}\
   \APACbVolEdTR {}{Discussion Paper\ \BNUM~558}.
 \newblock
 \APACaddressInstitution{M\"{u}nchen und
@@ -792,7 +792,7 @@ Kim2025ICIS}%
 \begin{APACrefauthors}%
 Kim, S.%
 , Ahn, D.%
-, Choi, B.%
+, Choi, B\BHBI g.%
 , Park, J.%
 , Yang, J.%
 , Yoo, B.%
@@ -802,15 +802,16 @@ Kim, S.%
 \newblock
 \APACrefYearMonthDay{2025}{}{}.
 \newblock
-{\BBOQ}\APACrefatitle {Controllability in Algorithmic Decision-Making: {F}ield
+{\BBOQ}\APACrefatitle {Controllability in Algorithmic Decision-Making: Field
   Evidence from a Robo-Advisor} {Controllability in algorithmic
-  decision-making: {F}ield evidence from a robo-advisor}.{\BBCQ}
+  decision-making: Field evidence from a robo-advisor}.{\BBCQ}
 \newblock
-\BIn{} \APACrefbtitle {Proceedings of the International Conference on
-  Information Systems (ICIS 2025).} {Proceedings of the international
-  conference on information systems (icis 2025).}
+\BIn{} \APACrefbtitle {{ICIS} 2025 Proceedings.} {{ICIS} 2025 proceedings.}
 \newblock
 \APACaddressPublisher{}{AIS}.
+\newblock
+\begin{APACrefURL} \url{https://aisel.aisnet.org/icis2025/fintech/fintech/4}
+  \end{APACrefURL}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -863,9 +864,10 @@ Klingbeil, A.%
 \newblock
 \APACrefYearMonthDay{2024}{}{}.
 \newblock
-{\BBOQ}\APACrefatitle {Trust and reliance on AI — An experimental study on
-  the extent and costs of overreliance on AI} {Trust and reliance on ai — an
-  experimental study on the extent and costs of overreliance on ai}.{\BBCQ}
+{\BBOQ}\APACrefatitle {Trust and reliance on {AI} --- {A}n experimental study
+  on the extent and costs of overreliance on {AI}} {Trust and reliance on {AI}
+  --- {A}n experimental study on the extent and costs of overreliance on
+  {AI}}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Computers in Human Behavior}{160}{}{108352}.
 \newblock
@@ -895,8 +897,8 @@ Kou, G.%
 \newblock
 \APACrefYearMonthDay{2026}{}{}.
 \newblock
-{\BBOQ}\APACrefatitle {Human--{AI} hybrid finance: from {AI} tools to decision
-  systems} {Human--{AI} hybrid finance: from {AI} tools to decision
+{\BBOQ}\APACrefatitle {Human--{AI} hybrid finance: {F}rom {AI} tools to
+  decision systems} {Human--{AI} hybrid finance: {F}rom {AI} tools to decision
   systems}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Financial Innovation}{12}{}{125}.
@@ -1049,9 +1051,9 @@ Maasland, C.%
 \newblock
 \APACrefYearMonthDay{2022}{}{}.
 \newblock
-{\BBOQ}\APACrefatitle {Blame the Machine? Insights From an Experiment on
+{\BBOQ}\APACrefatitle {Blame the Machine? {I}nsights From an Experiment on
   Algorithm Aversion and Blame Avoidance in Computer-Aided Human Resource
-  Management} {Blame the machine? insights from an experiment on algorithm
+  Management} {Blame the machine? {I}nsights from an experiment on algorithm
   aversion and blame avoidance in computer-aided human resource
   management}.{\BBCQ}
 \newblock
@@ -1083,9 +1085,9 @@ Mahmud, H.%
 \newblock
 \APACrefYearMonthDay{2022}{}{}.
 \newblock
-{\BBOQ}\APACrefatitle {What influences algorithmic decision-making? A
+{\BBOQ}\APACrefatitle {What influences algorithmic decision-making? {A}
   systematic literature review on algorithm aversion} {What influences
-  algorithmic decision-making? a systematic literature review on algorithm
+  algorithmic decision-making? {A} systematic literature review on algorithm
   aversion}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Technological Forecasting and Social
@@ -1209,9 +1211,9 @@ Renier, L\BPBI A.%
 \newblock
 \APACrefYearMonthDay{2021}{}{}.
 \newblock
-{\BBOQ}\APACrefatitle {To err is human, not algorithmic – Robust reactions to
-  erring algorithms} {To err is human, not algorithmic – robust reactions to
-  erring algorithms}.{\BBCQ}
+{\BBOQ}\APACrefatitle {To err is human, not algorithmic -- {R}obust reactions
+  to erring algorithms} {To err is human, not algorithmic -- {R}obust reactions
+  to erring algorithms}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Computers in Human Behavior}{124}{}{106879}.
 \newblock
@@ -1235,16 +1237,20 @@ Rühr, A.%
 \newblock
 \APACrefYearMonthDay{2020}{}{}.
 \newblock
-{\BBOQ}\APACrefatitle {Robo-advisor configuration: An investigation of user
-  preferences and the performance-control dilemma} {Robo-advisor configuration:
+{\BBOQ}\APACrefatitle {Robo-Advisor Configuration: An Investigation of User
+  Preferences and the Performance-Control Dilemma} {Robo-advisor configuration:
   An investigation of user preferences and the performance-control
   dilemma}.{\BBCQ}
 \newblock
-\BIn{} \APACrefbtitle {Proceedings of the 28th European Conference on
-  Information Systems (ECIS 2020).} {Proceedings of the 28th european
-  conference on information systems (ecis 2020).}
+\BIn{} \APACrefbtitle {{Proceedings of the 28th European Conference on
+  Information Systems (ECIS), An Online AIS Conference, June 15-17, 2020}.}
+  {{Proceedings of the 28th European Conference on Information Systems (ECIS),
+  An Online AIS Conference, June 15-17, 2020}.}
 \newblock
 \APACaddressPublisher{}{AIS}.
+\newblock
+\begin{APACrefURL} \url{https://aisel.aisnet.org/ecis2020_rp/94}
+  \end{APACrefURL}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -1268,10 +1274,10 @@ Schaap, G.%
 \newblock
 \APACrefYearMonthDay{2024}{{\APACmonth{08}}}{}.
 \newblock
-{\BBOQ}\APACrefatitle {The ABC of algorithmic aversion: not agent, but benefits
-  and control determine the acceptance of automated decision-making} {The abc
-  of algorithmic aversion: not agent, but benefits and control determine the
-  acceptance of automated decision-making}.{\BBCQ}
+{\BBOQ}\APACrefatitle {The {ABC} of algorithmic aversion: {N}ot agent, but
+  benefits and control determine the acceptance of automated decision-making}
+  {The {ABC} of algorithmic aversion: {N}ot agent, but benefits and control
+  determine the acceptance of automated decision-making}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{AI \& SOCIETY}{39}{4}{1947--1960}.
 \newblock
@@ -1299,8 +1305,8 @@ Schreibelmayr, S.%
 \APACrefYearMonthDay{2025}{}{}.
 \newblock
 {\BBOQ}\APACrefatitle {Determinants of self-reported and behavioral trust in an
-  AI advisor within a cooperative problem-solving game} {Determinants of
-  self-reported and behavioral trust in an ai advisor within a cooperative
+  {AI} advisor within a cooperative problem-solving game} {Determinants of
+  self-reported and behavioral trust in an {AI} advisor within a cooperative
   problem-solving game}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Computers in Human Behavior: Artificial
@@ -1391,9 +1397,9 @@ Sun, Y.%
 \newblock
 \APACrefYearMonthDay{2026}{}{}.
 \newblock
-{\BBOQ}\APACrefatitle {Does transparency matter when an AI system meets
-  performance expectations? An experiment with an online dating site} {Does
-  transparency matter when an ai system meets performance expectations? an
+{\BBOQ}\APACrefatitle {Does transparency matter when an {AI} system meets
+  performance expectations? {A}n experiment with an online dating site} {Does
+  transparency matter when an {AI} system meets performance expectations? {A}n
   experiment with an online dating site}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Computers in Human Behavior}{177}{}{108875}.
@@ -1454,9 +1460,9 @@ Westphal, M.%
 \newblock
 \APACrefYearMonthDay{2023}{}{}.
 \newblock
-{\BBOQ}\APACrefatitle {Decision control and explanations in human-AI
+{\BBOQ}\APACrefatitle {Decision control and explanations in human-{AI}
   collaboration: Improving user perceptions and compliance} {Decision control
-  and explanations in human-ai collaboration: Improving user perceptions and
+  and explanations in human-{AI} collaboration: Improving user perceptions and
   compliance}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Computers in Human Behavior}{144}{}{107714}.
