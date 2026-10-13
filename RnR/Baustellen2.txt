@@ -1,0 +1,9 @@
+throughout:
+- keep at most 3 decimal spaces after the dot (sometimes we have 4)
+- consistently use an 0 whenever there is a number like ".05" or ".041", or the like
+
+Categorical non-delegation
+- Main test in the text: Fisher; but our main test for that purpose is Boschloo (see also the footnote in that paragraph)! One question is whether that Boschloo test should be one-sided though (given that we did not pre-register the test). Running it one-sided is in line with the general prediction that personalization leads to less acceptance, though.
+- the replication .Rmd for the tests in Section "Comparisons of never-delegators vs. delegators" is a mess - the order is not the one in the text, and there seem to be tests missing, too. If there are any non-reported tests in that section, I'd like to keep them, but keep them in a separate subsection.
+- the "Choice quality among never-delegators" bit is cool, but I'm not sure the numbers match up (why are there 175 NeverDelegators according to the first displayed table [-> "DelegatorType"], but only 170 according to the second one [DelegationGroup]?)
+Section "Responses to feedback" misrepresents the pre-registered analysis completely. We pre-registered that we wanted to test whether articipants in PREF are more likely to switch to non-delegation in the following round after delegating to the algorithm with a 0-payoff than under any other circumstances, in particularly than under the same circumstances in the EV condition. If at all, this suggests a reversal of what was pre-registered and what wasn't vis-a-vis what is written in section "Responses to feedback"
