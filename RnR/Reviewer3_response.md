@@ -35,7 +35,7 @@ throughout (more participants remain willing in principle to cede authority unde
 than under personalization), but negative outcomes act as an independent, and initially
 stronger, "negative attractor" on EV delegation specifically, because the EV rule
 mechanically produces more zero-outcome rounds for most participants. The apparent
-convergence is therefore the net result of two forces moving in the same direction on EV
+convergence is therefore the net result of two forces moving in opposite directions on EV
 delegation, not evidence that the authority-based mechanism itself weakens.
 
 ## 4. Never-delegator heterogeneity not fully validated — multiple non-significant indicators

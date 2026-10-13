@@ -476,6 +476,25 @@ for (trmt in c(1, 0)) {
 }
 ```
 
+Do the two within-treatment contrasts differ from each other? (Paper: treatment-by-payoff
+interaction in a logistic regression, $p = 0.772$.) Also, the share of round-1 delegators
+who received a zero payoff is not lower under PREF (EV 25/79 = 31.6%; PREF 22/62 = 35.5%
+among those with valid round-2 data); the weaker significance under PREF reflects the
+smaller number of round-1 delegators (62 vs. 79), not fewer zero outcomes.
+
+```{r round1-outcome-interaction}
+round12_d <- round12 %>%
+  mutate(Zero = 1 * (ZeroPayoff1 == "zero"),
+         Del2 = 1 * (Delegated2 == "delegated"))
+summary(glm(Del2 ~ EVAlgorithm * Zero, family = binomial, data = round12_d))$coefficients
+
+round12_d %>%
+  group_by(EVAlgorithm) %>%
+  summarise(n = n(), zeroShare = mean(Zero))
+```
+
+
+
 \newpage
 
 # Categorical non-delegation

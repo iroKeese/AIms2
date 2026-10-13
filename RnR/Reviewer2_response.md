@@ -74,9 +74,10 @@ happened to be zero or positive is plausibly as-good-as-random (it depends on wh
 lottery state was drawn). Within the EV condition, round-1 delegators who received a zero
 payoff delegated again in round 2 only 36.0% of the time, vs. 64.8% among those who
 received a positive payoff (Fisher's exact p = 0.027, OR = 0.31, 95% CI [0.10, 0.91]). The
-same contrast in the preference-based condition points the same way but is weaker and only
-marginally significant (50.0% vs. 72.5%, p = 0.099), consistent with fewer round-1
-preference-based delegators having experienced a zero outcome to begin with. We added this
+same contrast in the preference-based condition has the same sign and a similar size
+(50.0% vs. 72.5%, p = 0.099); the two contrasts do not differ significantly (interaction
+p = 0.772), and the weaker significance reflects the smaller number of round-1
+preference-based delegators (62 vs. 79). We added this
 as new evidence, explicitly describing it as a within-treatment comparison that is
 considerably more direct than the pooled regression, while stopping short of calling it
 fully causal (realized payoffs are a property of the random lottery draw, not an

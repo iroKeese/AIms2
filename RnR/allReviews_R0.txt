@@ -1,0 +1,390 @@
+    The system could not verify several references. Please ensure all citations follow APA style, include DOIs where available, and are from reliable sources. Also, confirm that all in-text citations match the reference list and vice versa.
+
+
+
+
+Reviewer's Responses to Questions
+
+Note: In order to effectively convey your recommendations for improvement to the author(s), and help editors make well-informed and efficient decisions, we ask you to answer the following specific questions about the manuscript and provide additional suggestions where appropriate.
+
+1. Are the objectives and the rationale of the study clearly stated?
+
+Please provide suggestions to the author(s) on how to improve the clarity of the objectives and rationale of the study. Please number each suggestion so that author(s) can more easily respond.
+
+Reviewer #1: Yes — The objectives and rationale are laid out explicitly and are traceable through the Introduction, Theoretical Framework, and Preregistered Hypothesis sections.
+
+Suggestions to Strengthen the Objectives and Rationale
+
+1. Separate primary vs. exploratory objectives explicitly, up front
+
+Currently the objectives for the preregistered hypothesis (H1) are crisp, but the rationale for the exploratory outcomes (categorical non-delegation, win-stay/lose-shift dynamics) is woven in after the fact, in the Results/Discussion. Suggestion: Add a short paragraph at the end of the Introduction or in the "Preregistered hypothesis and analysis plan" section that explicitly states a secondary/exploratory objective, e.g.: "Beyond our confirmatory test of H1, we exploratorily examine whether resistance to personalization is concentrated in a subgroup (categorical non-delegation) and whether authority-based and accuracy-based accounts can be dissociated using post-task expectation data." This gives readers a map of all the paper's aims, not just the confirmatory one, before they hit the results.
+
+2. State the boundary conditions of the claim earlier
+
+The rationale currently implies a fairly general claim ("personalization deters delegation"), but the effect is specifically about first contact and dissipates with feedback. Suggestion: Sharpen the objective statement itself to build this scope condition in from the start, e.g.: "We test whether personalization deters delegation specifically at the point of first contact, before outcome feedback is available, and examine whether this initial resistance persists once experience accumulates." This would prevent the apparent tension later where the abstract implies a broad effect but only one of two primary tests is significant.
+
+3. Make the rationale for choosing lotteries/financial decisions as the test domain more explicit
+
+The rationale draws heavily on general decision-rights theory but doesn't fully justify why a lottery-choice paradigm is the right operationalization of that theory, beyond one paragraph gesturing at robo-advisors. Suggestion: Add 2–3 sentences explicitly justifying the task choice: why lotteries (vs. e.g., real financial products, medical decisions) provide a clean test of the construal mechanism — likely because payoffs are unambiguous, preferences are directly elicitable, and EV is objectively computable, allowing the two algorithms to be equated on legitimacy but not on personalization.
+
+4. Pre-empt the wording-confound issue in the rationale itself
+
+Since the two algorithm descriptions differ in tone ("works out how much each option would yield on average" vs. "analyses your choices... selects the best option for you"), the rationale should anticipate this as a design choice rather than let readers discover it as a potential confound. Suggestion: Add a sentence acknowledging that the two descriptions were designed to hold length/complexity constant while varying only the personalization cue, and briefly justify why this wording, specifically, was chosen to operationalize "construal."
+
+5. Motivate the non-preregistered categorical non-delegation outcome theoretically before the results, not just descriptively after
+
+Currently, the theoretical link between heterogeneous decision-rights valuation and categorical opt-out is made in the Theoretical Framework section, but its status as a genuine aim of the study (vs. a fortunate post-hoc discovery) would be more convincing if explicitly flagged as a planned-but-unregistered secondary objective in the introduction, with a one-line rationale: "Because the value placed on decision rights is known to be heterogeneous across individuals, we additionally expect resistance to concentrate in a subgroup of high-autonomy-valuing users, manifesting as categorical non-delegation rather than a uniform shift in rates."
+
+6. Strengthen the rationale for why the effect should reverse after feedback
+
+The theoretical framework predicts the first-contact effect well but doesn't build in an a priori rationale for why the effect should attenuate with feedback (the "construal dominates early, outcomes dominate later" account emerges mostly in the Discussion). Suggestion: Add this two-stage logic to the theoretical framework section itself, so the null result for average delegation is anticipated by the theory rather than appearing as a post-hoc explanation for a non-result.
+
+7. Tighten the applied rationale with a concrete real-world stat or example
+
+The applied motivation (robo-advisors, healthcare, hiring) is reasonable but currently generic. Suggestion: Cite one concrete adoption statistic or documented case (e.g., a robo-advisor adoption rate, or evidence that personalized recommender opt-out is a documented friction point in a real platform) to ground the applied stakes more concretely and make the rationale less abstract.
+
+Reviewer #2: The manuscript attributes lower delegation under personalization to perceived loss of choice authority. However, choice-authority salience is neither directly manipulated nor measured before the first delegation decision. The post-task expectation and reason measures are suggestive but cannot establish the psychological mechanism. The authors should either weaken the causal claims or provide stronger mechanism evidence.
+
+Reviewer #3: CHBR-D-26-01523
+
+This manuscript under review explores the impact of preference-driven personalized algorithms and objective expectation maximization algorithms on users' algorithmic delegation behavior. It proposes that personalized algorithms may actually reduce users' willingness to delegate, and distinguishes between accuracy-based trust and authority-based resistance paths by combining behavioral data, participants' post-expectation assessments, and self-reported motivations. The research is comprehensive and theoretically sound. The following issues need to be addressed:
+
+Comments
+1. The study used a virtual lottery task, not real investment decisions. Does this context affect the results?
+2. The interaction time in this experiment was limited. Can the results be generalized to long-term human-computer interaction in real investment scenarios?
+3. Figure 2 shows a significant decrease in delegation rates from the first to the second round under EV conditions. The authors' explanation for this phenomenon is biased towards post-expectation interpretation. Does this mean that the authority effect is overridden by performance feedback after the initial contact?
+4. The hypothesis regarding the heterogeneity of those who never commission is not fully validated; experimental results show no significant differences between the non-commissioning and commissioning groups on multiple indicators.
+5. Section 3.5 mentions supplementary analysis, but does not clearly define which analyses are confirmatory and which are exploratory.
+6. The author need to carefully review the entire text; for example, there is an error in citing figures such as "Figure?" on page 21.
+7. Section 3.1 lists six pre-registration exclusion criteria, but does not explain the sample distribution corresponding to each exclusion reason when the sample size is reduced from 240 to 233.
+8. Authors are recommended to cite the following references to enrich the research background.
+(i) https://doi.org/10.1186/s40854-026-00941-w
+(ii) https://doi.org/10.1186/s40854-024-00671-x
+
+2. If applicable, is the application/theory/method/study reported in sufficient detail to allow for its replicability and/or reproducibility?
+
+Please provide suggestions to the author(s) on how to improve the replicability/reproducibility of their study. Please number each suggestion so that the author(s) can more easily respond.
+
+Reviewer #1: Assessment: Replicability & Reproducibility
+
+Overall: Mostly yes, with a few notable gaps. The paper is unusually detailed for an experimental psychology/behavioral economics report, but there are specific points where a replicator would have to guess or contact the authors.
+
+Strengths — well-specified elements
+
+1. Preregistration is linked and primary analyses are fully specified.
+The preregistration document is available at https://aspredicted.org/7un5qf.pdf, and the primary tests are named precisely: "a one-sided Boschloo exact test for the treatment difference in delegation in round 1," "a one-sided Wilcoxon–Mann–Whitney test comparing participant-level average delegation rates," and a linear probability model with decision-set fixed effects, participant-clustered SEs, and specified interaction terms. This is sufficient for statistical reproducibility in principle.
+
+2. Recruitment, exclusions, and sample size are quantified precisely.
+Participant flow is fully accounted for: "We recruited N = 240 participants and then applied preregistered exclusion rules... The final analysis sample is N = 233 (EV condition: n = 118; preference-based condition: n = 115)," with exclusion criteria named (bot/slider checks, comprehension checks, disclosed AI usage, log-time rule, incomplete data).
+
+3. Software/platform is specified with version number.
+"Participants completed a two-part experiment programmed in the online-ready version of z-Tree (version 6.0.0 beta 69, Fischbacher, 2007)" — this is good practice and rare in behavioral studies; it allows a replicator to use the identical experimental engine.
+
+4. Task structure, timing, and payoff logic are described in detail, including the 5-second delegation window, 8-second choice window, decoy-option construction, the GBP 2 base payment plus bonus formula, and the anchor/decoy dominance construction logic (Section 3.2, with Figure 1 example).
+
+5. Ethics approval is documented with a verifiable certificate number and URL.
+
+Gaps that limit full replicability
+
+1. Data and code are not yet available.
+The paper states: "Data, analysis code, and study materials will be deposited in a public repository upon acceptance/publication of this manuscript." Until that repository actually exists and is linked, computational reproducibility (re-running the reported statistics on the raw data) cannot be verified by reviewers or readers. This is the single largest gap — a promise, not a resource.
+
+2. The exact 12 Part-1 lottery tasks and full Part-2 payoff matrices are not fully reproduced in text.
+Only one example screen is shown (Figure 1). The complete set of 12 Part-1 binary choices and their mapping rules to the 8 Part-2 tasks (including the "fixed pre-specified rule" for option ordering) are described narratively but not tabulated in an appendix. A replicator would need the exact numeric payoff matrices for all tasks, not just the illustrative one, to reconstruct the instrument exactly.
+
+3. The full instructions/wording given to participants are only partially quoted.
+We see the two algorithm descriptions and a few checks (bicycle image task, attention checks), but the complete verbatim instructions, consent text, and post-task questionnaire items (financial risk-taking scale, satisfaction items, closed-item reason list shown in Figure 4) are not provided in full — e.g., the exact wording and full response options for all items in Figure 4 ("BetterJob," "DislikeRelyingOn," "DontTrust," etc.) are named as variable labels but not given as verbatim survey text.
+
+4. The exact decoy-construction rule and display-order algorithm are described qualitatively, not formally.
+"The within-task display order of the eight options was set using a fixed pre-specified rule rather than per-task randomization... the ordering rule was different between option sets" — this describes that a rule existed without specifying what the rule was. A replicator could not reconstruct the exact stimulus display order from this description alone.
+
+5. Details of the regression specifications could be more explicit.
+The preregistered regression is described narratively ("treatment indicators interacted with the decision period, decision-ID fixed effects, and participant-clustered standard errors... including the share of zero outcomes among prior delegated choices") but no formal equation is given. A model equation (even in an appendix) would remove ambiguity about functional form and exact covariate coding.
+
+Recommendation: Before publication, the authors should (a) deposit the promised data/code/materials repository and confirm the link is live prior to final acceptance rather than "upon acceptance," (b) include a supplementary appendix with the complete set of Part-1 and Part-2 payoff matrices and the exact decoy/ordering algorithm, and (c) provide the full verbatim questionnaire/instruction text (or a supplementary materials file) rather than narrative paraphrase. These are modest additions relative to the paper's existing level of rigor and would move it from "largely reproducible in principle" to "fully reproducible in practice."
+
+Reviewer #2: Mark as appropriate with an X:
+Yes [X] No [] N/A []
+Provide further comments here:The EV and preference-based conditions differ simultaneously in personalization, perceived objectivity, decision criterion, profiling, and possibly expected financial performance. The results therefore establish a difference between two decision rules rather than a pure personalization effect.
+
+Reviewer #3: CHBR-D-26-01523
+
+This manuscript under review explores the impact of preference-driven personalized algorithms and objective expectation maximization algorithms on users' algorithmic delegation behavior. It proposes that personalized algorithms may actually reduce users' willingness to delegate, and distinguishes between accuracy-based trust and authority-based resistance paths by combining behavioral data, participants' post-expectation assessments, and self-reported motivations. The research is comprehensive and theoretically sound. The following issues need to be addressed:
+
+Comments
+1. The study used a virtual lottery task, not real investment decisions. Does this context affect the results?
+2. The interaction time in this experiment was limited. Can the results be generalized to long-term human-computer interaction in real investment scenarios?
+3. Figure 2 shows a significant decrease in delegation rates from the first to the second round under EV conditions. The authors' explanation for this phenomenon is biased towards post-expectation interpretation. Does this mean that the authority effect is overridden by performance feedback after the initial contact?
+4. The hypothesis regarding the heterogeneity of those who never commission is not fully validated; experimental results show no significant differences between the non-commissioning and commissioning groups on multiple indicators.
+5. Section 3.5 mentions supplementary analysis, but does not clearly define which analyses are confirmatory and which are exploratory.
+6. The author need to carefully review the entire text; for example, there is an error in citing figures such as "Figure?" on page 21.
+7. Section 3.1 lists six pre-registration exclusion criteria, but does not explain the sample distribution corresponding to each exclusion reason when the sample size is reduced from 240 to 233.
+8. Authors are recommended to cite the following references to enrich the research background.
+(i) https://doi.org/10.1186/s40854-026-00941-w
+(ii) https://doi.org/10.1186/s40854-024-00671-x
+
+3. If applicable, are statistical analyses, controls, sampling mechanism, and statistical reporting (e.g., P-values, CIs, effect sizes) appropriate and well described?
+
+Please clearly indicate if the manuscript requires additional peer review by a statistician. Kindly provide suggestions to the author(s) on how to improve the statistical analyses, controls, sampling mechanism, or statistical reporting. Please number each suggestion so that the author(s) can more easily respond.
+
+Reviewer #1: Mark as appropriate with an X:
+Yes [X] No [] N/A []
+Provide further comments here:
+
+Overall: Reasonably rigorous and mostly well-described, but with meaningful gaps in effect-size and interval reporting, and some under-addressed multiple-comparison issues.
+
+Notable gaps
+
+1. No confidence intervals are reported anywhere in the paper.
+Every result is reported as a point estimate/percentage with a p-value and (for regressions) a standard error — e.g., "delegation was higher in the EV condition than in the preference-based condition (66.9% vs. 55.8%)... p = 0.0413" — but never with a CI on the difference in proportions or on regression coefficients. This is a real deficiency by current reporting standards; CIs would let readers judge the precision and plausible range of effects (e.g., how large or small the true first-contact gap might be), which matters given some effects are only marginally significant.
+
+2. No standardized effect sizes are reported.
+Raw percentage-point differences (e.g., 15.7% vs. 3.4% never-delegators) are informative but the paper never reports odds ratios, risk ratios, Cohen's h/d, or similar standardized measures that would allow comparison across studies or against the earlier pilot (which is explicitly compared narratively — "about 20 percentage points" — but not statistically benchmarked with a common effect-size metric).
+
+3. Multiple comparisons in the never-delegator characterization are not corrected or explicitly flagged.
+Section 4.4 runs roughly eight separate comparisons (age, income, education, time spent, gender, risk tolerance, response reliability, AI use frequency, satisfaction) between delegators and never-delegators without correction. Since most are null, the practical risk is limited, but the paper should acknowledge this as an exploratory family of tests subject to inflated Type-I error, especially given the very small never-delegator subgroup in the EV condition (n=4).
+
+4. Sample size/power justification is not stated.
+"The preregistered target was 120 participants per treatment condition" is given, but no power analysis or effect-size assumption underlying this target is reported (e.g., was 120/cell powered to detect the ~20-point gap seen in the unregistered pilot study?). Given the confirmed effect (p=.041) is only modestly significant with N≈233, a stated power calculation would help readers judge whether the design was adequately powered — especially relevant since the second primary test (Wilcoxon, p=.24) was null.
+
+5. Interpretation of borderline p-values could be more measured.
+The primary round-1 result (p=.0413, one-sided) and the round-1-only regression check reported in a footnote (p=.041, one-sided) both sit close to the conventional threshold. The paper treats these as confirmatory support without discussing the sensitivity of the conclusion to this proximity to α=.05, particularly given one-sided testing effectively halves the bar relative to two-sided convention.
+
+6. Small-cell caveats are inconsistently applied.
+The authors appropriately caution that the EV never-delegator subgroup (n=4) is too small to interpret for one contrast ("we do not interpret, because the EV never-delegator subgroup comprises only four participants") but do not apply the same caution systematically elsewhere where n=4 findings might implicitly support the argument (e.g., in the closed-item reason figure discussion, Figure 4, where this subgroup's bars are still shown and discussed).
+
+7. Assumption checks are not reported for t-tests.
+Multiple independent-samples t-tests are used (e.g., age, satisfaction, expectation comparisons) without reporting whether normality/variance-homogeneity assumptions were checked, or whether a robustness check (e.g., Welch's correction, non-parametric equivalent) was used — though the parallel reporting of Wilcoxon rank-sum alongside some t-tests (e.g., the expectation-data comparison) suggests some attentiveness to this.
+
+Reviewer #2: Mark as appropriate with an X:
+Yes [X] No [] N/A []
+Provide further comments here:Please report effect sizes and confidence intervals for the main outcomes, clarify preregistered versus exploratory analyses throughout, and provide robustness checks for repeated binary decisions.
+
+Reviewer #3: CHBR-D-26-01523
+
+This manuscript under review explores the impact of preference-driven personalized algorithms and objective expectation maximization algorithms on users' algorithmic delegation behavior. It proposes that personalized algorithms may actually reduce users' willingness to delegate, and distinguishes between accuracy-based trust and authority-based resistance paths by combining behavioral data, participants' post-expectation assessments, and self-reported motivations. The research is comprehensive and theoretically sound. The following issues need to be addressed:
+
+Comments
+1. The study used a virtual lottery task, not real investment decisions. Does this context affect the results?
+2. The interaction time in this experiment was limited. Can the results be generalized to long-term human-computer interaction in real investment scenarios?
+3. Figure 2 shows a significant decrease in delegation rates from the first to the second round under EV conditions. The authors' explanation for this phenomenon is biased towards post-expectation interpretation. Does this mean that the authority effect is overridden by performance feedback after the initial contact?
+4. The hypothesis regarding the heterogeneity of those who never commission is not fully validated; experimental results show no significant differences between the non-commissioning and commissioning groups on multiple indicators.
+5. Section 3.5 mentions supplementary analysis, but does not clearly define which analyses are confirmatory and which are exploratory.
+6. The author need to carefully review the entire text; for example, there is an error in citing figures such as "Figure?" on page 21.
+7. Section 3.1 lists six pre-registration exclusion criteria, but does not explain the sample distribution corresponding to each exclusion reason when the sample size is reduced from 240 to 233.
+8. Authors are recommended to cite the following references to enrich the research background.
+(i) https://doi.org/10.1186/s40854-026-00941-w
+(ii) https://doi.org/10.1186/s40854-024-00671-x
+
+4. Could the manuscript benefit from additional tables or figures, or from improving or removing (some of the) existing ones?
+
+Please provide specific suggestions for improvements, removals, or additions of figures or tables. Please number each suggestion so that author(s) can more easily respond.
+
+Reviewer #1: Suggestions for Tables and Figures
+
+Add a summary table of the two primary preregistered tests and their results. Currently the Boschloo test, Wilcoxon test, and regression coefficients are reported only in running text across several paragraphs (Sections 4.2–4.3). A single table listing: test name, outcome variable, comparison, statistic, p-value, and (once added, per earlier suggestions) effect size and CI would let readers see at a glance which of the primary hypotheses were confirmed and which were null, directly supporting the transparency this preregistered design deserves.
+Add a participant flow / CONSORT-style diagram or table for recruitment and exclusions. The text states 240 recruited, various exclusion criteria applied, 233 retained, split 118/115 — but the breakdown of how many were excluded for each criterion (bot/slider failure, comprehension failure, disclosed AI use, log-time rule, incomplete data) is not shown. A simple flow diagram or table would improve transparency and let readers assess whether exclusions were balanced across conditions.
+Add a table (or expand Figure 1) showing the full set of Part-1 and Part-2 payoff matrices, not just the single illustrative example currently shown in Figure 1. This is important for both interpretability and replicability (as raised in the reproducibility review) — an appendix table listing all 12 Part-1 tasks and their mapping to the 8 Part-2 decision sets would let readers evaluate task difficulty/dominance structure directly rather than trusting the narrative description.
+Add confidence intervals/error bars consistently and label them clearly across all figures. Figure 2 already shows "95%-confidence bands" as whiskers, which is good — but Figure 3 (ECDF) and Figure 4 (bar chart of reasons) show no uncertainty indication at all. At minimum, Figure 4 should include error bars or CIs on the click-rate percentages, since several of the between-subgroup comparisons discussed in text (e.g., 70.1% vs. 36.4%) rely on this figure and readers cannot currently gauge precision visually.
+Improve Figure 4's labeling and readability. The x-axis item labels ("BetterJob," "DislikeRelyingOn," "DontTrust," "HowExactly," "MoreInfo," "PerformanceCuriosity," "Reactance2Analysis," "Responsibility4Choice," "Responsibility4Outcome," "Tedious") are internal variable names rather than reader-facing text. These should be replaced with the actual (or closely paraphrased) item wording or a clear one-line legend/footnote translating each code, since the reader currently has to infer meaning from variable-name shorthand.
+
+Reviewer #2: The authors find that delegation is initially lower in the preference-based condition, but that the two conditions converge in subsequent rounds. They interpret this pattern as being driven primarily by a stronger decline in delegation in the EV condition, potentially because the EV algorithm generates more zero-payoff outcomes and therefore loses more users over time. This is a very interesting finding and could substantially enrich the paper’s distinction between initial adoption and continued use. However, the current evidence is largely descriptive, particularly Figure 2, and is not sufficient to support this causal interpretation.
+
+Reviewer #3: CHBR-D-26-01523
+
+This manuscript under review explores the impact of preference-driven personalized algorithms and objective expectation maximization algorithms on users' algorithmic delegation behavior. It proposes that personalized algorithms may actually reduce users' willingness to delegate, and distinguishes between accuracy-based trust and authority-based resistance paths by combining behavioral data, participants' post-expectation assessments, and self-reported motivations. The research is comprehensive and theoretically sound. The following issues need to be addressed:
+
+Comments
+1. The study used a virtual lottery task, not real investment decisions. Does this context affect the results?
+2. The interaction time in this experiment was limited. Can the results be generalized to long-term human-computer interaction in real investment scenarios?
+3. Figure 2 shows a significant decrease in delegation rates from the first to the second round under EV conditions. The authors' explanation for this phenomenon is biased towards post-expectation interpretation. Does this mean that the authority effect is overridden by performance feedback after the initial contact?
+4. The hypothesis regarding the heterogeneity of those who never commission is not fully validated; experimental results show no significant differences between the non-commissioning and commissioning groups on multiple indicators.
+5. Section 3.5 mentions supplementary analysis, but does not clearly define which analyses are confirmatory and which are exploratory.
+6. The author need to carefully review the entire text; for example, there is an error in citing figures such as "Figure?" on page 21.
+7. Section 3.1 lists six pre-registration exclusion criteria, but does not explain the sample distribution corresponding to each exclusion reason when the sample size is reduced from 240 to 233.
+8. Authors are recommended to cite the following references to enrich the research background.
+(i) https://doi.org/10.1186/s40854-026-00941-w
+(ii) https://doi.org/10.1186/s40854-024-00671-x
+
+5. If applicable, are the interpretation of results and study conclusions supported by the data?
+
+Please provide suggestions (if needed) to the author(s) on how to improve, tone down, or expand the study interpretations/conclusions. Please number each suggestion so that the author(s) can more easily respond.
+
+Reviewer #1: Mark as appropriate with an X:
+Yes [X] No [] N/A []
+Provide further comments here:
+Overall: Largely yes, with the authors showing commendable restraint in several places — but there are specific points where the interpretive language outpaces what the data can bear, particularly around the "core finding" framing, the authority-based mechanism claim, and the strength of the categorical non-delegation story.
+
+Recalibrate the abstract and title to reflect that only one of two preregistered primary tests was confirmatory. Consider revising the abstract's framing from "personalization did not increase delegation at any point of the task; instead, it deterred delegation in two ways" to something like: "personalization reduced delegation at first contact; this effect did not persist across repeated decisions, and personalization was additionally associated with substantially more categorical non-delegation (exploratory analysis)." This preserves the interesting findings while accurately signaling which result is confirmatory and which is exploratory.
+Add an explicit statement in the abstract/title-adjacent framing that categorical non-delegation was a non-preregistered, exploratory outcome. Currently this is disclosed in the body text but not in the abstract or highlights, where it carries equal billing with the confirmed first-contact effect. A brief parenthetical ("in an exploratory analysis") in the abstract would resolve this.
+Soften the declarative language around "authority-based resistance" in the Discussion and Contributions sections (5.1–5.3, 5.6) to match the hedging already present in the Limitations section. For example, phrases like "our evidence isolates a second, conceptually distinct channel: authority-based resistance" could be revised to "our evidence is consistent with a second, conceptually distinct channel: authority-based resistance" or "...points toward authority-based resistance as the more plausible remaining account." This would align the confidence level of the Discussion with the appropriately cautious framing already used in Section 5.4 ("a direct manipulation of authority salience remains for future work").
+Directly address the tension between the "not accuracy-based" conclusion and the self-reported distrust data in Section 4.6. Never-delegators selected "general distrust of the algorithm" more often than delegators (50.0% vs. 32.2%), which sits somewhat awkwardly next to the paper's central claim that resistance isn't accuracy-based. Consider expanding the existing parenthetical rebuttal into a fuller paragraph that reconciles the expectation data (which rule out accuracy concerns) with the closed-item "distrust" reason (which seems to invoke accuracy), perhaps by distinguishing "distrust of accuracy" from "distrust of the delegation act itself" as separate constructs that the closed-item wording may conflate.
+Temper the real-world generalization claims in Section 5.5 to more explicitly match the single-domain, stylized, time-pressured lottery task used. Consider adding a qualifying sentence before extending to robo-advisors, healthcare, and hiring contexts, such as: "These extensions are speculative given the abstract and time-constrained nature of our task, and we offer them as hypotheses for domain-specific replication rather than established implications."
+Apply small-cell caution consistently across the paper. The EV never-delegator subgroup (n=4) is explicitly flagged as too small to interpret in the always-delegator comparison (Section 4.4) but is still discussed and shown in Figure 4 without the same caveat. Consider adding a brief note wherever this subgroup appears in interpretive text (not just in the figure caption) reminding readers of its size.
+
+Reviewer #2: Mark as appropriate with an X:
+Yes [] No [X] N/A []
+Provide further comments here:
+
+Reviewer #3: CHBR-D-26-01523
+
+This manuscript under review explores the impact of preference-driven personalized algorithms and objective expectation maximization algorithms on users' algorithmic delegation behavior. It proposes that personalized algorithms may actually reduce users' willingness to delegate, and distinguishes between accuracy-based trust and authority-based resistance paths by combining behavioral data, participants' post-expectation assessments, and self-reported motivations. The research is comprehensive and theoretically sound. The following issues need to be addressed:
+
+Comments
+1. The study used a virtual lottery task, not real investment decisions. Does this context affect the results?
+2. The interaction time in this experiment was limited. Can the results be generalized to long-term human-computer interaction in real investment scenarios?
+3. Figure 2 shows a significant decrease in delegation rates from the first to the second round under EV conditions. The authors' explanation for this phenomenon is biased towards post-expectation interpretation. Does this mean that the authority effect is overridden by performance feedback after the initial contact?
+4. The hypothesis regarding the heterogeneity of those who never commission is not fully validated; experimental results show no significant differences between the non-commissioning and commissioning groups on multiple indicators.
+5. Section 3.5 mentions supplementary analysis, but does not clearly define which analyses are confirmatory and which are exploratory.
+6. The author need to carefully review the entire text; for example, there is an error in citing figures such as "Figure?" on page 21.
+7. Section 3.1 lists six pre-registration exclusion criteria, but does not explain the sample distribution corresponding to each exclusion reason when the sample size is reduced from 240 to 233.
+8. Authors are recommended to cite the following references to enrich the research background.
+(i) https://doi.org/10.1186/s40854-026-00941-w
+(ii) https://doi.org/10.1186/s40854-024-00671-x
+
+6. Have the authors clearly emphasized the strengths of their study/theory/methods/argument?
+
+Please provide suggestions to the author(s) on how to better emphasize the strengths of their study. Please number each suggestion so that the author(s) can more easily respond.
+
+Reviewer #1: Partially.
+The authors do highlight some strengths (preregistration, incentivized behavior, the accuracy/authority dissociation), but several genuine methodological strengths are underplayed or left implicit, buried in method details rather than surfaced as selling points in the Introduction/Discussion where reviewers and readers form their overall impression. Below are specific, numbered suggestions for where and how to better foreground these strengths.
+
+Suggestions for Tables and Figures
+
+Add a summary table of the two primary preregistered tests and their results. Currently the Boschloo test, Wilcoxon test, and regression coefficients are reported only in running text across several paragraphs (Sections 4.2–4.3). A single table listing: test name, outcome variable, comparison, statistic, p-value, and (once added, per earlier suggestions) effect size and CI would let readers see at a glance which of the primary hypotheses were confirmed and which were null, directly supporting the transparency this preregistered design deserves.
+Add a participant flow / CONSORT-style diagram or table for recruitment and exclusions. The text states 240 recruited, various exclusion criteria applied, 233 retained, split 118/115 — but the breakdown of how many were excluded for each criterion (bot/slider failure, comprehension failure, disclosed AI use, log-time rule, incomplete data) is not shown. A simple flow diagram or table would improve transparency and let readers assess whether exclusions were balanced across conditions.
+Add a table (or expand Figure 1) showing the full set of Part-1 and Part-2 payoff matrices, not just the single illustrative example currently shown in Figure 1. This is important for both interpretability and replicability (as raised in the reproducibility review) — an appendix table listing all 12 Part-1 tasks and their mapping to the 8 Part-2 decision sets would let readers evaluate task difficulty/dominance structure directly rather than trusting the narrative description.
+Add confidence intervals/error bars consistently and label them clearly across all figures. Figure 2 already shows "95%-confidence bands" as whiskers, which is good — but Figure 3 (ECDF) and Figure 4 (bar chart of reasons) show no uncertainty indication at all. At minimum, Figure 4 should include error bars or CIs on the click-rate percentages, since several of the between-subgroup comparisons discussed in text (e.g., 70.1% vs. 36.4%) rely on this figure and readers cannot currently gauge precision visually.
+
+Reviewer #2: This manuscript investigates whether preference-based personalization increases users’ willingness to delegate decisions to algorithms. Using a preregistered experiment, the authors find that participants are less willing to delegate to a personalized algorithm at first contact, although this difference disappears over repeated decisions. The topic is interesting.
+
+Reviewer #3: CHBR-D-26-01523
+
+This manuscript under review explores the impact of preference-driven personalized algorithms and objective expectation maximization algorithms on users' algorithmic delegation behavior. It proposes that personalized algorithms may actually reduce users' willingness to delegate, and distinguishes between accuracy-based trust and authority-based resistance paths by combining behavioral data, participants' post-expectation assessments, and self-reported motivations. The research is comprehensive and theoretically sound. The following issues need to be addressed:
+
+Comments
+1. The study used a virtual lottery task, not real investment decisions. Does this context affect the results?
+2. The interaction time in this experiment was limited. Can the results be generalized to long-term human-computer interaction in real investment scenarios?
+3. Figure 2 shows a significant decrease in delegation rates from the first to the second round under EV conditions. The authors' explanation for this phenomenon is biased towards post-expectation interpretation. Does this mean that the authority effect is overridden by performance feedback after the initial contact?
+4. The hypothesis regarding the heterogeneity of those who never commission is not fully validated; experimental results show no significant differences between the non-commissioning and commissioning groups on multiple indicators.
+5. Section 3.5 mentions supplementary analysis, but does not clearly define which analyses are confirmatory and which are exploratory.
+6. The author need to carefully review the entire text; for example, there is an error in citing figures such as "Figure?" on page 21.
+7. Section 3.1 lists six pre-registration exclusion criteria, but does not explain the sample distribution corresponding to each exclusion reason when the sample size is reduced from 240 to 233.
+8. Authors are recommended to cite the following references to enrich the research background.
+(i) https://doi.org/10.1186/s40854-026-00941-w
+(ii) https://doi.org/10.1186/s40854-024-00671-x
+
+7. Have the authors clearly stated the limitations of their study/theory/methods/argument?
+
+Please list the limitations that the author(s) need to add or emphasize. Please number each limitation so that author(s) can more easily respond.
+
+Reviewer #1: The authors do include a dedicated Limitations section (5.4) and scattered caveats throughout (e.g., on the exploratory status of categorical non-delegation, the ex-post nature of the reason data). This is a genuine strength. However, several substantive limitations raised earlier in this review are either missing entirely, underemphasized, or mentioned only in passing rather than in the dedicated Limitations section where a reader would expect to find them. Below is a consolidated, numbered list of limitations the authors should add or emphasize more clearly.
+
+Limitations to Add or Emphasize
+Low self-choice quality (~34–35% non-dominated) as a potential confound for the "choice authority" interpretation. The authors should explicitly discuss whether poor comprehension or difficulty with the 8-option lottery task (rather than a genuine, informed valuation of choice authority) could explain some non-delegation, particularly among never-delegators. This is not addressed anywhere in the current Limitations section.
+The wording/framing confound between the two algorithm descriptions. The EV description ("works out how much each option would yield on average") and the personalized description ("analyses your choices... selects the best option for you") differ in linguistic register (mechanical/impersonal vs. personal/interpretive) as well as in decision rule. The authors should acknowledge that the manipulation is not a "pure" rule-only contrast and that some of the effect could reflect wording/tone rather than construal of the rule per se.
+Absence of a stated power analysis / justification for the preregistered sample size (120/cell). The authors should note that the study's power to detect the observed (fairly modest) first-contact effect, or smaller true effects, was not formally established in advance, and that this leaves open the possibility that the null result for average delegation across rounds partly reflects insufficient power rather than a true absence of effect.
+Reliance on a single UK-based Prolific convenience sample. The Method section notes recruitment source but the Limitations section does not explicitly flag that findings may not generalize across cultural, national, or platform-specific populations (e.g., non-UK samples, non-Prolific populations, or older/less tech-familiar populations), despite the Discussion (5.5) extending claims to broad, culturally varied application domains (finance, healthcare, hiring).
+The categorical non-delegation subgroup analyses rely on small cells, particularly in the EV condition (n=4 never-delegators). While the authors appropriately flag this for one specific comparison (always-delegators), this caveat should be stated as a general limitation applying to all subgroup analyses involving the EV never-delegator group (e.g., the closed-item reasons in Figure 4), since conclusions drawn from an n=4 cell are inherently fragile regardless of which specific claim is being made.
+
+Reviewer #2: Yes, but the limitations should be expanded. The authors should acknowledge that the EV and preference-based treatments differ along several dimensions beyond personalization itself, and that subsequent feedback is partly treatment-generated.
+
+Reviewer #3: CHBR-D-26-01523
+
+This manuscript under review explores the impact of preference-driven personalized algorithms and objective expectation maximization algorithms on users' algorithmic delegation behavior. It proposes that personalized algorithms may actually reduce users' willingness to delegate, and distinguishes between accuracy-based trust and authority-based resistance paths by combining behavioral data, participants' post-expectation assessments, and self-reported motivations. The research is comprehensive and theoretically sound. The following issues need to be addressed:
+
+Comments
+1. The study used a virtual lottery task, not real investment decisions. Does this context affect the results?
+2. The interaction time in this experiment was limited. Can the results be generalized to long-term human-computer interaction in real investment scenarios?
+3. Figure 2 shows a significant decrease in delegation rates from the first to the second round under EV conditions. The authors' explanation for this phenomenon is biased towards post-expectation interpretation. Does this mean that the authority effect is overridden by performance feedback after the initial contact?
+4. The hypothesis regarding the heterogeneity of those who never commission is not fully validated; experimental results show no significant differences between the non-commissioning and commissioning groups on multiple indicators.
+5. Section 3.5 mentions supplementary analysis, but does not clearly define which analyses are confirmatory and which are exploratory.
+6. The author need to carefully review the entire text; for example, there is an error in citing figures such as "Figure?" on page 21.
+7. Section 3.1 lists six pre-registration exclusion criteria, but does not explain the sample distribution corresponding to each exclusion reason when the sample size is reduced from 240 to 233.
+8. Authors are recommended to cite the following references to enrich the research background.
+(i) https://doi.org/10.1186/s40854-026-00941-w
+(ii) https://doi.org/10.1186/s40854-024-00671-x
+
+8. Does the manuscript structure, flow or writing need improving (e.g., the addition of subheadings, shortening of text, reorganization of sections, or moving details from one section to another)?
+
+Please provide suggestions to the author(s) on how to improve the manuscript structure and flow. Please number each suggestion so that author(s) can more easily respond.
+
+Reviewer #1: Yes.
+The manuscript is generally well-organized and follows a logical IMRaD structure, but there are several places where reorganization, subheadings, or relocation of content would improve readability and reduce redundancy. Below are specific, numbered suggestions.
+
+Suggestions to Authors
+Add subheadings within Section 4.6 ("Exploratory mechanisms"). This section already has implicit sub-questions ("Did participants trust the personalized algorithm to match their preferences?" and "What distinguishes delegators from never-delegators?") formatted as bolded run-in headers, but a third distinct question is answered ("Which expectations are most tightly linked to delegation...") without a clear corresponding header. Formalizing all three as numbered or lettered subheadings (matching the three questions explicitly posed at the start of 4.6) would make this dense section much easier to navigate.
+Move the detailed Part-1/Part-2 task-construction description (decoy options, anchor transformation, display-order rules) out of the main Method text and into a supplementary/appendix section, retaining only a brief summary in Section 3.2. This material (roughly a full page) is important for replicability but is dense and procedural; relocating the fine-grained construction logic (e.g., "the within-task display order of the eight options was set using a fixed pre-specified rule...") to an appendix would let Section 3.2 focus on the conceptual design while preserving full detail for replicators.
+Consolidate the repeated statements of the paper's contribution. The core contribution is restated in very similar language at least four times: end of Introduction ("The contribution is fourfold..."), end of Section 2.7 ("Synthesis and contribution"), Section 5.1 ("Core finding"), and Section 5.6 ("Contributions"). Consider trimming Section 2.7's contribution restatement (it largely duplicates the Introduction's) and ensuring Section 5.6 adds genuinely new synthesis rather than repeating the same four points a third/fourth time in near-identical wording.
+
+Reviewer #2: The manuscript could be shortened, particularly the Related Work and Discussion sections.
+
+Reviewer #3: CHBR-D-26-01523
+
+This manuscript under review explores the impact of preference-driven personalized algorithms and objective expectation maximization algorithms on users' algorithmic delegation behavior. It proposes that personalized algorithms may actually reduce users' willingness to delegate, and distinguishes between accuracy-based trust and authority-based resistance paths by combining behavioral data, participants' post-expectation assessments, and self-reported motivations. The research is comprehensive and theoretically sound. The following issues need to be addressed:
+
+Comments
+1. The study used a virtual lottery task, not real investment decisions. Does this context affect the results?
+2. The interaction time in this experiment was limited. Can the results be generalized to long-term human-computer interaction in real investment scenarios?
+3. Figure 2 shows a significant decrease in delegation rates from the first to the second round under EV conditions. The authors' explanation for this phenomenon is biased towards post-expectation interpretation. Does this mean that the authority effect is overridden by performance feedback after the initial contact?
+4. The hypothesis regarding the heterogeneity of those who never commission is not fully validated; experimental results show no significant differences between the non-commissioning and commissioning groups on multiple indicators.
+5. Section 3.5 mentions supplementary analysis, but does not clearly define which analyses are confirmatory and which are exploratory.
+6. The author need to carefully review the entire text; for example, there is an error in citing figures such as "Figure?" on page 21.
+7. Section 3.1 lists six pre-registration exclusion criteria, but does not explain the sample distribution corresponding to each exclusion reason when the sample size is reduced from 240 to 233.
+8. Authors are recommended to cite the following references to enrich the research background.
+(i) https://doi.org/10.1186/s40854-026-00941-w
+(ii) https://doi.org/10.1186/s40854-024-00671-x
+
+9. Could the manuscript benefit from language editing?
+
+Reviewer #1: Yes
+
+Reviewer #2: No
+
+Reviewer #3: Yes
+
+ 
+
+
+Reviewer #1: Strenghts:
+1. Innovative focus on the nature of the decision rule as a primary deterrent to delegation, moving beyond traditional trust-based or performance-based models.
+
+2. Rigorous methodological isolation of 'first-contact' delegation in the section titled 'Method,' which effectively prevents feedback contamination from confounding initial behavioral tendencies.
+
+3. Compelling empirical evidence in the 'Results' section showing that users acknowledge the superior accuracy of personalized algorithms while simultaneously refusing to use them.
+
+4. Strong adherence to open science standards, including a preregistered experimental design and the identification of a distinct 'categorical non-delegator' subgroup.
+
+Weaknesses:
+Theoretical omission of Psychological Ownership:
+The 'Theoretical framework' fails to address the paradox where personalization typically increases engagement, missing contemporary literature like the 'AI Ghostwriter Effect' that could explain why preference-based rules feel like a substitution rather than an extension of the self.
+
+Unexplored Responsibility Trap:
+The analysis overlooks 'responsibility offloading' as a driver; objective rules may be preferred because they provide a neutral 'third party' to blame for failure, whereas personalized rules may leave the user feeling solely responsible for algorithmic errors.
+
+Severe structural and presentational artifacts:
+The manuscript contains incomplete sentences in the 'Abstract,' multiple typographical errors in headers (e.g., 'Reoretical'), and fragmented text/formatting errors in the 'References' section that hinder readability.
+
+Insufficient statistical reporting for core claims:
+The claim of a 'distinct acceptance barrier' for categorical non-delegators lacks explicit significance testing (e.g., Fisher's Exact test) in the 'Results' section, and the mechanism for 'zero-outcome' frequency in the EV condition is insufficiently supported.
+
+
+Reviewer #2: This field is optional. If you have any additional suggestions beyond those relevant to the questions above, please number and list them here.
+
+
+Reviewer #3: CHBR-D-26-01523
+
+This manuscript under review explores the impact of preference-driven personalized algorithms and objective expectation maximization algorithms on users' algorithmic delegation behavior. It proposes that personalized algorithms may actually reduce users' willingness to delegate, and distinguishes between accuracy-based trust and authority-based resistance paths by combining behavioral data, participants' post-expectation assessments, and self-reported motivations. The research is comprehensive and theoretically sound. The following issues need to be addressed:
+
+Comments
+1. The study used a virtual lottery task, not real investment decisions. Does this context affect the results?
+2. The interaction time in this experiment was limited. Can the results be generalized to long-term human-computer interaction in real investment scenarios?
+3. Figure 2 shows a significant decrease in delegation rates from the first to the second round under EV conditions. The authors' explanation for this phenomenon is biased towards post-expectation interpretation. Does this mean that the authority effect is overridden by performance feedback after the initial contact?
+4. The hypothesis regarding the heterogeneity of those who never commission is not fully validated; experimental results show no significant differences between the non-commissioning and commissioning groups on multiple indicators.
+5. Section 3.5 mentions supplementary analysis, but does not clearly define which analyses are confirmatory and which are exploratory.
+6. The author need to carefully review the entire text; for example, there is an error in citing figures such as "Figure?" on page 21.
+7. Section 3.1 lists six pre-registration exclusion criteria, but does not explain the sample distribution corresponding to each exclusion reason when the sample size is reduced from 240 to 233.
+8. Authors are recommended to cite the following references to enrich the research background.
+(i) https://doi.org/10.1186/s40854-026-00941-w
+(ii) https://doi.org/10.1186/s40854-024-00671-x
+ 
