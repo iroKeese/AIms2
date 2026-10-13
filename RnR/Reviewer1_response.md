@@ -290,13 +290,16 @@ avoiding a larger restructuring of Section 3.2 at this stage. We are open to rel
 the prose description itself in a further revision if the main text is still felt to be
 too dense.
 
-**Consolidate repeated contribution statements.** We have not made further cuts here
-beyond what was already trimmed in response to a parallel reviewer comment (overlapping
-sentences in Related Work and Discussion), since reducing the four-fold contribution
-list to three points, or merging Section 2.7's restatement with the Introduction's,
-involves subjective editorial judgment calls about what to cut that we would rather make
-deliberately in a dedicated shortening pass than unilaterally here. We remain happy to
-do a more aggressive consolidation pass if useful.
+**Consolidate repeated contribution statements.** We agree and have consolidated. The
+Introduction now holds the single explicit contribution list, reduced from four to three
+points (the preregistered comparison and its concentration at first contact are merged;
+the authority- versus accuracy-based separation is stated with the hedged wording used
+elsewhere). Section 2.7 is retitled "Synthesis and research gap" and no longer lists what
+the study examines. The opening restatement in the "Interpretation and relation to prior
+work" subsection was deleted. The separate "Contributions" subsection of the Discussion was
+removed; its one non-duplicative point (adoption-stage resistance versus error-driven
+withdrawal during use, observed in exploratory analyses) now closes the "Theoretical
+implications" subsection. "Core finding" is kept as the normal opening of the Discussion.
 
 **Language editing.** As with the other reviewers, we will run an additional
 proofreading pass (including a native-speaker read-through) before resubmission, beyond

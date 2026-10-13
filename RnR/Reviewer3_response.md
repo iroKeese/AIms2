@@ -62,8 +62,9 @@ circumstances in the EV condition. The subsection now reports this preregistered
 first (it is not supported: the interaction is slightly negative and insignificant, one-sided
 $p = 0.633$), and then presents the win-stay/lose-shift model and its decomposition by
 the source of the prior outcome (delegated vs. self-chosen) together as *exploratory*,
-not specified in advance. The Introduction, Method, Discussion, and Contributions
-sections were adjusted accordingly.
+not specified in advance. The Introduction, Method, and Discussion
+sections were adjusted accordingly (the separate "Contributions" subsection was removed
+in the consolidation requested by Reviewer 1).
 
 ## 6. "Figure?" broken reference on page 21
 
