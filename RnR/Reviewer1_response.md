@@ -316,10 +316,10 @@ does not directly predict our result. We list ownership measures as future work.
 **"Responsibility trap" / responsibility-offloading as a driver.** We added a paragraph to
 the Discussion that addresses this account explicitly and cites Maasland & Weißmüller
 (2022), who find that blame avoidance is a weak motive for delegation relative to
-algorithm aversion, and Kirchkamp & Strobel (2019), who find that sharing a decision with
-a machine rather than a human does not lower perceived responsibility or guilt (a joint
-decision rather than delegation, which we note in the text). We acknowledge that we did
-not measure anticipated blame directly.
+algorithm aversion, and Gogoll & Uhl (2018), who find that reluctance to delegate to a machine is not explained by perceived utility,
+trust, or a lower ability to pass on responsibility (again with the caveat that everyone
+had to delegate to someone, so the design compares agents rather than delegating vs.
+deciding oneself). We acknowledge that we did not measure anticipated blame directly.
 The account is also already substantively represented in our design and results: the closed-item reasons explicitly
 include two responsibility-related items ("I didn't want to be responsible for choosing
 the option" and "I didn't want to be responsible if a low payment results"), and
