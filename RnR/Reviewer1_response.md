@@ -254,8 +254,8 @@ intended.
 
 ## 7. Limitations
 
-We have substantially expanded the Limitations section with six distinct points (up
-from three), incorporating essentially every substantive gap you identified:
+We have substantially expanded the Limitations section with seven distinct points (up
+from three; the numbering in the manuscript is First to Seventh), incorporating essentially every substantive gap you identified:
 
 1. *(Existing, expanded)* Stylized task domain — clarified that Part-2 choices were
    real and incentivized, with the stylization limited to the task domain rather than
@@ -306,17 +306,21 @@ subsection.
 ## Weaknesses noted at the end of the report
 
 **Theoretical omission of psychological ownership / the "AI Ghostwriter Effect."** We
-appreciate this pointer to a related literature. We have not added a new theoretical
-subsection built around psychological-ownership or ghostwriter-effect accounts in this
-revision, as doing so well would require integrating a substantial new literature rather
-than a single added paragraph, and we do not want to do so superficially. We note,
-however, that our choice-authority account and a psychological-ownership account are not
-mutually exclusive — both predict that a rule which "decides as the user would" feels
-like substitution rather than extension of the self — and we see this as a promising
-direction to develop more fully in future theoretical work building on this paper.
+appreciate this pointer to a related literature. We have not built a new theoretical
+subsection around it, but the Discussion ("Interpretation and relation to prior work")
+now states that a psychological-ownership account is compatible with ours and cites
+Draxler et al. (2024, the AI Ghostwriter Effect). We note the limits of that evidence:
+it concerns text generation, and personalization did not alter ownership there, so it
+does not directly predict our result. We list ownership measures as future work.
 
-**"Responsibility trap" / responsibility-offloading as a driver.** This is already
-substantively represented in our design and results: the closed-item reasons explicitly
+**"Responsibility trap" / responsibility-offloading as a driver.** We added a paragraph to
+the Discussion that addresses this account explicitly and cites Maasland & Weißmüller
+(2022), who find that blame avoidance is a weak motive for delegation relative to
+algorithm aversion, and Kirchkamp & Strobel (2019), who find that sharing a decision with
+a machine rather than a human does not lower perceived responsibility or guilt (a joint
+decision rather than delegation, which we note in the text). We acknowledge that we did
+not measure anticipated blame directly.
+The account is also already substantively represented in our design and results: the closed-item reasons explicitly
 include two responsibility-related items ("I didn't want to be responsible for choosing
 the option" and "I didn't want to be responsible if a low payment results"), and
 never-delegators endorse the choice-responsibility item far more often than delegators
