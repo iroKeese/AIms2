@@ -120,7 +120,7 @@
   - Relevance: Understanding delegation motives
 
 ### Human-AI Collaboration
-- **Kirchkamp, O., & Strobel, M. (2019)**. Sharing responsibility with a machine. *Journal of Behavioral and Experimental Economics*, 81, 101-112.
+- **Kirchkamp, O., & Strobel, M. (2019)**. Sharing responsibility with a machine. *Journal of Behavioral and Experimental Economics*, 80, 25-33.
   - Key finding: How people share responsibility with algorithms
   - Relevance: Responsibility sharing in delegation
 

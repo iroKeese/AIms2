@@ -63,6 +63,13 @@ Dietvorst, B.~J., Simmons, J.~P., and Massey, C. (2018).
   if they can (even slightly) modify them.
 \newblock {\em Management Science}, 64(3):1155--1170.
 
+\bibitem[Draxler et~al., 2024]{Draxler2024}
+Draxler, F., Werner, A., Lehmann, F., Hoppe, M., Schmidt, A., Buschek, D., and
+  Welsch, R. (2024).
+\newblock The {AI} ghostwriter effect: When users do not perceive ownership of
+  {AI}-generated text but self-declare as authors.
+\newblock {\em ACM Transactions on Computer-Human Interaction}, 31(2):1--40.
+
 \bibitem[Ferraz et~al., 2025]{Ferraz2025}
 Ferraz, V., Houf, L., Pitz, T., Schwieren, C., and Sickmann, J. (2025).
 \newblock Trust in the machine: How contextual factors and personality traits
@@ -147,8 +154,13 @@ Kim, S., Ahn, D., Choi, B., Park, J., Yang, J., Yoo, B., and Yum, K. (2025).
 \newblock In {\em Proceedings of the International Conference on Information
   Systems (ICIS 2025)}. AIS.
 
-\bibitem[Kirchkamp and Strobel, 2019]{Kirchkamp2019}
-Kirchkamp, O. and Strobel, C. (2019).
+\bibitem[Kirchkamp and Strobel, 2019a]{Kirchkamp2019}
+Kirchkamp, O. and Strobel, C. (2019a).
+\newblock Sharing responsibility with a machine.
+\newblock {\em Journal of Behavioral and Experimental Economics}, 80:25--33.
+
+\bibitem[Kirchkamp and Strobel, 2019b]{KirchkampStrobel2019}
+Kirchkamp, O. and Strobel, C. (2019b).
 \newblock Sharing responsibility with a machine.
 \newblock {\em Journal of Behavioral and Experimental Economics}, 80:25--33.
 
@@ -184,6 +196,12 @@ Logg, J.~M., Minson, J.~A., and Moore, D.~A. (2019).
 \newblock Algorithm appreciation: People prefer algorithmic to human judgment.
 \newblock {\em Organizational Behavior and Human Decision Processes},
   151:90--103.
+
+\bibitem[Maasland and Wei{\ss}m{\"u}ller, 2022]{Maasland2022}
+Maasland, C. and Wei{\ss}m{\"u}ller, K.~S. (2022).
+\newblock Blame the machine? insights from an experiment on algorithm aversion
+  and blame avoidance in computer-aided human resource management.
+\newblock {\em Frontiers in Psychology}, 13:779028.
 
 \bibitem[Mahmud et~al., 2022]{Mahmud2022}
 Mahmud, H., Islam, A.~N., Ahmed, S.~I., and Smolander, K. (2022).

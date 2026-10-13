@@ -3,44 +3,44 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: AIms2_CHBR_R1.aux
 The style file: apalike.bst
 Database file #1: library.bib
-You've used 47 entries,
+You've used 50 entries,
             1935 wiz_defined-function locations,
-            786 strings with 12547 characters,
-and the built_in function-call counts, 18946 in all, are:
-= -- 1818
-> -- 842
-< -- 17
-+ -- 298
-- -- 282
-* -- 1697
-:= -- 3367
-add.period$ -- 144
-call.type$ -- 47
-change.case$ -- 375
-chr.to.int$ -- 47
-cite$ -- 47
-duplicate$ -- 656
-empty$ -- 1300
-format.name$ -- 351
-if$ -- 3634
-int.to.chr$ -- 1
+            804 strings with 13198 characters,
+and the built_in function-call counts, 20234 in all, are:
+= -- 1943
+> -- 906
+< -- 19
++ -- 323
+- -- 304
+* -- 1815
+:= -- 3594
+add.period$ -- 153
+call.type$ -- 50
+change.case$ -- 401
+chr.to.int$ -- 49
+cite$ -- 50
+duplicate$ -- 698
+empty$ -- 1382
+format.name$ -- 380
+if$ -- 3878
+int.to.chr$ -- 2
 int.to.str$ -- 0
-missing$ -- 45
-newline$ -- 239
-num.names$ -- 141
-pop$ -- 284
+missing$ -- 48
+newline$ -- 254
+num.names$ -- 150
+pop$ -- 302
 preamble$ -- 1
-purify$ -- 376
+purify$ -- 402
 quote$ -- 0
-skip$ -- 475
+skip$ -- 506
 stack$ -- 0
-substring$ -- 1376
-swap$ -- 46
+substring$ -- 1467
+swap$ -- 49
 text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 280
+type$ -- 298
 warning$ -- 0
-while$ -- 144
+while$ -- 155
 width$ -- 0
-write$ -- 614
+write$ -- 653

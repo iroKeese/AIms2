@@ -1,9 +1,85 @@
-throughout:
-- keep at most 3 decimal spaces after the dot (sometimes we have 4)
-- consistently use an 0 whenever there is a number like ".05" or ".041", or the like
+general:
+- please do not add more m-dashes. These are typically seen as being signs of AI-writing and frowned upon by many (there also is no need to remove the remaining ones).
+- are all comments/concerns by all the reviewers addressed (or rebutted)?
+- is the text still a coherent read with a clear story line, in general, but also specifically around the newly added text parts? For my (economics) background, there is a bit too much text that seems to be only losely related with a somewhat repetitive feel at places, but that might be perfect given the (mostly psyochologist) audience of Computers in Human Behavior Reports, so please do make a judgment call based on  the target journal.
 
-Categorical non-delegation
-- Main test in the text: Fisher; but our main test for that purpose is Boschloo (see also the footnote in that paragraph)! One question is whether that Boschloo test should be one-sided though (given that we did not pre-register the test). Running it one-sided is in line with the general prediction that personalization leads to less acceptance, though.
-- the replication .Rmd for the tests in Section "Comparisons of never-delegators vs. delegators" is a mess - the order is not the one in the text, and there seem to be tests missing, too. If there are any non-reported tests in that section, I'd like to keep them, but keep them in a separate subsection.
-- the "Choice quality among never-delegators" bit is cool, but I'm not sure the numbers match up (why are there 175 NeverDelegators according to the first displayed table [-> "DelegatorType"], but only 170 according to the second one [DelegationGroup]?)
-Section "Responses to feedback" misrepresents the pre-registered analysis completely. We pre-registered that we wanted to test whether articipants in PREF are more likely to switch to non-delegation in the following round after delegating to the algorithm with a 0-payoff than under any other circumstances, in particularly than under the same circumstances in the EV condition. If at all, this suggests a reversal of what was pre-registered and what wasn't vis-a-vis what is written in section "Responses to feedback"
+specific:
+- in the "Theoretical framework" section, is the final sentence "Our post-task expectation measures allow exactly this test." too strong given the reviewers' concerns, or is it warranted?
+- who asked for the additional logit regression? Is that necessary/helpful to convince the specific reviewers we are facing?
+- in terms of the within-treatment regressions, I'm not sure I am convinced of the sentence: "The same contrast points in the same direction in the preference-based condition but is weaker and only marginally significant (50.0% vs. 72.5%; Fisher’s exact p = 0.099, OR = 0.39, 95% CI [0.11, 1.29]), consistent with fewer round-1 preference-based delegators having experienced a zero outcome to begin with." Why are similar but weaker reactions to negative feedback consistent with fewer round-1 zero outcomes?
+- please check the sentence "In other words, both treatments display the same basic pattern: after a loss, participants are more likely to switch their delegation decision than after a win (with a slight tendency for more after-loss switching within the EV-treatment as seen before)." for accuracy/wording ("before" should include both the within-treatment regressions and the regressions presented just before that sentence). Actually, the whole section 4.5 to me tends to be a bit confusing: what do the different regressions do (differently), how do they complement each other, which ones are more telling, and can't we somehow make that section more compact (and thus, make it easier to get the take-home message while respecting any reviewer wishes)?
+
+
+
+I made the edits in `/home/vboxuser/Aims2/AIms2/AIms2_CHBR_R1.tex`. I could not compile the LaTeX or run the R code here, so none of it has been compiled or run. The terminal also hung, so my last checks were manual reads of the edited passages, not a script. Please compile and re-run the Rmd locally. I added no em-dashes, and the five that were already there are untouched.
+
+## 1. Are all reviewer comments addressed?
+
+Almost all are, with these gaps:
+
+- **Reviewer 2's limitations request:** the main file did not contain the confound paragraph (EV vs. preference-based differ on several dimensions, and feedback is partly treatment-generated). It existed only in `AIms2_CHBR_R1_Reviewer2.tex`. I added a version to the Limitations of the main file as the new "Third" point. It is slightly more cautious than your copy, because we never elicited payoff expectations, so a payoff-expectation account is not fully excluded. Limitations are now numbered First to Seventh. Your two files now differ in wording here, so decide which one is canonical.
+- **Reviewer 1 on "responsibility trap" and psychological ownership:** these are rebutted only in the response letter. The manuscript never mentions blame or responsibility-offloading, or ownership. One or two sentences in the Discussion would make the rebuttal visible to readers. I did not add them because I would have to invent citations.
+- **Reviewer 1 on consolidating contributions:** you declined this in the response, which is defensible. The contribution list still appears in the Introduction, in "Synthesis and contribution", in "Core finding" and in "Contributions".
+- **Editor's note on references (APA, DOIs):** 44 of 53 entries in `library.bib` have no DOI, and the style is `apalike`, not APA. All cited keys exist in the bib. I did not touch this.
+- **`RnR/Reviewer1_response.md`:** it still says the Limitations have six points. It now has seven.
+- **Reviewer 3, "Figure?":** I found no dangling `\ref`. The two appendix table labels live in the `\input` file.
+
+## 2. Story line and fit with the target journal
+
+The framework and the lottery-rationale paragraph are fine for a psychology audience. I shortened the lottery paragraph, since the two copies in the response letter and manuscript were wordy.
+
+The real redundancy is elsewhere:
+
+- **Results previewed three times:** the Introduction previews the post-task evidence, the Results overview repeats it, and §4.6 reports it.
+- **Contributions:** they are restated four times (see above).
+- **Power paragraph:** the "Sixth" Limitations point is about a page long. I would move it to an appendix or supplement and leave two sentences in the main text.
+
+## 3. Final sentence of the Theoretical framework
+
+"Our post-task expectation measures allow exactly this test." was too strong. Reviewer 2 says these measures "cannot establish the psychological mechanism". They are also post-task and about preference matching, not payoffs.
+
+I rewrote it as follows. Accuracy-based accounts "become hard to sustain" and authority-based accounts "become the more plausible reading", with a pointer to the Limitations and a caveat on timing and scope. For consistency I softened the other "rules out" statements in the abstract, §4.6 (twice) and the Limitations.
+
+## 4. Who asked for the logit?
+
+It was Reviewer 2, in the statistics question: "provide robustness checks for repeated binary decisions". No other reviewer asked. It is cheap and answers that request directly. It is a footnote and not in the main text, which is the right place for it.
+
+## 5. The "fewer round-1 zero outcomes" sentence
+
+You were right to doubt it, and it was false. I computed these numbers in R earlier in the session:
+
+| | Round-1 delegators | Zero payoff |
+|---|---|---|
+| Preference-based | 63 | 36.5% |
+| EV | 79 | 31.6% |
+
+Preference-based participants had slightly more zero outcomes, not fewer (Fisher p = 0.59).
+
+The weaker significance comes from the smaller number of round-1 delegators (62 vs. 79 with valid round-2 data). The two contrasts also do not differ from each other (treatment-by-payoff logit interaction p = 0.772). I replaced the sentence with that, and added the check to the Rmd. I also corrected the same wording in `RnR/Reviewer2_response.md`.
+
+## 6. The "In other words…" sentence and §4.5
+
+The "as seen before" part was inaccurate. Neither earlier analysis supports "more after-loss switching in EV":
+
+- The nearest result is β = −0.105 with p = 0.14, which is insignificant.
+- The within-treatment round-1 contrasts do not differ between treatments.
+
+Also, in that model the EV coefficient is the gap after a loss, not overall. It is now stated that way, as a level shift rather than a stronger reaction to losses.
+
+I did not delete any analysis, but I made §4.5 easier to follow:
+
+- **Road map:** a short opening paragraph says what the three analyses do, which is confirmatory and which exploratory, and gives the take-home message.
+- **Subheadings:** three unnumbered ones (preregistered test; win-stay/lose-shift; who produced the loss).
+- **Preregistered test:** one sentence says the conclusion holds under both readings of "any other circumstances".
+
+How the pieces relate:
+
+- **Preregistered interaction:** this is the confirmatory test, and Reviewer 3 asked for it to be clear.
+- **Pooled win-stay/lose-shift:** this is the weakest. It mostly confirms that losses cause switching in both treatments, and it overlaps with the "all other rounds" contrast.
+- **Delegated vs. self-chosen losses:** this is the most informative exploratory result.
+
+If you want it more compact, I would move the pooled win-stay/lose-shift model to the appendix and keep one sentence in the text. I held back because that deletes a result Reviewer 3's confirmatory-vs-exploratory point touches.
+
+I also added a note that "staying" means different things after delegated and self-chosen outcomes, so the stay-rate comparison is descriptive.
+
+I also added a one-line caveat to the §4.4 never-delegator tests (about ten uncorrected exploratory tests). I did not mention it above because it is small.
