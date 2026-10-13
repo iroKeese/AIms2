@@ -21,6 +21,12 @@
 \newtheorem{hyp}{H} 
 \usepackage[natbibapa]{apacite} % APA 7th-style citations and reference list (loads natbib internally); requires \bibliographystyle{apacite}
 \setcitestyle{notesep={; }}
+% apacite follows the APA 6 conventions; APA 7 drops "Retrieved from" and prints DOIs as https://doi.org/... links
+\AtBeginDocument{%
+  \renewcommand{\BRetrievedFrom}{}%
+  \renewcommand{\BRetrieved}[1]{}%
+  \renewcommand{\doiprefix}{https://doi.org/}%
+}
 
 \usepackage[pdfborder={0 0 0}, breaklinks=true, hyperfootnotes=false, hypertexnames=false]{hyperref}
 \usepackage{microtype}
