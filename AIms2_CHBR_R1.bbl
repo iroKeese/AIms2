@@ -1,295 +1,1530 @@
 \begin{thebibliography}{}
 
-\bibitem[Aysolmaz et~al., 2023]{Aysolmaz2023}
-Aysolmaz, B., Müller, R., and Meacham, D. (2023).
-\newblock The public perceptions of algorithmic decision-making systems:
-  Results from a large-scale survey.
-\newblock {\em Telematics and Informatics}, 79:101954.
+\bibitem [\protect \citeauthoryear {%
+Aysolmaz%
+, Müller%
+\BCBL {}\ \BBA {} Meacham%
+}{%
+Aysolmaz%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2023}}%
+}]{%
+Aysolmaz2023}
+\APACinsertmetastar {%
+Aysolmaz2023}%
+\begin{APACrefauthors}%
+Aysolmaz, B.%
+, Müller, R.%
+\BCBL {}\ \BBA {} Meacham, D.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2023}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {The public perceptions of algorithmic decision-making
+  systems: Results from a large-scale survey} {The public perceptions of
+  algorithmic decision-making systems: Results from a large-scale
+  survey}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Telematics and Informatics}{79}{}{101954}.
+\newblock
+\begin{APACrefDOI} \doi{10.1016/j.tele.2023.101954} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem[Bartling et~al., 2014]{Bartling2014}
-Bartling, B., Fehr, E., and Herz, H. (2014).
-\newblock The intrinsic value of decision rights.
-\newblock {\em Econometrica}, 82(6):2005--2039.
+\bibitem [\protect \citeauthoryear {%
+Bartling%
+, Fehr%
+\BCBL {}\ \BBA {} Herz%
+}{%
+Bartling%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2014}}%
+}]{%
+Bartling2014}
+\APACinsertmetastar {%
+Bartling2014}%
+\begin{APACrefauthors}%
+Bartling, B.%
+, Fehr, E.%
+\BCBL {}\ \BBA {} Herz, H.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2014}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {The Intrinsic Value of Decision Rights} {The intrinsic
+  value of decision rights}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Econometrica}{82}{6}{2005--2039}.
+\newblock
+\begin{APACrefDOI} \doi{10.3982/ECTA11573} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem[Boulu-Reshef et~al., 2026]{BouluReshef2026}
-Boulu-Reshef, B., Direr, A., and von Wilczur, N. (2026).
-\newblock Algorithmic vs.\ human portfolio choice.
-\newblock {\em Finance}.
-\newblock Forthcoming.
+\bibitem [\protect \citeauthoryear {%
+Boulu-Reshef%
+, Direr%
+\BCBL {}\ \BBA {} von Wilczur%
+}{%
+Boulu-Reshef%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2026}}%
+}]{%
+BouluReshef2026}
+\APACinsertmetastar {%
+BouluReshef2026}%
+\begin{APACrefauthors}%
+Boulu-Reshef, B.%
+, Direr, A.%
+\BCBL {}\ \BBA {} von Wilczur, N.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2026}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Algorithmic vs.\ human portfolio choice} {Algorithmic
+  vs.\ human portfolio choice}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Finance}{}{}{}.
+\newblock
+\APACrefnote{Forthcoming.}
+\newblock
+\begin{APACrefDOI} \doi{10.3917/fina.pr.0051} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem[Brehm, 1966]{Brehm1966}
-Brehm, J.~W. (1966).
-\newblock {\em A Theory of Psychological Reactance}.
-\newblock Academic Press, New York.
+\bibitem [\protect \citeauthoryear {%
+Brehm%
+}{%
+Brehm%
+}{%
+{\protect \APACyear {1966}}%
+}]{%
+Brehm1966}
+\APACinsertmetastar {%
+Brehm1966}%
+\begin{APACrefauthors}%
+Brehm, J\BPBI W.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{1966}.
+\newblock
+\APACrefbtitle {A Theory of Psychological Reactance} {A theory of psychological
+  reactance}.
+\newblock
+\APACaddressPublisher{New York}{Academic Press}.
+\PrintBackRefs{\CurrentBib}
 
-\bibitem[Candrian and Scherer, 2022]{Candrian2022}
-Candrian, C. and Scherer, A. (2022).
-\newblock Rise of the machines: Delegating decisions to autonomous ai.
-\newblock {\em Computers in Human Behavior}, 134:107308.
+\bibitem [\protect \citeauthoryear {%
+Candrian%
+\ \BBA {} Scherer%
+}{%
+Candrian%
+\ \BBA {} Scherer%
+}{%
+{\protect \APACyear {2022}}%
+}]{%
+Candrian2022}
+\APACinsertmetastar {%
+Candrian2022}%
+\begin{APACrefauthors}%
+Candrian, C.%
+\BCBT {}\ \BBA {} Scherer, A.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2022}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Rise of the machines: Delegating decisions to autonomous
+  AI} {Rise of the machines: Delegating decisions to autonomous ai}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Computers in Human Behavior}{134}{}{107308}.
+\newblock
+\begin{APACrefDOI} \doi{10.1016/j.chb.2022.107308} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem[Capponi et~al., 2022]{Capponi2022}
-Capponi, A., Olafsson, S., and Zariphopoulou, T. (2022).
-\newblock Personalized robo-advising: Enhancing investment through client
-  interaction.
-\newblock {\em Management Science}, 68(4):2485--2512.
+\bibitem [\protect \citeauthoryear {%
+Capponi%
+, Olafsson%
+\BCBL {}\ \BBA {} Zariphopoulou%
+}{%
+Capponi%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2022}}%
+}]{%
+Capponi2022}
+\APACinsertmetastar {%
+Capponi2022}%
+\begin{APACrefauthors}%
+Capponi, A.%
+, Olafsson, S.%
+\BCBL {}\ \BBA {} Zariphopoulou, T.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2022}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Personalized robo-advising: Enhancing investment through
+  client interaction} {Personalized robo-advising: Enhancing investment through
+  client interaction}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Management Science}{68}{4}{2485--2512}.
+\newblock
+\begin{APACrefDOI} \doi{10.1287/mnsc.2021.4014} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem[Chen et~al., 2024]{Chen2024}
-Chen, G., Dang, J., and Liu, L. (2024).
-\newblock After opening the black box: Meta-dehumanization matters in algorithm
-  recommendation aversion.
-\newblock {\em Computers in Human Behavior}, 161:108411.
+\bibitem [\protect \citeauthoryear {%
+Chen%
+, Dang%
+\BCBL {}\ \BBA {} Liu%
+}{%
+Chen%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2024}}%
+}]{%
+Chen2024}
+\APACinsertmetastar {%
+Chen2024}%
+\begin{APACrefauthors}%
+Chen, G.%
+, Dang, J.%
+\BCBL {}\ \BBA {} Liu, L.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2024}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {After opening the black box: Meta-dehumanization matters
+  in algorithm recommendation aversion} {After opening the black box:
+  Meta-dehumanization matters in algorithm recommendation aversion}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Computers in Human Behavior}{161}{}{108411}.
+\newblock
+\begin{APACrefDOI} \doi{10.1016/j.chb.2024.108411} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem[Chugunova and Sele, 2022]{Chugunova2022}
-Chugunova, M. and Sele, D. (2022).
-\newblock We and it: An interdisciplinary review of the experimental evidence
-  on how humans interact with machines.
-\newblock {\em Journal of Behavioral and Experimental Economics}, 99:101897.
+\bibitem [\protect \citeauthoryear {%
+Chugunova%
+\ \BBA {} Sele%
+}{%
+Chugunova%
+\ \BBA {} Sele%
+}{%
+{\protect \APACyear {2022}}%
+}]{%
+Chugunova2022}
+\APACinsertmetastar {%
+Chugunova2022}%
+\begin{APACrefauthors}%
+Chugunova, M.%
+\BCBT {}\ \BBA {} Sele, D.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2022}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {We and It: An interdisciplinary review of the
+  experimental evidence on how humans interact with machines} {We and it: An
+  interdisciplinary review of the experimental evidence on how humans interact
+  with machines}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Journal of Behavioral and Experimental
+  Economics}{99}{}{101897}.
+\newblock
+\begin{APACrefDOI} \doi{10.1016/j.socec.2022.101897} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem[Deci and Ryan, 2000]{DeciRyan2000}
-Deci, E.~L. and Ryan, R.~M. (2000).
-\newblock The ``what'' and ``why'' of goal pursuits: Human needs and the
-  self-determination of behavior.
-\newblock {\em Psychological Inquiry}, 11(4):227--268.
+\bibitem [\protect \citeauthoryear {%
+Deci%
+\ \BBA {} Ryan%
+}{%
+Deci%
+\ \BBA {} Ryan%
+}{%
+{\protect \APACyear {2000}}%
+}]{%
+DeciRyan2000}
+\APACinsertmetastar {%
+DeciRyan2000}%
+\begin{APACrefauthors}%
+Deci, E\BPBI L.%
+\BCBT {}\ \BBA {} Ryan, R\BPBI M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2000}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {The ``What'' and ``Why'' of Goal Pursuits: Human Needs
+  and the Self-Determination of Behavior} {The ``what'' and ``why'' of goal
+  pursuits: Human needs and the self-determination of behavior}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Psychological Inquiry}{11}{4}{227--268}.
+\newblock
+\begin{APACrefDOI} \doi{10.1207/S15327965PLI1104_01} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem[Dietvorst et~al., 2015]{Dietvorst2015}
-Dietvorst, B.~J., Simmons, J.~P., and Massey, C. (2015).
-\newblock Algorithm aversion: People erroneously avoid algorithms after seeing
-  them err.
-\newblock {\em Journal of Experimental Psychology: General}, 144(1):114--126.
+\bibitem [\protect \citeauthoryear {%
+Dietvorst%
+, Simmons%
+\BCBL {}\ \BBA {} Massey%
+}{%
+Dietvorst%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2015}}%
+}]{%
+Dietvorst2015}
+\APACinsertmetastar {%
+Dietvorst2015}%
+\begin{APACrefauthors}%
+Dietvorst, B\BPBI J.%
+, Simmons, J\BPBI P.%
+\BCBL {}\ \BBA {} Massey, C.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2015}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Algorithm Aversion: People Erroneously Avoid Algorithms
+  After Seeing Them Err} {Algorithm aversion: People erroneously avoid
+  algorithms after seeing them err}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Journal of Experimental Psychology:
+  General}{144}{1}{114-126}.
+\newblock
+\begin{APACrefDOI} \doi{10.1037/xge0000046} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem[Dietvorst et~al., 2018]{Dietvorst2018}
-Dietvorst, B.~J., Simmons, J.~P., and Massey, C. (2018).
-\newblock Overcoming algorithm aversion: People will use imperfect algorithms
-  if they can (even slightly) modify them.
-\newblock {\em Management Science}, 64(3):1155--1170.
+\bibitem [\protect \citeauthoryear {%
+Dietvorst%
+, Simmons%
+\BCBL {}\ \BBA {} Massey%
+}{%
+Dietvorst%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2018}}%
+}]{%
+Dietvorst2018}
+\APACinsertmetastar {%
+Dietvorst2018}%
+\begin{APACrefauthors}%
+Dietvorst, B\BPBI J.%
+, Simmons, J\BPBI P.%
+\BCBL {}\ \BBA {} Massey, C.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2018}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Overcoming Algorithm Aversion: People Will Use Imperfect
+  Algorithms If They Can (Even Slightly) Modify Them} {Overcoming algorithm
+  aversion: People will use imperfect algorithms if they can (even slightly)
+  modify them}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Management Science}{64}{3}{1155-1170}.
+\newblock
+\begin{APACrefDOI} \doi{10.1287/mnsc.2016.2643} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem[Draxler et~al., 2024]{Draxler2024}
-Draxler, F., Werner, A., Lehmann, F., Hoppe, M., Schmidt, A., Buschek, D., and
-  Welsch, R. (2024).
-\newblock The {AI} ghostwriter effect: When users do not perceive ownership of
-  {AI}-generated text but self-declare as authors.
-\newblock {\em ACM Transactions on Computer-Human Interaction}, 31(2):1--40.
+\bibitem [\protect \citeauthoryear {%
+Draxler%
+\ \protect \BOthers {.}}{%
+Draxler%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2024}}%
+}]{%
+Draxler2024}
+\APACinsertmetastar {%
+Draxler2024}%
+\begin{APACrefauthors}%
+Draxler, F.%
+, Werner, A.%
+, Lehmann, F.%
+, Hoppe, M.%
+, Schmidt, A.%
+, Buschek, D.%
+\BCBL {}\ \BBA {} Welsch, R.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2024}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {The {AI} Ghostwriter Effect: When Users do not Perceive
+  Ownership of {AI}-Generated Text but Self-Declare as Authors} {The {AI}
+  ghostwriter effect: When users do not perceive ownership of {AI}-generated
+  text but self-declare as authors}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{ACM Transactions on Computer-Human
+  Interaction}{31}{2}{1--40}.
+\newblock
+\begin{APACrefDOI} \doi{10.1145/3637875} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem[Ferraz et~al., 2025]{Ferraz2025}
-Ferraz, V., Houf, L., Pitz, T., Schwieren, C., and Sickmann, J. (2025).
-\newblock Trust in the machine: How contextual factors and personality traits
-  shape algorithm aversion and collaboration.
-\newblock {\em Computers in Human Behavior Reports}, 17:100578.
+\bibitem [\protect \citeauthoryear {%
+Ferraz%
+, Houf%
+, Pitz%
+, Schwieren%
+\BCBL {}\ \BBA {} Sickmann%
+}{%
+Ferraz%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2025}}%
+}]{%
+Ferraz2025}
+\APACinsertmetastar {%
+Ferraz2025}%
+\begin{APACrefauthors}%
+Ferraz, V.%
+, Houf, L.%
+, Pitz, T.%
+, Schwieren, C.%
+\BCBL {}\ \BBA {} Sickmann, J.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2025}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Trust in the machine: How contextual factors and
+  personality traits shape algorithm aversion and collaboration} {Trust in the
+  machine: How contextual factors and personality traits shape algorithm
+  aversion and collaboration}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Computers in Human Behavior Reports}{17}{}{100578}.
+\newblock
+\begin{APACrefDOI} \doi{10.1016/j.chbr.2024.100578} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem[Figà-Talamanca et~al., 2022]{Figa-Talamanca2022}
-Figà-Talamanca, G., Tanzi, P.~M., and D’Urzo, E. (2022).
-\newblock Robo-advisor acceptance: Do gender and generation matter?
-\newblock {\em PLOS ONE}, 17(6):1--13.
+\bibitem [\protect \citeauthoryear {%
+Figà-Talamanca%
+, Tanzi%
+\BCBL {}\ \BBA {} D’Urzo%
+}{%
+Figà-Talamanca%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2022}}%
+}]{%
+Figa-Talamanca2022}
+\APACinsertmetastar {%
+Figa-Talamanca2022}%
+\begin{APACrefauthors}%
+Figà-Talamanca, G.%
+, Tanzi, P\BPBI M.%
+\BCBL {}\ \BBA {} D’Urzo, E.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2022}{06}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Robo-advisor acceptance: Do gender and generation
+  matter?} {Robo-advisor acceptance: Do gender and generation matter?}{\BBCQ}
+\newblock
+\APACjournalVolNumPages{PLOS ONE}{17}{6}{1-13}.
+\newblock
+\begin{APACrefDOI} \doi{10.1371/journal.pone.0269454} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem[Fink et~al., 2024]{Fink2024}
-Fink, L., Newman, L., and Haran, U. (2024).
-\newblock Let me decide: Increasing user autonomy increases recommendation
-  acceptance.
-\newblock {\em Computers in Human Behavior}, 156:108244.
+\bibitem [\protect \citeauthoryear {%
+Fink%
+, Newman%
+\BCBL {}\ \BBA {} Haran%
+}{%
+Fink%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2024}}%
+}]{%
+Fink2024}
+\APACinsertmetastar {%
+Fink2024}%
+\begin{APACrefauthors}%
+Fink, L.%
+, Newman, L.%
+\BCBL {}\ \BBA {} Haran, U.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2024}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Let me decide: Increasing user autonomy increases
+  recommendation acceptance} {Let me decide: Increasing user autonomy increases
+  recommendation acceptance}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Computers in Human Behavior}{156}{}{108244}.
+\newblock
+\begin{APACrefDOI} \doi{10.1016/j.chb.2024.108244} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem[Fischbacher, 2007]{Fischbacher07}
-Fischbacher, U. (2007).
-\newblock z-tree: Zurich toolbox for ready-made economic experiments.
-\newblock {\em Experimental Economics}, 10(2):171--178.
+\bibitem [\protect \citeauthoryear {%
+Fischbacher%
+}{%
+Fischbacher%
+}{%
+{\protect \APACyear {2007}}%
+}]{%
+Fischbacher07}
+\APACinsertmetastar {%
+Fischbacher07}%
+\begin{APACrefauthors}%
+Fischbacher, U.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2007}{{\APACmonth{06}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {z-Tree: Zurich toolbox for ready-made economic
+  experiments} {z-tree: Zurich toolbox for ready-made economic
+  experiments}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Experimental Economics}{10}{2}{171--178}.
+\newblock
+\begin{APACrefDOI} \doi{10.1007/s10683-006-9159-4} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem[Frey et~al., 2004]{FreyBenzStutzer2004}
-Frey, B.~S., Benz, M., and Stutzer, A. (2004).
-\newblock Introducing procedural utility: Not only what, but also how matters.
-\newblock {\em Journal of Institutional and Theoretical Economics},
-  160(3):377--401.
+\bibitem [\protect \citeauthoryear {%
+Frey%
+, Benz%
+\BCBL {}\ \BBA {} Stutzer%
+}{%
+Frey%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2004}}%
+}]{%
+FreyBenzStutzer2004}
+\APACinsertmetastar {%
+FreyBenzStutzer2004}%
+\begin{APACrefauthors}%
+Frey, B\BPBI S.%
+, Benz, M.%
+\BCBL {}\ \BBA {} Stutzer, A.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2004}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Introducing Procedural Utility: Not Only What, but Also
+  How Matters} {Introducing procedural utility: Not only what, but also how
+  matters}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Journal of Institutional and Theoretical
+  Economics}{160}{3}{377--401}.
+\newblock
+\begin{APACrefDOI} \doi{10.1628/0932456041960560} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem[Gazit et~al., 2023]{Gazit2023}
-Gazit, L., Arazy, O., and Hertz, U. (2023).
-\newblock Choosing between human and algorithmic advisors: The role of
-  responsibility sharing.
-\newblock {\em Computers in Human Behavior: Artificial Humans}, 1(2):100009.
+\bibitem [\protect \citeauthoryear {%
+Gazit%
+, Arazy%
+\BCBL {}\ \BBA {} Hertz%
+}{%
+Gazit%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2023}}%
+}]{%
+Gazit2023}
+\APACinsertmetastar {%
+Gazit2023}%
+\begin{APACrefauthors}%
+Gazit, L.%
+, Arazy, O.%
+\BCBL {}\ \BBA {} Hertz, U.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2023}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Choosing between human and algorithmic advisors: The
+  role of responsibility sharing} {Choosing between human and algorithmic
+  advisors: The role of responsibility sharing}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Computers in Human Behavior: Artificial
+  Humans}{1}{2}{100009}.
+\newblock
+\begin{APACrefDOI} \doi{10.1016/j.chbah.2023.100009} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem[Hildebrand and Bergner, 2021]{Hildebrand2021}
-Hildebrand, C. and Bergner, A. (2021).
-\newblock Conversational robo advisors as surrogates of trust: Onboarding
-  experience, firm perception, and consumer financial decision making.
-\newblock {\em Journal of the Academy of Marketing Science}, 49(4):659--676.
+\bibitem [\protect \citeauthoryear {%
+Gogoll%
+\ \BBA {} Uhl%
+}{%
+Gogoll%
+\ \BBA {} Uhl%
+}{%
+{\protect \APACyear {2018}}%
+}]{%
+GogollUhl2018}
+\APACinsertmetastar {%
+GogollUhl2018}%
+\begin{APACrefauthors}%
+Gogoll, J.%
+\BCBT {}\ \BBA {} Uhl, M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2018}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Rage against the machine: Automation in the moral
+  domain} {Rage against the machine: Automation in the moral domain}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Journal of Behavioral and Experimental
+  Economics}{74}{}{97--103}.
+\newblock
+\begin{APACrefDOI} \doi{10.1016/j.socec.2018.04.003} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem[Hoenig and Heisey, 2001]{HoenigHeisey2001}
-Hoenig, J.~M. and Heisey, D.~M. (2001).
-\newblock The abuse of power: The pervasive fallacy of power calculations for
-  data analysis.
-\newblock {\em The American Statistician}, 55(1):19--24.
+\bibitem [\protect \citeauthoryear {%
+Hildebrand%
+\ \BBA {} Bergner%
+}{%
+Hildebrand%
+\ \BBA {} Bergner%
+}{%
+{\protect \APACyear {2021}}%
+}]{%
+Hildebrand2021}
+\APACinsertmetastar {%
+Hildebrand2021}%
+\begin{APACrefauthors}%
+Hildebrand, C.%
+\BCBT {}\ \BBA {} Bergner, A.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2021}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Conversational robo advisors as surrogates of trust:
+  Onboarding experience, firm perception, and consumer financial decision
+  making} {Conversational robo advisors as surrogates of trust: Onboarding
+  experience, firm perception, and consumer financial decision making}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Journal of the Academy of Marketing
+  Science}{49}{4}{659--676}.
+\newblock
+\begin{APACrefDOI} \doi{10.1007/s11747-020-00753-z} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem[Hu et~al., 2024]{Hu2024}
-Hu, P., Zeng, Y., Wang, D., and Teng, H. (2024).
-\newblock Too much light blinds: The transparency-resistance paradox in
-  algorithmic management.
-\newblock {\em Computers in Human Behavior}, 161:108403.
+\bibitem [\protect \citeauthoryear {%
+Hoenig%
+\ \BBA {} Heisey%
+}{%
+Hoenig%
+\ \BBA {} Heisey%
+}{%
+{\protect \APACyear {2001}}%
+}]{%
+HoenigHeisey2001}
+\APACinsertmetastar {%
+HoenigHeisey2001}%
+\begin{APACrefauthors}%
+Hoenig, J\BPBI M.%
+\BCBT {}\ \BBA {} Heisey, D\BPBI M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2001}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {The Abuse of Power: The Pervasive Fallacy of Power
+  Calculations for Data Analysis} {The abuse of power: The pervasive fallacy of
+  power calculations for data analysis}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{The American Statistician}{55}{1}{19--24}.
+\newblock
+\begin{APACrefDOI} \doi{10.1198/000313001300339897} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem[Höddinghaus et~al., 2021]{Hoeddinghaus2021}
-Höddinghaus, M., Sondern, D., and Hertel, G. (2021).
-\newblock The automation of leadership functions: Would people trust decision
-  algorithms?
-\newblock {\em Computers in Human Behavior}, 116:106635.
+\bibitem [\protect \citeauthoryear {%
+Hu%
+, Zeng%
+, Wang%
+\BCBL {}\ \BBA {} Teng%
+}{%
+Hu%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2024}}%
+}]{%
+Hu2024}
+\APACinsertmetastar {%
+Hu2024}%
+\begin{APACrefauthors}%
+Hu, P.%
+, Zeng, Y.%
+, Wang, D.%
+\BCBL {}\ \BBA {} Teng, H.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2024}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Too much light blinds: The transparency-resistance
+  paradox in algorithmic management} {Too much light blinds: The
+  transparency-resistance paradox in algorithmic management}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Computers in Human Behavior}{161}{}{108403}.
+\newblock
+\begin{APACrefDOI} \doi{10.1016/j.chb.2024.108403} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem[Ismagilova and Ploner, 2025]{Ismagilova2025}
-Ismagilova, Z. and Ploner, M. (2025).
-\newblock Ain’t blaming you: Delegation of financial decisions to humans and
-  algorithms.
-\newblock {\em Computers in Human Behavior: Artificial Humans}, 4:100147.
+\bibitem [\protect \citeauthoryear {%
+Höddinghaus%
+, Sondern%
+\BCBL {}\ \BBA {} Hertel%
+}{%
+Höddinghaus%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2021}}%
+}]{%
+Hoeddinghaus2021}
+\APACinsertmetastar {%
+Hoeddinghaus2021}%
+\begin{APACrefauthors}%
+Höddinghaus, M.%
+, Sondern, D.%
+\BCBL {}\ \BBA {} Hertel, G.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2021}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {The automation of leadership functions: Would people
+  trust decision algorithms?} {The automation of leadership functions: Would
+  people trust decision algorithms?}{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Computers in Human Behavior}{116}{}{106635}.
+\newblock
+\begin{APACrefDOI} \doi{10.1016/j.chb.2020.106635} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem[Ivanova-Stenzel and Tolksdorf, 2025]{Ivanova-Stenzel2025}
-Ivanova-Stenzel, R. and Tolksdorf, M. (2025).
-\newblock Delegating in the age of ai: Preferences for decision autonomy.
-\newblock Discussion Paper 558, Ludwig-Maximilians-Universit\"{a}t M\"{u}nchen
-  und Humboldt-Universit\"{a}t zu Berlin, Collaborative Research Center
-  Transregio 190 - Rationality and Competition, M\"{u}nchen und Berlin.
+\bibitem [\protect \citeauthoryear {%
+Ismagilova%
+\ \BBA {} Ploner%
+}{%
+Ismagilova%
+\ \BBA {} Ploner%
+}{%
+{\protect \APACyear {2025}}%
+}]{%
+Ismagilova2025}
+\APACinsertmetastar {%
+Ismagilova2025}%
+\begin{APACrefauthors}%
+Ismagilova, Z.%
+\BCBT {}\ \BBA {} Ploner, M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2025}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Ain’t blaming you: Delegation of financial decisions
+  to humans and algorithms} {Ain’t blaming you: Delegation of financial
+  decisions to humans and algorithms}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Computers in Human Behavior: Artificial
+  Humans}{4}{}{100147}.
+\newblock
+\begin{APACrefDOI} \doi{10.1016/j.chbah.2025.100147} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem[Kim, 2026]{Kim2026}
-Kim, H. (2026).
-\newblock Beyond algorithm aversion: The impact of psychological readiness on
-  algorithmic advice.
-\newblock {\em Computers in Human Behavior}, 174:108824.
+\bibitem [\protect \citeauthoryear {%
+Ivanova-Stenzel%
+\ \BBA {} Tolksdorf%
+}{%
+Ivanova-Stenzel%
+\ \BBA {} Tolksdorf%
+}{%
+{\protect \APACyear {2025}}%
+}]{%
+Ivanova-Stenzel2025}
+\APACinsertmetastar {%
+Ivanova-Stenzel2025}%
+\begin{APACrefauthors}%
+Ivanova-Stenzel, R.%
+\BCBT {}\ \BBA {} Tolksdorf, M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2025}{}{}.
+\newblock
+\APACrefbtitle {Delegating in the Age of AI: Preferences for Decision Autonomy}
+  {Delegating in the age of ai: Preferences for decision autonomy}\
+  \APACbVolEdTR {}{Discussion Paper\ \BNUM~558}.
+\newblock
+\APACaddressInstitution{M\"{u}nchen und
+  Berlin}{Ludwig-Maximilians-Universit\"{a}t M\"{u}nchen und
+  Humboldt-Universit\"{a}t zu Berlin, Collaborative Research Center Transregio
+  190 - Rationality and Competition}.
+\newblock
+\begin{APACrefURL} \url{https://hdl.handle.net/10419/336608} \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem[Kim et~al., 2025]{Kim2025ICIS}
-Kim, S., Ahn, D., Choi, B., Park, J., Yang, J., Yoo, B., and Yum, K. (2025).
-\newblock Controllability in algorithmic decision-making: {F}ield evidence from
-  a robo-advisor.
-\newblock In {\em Proceedings of the International Conference on Information
-  Systems (ICIS 2025)}. AIS.
+\bibitem [\protect \citeauthoryear {%
+H.~Kim%
+}{%
+H.~Kim%
+}{%
+{\protect \APACyear {2026}}%
+}]{%
+Kim2026}
+\APACinsertmetastar {%
+Kim2026}%
+\begin{APACrefauthors}%
+Kim, H.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2026}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Beyond algorithm aversion: The impact of psychological
+  readiness on algorithmic advice} {Beyond algorithm aversion: The impact of
+  psychological readiness on algorithmic advice}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Computers in Human Behavior}{174}{}{108824}.
+\newblock
+\begin{APACrefDOI} \doi{10.1016/j.chb.2025.108824} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem[Kirchkamp and Strobel, 2019a]{Kirchkamp2019}
-Kirchkamp, O. and Strobel, C. (2019a).
-\newblock Sharing responsibility with a machine.
-\newblock {\em Journal of Behavioral and Experimental Economics}, 80:25--33.
+\bibitem [\protect \citeauthoryear {%
+S.~Kim%
+\ \protect \BOthers {.}}{%
+S.~Kim%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2025}}%
+}]{%
+Kim2025ICIS}
+\APACinsertmetastar {%
+Kim2025ICIS}%
+\begin{APACrefauthors}%
+Kim, S.%
+, Ahn, D.%
+, Choi, B.%
+, Park, J.%
+, Yang, J.%
+, Yoo, B.%
+\BCBL {}\ \BBA {} Yum, K.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2025}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Controllability in Algorithmic Decision-Making: {F}ield
+  Evidence from a Robo-Advisor} {Controllability in algorithmic
+  decision-making: {F}ield evidence from a robo-advisor}.{\BBCQ}
+\newblock
+\BIn{} \APACrefbtitle {Proceedings of the International Conference on
+  Information Systems (ICIS 2025).} {Proceedings of the international
+  conference on information systems (icis 2025).}
+\newblock
+\APACaddressPublisher{}{AIS}.
+\PrintBackRefs{\CurrentBib}
 
-\bibitem[Kirchkamp and Strobel, 2019b]{KirchkampStrobel2019}
-Kirchkamp, O. and Strobel, C. (2019b).
-\newblock Sharing responsibility with a machine.
-\newblock {\em Journal of Behavioral and Experimental Economics}, 80:25--33.
+\bibitem [\protect \citeauthoryear {%
+Kirchkamp%
+\ \BBA {} Strobel%
+}{%
+Kirchkamp%
+\ \BBA {} Strobel%
+}{%
+{\protect \APACyear {2019}}%
+}]{%
+Kirchkamp2019}
+\APACinsertmetastar {%
+Kirchkamp2019}%
+\begin{APACrefauthors}%
+Kirchkamp, O.%
+\BCBT {}\ \BBA {} Strobel, C.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2019}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Sharing responsibility with a machine} {Sharing
+  responsibility with a machine}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Journal of Behavioral and Experimental
+  Economics}{80}{}{25-33}.
+\newblock
+\begin{APACrefDOI} \doi{10.1016/j.socec.2019.02.010} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem[Klingbeil et~al., 2024]{Klingbeil2024}
-Klingbeil, A., Grützner, C., and Schreck, P. (2024).
-\newblock Trust and reliance on ai — an experimental study on the extent and
-  costs of overreliance on ai.
-\newblock {\em Computers in Human Behavior}, 160:108352.
+\bibitem [\protect \citeauthoryear {%
+Klingbeil%
+, Grützner%
+\BCBL {}\ \BBA {} Schreck%
+}{%
+Klingbeil%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2024}}%
+}]{%
+Klingbeil2024}
+\APACinsertmetastar {%
+Klingbeil2024}%
+\begin{APACrefauthors}%
+Klingbeil, A.%
+, Grützner, C.%
+\BCBL {}\ \BBA {} Schreck, P.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2024}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Trust and reliance on AI — An experimental study on
+  the extent and costs of overreliance on AI} {Trust and reliance on ai — an
+  experimental study on the extent and costs of overreliance on ai}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Computers in Human Behavior}{160}{}{108352}.
+\newblock
+\begin{APACrefDOI} \doi{10.1016/j.chb.2024.108352} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem[Kou et~al., 2026]{Kou2026}
-Kou, G., Li, Y., Wang, H., and Wang, X. (2026).
-\newblock Human--{AI} hybrid finance: from {AI} tools to decision systems.
-\newblock {\em Financial Innovation}, 12:125.
+\bibitem [\protect \citeauthoryear {%
+Kou%
+, Li%
+, Wang%
+\BCBL {}\ \BBA {} Wang%
+}{%
+Kou%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2026}}%
+}]{%
+Kou2026}
+\APACinsertmetastar {%
+Kou2026}%
+\begin{APACrefauthors}%
+Kou, G.%
+, Li, Y.%
+, Wang, H.%
+\BCBL {}\ \BBA {} Wang, X.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2026}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Human--{AI} hybrid finance: from {AI} tools to decision
+  systems} {Human--{AI} hybrid finance: from {AI} tools to decision
+  systems}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Financial Innovation}{12}{}{125}.
+\newblock
+\begin{APACrefDOI} \doi{10.1186/s40854-026-00941-w} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem[Lambrecht et~al., 2023]{Lambrecht2023}
-Lambrecht, M., Oechssler, J., and Weidenholzer, S. (2023).
-\newblock On the benefits of robo advice in financial markets.
-\newblock AWI Discussion Paper Series 734, Heidelberg University.
+\bibitem [\protect \citeauthoryear {%
+Lambrecht%
+, Oechssler%
+\BCBL {}\ \BBA {} Weidenholzer%
+}{%
+Lambrecht%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2026}}%
+}]{%
+Lambrecht2023}
+\APACinsertmetastar {%
+Lambrecht2023}%
+\begin{APACrefauthors}%
+Lambrecht, M.%
+, Oechssler, J.%
+\BCBL {}\ \BBA {} Weidenholzer, S.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2026}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {On the Benefits of Robo-Advice in Financial Markets} {On
+  the benefits of robo-advice in financial markets}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{The Economic Journal}{}{}{ueag076}.
+\newblock
+\begin{APACrefDOI} \doi{10.1093/ej/ueag076} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem[Leichtmann et~al., 2023]{Leichtmann2023}
-Leichtmann, B., Humer, C., Hinterreiter, A., Streit, M., and Mara, M. (2023).
-\newblock Effects of explainable artificial intelligence on trust and human
-  behavior in a high-risk decision task.
-\newblock {\em Computers in Human Behavior}, 139:107539.
+\bibitem [\protect \citeauthoryear {%
+Leichtmann%
+, Humer%
+, Hinterreiter%
+, Streit%
+\BCBL {}\ \BBA {} Mara%
+}{%
+Leichtmann%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2023}}%
+}]{%
+Leichtmann2023}
+\APACinsertmetastar {%
+Leichtmann2023}%
+\begin{APACrefauthors}%
+Leichtmann, B.%
+, Humer, C.%
+, Hinterreiter, A.%
+, Streit, M.%
+\BCBL {}\ \BBA {} Mara, M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2023}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Effects of Explainable Artificial Intelligence on trust
+  and human behavior in a high-risk decision task} {Effects of explainable
+  artificial intelligence on trust and human behavior in a high-risk decision
+  task}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Computers in Human Behavior}{139}{}{107539}.
+\newblock
+\begin{APACrefDOI} \doi{10.1016/j.chb.2022.107539} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem[Leotti et~al., 2010]{Leotti2010}
-Leotti, L.~A., Iyengar, S.~S., and Ochsner, K.~N. (2010).
-\newblock Born to choose: The origins and value of the need for control.
-\newblock {\em Trends in Cognitive Sciences}, 14(10):457--463.
+\bibitem [\protect \citeauthoryear {%
+Leotti%
+, Iyengar%
+\BCBL {}\ \BBA {} Ochsner%
+}{%
+Leotti%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2010}}%
+}]{%
+Leotti2010}
+\APACinsertmetastar {%
+Leotti2010}%
+\begin{APACrefauthors}%
+Leotti, L\BPBI A.%
+, Iyengar, S\BPBI S.%
+\BCBL {}\ \BBA {} Ochsner, K\BPBI N.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2010}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Born to Choose: The Origins and Value of the Need for
+  Control} {Born to choose: The origins and value of the need for
+  control}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Trends in Cognitive Sciences}{14}{10}{457--463}.
+\newblock
+\begin{APACrefDOI} \doi{10.1016/j.tics.2010.08.001} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem[Logg et~al., 2019]{Logg2019}
-Logg, J.~M., Minson, J.~A., and Moore, D.~A. (2019).
-\newblock Algorithm appreciation: People prefer algorithmic to human judgment.
-\newblock {\em Organizational Behavior and Human Decision Processes},
-  151:90--103.
+\bibitem [\protect \citeauthoryear {%
+Logg%
+, Minson%
+\BCBL {}\ \BBA {} Moore%
+}{%
+Logg%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2019}}%
+}]{%
+Logg2019}
+\APACinsertmetastar {%
+Logg2019}%
+\begin{APACrefauthors}%
+Logg, J\BPBI M.%
+, Minson, J\BPBI A.%
+\BCBL {}\ \BBA {} Moore, D\BPBI A.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2019}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Algorithm appreciation: People prefer algorithmic to
+  human judgment} {Algorithm appreciation: People prefer algorithmic to human
+  judgment}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Organizational Behavior and Human Decision
+  Processes}{151}{}{90-103}.
+\newblock
+\begin{APACrefDOI} \doi{10.1016/j.obhdp.2018.12.005} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem[Maasland and Wei{\ss}m{\"u}ller, 2022]{Maasland2022}
-Maasland, C. and Wei{\ss}m{\"u}ller, K.~S. (2022).
-\newblock Blame the machine? insights from an experiment on algorithm aversion
-  and blame avoidance in computer-aided human resource management.
-\newblock {\em Frontiers in Psychology}, 13:779028.
+\bibitem [\protect \citeauthoryear {%
+Maasland%
+\ \BBA {} Wei{\ss}m{\"u}ller%
+}{%
+Maasland%
+\ \BBA {} Wei{\ss}m{\"u}ller%
+}{%
+{\protect \APACyear {2022}}%
+}]{%
+Maasland2022}
+\APACinsertmetastar {%
+Maasland2022}%
+\begin{APACrefauthors}%
+Maasland, C.%
+\BCBT {}\ \BBA {} Wei{\ss}m{\"u}ller, K\BPBI S.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2022}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Blame the Machine? Insights From an Experiment on
+  Algorithm Aversion and Blame Avoidance in Computer-Aided Human Resource
+  Management} {Blame the machine? insights from an experiment on algorithm
+  aversion and blame avoidance in computer-aided human resource
+  management}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Frontiers in Psychology}{13}{}{779028}.
+\newblock
+\begin{APACrefDOI} \doi{10.3389/fpsyg.2022.779028} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem[Mahmud et~al., 2022]{Mahmud2022}
-Mahmud, H., Islam, A.~N., Ahmed, S.~I., and Smolander, K. (2022).
-\newblock What influences algorithmic decision-making? a systematic literature
-  review on algorithm aversion.
-\newblock {\em Technological Forecasting and Social Change}, 175:121390.
+\bibitem [\protect \citeauthoryear {%
+Mahmud%
+, Islam%
+, Ahmed%
+\BCBL {}\ \BBA {} Smolander%
+}{%
+Mahmud%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2022}}%
+}]{%
+Mahmud2022}
+\APACinsertmetastar {%
+Mahmud2022}%
+\begin{APACrefauthors}%
+Mahmud, H.%
+, Islam, A\BPBI N.%
+, Ahmed, S\BPBI I.%
+\BCBL {}\ \BBA {} Smolander, K.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2022}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {What influences algorithmic decision-making? A
+  systematic literature review on algorithm aversion} {What influences
+  algorithmic decision-making? a systematic literature review on algorithm
+  aversion}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Technological Forecasting and Social
+  Change}{175}{}{121390}.
+\newblock
+\begin{APACrefDOI} \doi{10.1016/j.techfore.2021.121390} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem[Mahmud et~al., 2025]{Mahmud2025}
-Mahmud, H., Islam, N., and Krishnan, S. (2025).
-\newblock Human-robo-advisor collaboration in decision-making: Evidence from a
-  multiphase mixed methods experimental study.
-\newblock {\em Decision Support Systems}, 198:114541.
+\bibitem [\protect \citeauthoryear {%
+Mahmud%
+, Islam%
+\BCBL {}\ \BBA {} Krishnan%
+}{%
+Mahmud%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2025}}%
+}]{%
+Mahmud2025}
+\APACinsertmetastar {%
+Mahmud2025}%
+\begin{APACrefauthors}%
+Mahmud, H.%
+, Islam, N.%
+\BCBL {}\ \BBA {} Krishnan, S.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2025}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Human-Robo-advisor collaboration in decision-making:
+  Evidence from a multiphase mixed methods experimental study}
+  {Human-robo-advisor collaboration in decision-making: Evidence from a
+  multiphase mixed methods experimental study}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Decision Support Systems}{198}{}{114541}.
+\newblock
+\begin{APACrefDOI} \doi{10.1016/j.dss.2025.114541} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem[Ning et~al., 2024]{Ning2024}
-Ning, X., Lu, Y., Li, W., and Gupta, S. (2024).
-\newblock How transparency affects algorithmic advice utilization: The
-  mediating roles of trusting beliefs.
-\newblock {\em Decision Support Systems}, 183:114273.
+\bibitem [\protect \citeauthoryear {%
+Ning%
+, Lu%
+, Li%
+\BCBL {}\ \BBA {} Gupta%
+}{%
+Ning%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2024}}%
+}]{%
+Ning2024}
+\APACinsertmetastar {%
+Ning2024}%
+\begin{APACrefauthors}%
+Ning, X.%
+, Lu, Y.%
+, Li, W.%
+\BCBL {}\ \BBA {} Gupta, S.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2024}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {How transparency affects algorithmic advice utilization:
+  The mediating roles of trusting beliefs} {How transparency affects
+  algorithmic advice utilization: The mediating roles of trusting
+  beliefs}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Decision Support Systems}{183}{}{114273}.
+\newblock
+\begin{APACrefDOI} \doi{10.1016/j.dss.2024.114273} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem[Owens et~al., 2014]{Owens2014}
-Owens, D., Grossman, Z., and Fackler, R. (2014).
-\newblock The control premium: A preference for payoff autonomy.
-\newblock {\em American Economic Journal: Microeconomics}, 6(4):138--161.
+\bibitem [\protect \citeauthoryear {%
+Owens%
+, Grossman%
+\BCBL {}\ \BBA {} Fackler%
+}{%
+Owens%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2014}}%
+}]{%
+Owens2014}
+\APACinsertmetastar {%
+Owens2014}%
+\begin{APACrefauthors}%
+Owens, D.%
+, Grossman, Z.%
+\BCBL {}\ \BBA {} Fackler, R.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2014}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {The Control Premium: A Preference for Payoff Autonomy}
+  {The control premium: A preference for payoff autonomy}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{American Economic Journal:
+  Microeconomics}{6}{4}{138--161}.
+\newblock
+\begin{APACrefDOI} \doi{10.1257/mic.6.4.138} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem[Renier et~al., 2021]{Renier2021}
-Renier, L.~A., {Schmid Mast}, M., and Bekbergenova, A. (2021).
-\newblock To err is human, not algorithmic – robust reactions to erring
-  algorithms.
-\newblock {\em Computers in Human Behavior}, 124:106879.
+\bibitem [\protect \citeauthoryear {%
+Renier%
+, {Schmid Mast}%
+\BCBL {}\ \BBA {} Bekbergenova%
+}{%
+Renier%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2021}}%
+}]{%
+Renier2021}
+\APACinsertmetastar {%
+Renier2021}%
+\begin{APACrefauthors}%
+Renier, L\BPBI A.%
+, {Schmid Mast}, M.%
+\BCBL {}\ \BBA {} Bekbergenova, A.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2021}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {To err is human, not algorithmic – Robust reactions to
+  erring algorithms} {To err is human, not algorithmic – robust reactions to
+  erring algorithms}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Computers in Human Behavior}{124}{}{106879}.
+\newblock
+\begin{APACrefDOI} \doi{10.1016/j.chb.2021.106879} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem[Rühr, 2020]{Ruehr2020}
-Rühr, A. (2020).
-\newblock Robo-advisor configuration: An investigation of user preferences and
-  the performance-control dilemma.
-\newblock In {\em Proceedings of the 28th European Conference on Information
-  Systems (ECIS 2020)}. AIS.
+\bibitem [\protect \citeauthoryear {%
+Rühr%
+}{%
+Rühr%
+}{%
+{\protect \APACyear {2020}}%
+}]{%
+Ruehr2020}
+\APACinsertmetastar {%
+Ruehr2020}%
+\begin{APACrefauthors}%
+Rühr, A.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2020}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Robo-advisor configuration: An investigation of user
+  preferences and the performance-control dilemma} {Robo-advisor configuration:
+  An investigation of user preferences and the performance-control
+  dilemma}.{\BBCQ}
+\newblock
+\BIn{} \APACrefbtitle {Proceedings of the 28th European Conference on
+  Information Systems (ECIS 2020).} {Proceedings of the 28th european
+  conference on information systems (ecis 2020).}
+\newblock
+\APACaddressPublisher{}{AIS}.
+\PrintBackRefs{\CurrentBib}
 
-\bibitem[Schaap et~al., 2024]{Schaap2024}
-Schaap, G., Bosse, T., and Hendriks~Vettehen, P. (2024).
-\newblock The abc of algorithmic aversion: not agent, but benefits and control
-  determine the acceptance of automated decision-making.
-\newblock {\em AI \& SOCIETY}, 39(4):1947--1960.
+\bibitem [\protect \citeauthoryear {%
+Schaap%
+, Bosse%
+\BCBL {}\ \BBA {} Hendriks~Vettehen%
+}{%
+Schaap%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2024}}%
+}]{%
+Schaap2024}
+\APACinsertmetastar {%
+Schaap2024}%
+\begin{APACrefauthors}%
+Schaap, G.%
+, Bosse, T.%
+\BCBL {}\ \BBA {} Hendriks~Vettehen, P.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2024}{{\APACmonth{08}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {The ABC of algorithmic aversion: not agent, but benefits
+  and control determine the acceptance of automated decision-making} {The abc
+  of algorithmic aversion: not agent, but benefits and control determine the
+  acceptance of automated decision-making}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{AI \& SOCIETY}{39}{4}{1947--1960}.
+\newblock
+\begin{APACrefDOI} \doi{10.1007/s00146-023-01649-6} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem[Schreibelmayr and Mara, 2025]{Schreibelmayr2025}
-Schreibelmayr, S. and Mara, M. (2025).
-\newblock Determinants of self-reported and behavioral trust in an ai advisor
-  within a cooperative problem-solving game.
-\newblock {\em Computers in Human Behavior: Artificial Humans}, 6:100235.
+\bibitem [\protect \citeauthoryear {%
+Schreibelmayr%
+\ \BBA {} Mara%
+}{%
+Schreibelmayr%
+\ \BBA {} Mara%
+}{%
+{\protect \APACyear {2025}}%
+}]{%
+Schreibelmayr2025}
+\APACinsertmetastar {%
+Schreibelmayr2025}%
+\begin{APACrefauthors}%
+Schreibelmayr, S.%
+\BCBT {}\ \BBA {} Mara, M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2025}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Determinants of self-reported and behavioral trust in an
+  AI advisor within a cooperative problem-solving game} {Determinants of
+  self-reported and behavioral trust in an ai advisor within a cooperative
+  problem-solving game}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Computers in Human Behavior: Artificial
+  Humans}{6}{}{100235}.
+\newblock
+\begin{APACrefDOI} \doi{10.1016/j.chbah.2025.100235} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem[Sele and Chugunova, 2024]{Sele2024}
-Sele, D. and Chugunova, M. (2024).
-\newblock Putting a human in the loop: Increasing uptake, but decreasing
-  accuracy of automated decision-making.
-\newblock {\em PLOS ONE}, 19(2):1--14.
+\bibitem [\protect \citeauthoryear {%
+Sele%
+\ \BBA {} Chugunova%
+}{%
+Sele%
+\ \BBA {} Chugunova%
+}{%
+{\protect \APACyear {2024}}%
+}]{%
+Sele2024}
+\APACinsertmetastar {%
+Sele2024}%
+\begin{APACrefauthors}%
+Sele, D.%
+\BCBT {}\ \BBA {} Chugunova, M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2024}{02}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Putting a human in the loop: Increasing uptake, but
+  decreasing accuracy of automated decision-making} {Putting a human in the
+  loop: Increasing uptake, but decreasing accuracy of automated
+  decision-making}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{PLOS ONE}{19}{2}{1-14}.
+\newblock
+\begin{APACrefDOI} \doi{10.1371/journal.pone.0298037} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem[Shin and Park, 2019]{Shin2019}
-Shin, D. and Park, Y.~J. (2019).
-\newblock Role of fairness, accountability, and transparency in algorithmic
-  affordance.
-\newblock {\em Computers in Human Behavior}, 98:277--284.
+\bibitem [\protect \citeauthoryear {%
+Shin%
+\ \BBA {} Park%
+}{%
+Shin%
+\ \BBA {} Park%
+}{%
+{\protect \APACyear {2019}}%
+}]{%
+Shin2019}
+\APACinsertmetastar {%
+Shin2019}%
+\begin{APACrefauthors}%
+Shin, D.%
+\BCBT {}\ \BBA {} Park, Y\BPBI J.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2019}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Role of fairness, accountability, and transparency in
+  algorithmic affordance} {Role of fairness, accountability, and transparency
+  in algorithmic affordance}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Computers in Human Behavior}{98}{}{277-284}.
+\newblock
+\begin{APACrefDOI} \doi{10.1016/j.chb.2019.04.019} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem[Sun et~al., 2026]{Sun2026}
-Sun, Y., Liao, M.~M., Sundar, S.~S., and Walther, J.~B. (2026).
-\newblock Does transparency matter when an ai system meets performance
-  expectations? an experiment with an online dating site.
-\newblock {\em Computers in Human Behavior}, 177:108875.
+\bibitem [\protect \citeauthoryear {%
+Sun%
+, Liao%
+, Sundar%
+\BCBL {}\ \BBA {} Walther%
+}{%
+Sun%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2026}}%
+}]{%
+Sun2026}
+\APACinsertmetastar {%
+Sun2026}%
+\begin{APACrefauthors}%
+Sun, Y.%
+, Liao, M\BPBI M.%
+, Sundar, S\BPBI S.%
+\BCBL {}\ \BBA {} Walther, J\BPBI B.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2026}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Does transparency matter when an AI system meets
+  performance expectations? An experiment with an online dating site} {Does
+  transparency matter when an ai system meets performance expectations? an
+  experiment with an online dating site}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Computers in Human Behavior}{177}{}{108875}.
+\newblock
+\begin{APACrefDOI} \doi{10.1016/j.chb.2025.108875} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem[Werner et~al., 2026]{Werner2026}
-Werner, J., Suraci, L., and Wolff, I. (2026).
-\newblock In losses we trust: Delegating decisions to artificial intelligence.
-\newblock Mimeo.
+\bibitem [\protect \citeauthoryear {%
+Werner%
+, Suraci%
+\BCBL {}\ \BBA {} Wolff%
+}{%
+Werner%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2026}}%
+}]{%
+Werner2026}
+\APACinsertmetastar {%
+Werner2026}%
+\begin{APACrefauthors}%
+Werner, J.%
+, Suraci, L.%
+\BCBL {}\ \BBA {} Wolff, I.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2026}{}{}.
+\newblock
+\APACrefbtitle {In Losses We Trust: Delegating Decisions to Artificial
+  Intelligence.} {In losses we trust: Delegating decisions to artificial
+  intelligence.}
+\newblock
+\APACrefnote{Mimeo.}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem[Westphal et~al., 2023]{Westphal2023}
-Westphal, M., Vössing, M., Satzger, G., Yom-Tov, G.~B., and Rafaeli, A.
-  (2023).
-\newblock Decision control and explanations in human-ai collaboration:
-  Improving user perceptions and compliance.
-\newblock {\em Computers in Human Behavior}, 144:107714.
+\bibitem [\protect \citeauthoryear {%
+Westphal%
+, Vössing%
+, Satzger%
+, Yom-Tov%
+\BCBL {}\ \BBA {} Rafaeli%
+}{%
+Westphal%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2023}}%
+}]{%
+Westphal2023}
+\APACinsertmetastar {%
+Westphal2023}%
+\begin{APACrefauthors}%
+Westphal, M.%
+, Vössing, M.%
+, Satzger, G.%
+, Yom-Tov, G\BPBI B.%
+\BCBL {}\ \BBA {} Rafaeli, A.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2023}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Decision control and explanations in human-AI
+  collaboration: Improving user perceptions and compliance} {Decision control
+  and explanations in human-ai collaboration: Improving user perceptions and
+  compliance}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Computers in Human Behavior}{144}{}{107714}.
+\newblock
+\begin{APACrefDOI} \doi{10.1016/j.chb.2023.107714} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem[Yang et~al., 2025]{Yang2025}
-Yang, R., Li, S., Qi, Y., Liu, J., He, Q., and Zhao, H. (2025).
-\newblock Unveiling users’ algorithm trust: The role of task objectivity,
-  time pressure, and cognitive load.
-\newblock {\em Computers in Human Behavior Reports}, 18:100667.
+\bibitem [\protect \citeauthoryear {%
+Yang%
+\ \protect \BOthers {.}}{%
+Yang%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2025}}%
+}]{%
+Yang2025}
+\APACinsertmetastar {%
+Yang2025}%
+\begin{APACrefauthors}%
+Yang, R.%
+, Li, S.%
+, Qi, Y.%
+, Liu, J.%
+, He, Q.%
+\BCBL {}\ \BBA {} Zhao, H.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2025}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Unveiling users’ algorithm trust: The role of task
+  objectivity, time pressure, and cognitive load} {Unveiling users’ algorithm
+  trust: The role of task objectivity, time pressure, and cognitive
+  load}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Computers in Human Behavior Reports}{18}{}{100667}.
+\newblock
+\begin{APACrefDOI} \doi{10.1016/j.chbr.2025.100667} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem[Yeomans et~al., 2019]{Yeomans2019}
-Yeomans, M., Shah, A., Mullainathan, S., and Kleinberg, J. (2019).
-\newblock Making sense of recommendations.
-\newblock {\em Journal of Behavioral Decision Making}, 32(4):403--414.
+\bibitem [\protect \citeauthoryear {%
+Yeomans%
+, Shah%
+, Mullainathan%
+\BCBL {}\ \BBA {} Kleinberg%
+}{%
+Yeomans%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2019}}%
+}]{%
+Yeomans2019}
+\APACinsertmetastar {%
+Yeomans2019}%
+\begin{APACrefauthors}%
+Yeomans, M.%
+, Shah, A.%
+, Mullainathan, S.%
+\BCBL {}\ \BBA {} Kleinberg, J.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2019}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Making sense of recommendations} {Making sense of
+  recommendations}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Journal of Behavioral Decision Making}{32}{4}{403-414}.
+\newblock
+\begin{APACrefDOI} \doi{10.1002/bdm.2118} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
 \end{thebibliography}
