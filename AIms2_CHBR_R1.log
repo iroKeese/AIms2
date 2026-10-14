@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.4.11)  14 OCT 2026 13:30
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.4.11)  14 OCT 2026 14:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -754,7 +754,7 @@ t-ing an EV-maximizing rule with a preference-
  []
 
 [12] [13]
-<Figure_ExampleScreens.pdf, id=455, 1022.82124pt x 584.1825pt>
+<Figure_ExampleScreens.pdf, id=464, 1022.82124pt x 584.1825pt>
 File: Figure_ExampleScreens.pdf Graphic file (type pdf)
 <use Figure_ExampleScreens.pdf>
 Package pdftex.def Info: Figure_ExampleScreens.pdf  used on input line 230.
@@ -784,32 +784,32 @@ g-is-tered lin-ear prob-a-bil-ity model with decision-
 [17]
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
 (Font)              scaled to size 5.0pt on input line 298.
-<Figure1_AverageDelegation.pdf, id=492, 505.89pt x 325.215pt>
+<Figure1_AverageDelegation.pdf, id=501, 505.89pt x 325.215pt>
 File: Figure1_AverageDelegation.pdf Graphic file (type pdf)
 <use Figure1_AverageDelegation.pdf>
 Package pdftex.def Info: Figure1_AverageDelegation.pdf  used on input line 309.
 
 (pdftex.def)             Requested size: 312.00119pt x 200.57422pt.
  [18] [19 <./Figure1_AverageDelegation.pdf>] [20]
-<Figure3_ECDF.pdf, id=523, 505.89pt x 325.215pt>
+<Figure3_ECDF.pdf, id=532, 505.89pt x 325.215pt>
 File: Figure3_ECDF.pdf Graphic file (type pdf)
 <use Figure3_ECDF.pdf>
 Package pdftex.def Info: Figure3_ECDF.pdf  used on input line 330.
 (pdftex.def)             Requested size: 304.19952pt x 195.55727pt.
- [21 <./Figure3_ECDF.pdf>] [22] [23] [24] [25]
+ [21 <./Figure3_ECDF.pdf>] [22] [23] [24]
 Overfull \hbox (41.65924pt too wide) in paragraph at lines 370--381
  [][] 
  []
 
-[26] [27]
-<Figure4_ReasonsByTrmtAndNeverDelegator2.pdf, id=582, 578.16pt x 289.08pt>
+[25] [26] [27]
+<Figure4_ReasonsByTrmtAndNeverDelegator2.pdf, id=594, 578.16pt x 289.08pt>
 File: Figure4_ReasonsByTrmtAndNeverDelegator2.pdf Graphic file (type pdf)
 <use Figure4_ReasonsByTrmtAndNeverDelegator2.pdf>
 Package pdftex.def Info: Figure4_ReasonsByTrmtAndNeverDelegator2.pdf  used on i
 nput line 400.
 (pdftex.def)             Requested size: 335.40024pt x 167.69739pt.
- [28] [29 <./Figure4_ReasonsByTrmtAndNeverDelegator2.pdf>] [30]
-[31] [32] [33] [34] [35] [36] [37] (./AIms2_CHBR_R1.bbl [38]
+ [28] [29 <./Figure4_ReasonsByTrmtAndNeverDelegator2.pdf>]
+[30] [31] [32] [33] [34] [35] [36] [37] (./AIms2_CHBR_R1.bbl [38]
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineMonoT-TLF/m/n' in size <12> n
 ot available
 (Font)              Font shape `OT1/LinuxLibertineMonoT-TLF/regular/n' tried in
@@ -829,25 +829,31 @@ LaTeX Font Info:    Font shape `OT1/LinuxLibertineMonoT-TLF/regular/n' will be
 Package microtype Info: Character `~' is missing
 (microtype)             in font `OT1/LinuxLibertineMonoT-TLF/regular/n/6'.
 (microtype)             Ignoring protrusion settings for this character.
- [41])
-[42] (./appendix_part1_part2_tables.tex [43
 
-] [44]) [45] (./AIms2_CHBR_R1.aux)
+[41]) [42] (./appendix_part1_part2_tables.tex [43
+
+] [44]) [45]
+Overfull \hbox (0.94925pt too wide) in paragraph at lines 501--501
+\OT1/LinuxLibertineT-TLF/m/n/12 (-20) under the standard normal approximation).
+ For the average-delegation (Wilcoxon--
+ []
+
+[46] [47] (./AIms2_CHBR_R1.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
 Package rerunfilecheck Info: File `AIms2_CHBR_R1.out' has not changed.
-(rerunfilecheck)             Checksum: F866898AB109AB347092A5CF80771431;6973.
+(rerunfilecheck)             Checksum: CD0360AE56F8EE029567211A22827F2F;7453.
  ) 
 Here is how much of TeX's memory you used:
- 16558 strings out of 476056
- 270454 string characters out of 5791604
+ 16567 strings out of 476056
+ 270540 string characters out of 5791604
  2003975 words of memory out of 5000000
- 37744 multiletter control sequences out of 15000+600000
- 632428 words of font info for 357 fonts, out of 8000000 for 9000
+ 37749 multiletter control sequences out of 15000+600000
+ 632280 words of font info for 356 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 75i,14n,79p,11053b,727s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,14n,79p,8918b,727s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/libertine/LinLibertineMT.pf
 b></usr/share/texlive/texmf-dist/fonts/type1/public/libertine/LinLibertineT.pfb
 ></usr/share/texlive/texmf-dist/fonts/type1/public/libertine/LinLibertineTB.pfb
@@ -861,10 +867,10 @@ onts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/ty
 pe1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
 ic/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
 fonts/cm/cmsy7.pfb>
-Output written on AIms2_CHBR_R1.pdf (45 pages, 627143 bytes).
+Output written on AIms2_CHBR_R1.pdf (47 pages, 629842 bytes).
 PDF statistics:
- 851 PDF objects out of 1000 (max. 8388607)
- 759 compressed objects within 8 object streams
- 156 named destinations out of 1000 (max. 500000)
- 75533 words of extra memory for PDF output out of 89155 (max. 10000000)
+ 875 PDF objects out of 1000 (max. 8388607)
+ 781 compressed objects within 8 object streams
+ 162 named destinations out of 1000 (max. 500000)
+ 75549 words of extra memory for PDF output out of 89155 (max. 10000000)
 
