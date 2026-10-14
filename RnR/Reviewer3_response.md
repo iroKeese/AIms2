@@ -28,28 +28,19 @@ corrected the round count to "eight incentivized rounds" for internal consistenc
 
 ## 3. Figure 2: does performance feedback override the authority effect after first contact?
 
-We do not read the round-1-to-round-2 decline (concentrated in the EV condition) as
-evidence that the authority effect is overridden by feedback, but we have **revised our
-explanation of it**. The submitted version argued that the EV rule mechanically produces
-more zero outcomes and that these act as a stronger "negative attractor" on EV
-delegation. Additional checks do not support this. The reaction to a zero payoff is the
-same in both conditions (0.254 vs. 0.250), and the realized difference in zero shares among
-delegated decisions is small (40.3% vs. 36.2%, participant-clustered p = 0.18), so the
-text no longer makes this claim.
-
-What the data support, now reported in the text and labeled exploratory: (i) average
-delegation in rounds 2 to 8 is the net of two offsetting differences of about six to seven
-points each, namely more categorical opt-out under personalization (the first-contact gap
-among participants who delegate at least once is small, 65.6% vs. 69.3%, Boschloo
-p = 0.64, and the opt-out gap remains when the analysed rounds are excluded from the
-definition of never-delegation: 16.8% vs. 7.6%, one-sided Boschloo p = 0.019), and lower
-delegation under EV among participants who keep delegating (49.8% vs. 56.4%); and (ii) EV
-picks that differ from the participant's own Part-1 preference pay zero more often (50.8%
-vs. 36.3% for matching picks) and are followed by less delegation, which accounts for
-part of the larger EV decline (a counterfactual of about six points in round 2, bootstrap
-95% CI [0.4, 11.8]). The larger decline under EV is imprecisely estimated (p = 0.14 in a
-difference-in-differences logit on rounds 1 and 2), and much of it remains unexplained,
-which the text says explicitly. The new analyses are in the replication package.
+We do not read the round-1-to-round-2 decline as evidence that feedback overrides the
+authority effect. We have, however, **revised our explanation of it**. The submitted
+version attributed it to the EV rule mechanically producing more zero outcomes. That is
+not supported: the reaction to a zero payoff is the same in both conditions (0.254 vs.
+0.250), and realized zero shares among delegated decisions differ little (40.3% vs.
+36.2%, p = 0.18). The text now reports, as exploratory, that (i) average delegation in
+rounds 2 to 8 is the net of two offsetting differences of six to seven points each (more
+categorical opt-out under personalization, lower delegation under EV among everyone else),
+and (ii) EV picks that differ from the participant's own Part-1 preference pay zero more
+often and are followed by less delegation, which accounts for part of the larger EV
+decline (about six points in round 2, bootstrap 95% CI [0.4, 11.8]). The larger EV decline
+itself is imprecisely estimated (p = 0.14), and much of it remains unexplained, as the
+text says. The analyses are in the replication package.
 
 ## 4. Never-delegator heterogeneity not fully validated — multiple non-significant indicators
 
@@ -75,7 +66,8 @@ circumstances in the EV condition. The subsection now reports this preregistered
 first (it is not supported: the interaction is slightly negative and insignificant, one-sided
 $p = 0.633$), and then presents the win-stay/lose-shift model and its decomposition by
 the source of the prior outcome (delegated vs. self-chosen) together as *exploratory*,
-not specified in advance. The Introduction, Method, and Discussion
+not specified in advance. The pooled win-stay/lose-shift model itself now sits in a short
+appendix (Appendix B), with its main results summarized in two sentences in the text. The Introduction, Method, and Discussion
 sections were adjusted accordingly (the separate "Contributions" subsection was removed
 in the consolidation requested by Reviewer 1).
 

@@ -123,7 +123,8 @@ that mostly cannot detect anything but very large effects regardless. We are hap
 an explicit multiple-comparisons sentence as well if it still seems necessary.
 
 **Sample-size/power justification.** Addressed with a full retrospective power
-analysis, added as a new Limitations paragraph. Using only information available *before*
+analysis, now reported in a new appendix (Appendix C), with a two-sentence summary in
+the Limitations section. Using only information available *before*
 the present study was run (the pilot's effect sizes: ~21.6pp at first contact, ~19.1pp
 in average delegation), the minimum detectable effect at 80% power for $n=100$–120/arm
 is ~16–17pp (first contact) and ~10–11pp (average delegation) — both comfortably below
@@ -269,9 +270,13 @@ from three; the numbering in the manuscript is First to Seventh), incorporating 
    interpretation — we show never-delegators' own choice quality is statistically
    indistinguishable from that of delegators (Welch $p=0.806$; Wilcoxon $p=0.669$),
    arguing against a task-difficulty account of categorical non-delegation specifically.
-3. *(Existing, renumbered "Fourth")* Short-run repeated interaction only.
-4. *(New, "Fifth")* The full retrospective power analysis described under point 3 above.
-5. *(New, "Sixth")* UK/Prolific sample — we note explicitly that cultural background,
+3. *(New, "Third")* The EV and preference-based treatments differ along several
+   dimensions at once, so the design identifies a difference between two decision rules,
+   not a pure personalization effect (added in response to Reviewer 2).
+4. *(Existing, renumbered "Fifth")* Short-run repeated interaction only.
+5. *(New, "Sixth")* The ex-ante power analysis described under point 3 above, summarized
+   in two sentences in the Limitations and reported in full in Appendix C.
+6. *(New, "Seventh")* UK/Prolific sample — we note explicitly that cultural background,
    algorithm familiarity, and panel composition could affect the magnitude (though we
    have no principled reason to expect the *direction*) of the effect.
 
@@ -361,6 +366,6 @@ say how much more, and the realized data show a small difference (40.3% vs. 36.2
 delegated decisions, participant-clustered p = 0.18; expected 41.7% vs. 34.8%). The text
 now reports this comparison, drops the 89.7% figure and the "EV loses it more"
 inference, and replaces them with an explicitly exploratory decomposition (see our reply
-to Reviewer 3, point 3). The expected-zero calculation assumes that the ten states of
-the world are equally likely; the realized states are consistent with this
-(chi-square p = 0.23), and the Method section now says so.
+to Reviewer 3, point 3). The expected-zero calculation relies on the ten states of each
+lottery being equally likely, which is a feature of the task design; the Method section
+now states this where the lotteries are first introduced.

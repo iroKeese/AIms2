@@ -516,7 +516,8 @@ for (trmt in c(1, 0)) {
   nontab <- table(ZeroPayoff1 = nond$ZeroPayoff1, Delegated2 = nond$Delegated2)
   print(nontab)
   print(round(prop.table(nontab, margin = 1), 3))   # share delegating again
-  print(fisher.test(nontab))
+  cat("Two-sided Boschloo p =",
+      round(exact.test(nontab, method = "Boschloo", to.plot = FALSE)$p.value, 3), "\n")
 }
 ```
 
@@ -1148,6 +1149,16 @@ winStayReg <- feols(
   data = subset(choices, Part == 2 & WithinPartDecisionNumber > 1)
 )
 summary(winStayReg)
+
+# Appendix table: the EV coefficient is the EV-vs-Pref difference in staying after a
+# loss (lagWin = 0); adding the interaction gives the difference after a win
+b <- coef(winStayReg); V <- vcov(winStayReg)
+gap_win <- b["EVAlgorithm"] + b["EVAlgorithm:lagWin"]
+se_win  <- sqrt(V["EVAlgorithm", "EVAlgorithm"] +
+                V["EVAlgorithm:lagWin", "EVAlgorithm:lagWin"] +
+                2 * V["EVAlgorithm", "EVAlgorithm:lagWin"])
+cat("EV vs. Pref after a win:", round(gap_win, 3), " SE", round(se_win, 3),
+    " p", round(2 * pnorm(-abs(gap_win / se_win)), 3), "\n")
 ```
 
 Separately by treatment, distinguishing whether the previous round was
@@ -1459,9 +1470,9 @@ cat("Final analysis N:", nrow(partvars) - nrow(excluded), "\n")
 
 \newpage
 
-# Power analysis (pilot-based, new Limitations paragraph)
+# Power analysis (pilot-based, Appendix C of the paper)
 
-Reconstructs the ex-ante power analysis reported as a new Limitations paragraph: using
+Reconstructs the ex-ante power analysis reported in Appendix C (summarized in the Limitations): using
 only the pilot's effect sizes (not the present study's own results, to avoid the
 retrospective-power fallacy; Hoenig \& Heisey, 2001), we compute the minimum detectable
 effect (MDE) at 80% power for $n = 100$--120/arm, and the power to re-detect an effect of
