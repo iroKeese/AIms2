@@ -352,10 +352,15 @@ alongside the risk-difference/OR effect sizes described under point 3 above. We 
 test as for our preregistered first-contact comparison; since this outcome was not
 preregistered, we flag the test as exploratory in the text and in Table 1.
 
-**Zero-outcome-frequency mechanism "insufficiently supported."** We take this to refer
-to the claim that the EV algorithm mechanically produces more zero-payoff outcomes for
-most participants (89.7% of participants, as stated in the text) — this figure is
-computed directly from the lottery payoff structure (it is a property of the task design,
-not an estimated statistic), so no additional significance test applies to it; we are
-happy to clarify the computation in more detail if useful, or to point to a different
-claim if this is not the one intended.
+**Zero-outcome-frequency mechanism "insufficiently supported."** We agree, and we
+have removed the claim. The submitted version stated that the EV algorithm mechanically
+produces more zero-payoff outcomes for most participants (89.7%, computed from the
+payoff structure), and used this to explain the post-round-1 convergence. That figure
+only says that the EV pick has more expected zeros for most participants; it does not
+say how much more, and the realized data show a small difference (40.3% vs. 36.2% of
+delegated decisions, participant-clustered p = 0.18; expected 41.7% vs. 34.8%). The text
+now reports this comparison, drops the 89.7% figure and the "EV loses it more"
+inference, and replaces them with an explicitly exploratory decomposition (see our reply
+to Reviewer 3, point 3). The expected-zero calculation assumes that the ten states of
+the world are equally likely; the realized states are consistent with this
+(chi-square p = 0.23), and the Method section now says so.

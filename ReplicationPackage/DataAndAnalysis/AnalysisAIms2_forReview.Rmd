@@ -451,8 +451,8 @@ feedback-driven account with variation that is not confounded by the between-tre
 difference in decision rule, we condition on having delegated in round 1 and compare
 round-2 delegation after a zero vs. a positive round-1 payoff, separately by treatment
 (the payoff depends on which lottery state was drawn). Paper: EV 36.0% vs. 64.8%
-(Fisher's exact $p = 0.027$, OR = 0.31, 95% CI [0.10, 0.91]); Pref 50.0% vs. 72.5%
-($p = 0.099$, OR = 0.39, 95% CI [0.11, 1.29]).
+(two-sided Boschloo $p = 0.020$; OR = 0.31, 95% CI [0.10, 0.91] from Fisher's exact
+test); Pref 50.0% vs. 72.5% (Boschloo $p = 0.078$; OR = 0.39, 95% CI [0.11, 1.29]).
 
 ```{r round1-outcome-round2-delegation}
 round12 <- choices %>%
@@ -472,6 +472,9 @@ for (trmt in c(1, 0)) {
   tab <- table(ZeroPayoff1 = d$ZeroPayoff1, Delegated2 = d$Delegated2)
   print(tab)
   print(round(prop.table(tab, margin = 1), 3))   # share delegating again
+  # Paper: two-sided Boschloo p-value; Fisher's exact test supplies the odds ratio and CI
+  cat("Two-sided Boschloo p =",
+      round(exact.test(tab, method = "Boschloo", to.plot = FALSE)$p.value, 3), "\n")
   print(fisher.test(tab))
 }
 ```
@@ -517,7 +520,292 @@ for (trmt in c(1, 0)) {
 }
 ```
 
+## Exploratory: why does delegation under EV decline after round 1?
 
+The following chunks are exploratory and were not preregistered. They probe three
+candidate explanations for the larger round-1-to-round-2 decline in delegation under the EV
+algorithm: (i) differential exposure to zero payoffs, (ii) disappointment when the EV pick
+differs from the participant's own Part-1 preference, and (iii) a first-contact difference
+that is carried by a subgroup of never-delegators. Participant-clustered standard errors are
+used throughout.
+
+### (i) Exposure to zero payoffs
+
+For each delegated decision we compute the probability that the algorithm's pick pays zero
+(share of the ten equally likely states in which the option pays zero) and compare it with
+the realized zero share. Paper: expected 41.7% (EV) vs. 34.8% (Pref); realized 40.3% vs.
+36.2%, a difference of 4.1 percentage points (clustered $p = 0.18$).
+
+```{r exposure-to-zeros}
+# Payoff matrix of the Part-2 option sets, read from the raw decision-level file
+raw_choices <- read.delim("260206_1528_537_lotteryChoices.xls")
+state_cols  <- grep("^State", names(raw_choices), value = TRUE)
+
+payoff_matrix <- raw_choices %>%
+  filter(Part == 2, Option > 0, OptionsetID > 0) %>%
+  select(OptionsetID, Option, all_of(state_cols)) %>%
+  distinct(OptionsetID, Option, .keep_all = TRUE)
+payoff_matrix$pZero <- rowMeans(payoff_matrix[, state_cols] == 0)
+
+delegated_rounds <- choices %>%
+  filter(Part == 2, Delegated == 1, Option > 0) %>%
+  left_join(payoff_matrix %>% select(OptionsetID, Option, pZero),
+            by = c("OptionsetID", "Option")) %>%
+  mutate(Zero = 1 * (RelevantPayoff == 0))
+
+delegated_rounds %>%
+  group_by(Algorithm) %>%
+  summarise(n = n(),
+            participants = n_distinct(ProlificID),
+            expectedZero = round(mean(pZero, na.rm = TRUE), 3),
+            realizedZero = round(mean(Zero), 3),
+            .groups = "drop")
+
+m_zero <- glm(Zero ~ EVAlgorithm, family = binomial, data = delegated_rounds)
+coeftest(m_zero, vcov = vcovCL(m_zero, cluster = delegated_rounds$ProlificID))
+```
+### (ii) Does the EV pick match the participant's Part-1 preference?
+
+Under the preference-based algorithm the delegated option is by construction the participant's
+preferred option. Under EV it equals that option in about two thirds of delegated rounds. We
+split EV delegations into "match" and "mismatch" and compare next-round delegation with the
+preference-based group, with and without controlling for a zero payoff. Paper (all rounds
+1--7, 799 delegated rounds): zero share 36.0% (Pref), 36.3% (EV match), 50.8% (EV mismatch);
+next-round delegation 69.9%, 61.2%, 55.3%.
+
+```{r mismatch-groups}
+delegation_panel <- choices %>%
+  filter(Part == 2) %>%
+  arrange(ProlificID, WithinPartDecisionNumber) %>%
+  group_by(ProlificID) %>%
+  mutate(NextDelegated = lead(Delegated)) %>%
+  ungroup() %>%
+  filter(Delegated == 1, !is.na(NextDelegated), NextDelegated >= 0) %>%
+  mutate(Zero = 1 * (RelevantPayoff == 0),
+         Group = factor(ifelse(EVAlgorithm == 0, "Pref",
+                        ifelse(Option == PrefAlgoChoice, "EV_match", "EV_mismatch")),
+                        levels = c("Pref", "EV_match", "EV_mismatch")))
+
+# Logit with participant-clustered standard errors
+cl_test <- function(formula, data) {
+  m <- glm(formula, family = binomial, data = data)
+  round(coeftest(m, vcov = vcovCL(m, cluster = data$ProlificID)), 3)
+}
+
+delegation_panel %>%
+  group_by(Group) %>%
+  summarise(n = n(), zeroShare = round(mean(Zero), 3),
+            nextDelegation = round(mean(NextDelegated), 3), .groups = "drop")
+
+delegation_panel %>%
+  group_by(Group, Zero) %>%
+  summarise(n = n(), nextDelegation = round(mean(NextDelegated), 3), .groups = "drop")
+
+cat("\n--- All rounds 1-7: groups only\n")
+cl_test(NextDelegated ~ Group + WithinPartDecisionNumber, delegation_panel)
+cat("\n--- All rounds 1-7: groups + zero payoff\n")
+cl_test(NextDelegated ~ Group + Zero + WithinPartDecisionNumber, delegation_panel)
+cat("\n--- Pooled EV coefficient without and with the zero control\n")
+cl_test(NextDelegated ~ EVAlgorithm + WithinPartDecisionNumber, delegation_panel)
+cl_test(NextDelegated ~ EVAlgorithm + Zero + WithinPartDecisionNumber, delegation_panel)
+
+cat("\n--- Round 1 only: groups, groups + zero\n")
+round1_panel <- filter(delegation_panel, WithinPartDecisionNumber == 1)
+cl_test(NextDelegated ~ Group, round1_panel)
+cl_test(NextDelegated ~ Group + Zero, round1_panel)
+
+cat("\n--- Within EV: does a zero weigh more after a mismatched pick?\n")
+ev_panel <- delegation_panel %>% filter(EVAlgorithm == 1) %>%
+  mutate(Mismatch = 1 * (Group == "EV_mismatch"))
+cl_test(NextDelegated ~ Zero * Mismatch + WithinPartDecisionNumber, ev_panel)
+
+cat("\n--- Rough mediation arithmetic: zero coefficient x excess zero share\n")
+b_zero <- coef(glm(NextDelegated ~ Group + Zero + WithinPartDecisionNumber,
+                   family = binomial, data = delegation_panel))["Zero"]
+zero_share <- tapply(delegation_panel$Zero, delegation_panel$Group, mean)
+round(c(EV_match    = unname(b_zero * (zero_share["EV_match"]    - zero_share["Pref"])),
+        EV_mismatch = unname(b_zero * (zero_share["EV_mismatch"] - zero_share["Pref"]))), 3)
+
+cat("\n--- With task fixed effects (mismatch is not independent of the task)\n")
+delegation_panel$Task <- factor(delegation_panel$OptionsetID)
+cl_test(NextDelegated ~ Group + WithinPartDecisionNumber + Task, delegation_panel)[1:3, ]
+cl_test(NextDelegated ~ Group + Zero + WithinPartDecisionNumber + Task, delegation_panel)[2:4, ]
+m_zero_fe <- lm(Zero ~ Group + Task, data = delegation_panel)
+cat("Zero share by group, task fixed effects (LPM):\n")
+round(coeftest(m_zero_fe, vcov = vcovCL(m_zero_fe, cluster = delegation_panel$ProlificID))[2:3, ], 3)
+
+cat("\n--- Counterfactual for round 1 -> round 2 (EV): what if round-1 EV delegators whose pick\n",
+    "    differed from their preference had continued as often as those whose pick matched?\n")
+r12_cf <- choices %>%
+  filter(Part == 2, WithinPartDecisionNumber %in% 1:2) %>%
+  mutate(Mismatch = 1 * (Option != PrefAlgoChoice)) %>%
+  select(ProlificID, EVAlgorithm, WithinPartDecisionNumber, Delegated, Mismatch) %>%
+  pivot_wider(names_from = WithinPartDecisionNumber, values_from = c(Delegated, Mismatch)) %>%
+  filter(!is.na(Delegated_1), !is.na(Delegated_2))
+cf_stats <- function(d) {
+  ev <- d[d$EVAlgorithm == 1, ]; pf <- d[d$EVAlgorithm == 0, ]
+  chg <- function(x) mean(x$Delegated_2) - mean(x$Delegated_1)
+  del <- ev[ev$Delegated_1 == 1, ]
+  cont_match <- mean(del$Delegated_2[del$Mismatch_1 == 0])
+  cont_mis   <- mean(del$Delegated_2[del$Mismatch_1 == 1])
+  c(EV_change = chg(ev), Pref_change = chg(pf), difference = chg(ev) - chg(pf),
+    n_mismatch = sum(del$Mismatch_1 == 1), cont_match = cont_match, cont_mismatch = cont_mis,
+    shift_in_EV_round2 = sum(del$Mismatch_1 == 1) * (cont_match - cont_mis) / nrow(ev))
+}
+round(cf_stats(r12_cf), 3)
+# Participant-level bootstrap interval for the shift (the share of the difference it
+# accounts for is too imprecise to report)
+set.seed(1)
+by_id <- split(r12_cf, r12_cf$ProlificID)
+boot_shift <- replicate(2000, cf_stats(do.call(rbind, by_id[sample(names(by_id), replace = TRUE)]))["shift_in_EV_round2"])
+round(quantile(boot_shift, c(.025, .5, .975), na.rm = TRUE), 3)
+```
+
+#### Forgone payoffs
+
+The feedback screen showed the payoffs of all options in the drawn state, so participants could
+see what another option would have paid. We compute the gap between the best available option
+and the realized payoff ("regret", in units of 100 points) and ask whether it predicts
+next-round delegation beyond a zero payoff. Paper (all rounds 1--7): regret alone is
+negative ($-0.131$, $p < 0.001$) but drops to $+0.014$ ($p = 0.74$) once the zero payoff is
+included. Option 3 of option set 5 never appears in the data, so for that set the best
+available option may be slightly understated.
+
+```{r regret-forgone}
+payoff_by_set <- split(payoff_matrix, payoff_matrix$OptionsetID)
+best_available <- function(set, state) {
+  if (is.na(state) || state < 1) return(NA_real_)
+  max(payoff_by_set[[as.character(set)]][[state_cols[state]]])
+}
+regret_panel <- delegation_panel %>%
+  mutate(BestAvailable = mapply(best_available, OptionsetID, PayoffRelevantState),
+         Regret = (BestAvailable - RelevantPayoff) / 100)
+
+regret_panel %>%
+  group_by(Algorithm) %>%
+  summarise(n = n(), meanRegret = round(mean(Regret, na.rm = TRUE), 2), .groups = "drop")
+
+cat("\n--- Regret alone, then regret + zero payoff\n")
+cl_test(NextDelegated ~ EVAlgorithm + Regret + WithinPartDecisionNumber, regret_panel)
+cl_test(NextDelegated ~ EVAlgorithm + Zero + Regret + WithinPartDecisionNumber, regret_panel)
+```
+
+### (iii) The first-contact gap sits at the opt-out margin
+
+The framework predicts that resistance is concentrated in participants who value choice
+authority and opt out categorically. We first compare round-1 delegation among participants who
+delegate at least once. Paper: 65.6% (Pref) vs. 69.3% (EV), two-sided Boschloo $p = 0.64$.
+Because never-delegation is defined over all eight rounds and thus includes round 1, we then
+repeat the comparison with "otherwise-never-delegators", defined without the round(s) under
+analysis: for round 1, participants who never delegate in rounds 2--8; for the rounds 1--2
+analysis, participants who never delegate in rounds 3--8. Paper (round 1): 16.8% (Pref) vs.
+7.6% (EV), one-sided Boschloo $p = 0.019$ (two-sided $0.037$); round-1 delegation among all
+other participants 64.9% vs. 67.9% ($p = 0.64$). The comparisons are descriptive, since they
+condition on later behaviour. We do not report a numerical split of the 11.2-point gap,
+because the within-group part rests on only 28 otherwise-never-delegators.
+
+```{r subgroup-accounting}
+wide <- choices %>%
+  filter(Part == 2) %>%
+  select(ProlificID, EVAlgorithm, WithinPartDecisionNumber, Delegated) %>%
+  pivot_wider(names_from = WithinPartDecisionNumber, values_from = Delegated,
+              names_prefix = "d")
+dmat <- as.matrix(wide[, paste0("d", 1:8)])
+
+# 1 if the participant never delegates in the given rounds (NA if no valid decision there)
+never_in <- function(cols) {
+  x <- dmat[, cols, drop = FALSE]
+  ifelse(rowSums(!is.na(x)) == 0, NA, 1 * (rowSums(x, na.rm = TRUE) == 0))
+}
+wide$Never              <- never_in(1:8)   # standard definition (all rounds)
+wide$OtherwiseNever_r1  <- never_in(2:8)   # for analyses of round 1
+wide$OtherwiseNever_r12 <- never_in(3:8)   # for analyses of rounds 1 and 2
+wide$lateRate <- rowSums(dmat[, 2:8, drop = FALSE], na.rm = TRUE) /
+                 rowSums(!is.na(dmat[, 2:8, drop = FALSE]))
+
+# Boschloo exact test on a 2 x 2 table built from two groups (Pref = 0, EV = 1)
+boschloo_p <- function(outcome, group, alternative = "two.sided") {
+  tab <- table(factor(group, levels = c(0, 1)), factor(outcome, levels = c(1, 0)))
+  exact.test(tab, method = "Boschloo", alternative = alternative, to.plot = FALSE)$p.value
+}
+
+cat("--- Plain definition: participants who delegate at least once\n")
+not_never <- filter(wide, Never == 0, !is.na(d1))
+not_never %>%
+  group_by(EVAlgorithm) %>%
+  summarise(n = n(), round1 = round(100 * mean(d1), 1),
+            rounds2to8 = round(100 * mean(lateRate, na.rm = TRUE), 1), .groups = "drop")
+cat("Round-1 delegation, Pref vs. EV (two-sided Boschloo p):",
+    round(boschloo_p(not_never$d1, not_never$EVAlgorithm), 3), "\n")
+
+cat("\n--- Robustness: otherwise-never-delegators (never in rounds 2-8)\n")
+A <- filter(wide, !is.na(d1), !is.na(OtherwiseNever_r1))
+A %>%
+  group_by(EVAlgorithm) %>%
+  summarise(N = n(),
+            nOtherwiseNever       = sum(OtherwiseNever_r1),
+            pctOtherwiseNever     = round(100 * mean(OtherwiseNever_r1), 1),
+            round1_others         = round(100 * mean(d1[OtherwiseNever_r1 == 0]), 1),
+            round1_otherwiseNever = round(100 * mean(d1[OtherwiseNever_r1 == 1]), 1),
+            .groups = "drop")
+cat("Share of otherwise-never-delegators, Pref > EV (one-sided Boschloo p):",
+    round(boschloo_p(A$OtherwiseNever_r1, A$EVAlgorithm, "greater"), 3), "\n")
+cat("  two-sided:", round(boschloo_p(A$OtherwiseNever_r1, A$EVAlgorithm), 3), "\n")
+others1 <- filter(A, OtherwiseNever_r1 == 0)
+cat("Round-1 delegation among all others, Pref vs. EV (two-sided Boschloo p):",
+    round(boschloo_p(others1$d1, others1$EVAlgorithm), 3), "\n")
+```
+
+### Does the round-1 to round-2 decline differ between conditions?
+
+Descriptively the EV decline is larger, but the difference-in-differences is imprecise.
+Paper: round 1 vs. round 2 interaction clustered $p = 0.14$; round 1 vs. rounds 2--8
+interaction $p = 0.050$. We report both as exploratory and do not read the first as evidence
+that the two declines are equal. Among participants who delegate at least once in rounds 3--8
+(the analysed rounds do not enter this definition), the round 1 to round 2 change is $-5.8$
+points (Pref) vs. $-14.5$ points (EV); the interaction is $-0.36$ ($p = 0.38$).
+
+```{r decline-did}
+round12_all <- choices %>%
+  filter(Part == 2, WithinPartDecisionNumber %in% 1:2) %>%
+  mutate(Round2 = 1 * (WithinPartDecisionNumber == 2))
+cl_test(Delegated ~ EVAlgorithm * Round2, round12_all)
+
+round1_vs_rest <- choices %>%
+  filter(Part == 2) %>%
+  mutate(Round1 = 1 * (WithinPartDecisionNumber == 1))
+cl_test(Delegated ~ EVAlgorithm * Round1, round1_vs_rest)
+
+# Share of otherwise-never-delegators (rounds 3-8) and the decline among all others
+E <- filter(wide, !is.na(d1), !is.na(d2), !is.na(OtherwiseNever_r12))
+E %>%
+  group_by(EVAlgorithm) %>%
+  summarise(N = n(), pctOtherwiseNever = round(100 * mean(OtherwiseNever_r12), 1),
+            .groups = "drop")
+cat("Share of otherwise-never-delegators (rounds 3-8), Pref > EV (one-sided Boschloo p):",
+    round(boschloo_p(E$OtherwiseNever_r12, E$EVAlgorithm, "greater"), 3), "\n")
+
+others12 <- filter(E, OtherwiseNever_r12 == 0)
+others12 %>%
+  group_by(EVAlgorithm) %>%
+  summarise(n = n(), round1 = round(100 * mean(d1), 1), round2 = round(100 * mean(d2), 1),
+            change = round(round2 - round1, 1), .groups = "drop")
+others12_long <- others12 %>%
+  select(ProlificID, EVAlgorithm, d1, d2) %>%
+  pivot_longer(c(d1, d2), names_to = "round", values_to = "Delegated") %>%
+  mutate(Round2 = 1 * (round == "d2"))
+cl_test(Delegated ~ EVAlgorithm * Round2, others12_long)
+
+# Does the round-1 choice predict later delegation differently by condition?
+later <- choices %>%
+  filter(Part == 2, WithinPartDecisionNumber >= 2) %>%
+  left_join(choices %>% filter(Part == 2, WithinPartDecisionNumber == 1) %>%
+              select(ProlificID, D1 = Delegated), by = "ProlificID") %>%
+  filter(!is.na(D1))
+later %>% group_by(Algorithm, D1) %>%
+  summarise(n = n(), delegationRate = round(mean(Delegated), 3), .groups = "drop")
+cl_test(Delegated ~ D1 * EVAlgorithm, later)
+```
 
 
 \newpage

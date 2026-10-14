@@ -73,15 +73,22 @@ in decision rule. Conditional on having delegated in round 1, whether the realiz
 happened to be zero or positive is plausibly as-good-as-random (it depends on which
 lottery state was drawn). Within the EV condition, round-1 delegators who received a zero
 payoff delegated again in round 2 only 36.0% of the time, vs. 64.8% among those who
-received a positive payoff (Fisher's exact p = 0.027, OR = 0.31, 95% CI [0.10, 0.91]). The
-same contrast in the preference-based condition has the same sign and a similar size
-(50.0% vs. 72.5%, p = 0.099); the two contrasts do not differ significantly (interaction
-p = 0.772), and the weaker significance reflects the smaller number of round-1
-preference-based delegators (62 vs. 79). We added this
-as new evidence, explicitly describing it as a within-treatment comparison that is
-considerably more direct than the pooled regression, while stopping short of calling it
-fully causal (realized payoffs are a property of the random lottery draw, not an
+received a positive payoff (two-sided Boschloo p = 0.020; OR = 0.31, 95% CI [0.10, 0.91]
+from Fisher's exact test). The same contrast in the preference-based condition has the
+same sign and a similar size (50.0% vs. 72.5%, Boschloo p = 0.078); the two contrasts do
+not differ significantly (interaction p = 0.772), and the weaker significance reflects the
+smaller number of round-1 preference-based delegators (62 vs. 79). We added this as new
+evidence, explicitly describing it as a within-treatment comparison that is considerably
+more direct than the pooled regression, while stopping short of calling it fully causal
+(realized payoffs are a property of the random lottery draw, not an
 experimenter-assigned manipulation).
+
+Because the reaction to a zero payoff is the same in both conditions, and because the
+realized difference in exposure to zero payoffs is small (40.3% vs. 36.2% of delegated
+decisions, participant-clustered p = 0.18), we **no longer attribute the convergence to
+differential feedback** as the submitted version did. The text now reports the exploratory
+decomposition described in our reply to Reviewer 3 (point 3) and states that much of the
+larger decline under EV remains unexplained.
 
 ## 5. "No" — interpretation/conclusions not supported by the data (no further comment)
 
