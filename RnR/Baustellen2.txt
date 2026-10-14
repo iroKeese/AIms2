@@ -19,6 +19,7 @@ Almost all are, with these gaps:
 
 - **Reviewer 2's limitations request:** the main file did not contain the confound paragraph (EV vs. preference-based differ on several dimensions, and feedback is partly treatment-generated). It existed only in `AIms2_CHBR_R1_Reviewer2.tex`. I added a version to the Limitations of the main file as the new "Third" point. It is slightly more cautious than your copy, because we never elicited payoff expectations, so a payoff-expectation account is not fully excluded. Limitations are now numbered First to Seventh. Your two files now differ in wording here, so decide which one is canonical.
 - **Reviewer 1 on "responsibility trap" and psychological ownership:** these are rebutted only in the response letter. The manuscript never mentions blame or responsibility-offloading, or ownership. One or two sentences in the Discussion would make the rebuttal visible to readers. I did not add them because I would have to invent citations.
+
 - **Reviewer 1 on consolidating contributions:** you declined this in the response, which is defensible. The contribution list still appears in the Introduction, in "Synthesis and contribution", in "Core finding" and in "Contributions".
 - **Editor's note on references (APA, DOIs):** 44 of 53 entries in `library.bib` have no DOI, and the style is `apalike`, not APA. All cited keys exist in the bib. I did not touch this.
 - **`RnR/Reviewer1_response.md`:** it still says the Limitations have six points. It now has seven.
