@@ -1362,6 +1362,86 @@ subjects_long %>%
   pivot_wider(names_from = sumDeleg0, values_from = rate) %>%
   rename(Delegators = `FALSE`, NeverDelegators = `TRUE`)
 ```
+## The responsibility items are worded according to the hypothetical choice
+
+The reason items refer to the hypothetical choice (`DelegateHyp10`: 1 = delegate, 0 = decide
+oneself) and their wording depends on it. For example, `Responsibility4Choice` reads "I wanted
+to be responsible for choosing the option" for participants who chose to decide themselves
+and "I didn't want to be responsible for choosing the option" for participants who chose to
+delegate. The pooled comparison of never-delegators with the rest therefore largely contrasts
+reasons for deciding oneself with reasons for delegating. This section documents the
+relationship between the hypothetical choice and actual behavior and reports the endorsement
+rates within each hypothetical choice. Paper: 91% of never-delegators decide themselves,
+95% of always-delegators delegate, Spearman correlation with the Part-2 delegation share
+0.68; endorsement of `Responsibility4Choice` is 66.4% among participants who decide
+themselves and 16.2% among those who delegate; never-delegators who decide themselves do not
+differ from other participants who decide themselves (70.0% vs. 65.6%; Boschloo
+$p = 0.80$); about one in four delegators endorses either responsibility item.
+
+```{r responsibility-by-hypothetical-choice}
+resp <- subjects2 %>%
+  left_join(choices %>% filter(Part == 2) %>% group_by(ProlificID) %>%
+              summarise(nValid = sum(Delegated >= 0),
+                        delegShare = mean(Delegated[Delegated >= 0]), .groups = "drop"),
+            by = "ProlificID") %>%
+  mutate(Type = ifelse(sumDelegations == 0, "Never",
+                ifelse(sumDelegations == nValid, "Always", "Sometimes")),
+         Hypothetical = ifelse(DelegateHyp10 == 1, "Delegate", "Decide myself"))
+
+cat("Hypothetical choice by actual delegation type\n")
+table(Hypothetical = resp$Hypothetical, Type = resp$Type)
+cat("\nColumn percentages\n")
+round(100 * prop.table(table(resp$Hypothetical, resp$Type), 2), 1)
+
+cat("\nMean Part-2 delegation share by hypothetical choice\n")
+resp %>% group_by(Hypothetical) %>%
+  summarise(n = n(), meanShare = round(mean(delegShare), 3), .groups = "drop")
+cat("Spearman correlation, delegation share vs. hypothetical choice:",
+    round(cor(resp$delegShare, resp$DelegateHyp10, method = "spearman"), 3), "\n")
+sometimes <- filter(resp, Type == "Sometimes")
+cat("  among sometimes-delegators only:",
+    round(cor(sometimes$delegShare, sometimes$DelegateHyp10, method = "spearman"), 3), "\n")
+
+cat("\nResponsibility items by hypothetical choice (percent endorsing)\n")
+resp %>%
+  group_by(Hypothetical) %>%
+  summarise(n = n(),
+            Responsibility4Choice  = round(100 * mean(Responsibility4Choice == 1, na.rm = TRUE), 1),
+            Responsibility4Outcome = round(100 * mean(Responsibility4Outcome == 1, na.rm = TRUE), 1),
+            .groups = "drop")
+
+cat("\nAmong participants who chose to delegate: either responsibility item\n")
+deleg_hyp <- filter(resp, DelegateHyp10 == 1)
+cat("  n =", nrow(deleg_hyp), " share =",
+    round(100 * mean(deleg_hyp$Responsibility4Choice == 1 |
+                     deleg_hyp$Responsibility4Outcome == 1, na.rm = TRUE), 1), "%\n")
+
+cat("\nResponsibility4Choice by actual type and hypothetical choice\n")
+resp %>%
+  group_by(Type, Hypothetical) %>%
+  summarise(n = n(), pct = round(100 * mean(Responsibility4Choice == 1, na.rm = TRUE), 1),
+            .groups = "drop")
+
+cat("\nWithin participants who decide themselves: never-delegators vs. others (Boschloo)\n")
+own <- filter(resp, DelegateHyp10 == 0)
+tab_own <- table(factor(1 * (own$Type == "Never"), levels = c(1, 0)),
+                 factor(own$Responsibility4Choice, levels = c(1, 0)))
+print(tab_own)
+cat("  two-sided Boschloo p =",
+    round(exact.test(tab_own, method = "Boschloo", to.plot = FALSE)$p.value, 3), "\n")
+
+cat("\nTreatment differences within each hypothetical choice (Responsibility4Choice)\n")
+for (h in c("Delegate", "Decide myself")) {
+  d <- filter(resp, Hypothetical == h)
+  tb <- table(factor(d$EVAlgorithm, levels = c(0, 1)),
+              factor(d$Responsibility4Choice, levels = c(1, 0)))
+  cat(" ", h, ": Pref", round(100 * mean(d$Responsibility4Choice[d$EVAlgorithm == 0] == 1), 1),
+      "% vs. EV", round(100 * mean(d$Responsibility4Choice[d$EVAlgorithm == 1] == 1), 1),
+      "%; Boschloo p =", round(exact.test(tb, method = "Boschloo", to.plot = FALSE)$p.value, 3), "\n")
+}
+```
+
+
 
 ## LPM: never-delegation on reasons
 

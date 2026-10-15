@@ -27,8 +27,13 @@ medical decisions could not deliver cleanly.
 
 **Pre-empt the wording-confound issue.** We now acknowledge this explicitly in the
 Limitations section (see point 7 below) rather than letting readers discover it
-unflagged, and we use the fact that an earlier pilot with more symmetric wording found
-an even *larger* gap as evidence that the effect does not hinge on this asymmetry.
+unflagged. We also state that the asymmetry is partly deliberate: in the earlier pilot the
+preference-based description lacked any optimization claim, so we added "selects the best
+option for you" in the present study to rule out that the missing optimization claim
+explained the EV advantage. The first-contact gap remained (11.1 points vs. about 20 in the
+pilot), so it cannot be attributed to that omission. We note that the two studies differ in
+other respects, so we do not attribute the smaller gap to the wording change, and that a
+difference in register remains.
 
 **Motivate categorical non-delegation theoretically before the results.** We have
 intentionally not reframed this as something anticipated ex ante in the Introduction,
@@ -264,8 +269,8 @@ from three; the numbering in the manuscript is First to Seventh), incorporating 
 2. *(Existing, expanded)* Mechanism not causally identified — plus **two new additions**
    directly responding to this review: (a) an explicit acknowledgment that the two
    algorithm descriptions differ in linguistic register as well as decision rule, with
-   the pilot's more-symmetric-wording result offered as evidence against a purely
-   wording-driven account; and (b) an explicit discussion of whether low self-chosen
+   the deliberate addition of an optimization claim to the preference-based description
+   (relative to the pilot) offered as evidence against a purely wording-driven account; and (b) an explicit discussion of whether low self-chosen
    choice quality (~35% non-dominated) could confound the choice-authority
    interpretation — we show never-delegators' own choice quality is statistically
    indistinguishable from that of delegators (Welch $p=0.806$; Wilcoxon $p=0.669$),
@@ -328,15 +333,24 @@ algorithm aversion, and Gogoll & Uhl (2018), who find that reluctance to delegat
 trust, or a lower ability to pass on responsibility (again with the caveat that everyone
 had to delegate to someone, so the design compares agents rather than delegating vs.
 deciding oneself). We acknowledge that we did not measure anticipated blame directly.
-The account is also already substantively represented in our design and results: the closed-item reasons explicitly
-include two responsibility-related items ("I didn't want to be responsible for choosing
-the option" and "I didn't want to be responsible if a low payment results"), and
-never-delegators endorse the choice-responsibility item far more often than delegators
-(63.6% vs. 38.9%, reported in Section 4.6). We read this as evidence *for* an
-authority/responsibility-retention account (never-delegators want to keep responsibility
-for the choice), which is the same direction as — rather than in tension with — a
-responsibility-offloading account of the opposite pattern (users preferring objective
-rules so they have "someone to blame"); our data speak most directly to the former.
+The account is also already represented in our design and results: the closed-item
+reasons include two responsibility-related items ("I didn't want to be responsible for
+choosing the option" and "I didn't want to be responsible if a low payment results").
+In revising this point we noticed that the choice-responsibility item is worded according
+to the hypothetical choice (participants who decide themselves can say they wanted to be
+responsible, participants who delegate can say they did not want to be), so the pooled
+comparison of never-delegators with the rest (63.6% vs. 38.9%) largely contrasts reasons
+for deciding oneself with reasons for delegating. The hypothetical choice closely mirrors
+actual behavior (91% of never-delegators decide themselves, 95% of always-delegators
+delegate; Spearman correlation with the Part-2 delegation share 0.68). The text now
+reports the within-choice figures: 66.4% of those who decide themselves say they wanted to
+be responsible, and 16.2% of those who delegate say they did not want to be (about one in
+four endorse either responsibility item). We read this as responsibility for the choice
+being the dominant stated reason for deciding oneself, with a minority of delegators citing
+responsibility avoidance, so some responsibility shifting among delegators is not
+excluded. We added a note to the Figure 4 caption and to Section 4.6 explaining how the
+item reads, and we no longer present the pooled contrast as evidence for a
+never-delegator-specific motive.
 
 **Structural/presentational artifacts (incomplete abstract sentences, header typos like
 "Reoretical," fragmented references).** We carefully checked the current manuscript
