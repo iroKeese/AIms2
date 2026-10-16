@@ -691,17 +691,61 @@ cl_test(NextDelegated ~ EVAlgorithm + Regret + WithinPartDecisionNumber, regret_
 cl_test(NextDelegated ~ EVAlgorithm + Zero + Regret + WithinPartDecisionNumber, regret_panel)
 ```
 
+#### Percentage-point version of the match/mismatch comparison
+
+The paper reports these comparisons as percentage-point differences from linear probability
+models with participant-clustered standard errors. Paper: matching EV picks $-8.4$ points
+(95% CI [$-18.7$, 2.0], $p = 0.112$) and mismatching EV picks $-14.5$ points (95% CI
+[$-26.9$, $-2.0$], $p = 0.023$) relative to preference-based delegation; mismatching vs.
+matching EV picks $-6.1$ points ($p = 0.266$); with task fixed effects $-16.4$ points
+($p = 0.012$) for mismatching picks; controlling for a zero payoff $-10.8$ points
+($p = 0.078$); a zero payoff within EV lowers continued delegation by 20.0 points after a
+matching and by 36.7 points after a mismatching pick (difference 16.7 points, $p = 0.083$).
+
+```{r mismatch-lpm}
+lpm_pp <- function(formula, data, terms) {
+  m  <- lm(formula, data = data)
+  V  <- vcovCL(m, cluster = data$ProlificID)
+  ct <- coeftest(m, vcov = V)
+  ci <- coefci(m, vcov. = V)
+  round(cbind(pp = 100 * ct[terms, 1], lo = 100 * ci[terms, 1], hi = 100 * ci[terms, 2],
+              p = ct[terms, 4]), 3)
+}
+delegation_panel$Task <- factor(delegation_panel$OptionsetID)
+lpm_pp(NextDelegated ~ Group + WithinPartDecisionNumber, delegation_panel,
+       c("GroupEV_match", "GroupEV_mismatch"))
+lpm_pp(NextDelegated ~ Group + WithinPartDecisionNumber + Task, delegation_panel,
+       c("GroupEV_match", "GroupEV_mismatch"))
+lpm_pp(NextDelegated ~ Group + Zero + WithinPartDecisionNumber, delegation_panel,
+       c("GroupEV_match", "GroupEV_mismatch", "Zero"))
+
+cat("\nMismatching vs. matching EV picks\n")
+delegation_panel$GroupRef <- relevel(delegation_panel$Group, ref = "EV_match")
+lpm_pp(NextDelegated ~ GroupRef + WithinPartDecisionNumber, delegation_panel, "GroupRefEV_mismatch")
+
+cat("\nWithin EV: zero payoff x mismatching pick\n")
+ev_lpm <- delegation_panel %>% filter(EVAlgorithm == 1) %>%
+  mutate(Mismatch = 1 * (Group == "EV_mismatch"))
+lpm_pp(NextDelegated ~ Zero * Mismatch + WithinPartDecisionNumber, ev_lpm,
+       c("Zero", "Mismatch", "Zero:Mismatch"))
+
+cat("\nPooled EV gap without and with the zero control\n")
+lpm_pp(NextDelegated ~ EVAlgorithm + WithinPartDecisionNumber, delegation_panel, "EVAlgorithm")
+lpm_pp(NextDelegated ~ EVAlgorithm + Zero + WithinPartDecisionNumber, delegation_panel,
+       c("EVAlgorithm", "Zero"))
+```
+
 ### (iii) The first-contact gap sits at the opt-out margin
 
 The framework predicts that resistance is concentrated in participants who value choice
 authority and opt out categorically. We first compare round-1 delegation among participants who
-delegate at least once. Paper: 65.6% (Pref) vs. 69.3% (EV), two-sided Boschloo $p = 0.64$.
+delegate at least once. Paper: 65.6% (Pref) vs. 69.3% (EV), one-sided Boschloo $p = 0.289$.
 Because never-delegation is defined over all eight rounds and thus includes round 1, we then
 repeat the comparison with "otherwise-never-delegators", defined without the round(s) under
 analysis: for round 1, participants who never delegate in rounds 2--8; for the rounds 1--2
 analysis, participants who never delegate in rounds 3--8. Paper (round 1): 16.8% (Pref) vs.
-7.6% (EV), one-sided Boschloo $p = 0.019$ (two-sided $0.037$); round-1 delegation among all
-other participants 64.9% vs. 67.9% ($p = 0.64$). The comparisons are descriptive, since they
+7.6% (EV), one-sided Boschloo $p = 0.019$; round-1 delegation among all
+other participants 64.9% vs. 67.9% (one-sided $p = 0.330$). The comparisons are descriptive, since they
 condition on later behaviour. We do not report a numerical split of the 11.2-point gap,
 because the within-group part rests on only 28 otherwise-never-delegators.
 
@@ -736,8 +780,9 @@ not_never %>%
   group_by(EVAlgorithm) %>%
   summarise(n = n(), round1 = round(100 * mean(d1), 1),
             rounds2to8 = round(100 * mean(lateRate, na.rm = TRUE), 1), .groups = "drop")
-cat("Round-1 delegation, Pref vs. EV (two-sided Boschloo p):",
-    round(boschloo_p(not_never$d1, not_never$EVAlgorithm), 3), "\n")
+# one-sided: EV delegates more than Pref ("less" = first row, Pref, has the lower share)
+cat("Round-1 delegation, EV > Pref (one-sided Boschloo p):",
+    round(boschloo_p(not_never$d1, not_never$EVAlgorithm, "less"), 3), "\n")
 
 cat("\n--- Robustness: otherwise-never-delegators (never in rounds 2-8)\n")
 A <- filter(wide, !is.na(d1), !is.na(OtherwiseNever_r1))
@@ -753,8 +798,8 @@ cat("Share of otherwise-never-delegators, Pref > EV (one-sided Boschloo p):",
     round(boschloo_p(A$OtherwiseNever_r1, A$EVAlgorithm, "greater"), 3), "\n")
 cat("  two-sided:", round(boschloo_p(A$OtherwiseNever_r1, A$EVAlgorithm), 3), "\n")
 others1 <- filter(A, OtherwiseNever_r1 == 0)
-cat("Round-1 delegation among all others, Pref vs. EV (two-sided Boschloo p):",
-    round(boschloo_p(others1$d1, others1$EVAlgorithm), 3), "\n")
+cat("Round-1 delegation among all others, EV > Pref (one-sided Boschloo p):",
+    round(boschloo_p(others1$d1, others1$EVAlgorithm, "less"), 3), "\n")
 ```
 
 ### Does the round-1 to round-2 decline differ between conditions?
@@ -1136,6 +1181,8 @@ choices <- choices %>%
   ungroup()
 
 choices$stay <- 1 * (choices$Delegated == choices$lagDelegated)
+# The paper models SWITCHING (= 1 - stay), so that a positive coefficient always means more switching
+choices$switch <- 1 - choices$stay
 
 # "Prior win": the outcome of the PREVIOUS round was strictly positive.
 # (lagWin is defined from the lagged payoff, i.e. the genuine win-stay/lose-shift
@@ -1144,7 +1191,7 @@ choices$lagWin <- 1 * (choices$lagRelevantPayoff > 0)
 
 # Pooled model: treatment x prior win
 winStayReg <- feols(
-  stay ~ EVAlgorithm * lagWin | OptionsetID + WithinPartDecisionNumber,
+  switch ~ EVAlgorithm * lagWin | OptionsetID + WithinPartDecisionNumber,
   cluster = ~ProlificID,
   data = subset(choices, Part == 2 & WithinPartDecisionNumber > 1)
 )
@@ -1169,7 +1216,7 @@ lose-shift after a delegated (algorithmic) loss.
 ```{r win-stay-by-treatment}
 # EV condition
 winStayReg_EV <- feols(
-  stay ~ lagDelegated * I(1 - lagWin) | OptionsetID + WithinPartDecisionNumber,
+  switch ~ lagDelegated * I(1 - lagWin) | OptionsetID + WithinPartDecisionNumber,
   cluster = ~ProlificID,
   data = subset(choices, EVAlgorithm == 1 & Part == 2 & WithinPartDecisionNumber > 1)
 )
@@ -1177,7 +1224,7 @@ summary(winStayReg_EV)
 
 # Preference-based condition
 winStayReg_Pref <- feols(
-  stay ~ lagDelegated * I(1 - lagWin) | OptionsetID + WithinPartDecisionNumber,
+  switch ~ lagDelegated * I(1 - lagWin) | OptionsetID + WithinPartDecisionNumber,
   cluster = ~ProlificID,
   data = subset(choices, EVAlgorithm == 0 & Part == 2 & WithinPartDecisionNumber > 1)
 )
@@ -1190,6 +1237,7 @@ choices %>%
   filter(Part == 2, WithinPartDecisionNumber > 1) %>%
   group_by(EVAlgorithm, lagDelegated, lagWin) %>%
   summarise(avg_stay_rate = mean(stay, na.rm = TRUE),
+            avg_switch_rate = mean(switch, na.rm = TRUE),
             n = n(), .groups = "drop") %>%
   arrange(EVAlgorithm, lagDelegated, lagWin)
 ```
@@ -1350,6 +1398,45 @@ fig4
 ggsave("Figure4_ReasonsByTrmtAndNeverDelegator2.pdf", fig4, width = 8, height = 4, dpi = 300)
 ```
 
+
+### Side note: participants who expect few mistakes by the algorithm
+
+The paper notes that restricting the sample to participants who expect at most two
+non-preferred choices out of ten (about 21% of the sample) leaves the treatment differences
+at least as large. The subgroups are small, and the restriction conditions on a post-task
+measure, so we regard this only as a robustness remark. Paper (at most 2): round-1
+delegation 100% (EV, n = 15) vs. 72.7% (Pref, n = 33), one-sided Boschloo $p = 0.012$;
+never-delegation 0 of 15 vs. 6 of 33 ($p = 0.053$). With a cut-off of 3: 83.3% vs. 65.4%
+($p = 0.064$) and never-delegation $p = 0.039$.
+
+```{r few-mistakes-expected}
+few_mistakes <- subjects %>%
+  inner_join(choices %>% filter(Part == 2) %>% group_by(ProlificID) %>%
+               summarise(k = sum(Delegated == 1), n = sum(Delegated >= 0),
+                         d1 = Delegated[WithinPartDecisionNumber == 1][1], .groups = "drop"),
+             by = "ProlificID")
+
+# one-sided Boschloo on arms (row 1 = EV, row 2 = Pref); "greater" = EV higher
+boschloo_ev <- function(x, ev, alternative) {
+  tab <- rbind(c(sum(x[ev == 1] == 1), sum(x[ev == 1] == 0)),
+               c(sum(x[ev == 0] == 1), sum(x[ev == 0] == 0)))
+  exact.test(tab, method = "Boschloo", alternative = alternative, to.plot = FALSE)$p.value
+}
+for (cutoff in c(2, 3)) {
+  d <- filter(few_mistakes, ProbOfBadComputerChoices <= cutoff, !is.na(d1))
+  cat(sprintf("\n--- At most %d expected non-preferred choices: n = %d (%.1f%% of %d)\n",
+              cutoff, nrow(d), 100 * nrow(d) / nrow(few_mistakes), nrow(few_mistakes)))
+  print(d %>% group_by(EVAlgorithm) %>%
+          summarise(n = n(), round1 = round(100 * mean(d1), 1), never = sum(k == 0),
+                    neverPct = round(100 * mean(k == 0), 1),
+                    avgDelegation = round(100 * mean(k / n), 1), .groups = "drop"))
+  cat("Round-1 delegation, EV > Pref (one-sided Boschloo p):",
+      round(boschloo_ev(d$d1, d$EVAlgorithm, "greater"), 3), "\n")
+  cat("Never-delegation, Pref > EV (one-sided Boschloo p):",
+      round(boschloo_ev(1 * (d$k == 0), d$EVAlgorithm, "less"), 3), "\n")
+}
+```
+
 ## Aggregate reason patterns
 
 In-text figures for performance, distrust, and responsibility motives by
@@ -1442,6 +1529,29 @@ for (h in c("Delegate", "Decide myself")) {
 ```
 
 
+
+
+## Reasons among delegators, by treatment
+
+The paper notes that, among participants who delegated at least once, the selected reasons
+differ little by treatment (by at most 8 percentage points; smallest two-sided Boschloo
+$p = 0.214$). The four EV never-delegators are too few to compare.
+
+```{r reasons-by-treatment-delegators}
+delegator_reasons <- subjects2 %>% filter(sumDeleg0 == FALSE)
+items_closed <- c("DontTrust", "BetterJob", "HowExactly", "MoreInfo", "Responsibility4Choice",
+                  "Responsibility4Outcome", "DislikeRelyingOn", "Reactance2Analysis",
+                  "PerformanceCuriosity", "Tedious")
+res <- t(sapply(items_closed, function(v) {
+  tab <- table(factor(delegator_reasons$EVAlgorithm, levels = c(0, 1)),
+               factor(delegator_reasons[[v]], levels = c(1, 0)))
+  c(Pref = 100 * mean(delegator_reasons[[v]][delegator_reasons$EVAlgorithm == 0] == 1, na.rm = TRUE),
+    EV   = 100 * mean(delegator_reasons[[v]][delegator_reasons$EVAlgorithm == 1] == 1, na.rm = TRUE),
+    p    = exact.test(tab, method = "Boschloo", to.plot = FALSE)$p.value)
+}))
+round(res, 3)
+cat("Largest difference (percentage points):", round(max(abs(res[, "Pref"] - res[, "EV"])), 1), "\n")
+```
 
 ## LPM: never-delegation on reasons
 

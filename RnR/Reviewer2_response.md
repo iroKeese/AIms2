@@ -85,7 +85,7 @@ experimenter-assigned manipulation).
 
 Because the reaction to a zero payoff is the same in both conditions, and because the
 realized difference in exposure to zero payoffs is small (40.3% vs. 36.2% of delegated
-decisions, participant-clustered p = 0.18), we **no longer attribute the convergence to
+decisions, participant-clustered p = 0.178), we **no longer attribute the convergence to
 differential feedback** as the submitted version did. The text now reports the exploratory
 decomposition described in our reply to Reviewer 3 (point 3) and states that much of the
 larger decline under EV remains unexplained.

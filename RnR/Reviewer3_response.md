@@ -33,13 +33,13 @@ authority effect. We have, however, **revised our explanation of it**. The submi
 version attributed it to the EV rule mechanically producing more zero outcomes. That is
 not supported: the reaction to a zero payoff is the same in both conditions (0.254 vs.
 0.250), and realized zero shares among delegated decisions differ little (40.3% vs.
-36.2%, p = 0.18). The text now reports, as exploratory, that (i) average delegation in
+36.2%, p = 0.178). The text now reports, as exploratory, that (i) average delegation in
 rounds 2 to 8 is the net of two offsetting differences of six to seven points each (more
 categorical opt-out under personalization, lower delegation under EV among everyone else),
 and (ii) EV picks that differ from the participant's own Part-1 preference pay zero more
 often and are followed by less delegation, which accounts for part of the larger EV
 decline (about six points in round 2, bootstrap 95% CI [0.4, 11.8]). The larger EV decline
-itself is imprecisely estimated (p = 0.14), and much of it remains unexplained, as the
+itself is imprecisely estimated (p = 0.141), and much of it remains unexplained, as the
 text says. The analyses are in the replication package.
 
 ## 4. Never-delegator heterogeneity not fully validated — multiple non-significant indicators
@@ -67,7 +67,10 @@ first (it is not supported: the interaction is slightly negative and insignifica
 $p = 0.633$), and then presents the win-stay/lose-shift model and its decomposition by
 the source of the prior outcome (delegated vs. self-chosen) together as *exploratory*,
 not specified in advance. The pooled win-stay/lose-shift model itself now sits in a short
-appendix (Appendix B), with its main results summarized in two sentences in the text. The Introduction, Method, and Discussion
+appendix (Appendix B), with its main results summarized in two sentences in the text. We
+also made the dependent variable consistent: all regressions in that subsection now model
+*switching*, so a positive coefficient always means more switching (the exploratory models
+previously modeled staying, which reversed the sign). The Introduction, Method, and Discussion
 sections were adjusted accordingly (the separate "Contributions" subsection was removed
 in the consolidation requested by Reviewer 1).
 

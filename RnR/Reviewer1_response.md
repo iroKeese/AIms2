@@ -377,7 +377,7 @@ produces more zero-payoff outcomes for most participants (89.7%, computed from t
 payoff structure), and used this to explain the post-round-1 convergence. That figure
 only says that the EV pick has more expected zeros for most participants; it does not
 say how much more, and the realized data show a small difference (40.3% vs. 36.2% of
-delegated decisions, participant-clustered p = 0.18; expected 41.7% vs. 34.8%). The text
+delegated decisions, participant-clustered p = 0.178; expected 41.7% vs. 34.8%). The text
 now reports this comparison, drops the 89.7% figure and the "EV loses it more"
 inference, and replaces them with an explicitly exploratory decomposition (see our reply
 to Reviewer 3, point 3). The expected-zero calculation relies on the ten states of each
