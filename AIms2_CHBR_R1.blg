@@ -1,7 +1,7 @@
 This is BibTeX, Version 0.99d (TeX Live 2023/Debian)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: AIms2_CHBR_R1.aux
-The style file: apacite.bst
+The style file: apacite7.bst
 Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
 Reallocated global_strs (elt_size=200001) to 20 items from 10.
 Reallocated glb_str_end (elt_size=4) to 20 items from 10.
@@ -12,18 +12,18 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: library.bib
-apacite.bst [2013/07/21 v6.03 APA bibliography style]
+apacite7.bst (apacite.bst patched: APA 7 et al. from first citation) [2013/07/21 v6.03 APA bibliography style]
 You've used 50 entries,
             6951 wiz_defined-function locations,
-            1649 strings with 21430 characters,
-and the built_in function-call counts, 106322 in all, are:
-= -- 12712
+            1649 strings with 21488 characters,
+and the built_in function-call counts, 105464 in all, are:
+= -- 12622
 > -- 924
-< -- 5644
-+ -- 5708
+< -- 5572
++ -- 5666
 - -- 100
-* -- 7372
-:= -- 20347
+* -- 7300
+:= -- 20245
 add.period$ -- 204
 call.type$ -- 50
 change.case$ -- 860
@@ -31,12 +31,12 @@ chr.to.int$ -- 0
 cite$ -- 100
 duplicate$ -- 2860
 empty$ -- 3916
-format.name$ -- 1614
-if$ -- 19435
+format.name$ -- 1542
+if$ -- 19273
 int.to.chr$ -- 0
 int.to.str$ -- 150
 missing$ -- 0
-newline$ -- 1405
+newline$ -- 1333
 num.names$ -- 400
 pop$ -- 1456
 preamble$ -- 1
@@ -51,6 +51,6 @@ text.prefix$ -- 0
 top$ -- 1
 type$ -- 4128
 warning$ -- 0
-while$ -- 567
+while$ -- 537
 width$ -- 0
-write$ -- 1816
+write$ -- 1672
