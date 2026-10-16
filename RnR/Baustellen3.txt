@@ -1,0 +1,39 @@
+- Section 4.5; I might be missing it, but is there a switch of the regressed variable between subsubsection "Preregistered test: switching..." and the following subsubsections? In particular, a negative coefficient is interpreted as "less switching" in the first subsubsection but as "a loss prompts more switching" afterwards. Are we switching from a switch ~ ... regression to a stay ~ ... regression?
+- "Note further that if we restrict the sample to only those participants who expect a maximum of 2 mistakes... treatment differences become stronger..." -> where do I find that in the replication code?
+
+- Section on "Study overview and supplementary analyses"
+-> the first two paragraphs are repetitions of what came directly beforehand. Didn't we take them out in an earlier go? Only the last (long) paragraph of that section is new, and in my view, very valuable, so that we should keep it, but putting it at a sensible point of the paper (and connecting it to what is going on around there)
+- "This control-and-responsibility perspective ... ownership of outcomes." -> Is that paragraph needed? Useful? Would it be a bad idea to remove it?
+- In the "Categorical non-delegation" subsection, we also have a repetition (first sentence/paragraph, and then "As this outcome was not preregistered...")
+
+- "To understand what shapes these first-contact decisions, ..." -> unclear what the "these" refers to (doesn't seem to refer to the sentence before but to something that came earlier)
+- "To test this contrast, we run..." -> -> unclear what the "this" refers to (doesn't seem to refer to the sentence before but to something that came earlier)
+- "This makes financial decision-making a strong test bed..." -> unclear what the "This" refers to (doesn't seem to refer to the sentence before but to something that came earlier)
+- "This mirrors the treatment-level non-delegation pattern..." -> unclear what the "This" refers to (doesn't seem to refer to the sentence before but to something that came earlier)
+- "These findings are consistent with an earlier study on the same..." -> unclear what the "These" refers to (doesn't seem to refer to the sentence before but to something that came earlier); here, I would say "Our", but I'm not sure whether that paragraph still reads as a bit out of place if we change nothing but "These" to "Our".
+- "This caveat does not extend to our two central results: ..." -> unclear what "This" refers to (doesn't seem to refer to the sentence before but to something that came earlier)
+
+- I don't quite understand the statement "...so perceived competence cannot be confounded with domain expertise." What exactly do we want to say there, and can we do so in a way that is easier to understand to the reader?
+- "...distrust of the algorithm's competence rather than a reaction to \emph{whose} criterion is being applied." -> why "whose"? I thought it would be "the", without emphasis. But I might be missing a nuance here.
+- "resistance to the personalized algorithm should \emph{not} be accompanied..." -> why "should", rather than "need" (and again, "need not" without emphasis?)?
+- "only possible one (see Limitations)." -> shouldn't we say "(see Section \ref{...} on Limitations)."? Similarly, in the footnote including "see the Discussion section for a comparison of results." -> Discussion Section \ref{...}? And "We report this test in the Results section" -> Results Section \ref{...}?
+- "...differs between human and machine partners is mixed, with..." -> Why "mixed"? Kirchkamp & Strobel find no difference, is "mixed" referring to this non-difference, or to other studies' findings, too?
+- "to our knowledge, no study has experimentally tested..." -> are there non-experimental tests? Otherwise, we could make a more general claim by leaving out the "experimentally", couldn't we?
+- In "Heterogeneity and contextual...", the first citation by Ferraz et al. shows as "(Ferraz, Houf, Pitz, Schwieren, & Sickmann, 2025;" -> shouldn't this be "Ferraz et al., 2025"?
+- "while overreliance risks remain salient when users..." -> "remain salient"? Is that the most natural way to say what we should be saying there?
+- "...to prevent participants from anticipating the structural correspondence..." -> "anticipating" seems the wrong word: they shouldn't learn the correspondence (early) in Part 2 (there was no way of guessing it beforehand, so we weren't afraid of that).
+- "...the absence of a significant contrast should not be read..." -> "should not" or "cannot"?
+- "The first-contact gap is concentrated among never-delegators." -> "is concentrated"? What exactly is that sentence's message? Should it be "driven by"? Is that what we want to convey at that point of the argument? Or is it something else?
+- "(preference-based: 65.6%, EV 69.5%; two-sided Boschloo..." -> shouldn't we keep to a one-sided test here, given that it still is test of a variation of H1?
+- "$p = o.64$" -> whould have three decimals
+- "These comparisons are exploratory and descriptive, since..." -> "even more exploratory and descr..."?
+- "Table~\ref{tab:mismatch} splits the delegated rounds 1--7 accordingly." -> is "accordingly" clear? To me, it feels like it isn't completely clear.
+- "Delegation after matching EV picks is not significantly different from delegation under preference-based delegation (logit coefficient $-0.38$, participant-clustered $p = 0.11$)." -> that's not a p-value that would make me claim comfortably whether conditions differ. Could/should we somehow express that uncertainty?
+- "...reinforcing the earlier finding that these never-delegators were, if..." -> please check that we have reported that finding before, otherwise rephrase.
+- The subsubsection "Which expectations are most tightly..." already refers to items that really are presented only in Figure 4, but that Figure is introduced and referenced only in the subsequent subsubsection "What distinguished delegators..."; I like the way the Figure is introduced, and the flow around it, so I'm not 100% sure we should move it up, but then, we probably need to provide some context in the earlier subsubsection (or something like that).
+- on Figure 4, we write "the pooled figures reported here cannot be read directly off the by-treatment bars." I'd like to add a sentence that says "We nonetheless show them separately to make the point that as far as one could tell, there are no major treatment differences with respect to the reasons that were selected." (perhaps phrased a bit better, keeping in mind to always "keep it short and simple")
+- I would like to get rid of the "(about one in four endorsed either ... low payments)", because it's not easy to understand what exactly that is referring to, and to me it seems not worth spending even more words on explaining what exactly that means. Is that fair, or would it be an omission that is hard to defend?
+- "roughly two thirds of self-made choices were dominated, see ``Primary test: first-contract delegation'' below)" -> "below"???
+- "...without changing the underlying rule." -> Here, I would like to add a sentence/comment/... that makes clear that this test would need an adapted design (because I do not want to invite the reviewers to ask me to run that additional test in Revision 2).
+
+- can we reformat Table 1 on the summary of findings, so that the text gets a bit more readable? Two ideas here: add a linebreak after "Switch to non-delegation after" (and then, we should add "with a zero payoff" to "delegated round"), and breaking the Effect size displays into two lines after the semicolons (lines 1 and 4)
