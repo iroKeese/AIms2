@@ -250,19 +250,40 @@ Table~\ref{tab:primary_tests_summary} summarizes the two preregistered primary t
 \centering
 \caption{Summary of the preregistered tests and the categorical non-delegation contrast.}
 \label{tab:primary_tests_summary}
-\resizebox{0.98\textwidth}{!}{%
 \footnotesize
-\begin{tabular}{lllll}
+% top-aligned multi-line cell: its first line sits on the row's baseline
+\newcommand{\tc}[1]{\begin{tabular}[t]{@{}l@{}}#1\end{tabular}}
+\setlength{\tabcolsep}{2.5pt}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{llll@{\hspace{7pt}}l}
 \toprule
-Test & Outcome & Statistic & \textit{p}-value & Effect size (two-sided 95\% CI) \\
+Test & Outcome & Statistic & \textit{p}-value & \tc{Effect size\\(two-sided 95\% CI)} \\
 \midrule
-Boschloo exact (1-sided, prereg.) & Round-1 delegation & 66.9\% (EV) vs.\ 55.8\% (Pref) & $0.041$ & \shortstack[l]{RD = 11.1pp (Wald [$-1.3$, 23.7]);\\OR = 1.60 ([0.91, 2.84])} \\
-Wilcoxon--Mann--Whitney (1-sided, prereg.) & Average delegation (rds. 1--8) & $W = 6428$ & $0.243$ & $r_{rb} \approx 0.05$ (boot. [$-0.10$, 0.20]) \\
-LPM interaction (1-sided, prereg.\ secondary) & \shortstack[l]{Switch to non-delegation after\\a delegated round with a zero payoff} & $\beta_{\text{Pref}\times\text{zero payoff}}$ & $0.633$ & $\beta = -0.023$ (SE = 0.067) \\
-Boschloo exact (1-sided, exploratory) & Categorical non-delegation & 15.7\% (Pref) vs.\ 3.4\% (EV) & $<0.001$ & \shortstack[l]{RD = 12.3pp (Wald [4.9, 19.7]);\\OR = 5.25 ([1.65, 22.07])} \\
+\tc{Boschloo exact\\(1-sided, prereg.)}
+  & Round-1 delegation
+  & \tc{66.9\% (EV) vs.\\55.8\% (Pref)}
+  & $0.041$
+  & \tc{RD = 11.1pp\\(Wald [$-1.3$, 23.7]);\\OR = 1.60 ([0.91, 2.84])} \\
+\addlinespace[0.7ex]
+\tc{Wilcoxon--Mann--\\Whitney (1-sided,\\prereg.)}
+  & \tc{Average delegation\\(rounds 1--8)}
+  & $W = 6428$
+  & $0.243$
+  & \tc{$r_{rb} \approx 0.05$\\(boot. [$-0.10$, 0.20])} \\
+\addlinespace[0.7ex]
+\tc{LPM interaction\\(1-sided, prereg.\\secondary)}
+  & \tc{Switch to\\non-delegation after\\a delegation with\\a zero payoff}
+  & $\beta_{\text{Pref}\times\text{zero payoff}}$
+  & $0.633$
+  & \tc{$\beta = -0.023$\\(SE = 0.067)} \\
+\addlinespace[0.7ex]
+\tc{Boschloo exact\\(1-sided, exploratory)}
+  & \tc{Categorical\\non-delegation}
+  & \tc{15.7\% (Pref) vs.\\3.4\% (EV)}
+  & $<0.001$
+  & \tc{RD = 12.3pp\\(Wald [4.9, 19.7]);\\OR = 5.25 ([1.65, 22.07])} \\
 \bottomrule
-\end{tabular}%
-}
+\end{tabular}
 \end{table}
 
 
