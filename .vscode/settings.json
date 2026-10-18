@@ -1,3 +1,17 @@
 {
-    "r.lsp.promptToInstall": false
+    "r.lsp.promptToInstall": false,
+    "chat.tools.terminal.autoApprove": {
+        "/^which pdftotext; pdftotext -layout AIms2_CHBR_R1\\.pdf AIms2_CHBR_R1\\.txt 2>&1; wc -l AIms2_CHBR_R1\\.txt; ls -la AIms2_CHBR_R1\\.pdf$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^echo \"=== robo-advisor vs robo advisor ===\" && grep -nio \"robo\\[- \\]advisor\" AIms2_CHBR_R1\\.tex \\| sort \\| uniq -c\necho \"=== decision making vs decision-making ===\" && grep -nio \"decision\\[- \\]making\" AIms2_CHBR_R1\\.tex \\| sed 's/\\^\\[0-9\\]\\*://' \\| sort \\| uniq -c\necho \"=== first contact vs first-contact ===\" && grep -nio \"first\\[- \\]contact\" AIms2_CHBR_R1\\.tex \\| sed 's/\\^\\[0-9\\]\\*://' \\| sort \\| uniq -c\necho \"=== choice authority vs choice-authority ===\" && grep -nio \"choice\\[- \\]authority\" AIms2_CHBR_R1\\.tex \\| sed 's/\\^\\[0-9\\]\\*://' \\| sort \\| uniq -c\necho \"=== decision rule vs decision-rule ===\" && grep -nio \"decision\\[- \\]rule\" AIms2_CHBR_R1\\.tex \\| sed 's/\\^\\[0-9\\]\\*://' \\| sort \\| uniq -c\necho \"=== preference-based vs preference based ===\" && grep -nio \"preference\\[- \\]based\" AIms2_CHBR_R1\\.tex \\| sed 's/\\^\\[0-9\\]\\*://' \\| sort \\| uniq -c\necho \"=== never-delegator\\(s\\) vs never delegator ===\" && grep -nio \"never\\[- \\]delegator\" AIms2_CHBR_R1\\.tex \\| sed 's/\\^\\[0-9\\]\\*://' \\| sort \\| uniq -c$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^apt-get install -y aspell aspell-en 2>&1 \\| tail -15$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
 }

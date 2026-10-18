@@ -1,0 +1,2199 @@
+       When personalization deters delegation to
+       algorithms: Evidence from a preregistered
+                      experiment∗
+                      Irenaeus Wolff†                      Lara Suraci
+             Thurgau Institute of Economics                  DG Cities
+             (TWI) / University of Konstanz
+
+                             This version: 15th October, 2026
+
+
+                                          Abstract
+           Algorithmic decision aids increasingly act on users’ behalf, and in many
+       instances users can either retain control or delegate decisions to an algorithm
+       altogether. A common design assumption is that personalizing an algorithm
+       to users’ own preferences increases acceptance. Drawing on accounts of the
+       intrinsic value of decision rights, we argue the opposite can hold: a rule that
+       claims to decide as the user would substitutes for the user’s own judgment,
+       making the loss of choice authority salient at the moment of delegation.
+       In a preregistered between-subjects experiment (N = 233), participants
+       repeatedly chose whether to decide themselves or to delegate to an algorithm
+       that selected the option with the highest expected value (in one treatment)
+       or implemented participants’ previously elicited preferences (in the other).
+       Personalization did not increase delegation at any point of the task; instead,
+       it deterred delegation in two ways. At first contact, participants were
+       significantly less likely to delegate to the preference-based than to the
+       optimization-based algorithm; in subsequent decisions, delegation rates
+       were statistically indistinguishable. And second, categorical non-delegation
+       (never delegating) was substantially more prevalent under personalization
+       (15.7% vs. 3.4%, exploratory analysis). This resistance does not appear to be
+       accuracy-based: participants expected the personalized algorithm to match
+       their preferences better than the objective rule, yet were no more willing
+       to delegate to it, and never-delegators emphasized retaining responsibility
+       for the choice. Accuracy-based trust and authority-based resistance thus
+       emerge as distinct channels of algorithm acceptance: personalization can
+       improve the former while aggravating the latter.
+   ∗
+      We are grateful to all the many people who helped us write this paper, first and foremost
+Chris Starmer and Robin Cubitt, to whom we owe several aspects of the design, as well as the
+lively research group at the TWI, participants of numerous workshops and conferences. Grateful
+thanks also go to our editor and three anonymous reviewers.
+    †
+      Corresponding author. Thurgau Institute of Economics, Hafenstrasse 6, 8280 Kreuzlingen,
+Switzerland, wolff@twi-kreuzlingen.ch.
+          Keywords: AI delegation, human-AI delegation, personalization, choice
+      authority, decision autonomy, algorithm appreciation, algorithm aversion,
+      trust in AI, financial decision-making, preregistered experiment.
+
+
+1    Introduction
+Algorithmic systems increasingly make and implement decisions on users’ be-
+half in both everyday and high-stakes contexts, from automated driving to au-
+tonomous trading and smart-home control. Public perceptions of algorithmic
+decision-making vary substantially across domains and are shaped by perceived
+fairness, accountability, privacy, trust, and usefulness (Aysolmaz et al., 2023). In
+many such settings, users face a concrete choice: they can retain control and
+decide themselves, or delegate the decision to an algorithm. Delegation can re-
+duce cognitive effort and simplify complex choice tasks, but it can also reshape
+perceived agency and responsibility for outcomes. Recent literature shows that
+people do delegate consequential choices to AI systems, and that this delegation
+depends on the decision context (Candrian & Scherer, 2022). Note that throughout
+the paper, we refer to these systems interchangeably as algorithms, algorithmic
+advice, and algorithmic decision aids. This reflects the practical reality that, from
+a user’s perspective, the boundary between AI and algorithmic decision rules is
+often opaque, and particularly so when we think about personalized systems.
+    The idea of personalizing algorithmic systems is to tailor content, products,
+and services to individual user preferences, which in turn should increase ac-
+ceptance. Specifically, if individuals differ in preferences, then a decision aid
+that incorporates those preferences should, in principle, deliver higher subjective
+utility than a one-size-fits-all rule. In financial decision support, for example,
+systems often elicit risk preferences and translate them into portfolio recommen-
+dations. The key empirical question, however, is not whether personalization
+sounds attractive in principle, but whether it actually increases willingness to
+delegate.
+    Existing evidence leaves that question open. In robo-advisor research, much
+of the evidence focuses on what predicts whether people adopt robo-advisors
+and how they use them (for example, Mahmud et al., 2025), rather than on direct
+contrasts between preference-based personalization and objective delegation
+rules. Adjacent work has shown that conversational onboarding and autonomy-
+preserving designs shape trust and uptake (Fink et al., 2024; Hildebrand & Bergner,
+2021). However, these studies vary the interface, degree of user control, or
+communication format, not the nature of the underlying decision rule itself. To our
+knowledge, no study has experimentally tested whether making an algorithm’s
+decision rule preference-based, rather than objectively optimizing, changes actual
+
+                                         2
+delegation behavior. More generally, behavioral evidence shows that delegation
+to algorithms is shaped by more than expected performance: people sometimes
+avoid algorithms and sometimes prefer them based on the context (Dietvorst et
+al., 2018; Logg et al., 2019); they need to understand how recommendations are
+generated before accepting them (Yeomans et al., 2019); and acceptance depends
+on moderators such as perceived control and task features (Chugunova & Sele,
+2022; Mahmud et al., 2022).
+     Preference-based personalization can therefore be double-edged. While it may
+increase perceived fit, it may also encroach on users’ sense of choice authority:
+a system that claims to decide as you would substitutes for personal judgment
+more directly than an impersonal optimization rule, making delegation feel like
+ceding active control rather than outsourcing a computation. Our own post-task
+evidence is consistent with this interpretation: many categorical non-delegators
+explicitly report wanting to keep responsibility for the choice, suggesting that
+the barrier is not fear of being held responsible for a bad choice or outcome, but
+rather a positive valuation of exercising choice authority. This reading aligns with
+evidence that perceived control over one’s choices is a key driver of algorithm
+acceptance (Schaap et al., 2024) in addition to expected benefits. It also connects
+to findings that algorithmic transparency can paradoxically heighten resistance:
+disclosing how a system decides can trigger negative social interpretations (Chen
+et al., 2024) and induce pushback in algorithmic management contexts (Hu et al.,
+2024), suggesting that transparency about a system’s decision basis may itself
+contribute to a heightened sense of reduced agency.
+     These issues are especially salient at first contact, when users have no experi-
+ential basis for evaluating an algorithm and must judge based on abstract cues
+about its decision logic. Stable preferences for decision autonomy can constrain
+delegation even when delegation is instrumentally attractive (Ivanova-Stenzel &
+Tolksdorf, 2025), making the perceived loss of choice authority especially salient
+at the moment of delegation. Task characteristics matter too: trust and reliance
+depend on perceived objectivity and time pressure (Yang et al., 2025). Skepti-
+cism does not only operate before first contact, however: once delegation has
+begun, reactions to algorithmic errors are an important driver of whether users
+keep relying on a system. A robust finding is that people abandon algorithms
+more readily than they switch away from doing tasks themselves or delegating
+to another human after seeing comparable mistakes: algorithmic errors are, in
+effect, forgiven less (Dietvorst et al., 2015; Renier et al., 2021). We will see that
+this asymmetry shapes how participants respond to feedback in our setting as
+well. Together, these factors suggest substantial skepticism about delegating to
+algorithms, both at the point of adoption and in the face of subsequent errors.
+     To understand what shapes delegation at first contact, we must study observ-
+able behavior rather than attitudes alone. Behavioral reliance and self-reported
+
+                                         3
+trust need not coincide; evidence from AI-advisor interactions shows that deter-
+minants of behavioral trust can diverge from self-reported trust (Schreibelmayr &
+Mara, 2025). Moreover, even in repeated interaction settings, the mere framing of
+advice as AI-generated can produce systematic overreliance (Klingbeil et al., 2024),
+underscoring that label-driven cues persist beyond first contact. This motivates
+our focus on observable delegation behavior, treating first contact as a critical
+moment when abstract cues about an algorithm’s decision logic are especially
+influential in shaping whether users delegate.
+     In this study, we contrast two decision rules that are both plausible in fi-
+nancial choice settings but may elicit different reactions. One algorithm follows
+an objective optimization rule and selects the option with the highest expected
+value (EV), which may appear impersonal and easier to justify as a rule-based
+benchmark. The other is preference-based personalization in a narrow sense: it
+predicts a participant’s preferred choice from their previously elicited preferences
+rather than maximizing EV. In implementation terms, the personalized algorithm
+maps each participant’s earlier choices in a simpler elicitation environment to
+corresponding choices in a more complex environment later in the experiment; it
+does not involve adaptive updating or learning during the delegation task.
+     To test whether these two rules elicit different willingness to delegate, we run
+a preregistered between-subjects experiment with repeated delegation decisions.
+Participants first complete 12 binary lottery choices (Part 1), which provide the
+preference-elicitation input for the personalized algorithm. They then enter Part 2,
+where in each round they choose either to decide themselves among eight lottery
+options or to delegate that choice to the assigned algorithm (EV or preference-
+based, depending on the treatment).
+     This design allows us to isolate a preregistered first-contact test, before any
+outcome feedback is observed, and to distinguish it from behavior after feedback
+has accumulated. The comparison between our algorithms connects to evidence
+that responsibility-sharing considerations can shape advisor choice in human-
+versus-algorithm settings (Gazit et al., 2023) and to recent studies of financial
+delegation and outcome evaluation (Ismagilova & Ploner, 2025). Related findings
+in financial delegation are also suggestive of responsibility-sharing considerations
+(Werner et al., 2026), even though evidence on perceived responsibility differences
+between human and machine partners is not uniform (Gazit et al., 2023; Kirchkamp
+& Strobel, 2019).
+
+Theoretical framework: delegation as ceding choice authority
+Why should the content of an algorithm’s decision rule change willingness to del-
+egate, holding constant that delegation is available, voluntary, and instrumentally
+attractive? Our answer starts from the observation that choosing is not only a
+
+                                         4
+means to outcomes but carries value of its own. People derive procedural utility
+from being the agent who decides (Frey et al., 2004), hold an intrinsic valuation of
+decision rights that exceeds their instrumental value (Bartling et al., 2014), and pay
+a measurable premium to retain control over payoff-relevant choices even when
+ceding control would yield better expected outcomes (Owens et al., 2014). The
+desire for control appears to be a basic psychological need with deep biological
+roots (Leotti et al., 2010), and its frustration can trigger reactance, a motivational
+state aimed at restoring threatened freedom of choice (Brehm, 1966). On this
+view, delegation to an algorithm is a transfer-of-control decision (Candrian &
+Scherer, 2022) whose psychological cost is not exhausted by expected outcomes:
+it includes the forgone value of exercising choice authority.
+     The decision rule matters because it shapes how this transfer of control is
+construed. Delegating to an impersonal optimization rule can be framed as out-
+sourcing a computation: the algorithm performs an objective calculation the user
+could not (or would not) perform, and the user’s judgment remains conceptually
+intact, much like using a calculator does not threaten one’s sense of being the
+decision-maker. Delegating to a preference-based rule, by contrast, is harder to
+construe this way. A system that claims to decide as the user would does not
+complement the user’s judgment; it replaces it. If the algorithm already chooses
+what the user would choose, the act of choosing itself becomes redundant, and
+it is precisely this act that carries intrinsic value (Bartling et al., 2014; Owens
+et al., 2014). Personalization thus makes the loss of choice authority salient in
+a way that objective optimization does not, threatening autonomy as a basic
+need (Deci & Ryan, 2000) and potentially evoking reactance (Brehm, 1966). This
+construal-based account is consistent with evidence that perceived control, rather
+than the algorithmic label per se, drives acceptance (Schaap et al., 2024), and
+that stable preferences for decision autonomy constrain delegation even when
+delegation pays (Ivanova-Stenzel & Tolksdorf, 2025).
+     A lottery-choice paradigm suits this construal mechanism because it lets us
+equate the two algorithms on everything except the feature our theory targets.
+Payoffs and probabilities are stated unambiguously, so participants can judge
+for themselves how each rule would choose and need no domain knowledge
+to do so. Preferences are directly elicitable in Part 1 and thus known to the
+experimenter, and expected value is computable from the displayed payoff table,
+so the two rules can be equally simple to state and equally legitimate as decision
+procedures, differing mainly in whether the optimized criterion is impersonal
+or tied to the user’s own profile. Real financial or medical decisions could not
+deliver this contrast cleanly: outcomes are ambiguous or deferred, preferences
+must be inferred from noisy self-report or past behavior, and the “correct” choice
+is unknown or contested. Thus, reluctance to delegate could reflect distrust of the
+algorithm’s competence rather than a reaction to which criterion, the user’s own
+
+                                          5
+or an impersonal one, is being applied.
+    This framework yields three testable implications. First, at first contact (when
+no outcome feedback is available and construal of the decision rule is the domi-
+nant cue) delegation should be lower to a preference-based than to an objective
+algorithm, despite the former’s normative appeal (our preregistered H1 below).
+Second, because the intrinsic valuation of decision rights is heterogeneous across
+individuals (Bartling et al., 2014; Owens et al., 2014), resistance should be concen-
+trated in a subgroup: users who place high value on choice authority should opt
+out categorically, so categorical non-delegation should be more prevalent under
+personalization (a supplementary, non-preregistered implication we examine
+below). Third, the framework carries a mechanism signature that distinguishes it
+from accuracy-based accounts: resistance to the personalized algorithm need not
+be accompanied by lower expectations about its preference-matching accuracy,
+whereas an accuracy-based account would require them. If users expect the
+personalized rule to match their preferences at least as well as (or better than)
+the objective rule, and yet delegate less, accuracy-based trust accounts become
+hard to sustain and authority-based accounts become the more plausible reading,
+although not the only possible one (see Section 5.4 on Limitations). Our post-task
+expectation measures let us examine this implication, with the caveat that they
+were collected after the incentivized rounds and ask how well the algorithm’s
+choices would fit participants’ preferences, but not how much money they would
+produce.
+
+Preregistered hypothesis and analysis plan
+Consistent with our preregistration (https://aspredicted.org/7un5qf.pdf), our
+main hypothesis is that the diminished sense of choice authority from delegating
+to a personalized algorithm outweighs the benefits it renders in terms of better-
+fitting choices:3
+
+H 1. People are more likely to delegate financial decisions to an EV-maximizing
+algorithm than to a personalized algorithm that incorporates their (revealed)
+preferences.
+
+    Our preregistered primary analyses test this hypothesis in two complementary
+ways. First, we test the treatment difference in delegation in the first decision
+(round 1) using a one-sided Boschloo exact test. This isolates first contact, when
+participants have no outcome feedback and must decide whether to delegate based
+on their interpretation of the algorithm. Second, we test whether EV maximization
+   3
+    The direction of the prediction was informed by a pilot study with a different design (reported
+in Suraci’s PhD thesis); see Section 5.3 for a comparison of results.
+
+
+                                                6
+leads to higher delegation overall by comparing participants’ average delegation
+frequencies across rounds using a one-sided Wilcoxon–Mann–Whitney test.
+    To account for the repeated-decision structure and additional determinants of
+delegation, our preregistration also specifies a multivariate regression analysis.
+We estimate a model with treatment indicators interacted with the decision
+period, decision-ID fixed effects, and participant-clustered standard errors. We
+further include the feedback history in the form of including the share of zero
+outcomes among prior delegated choices, to control for how experienced payoffs
+may influence subsequent delegation decisions. This preregistered specification
+tests whether any treatment difference varies systematically over decisions while
+controlling for option-set heterogeneity and participants’ feedback histories.
+Finally, the preregistration contains one secondary hypothesis on feedback: after
+delegating to the algorithm and obtaining a payoff of zero, participants in the
+preference-based condition are more likely to switch to non-delegation in the
+following round than under any other circumstances, in particular than under
+the same circumstances in the EV condition. We report this test in Section 4.5.
+    Beyond our confirmatory test of H1, we exploratorily examine whether resis-
+tance to personalization is concentrated in a subgroup (categorical non-delegation,
+that is, never delegating across rounds, which captures a distinct form of opting
+out of decision aids altogether) and whether authority-based and accuracy-based
+accounts can be dissociated using post-task expectation data.
+    In sum, this paper provides a preregistered test of a simple but consequential
+claim: even in a setting where preference-based personalization may appear nor-
+matively attractive, people may nonetheless be more willing to delegate to a ‘more
+objective’ algorithm. The contribution is threefold: we provide a preregistered
+behavioral comparison of objective versus personalized decision rules and show
+that the treatment effect is concentrated at first contact; we document categorical
+non-delegation as a distinct uptake barrier under personalization; and we show
+that this resistance arises despite participants crediting the personalized algorithm
+with superior preference-matching, which is more consistent with an authority-
+based than with an accuracy-based barrier to algorithm adoption. Together, these
+findings inform both the theoretical understanding of algorithm aversion as a
+phenomenon with distinct accuracy-based and autonomy-based channels, and
+the design implication that uptake depends on perceived rule characteristics, not
+only on expected performance.
+
+
+2    Related Work
+Our work sits at the intersection of literatures on (i) the behavioral uptake of
+algorithmic decision aids, (ii) delegation, agency, and responsibility in human–
+
+
+                                         7
+algorithm interaction, (iii) transparency as an interpretive cue for acceptance,
+(iv) personalization as a design feature of algorithmic decision rules, and (v)
+heterogeneity in trust and delegation. Below, we situate our study within these
+streams, identify the specific gap our experiment addresses—the lack of a direct
+behavioral comparison between personalized and objective decision rules—and
+connect them to the robo-advisor application domain.
+
+2.1    Algorithm aversion, appreciation, and conditions for
+       uptake
+Behavioral uptake of algorithmic advice is not one-directional: studies document
+both algorithm aversion and algorithm appreciation, depending on context, feed-
+back, and comparison benchmark (Dietvorst et al., 2018; Logg et al., 2019). A core
+implication is that reliance cannot be predicted based on objective performance
+alone. Users need to make sense of how recommendations are generated before
+accepting them, and understandability can affect uptake independently of accu-
+racy (Yeomans et al., 2019). Systematic evidence further shows that uptake is
+moderated by factors at multiple levels (algorithm, individual, and task), including
+perceived control and decision context (Chugunova & Sele, 2022; Mahmud et al.,
+2022).
+    This mixed-evidence baseline motivates our design choice to study delega-
+tion as an observed behavioral outcome and to isolate one concrete determi-
+nant of uptake: the algorithmic decision rule (objective EV maximization versus
+preference-based personalization).
+
+2.2    Delegation, agency, and responsibility sharing
+Delegation goes beyond advice-taking: it is a transfer-of-control decision that
+entails ceding choice authority to the algorithm (Candrian & Scherer, 2022). For
+that reason, agency and responsibility become central concerns. In advisor-choice
+settings, people evaluate more than expected payoff, including whether responsi-
+bility for consequences can be shared with or offloaded onto the advisor (Gazit
+et al., 2023). Related evidence from financial delegation suggests that delegation
+patterns are consistent with responsibility-sharing motivations, particularly in
+loss contexts (Werner et al., 2026). Yet, evidence on whether perceived respon-
+sibility differs between human and machine partners is not uniform: Gazit et
+al. (2023) build on studies reporting such differences, whereas Kirchkamp and
+Strobel (2019) find little difference in perceived responsibility or guilt.
+     Beyond responsibility considerations, a well-established body of evidence
+shows that people attach value to holding decision rights as such. Bartling
+et al. (2014) demonstrate that decision rights carry intrinsic value beyond their
+
+                                         8
+instrumental benefits; Owens et al. (2014) document a “control premium” whereby
+individuals sacrifice expected payoff to retain authority over choices; and Frey et
+al. (2004) argue that the process of deciding generates utility independently of
+outcomes. In the delegation-to-algorithms context specifically, Ivanova-Stenzel
+and Tolksdorf (2025) show that stable autonomy preferences constrain delegation
+even when it is instrumentally attractive. Our theoretical framework builds
+directly on this evidence: if choice authority is intrinsically valued, decision rules
+that make its loss more salient should face stronger resistance.
+
+2.3    Transparency, and interpretive cues for acceptance
+Personalization and transparency are often presented as acceptance-enhancing
+design features, but recent evidence suggests they can also trigger resistance. In
+recommendation contexts, greater transparency can backfire when users infer
+socially negative meanings (for example, feeling judged or dehumanized), reduc-
+ing acceptance (Chen et al., 2024). In algorithmic management, transparency can
+likewise show a non-monotonic effect, where additional transparency eventually
+increases resistance rather than compliance (Hu et al., 2024). Related evidence
+further indicates that acceptance is driven less by whether the decision-maker
+is labeled algorithmic or human, and more by expected benefits and perceived
+control (Schaap et al., 2024).
+     The broader explainability literature is consistent with this interpretation:
+transparency and explanations matter, but their effects depend on what they
+change psychologically. Fairness/accountability/transparency perceptions shape
+trust and adoption (Shin & Park, 2019), as do perceived trustworthiness dimensions
+of algorithmic decision-makers (Höddinghaus et al., 2021); explanations can
+improve trust calibration and behavior in some settings (Leichtmann et al., 2023);
+and combining explanation with decision control can improve compliance, though
+design complexity can also offset those gains (Westphal et al., 2023). In applied
+decision-support experiments, transparency influences advice use via trusting
+beliefs and perceived understanding, with effects that depend on the information
+environment and experienced system performance (Ning et al., 2024; Sun et al.,
+2026). For our setting, this implies that users’ interpretation of decision logic can
+shape delegation independently of objective expected returns.
+
+2.4    Decision-rule comparison gap: personalized versus ob-
+       jective rules
+Despite the breadth of the literatures reviewed above, a striking gap remains:
+to our knowledge, no study has tested whether making an algorithm’s decision
+rule preference-based (as opposed to following an impersonal, objective criterion)
+
+                                          9
+changes actual delegation behavior. Several lines of work come close but address
+different questions.
+    First, the “algorithm modification” paradigm pioneered by Dietvorst et al.
+(2018) shows that giving users even slight control over an algorithm’s output
+increases adoption, although preserving human involvement can come at the cost
+of lower accuracy (Sele & Chugunova, 2024). This demonstrates that user input
+matters, but the manipulation concerns users’ ability to adjust the output, not
+whether the underlying decision rule incorporates their preferences or maximizes
+an objective criterion (in fact, in our study participants prefer the algorithm where
+‘their input matters’ less, not more).
+    Second, the robo-advisor design literature examines how features such as
+conversational onboarding (Hildebrand & Bergner, 2021), user controllability
+over rebalancing (S. Kim et al., 2025), and the performance–control trade-off in
+configuration choices (Rühr, 2020) shape adoption and trust. These studies vary
+the interface and the degree of control, but hold the nature of the decision rule
+itself constant or leave it as an implicit design feature.
+    Third, theoretical and empirical work on robo-advisor personalization has fo-
+cused on optimizing portfolio allocation through more granular client interaction
+(Capponi et al., 2022) or on comparing algorithm-selected portfolios with self-
+directed choices (Boulu-Reshef et al., 2026). These contributions are informative
+about performance implications of personalization, but do not ask whether users
+are more or less willing to delegate when the algorithm’s rule is personalized.
+    This gap is consequential beyond academic interest. In practice, financial
+robo-advisors, healthcare decision aids, and algorithmic recommender systems
+routinely face the design choice between objective optimization criteria (such as
+expected-value or evidence-based guidelines) and preference-based rules that in-
+corporate individual user profiles. If personalization reduces rather than increases
+the willingness to delegate, as our evidence suggests, then system designers may
+inadvertently raise adoption barriers by prioritizing preference-matching. Un-
+derstanding this trade-off is directly relevant for any domain where algorithmic
+decision aids must be voluntarily adopted to be effective.
+
+2.5    Heterogeneity and contextual moderators of trust and
+       delegation
+Recent evidence shows that algorithm uptake is heterogeneous across people,
+tasks, and decision environments (Ferraz et al., 2025; Yang et al., 2025). At the
+individual level, delegation varies with psychological readiness and other personal
+traits linked to delegation behavior (Ferraz et al., 2025; H. Kim, 2026). Beyond
+stable traits, uptake also depends on decision architecture: autonomy-preserving
+
+
+                                         10
+choice designs can increase recommendation acceptance (Fink et al., 2024). At
+the task level, uptake depends on objectivity and time pressure (Yang et al., 2025),
+while users sometimes follow advice that contradicts their own information, a
+form of overreliance (Klingbeil et al., 2024). Taken together, these cross-level
+moderators imply that average delegation rates can mask meaningful subgroup
+patterns. For our study, this motivates looking beyond means and explicitly report-
+ing categorical non-delegation as a distinct acceptance pattern. The documented
+heterogeneity in the intrinsic valuation of decision rights (Bartling et al., 2014;
+Owens et al., 2014) provides a theoretical reason to expect exactly such a subgroup
+structure: if a subset of users values choice authority strongly, personalization-
+induced resistance could manifest as categorical opt-out in that subgroup rather
+than as a uniform shift in delegation rates.
+
+2.6    Financial advice and robo-advisors as an application
+       domain
+Although our task is experimentally stylized, it maps naturally to financial del-
+egation settings where users decide whether to retain control or hand choice
+authority to an algorithmic decision aid. This is exactly the context in which objec-
+tive optimization and preference-based personalization often coexist in practice.
+Existing robo-advisor evidence is informative but fragmented: studies document
+adoption patterns and how users combine advisor recommendations with their
+own judgment (Figà-Talamanca et al., 2022; Mahmud et al., 2025), outcome bias
+in the evaluation of delegated financial decisions, whether made by a human or
+an algorithm (Ismagilova & Ploner, 2025), and potential performance gains from
+robo-advice relative to self-directed choices (Lambrecht et al., 2026). Because both
+kinds of rules coexist in robo-advice, financial decision-making is a strong test
+bed for our question: whether changing the algorithmic decision rule changes
+willingness to delegate, even when both rules are plausible.
+
+2.7    Synthesis and research gap
+Across these literatures, the common message is that delegation to algorithms is
+jointly shaped by decision-rule design, perceived control and responsibility, trust
+calibration, and context-dependent interpretation of transparency and autonomy-
+related design cues (Chugunova & Sele, 2022; Dietvorst et al., 2018; Fink et al.,
+2024; Hu et al., 2024; Schaap et al., 2024). Yet as we have documented above, the
+existing evidence base contains a notable gap: while adjacent work has studied
+algorithm modification, controllability, conversational design, and performance
+implications of personalized portfolios, no study has experimentally isolated the
+
+
+                                         11
+effect of the decision rule itself, specifically, whether making the rule preference-
+based rather than objectively optimizing changes users’ willingness to delegate.
+This gap matters practically because robo-advisors, healthcare decision aids, and
+algorithmic recommender systems routinely face exactly this design choice, and a
+wrong assumption about the direction of the effect could raise rather than lower
+adoption barriers.
+     Our study addresses this gap with a preregistered behavioral test in a repeated-
+decision delegation paradigm, contrasting an EV-maximizing rule with a preference-
+based rule. It connects classic aversion/ appreciation evidence with newer findings
+on autonomy, transparency backfire, and responsibility attribution (Fink et al.,
+2024; Gazit et al., 2023; Hu et al., 2024; Logg et al., 2019), and anchors the pre-
+dicted direction of the effect in the economics and psychology of choice authority
+(Bartling et al., 2014; Brehm, 1966; Deci & Ryan, 2000; Frey et al., 2004; Leotti et
+al., 2010; Owens et al., 2014). More broadly, our focus on the decision rule as a
+determinant of delegation speaks to recent calls to move the study of human–AI
+interaction in finance from model performance toward decision architecture, and
+in particular, toward how authority, oversight, and accountability are allocated
+between human and algorithm (Kou et al., 2026); our results suggest that where
+this authority is perceived to reside can itself be shaped by how personalized the
+decision rule appears.
+
+
+3     Method
+3.1    Participants and preregistered exclusions
+Participants were recruited via Prolific from a UK-based participant pool and
+completed the study online. The preregistered target was 120 participants per
+treatment condition before exclusions. 240 participants completed the study.
+After applying our preregistered exclusion rules for data quality and protocol
+compliance (failed bot/slider checks at first attempt, failed comprehension checks
+after the second attempt, failure to confirm careful participation, disclosed AI
+usage during the study, and implausibly short completion times under the pre-
+registered log-time rule), the final analysis sample is N = 233 (EV condition: n =
+118; preference-based condition: n = 115). Of the 7 excluded participants, 1 failed
+the bot/slider check, 4 failed the careful-participation check (one of whom also
+disclosed AI usage), and 3 disclosed AI usage during the study (one overlapping
+with the careful-participation failure); no participant was excluded for failing a
+comprehension check or under the log-completion-time rule.
+
+
+
+
+                                        12
+3.2    Design and task
+The study used a between-subjects design with two algorithm conditions. In both
+conditions, participants completed a two-part experiment programmed in the
+online-ready version of z-Tree (version 6.0.0 beta 69, Fischbacher, 2007).
+     Part 1 consisted of 12 binary lottery choices used to elicit revealed risk prefer-
+ences. Every lottery in the experiment specified a payoff for each of ten equally
+likely states of the world, so that the expected value of an option is the average
+of its ten payoffs (see Appendix A for all payoff matrices). Eight of these tasks
+were directly linked to Part 2 (see below); the remaining four served as filler
+tasks, as one of several measures to make it harder for participants to infer, while
+working through Part 2, how its tasks correspond to those of Part 1. Participants
+were truthfully told that “[t]he questions in this part are hypothetical, but the
+choices may be meaningful for Part 2 (recall that your bonus payment from
+the experiment depends on what happens in Part 2).” The highlighted words were
+boldfaced in the original instructions.
+     We deliberately designed Part 1 to give participants every opportunity to
+make a well-considered, informed choice, precisely because these are the choices
+on which the preference-based algorithm is based. To this end, three features
+distinguish Part 1 from the later delegation task. First, unlike the time-constrained
+decisions in Part 2 (see below), participants faced no time limit in Part 1 and could
+deliberate for as long as they wished. Second, each Part-1 task presented a clean
+choice between only two lotteries, rather than the eight options participants
+would later face in Part 2. Third, payoffs were matched to states so that they
+would appear in decreasing order to ease comparison, as can be seen in the upper
+panel of Figure 1. In addition, we asked participants after each task in Part 1 how
+confident they were in their choice.
+     In Part 2, participants completed eight incentivized decisions between eight
+lottery options each, as exemplified in the lower panel of Figure 1. These eight
+Part-2 tasks were derived from eight mapped Part-1 binary tasks (all but the four
+filler tasks). Specifically, each mapped Part-1 task provided two “anchor” options;
+for Part 2, we first transformed each anchor option by permuting payoffs across
+states (Option 6 and Option 3 in the lower panel of Figure 1), and then added
+three decoy options for each anchor option. Each added option was state-wise
+dominated by one of the anchor options (i.e., worse in at least one outcome and
+no better in any other), without making the dominance relationship immediately
+obvious from the displayed table. This yields eight options per Part-2 task (two
+transformed anchors plus six decoy options). The within-task display order
+of the eight options was set using a fixed pre-specified rule rather than per-
+task randomization. We did this because unconstrained randomization would
+occasionally produce display orders where the three decoy options belonging
+
+
+                                          13
+Figure 1: Example screens from Part 1 (preference elicitation, upper panel) and
+Part 2 (delegation decisions with lottery choices, lower panel).
+
+to the same anchor would appear consecutively next to the anchor option itself.
+This is something we wanted to avoid, as such a clustering could have alerted
+attentive participants to the underlying construction logic of Part-2 tasks. The
+fixed ordering rule was designed to interleave anchor-based groups so that no
+such visually suspicious pattern would arise. Note also that the ordering rule was
+different between option sets.
+     The order of the 12 Part-1 tasks was randomized with one pre-defined con-
+straint: positions 11 and 12 were occupied by two (randomly selected) tasks from
+the four Part-1 filler tasks that had no mapped counterpart in Part 2. Consequently,
+all eight mapped Part-1 tasks appeared within the first ten Part-1 positions, while
+still preserving randomization of task order subject to this constraint.
+     The procedure for each round of Part 2 was as follows: Participants saw
+the full table for five seconds. Then, they saw a different screen on which they
+had five seconds to choose between delegating to the algorithm corresponding
+to their treatment condition and choosing an option themselves. In the EV
+condition, delegation selected the lottery with the highest expected value. In the
+preference-based condition, delegation selected the non-dominated lottery which
+the participant had preferred in Part 1 over the other non-dominated lottery from
+the current task. Importantly, in both treatments the delegated option was always
+one of the two transformed anchor options and therefore never one of the six
+decoy options. Assignment to condition was randomized at the participant level.
+In the EV condition, participants were informed that “[the] algorithm works out
+how much each option would yield on average, and selects the option for which
+
+
+                                        14
+this is highest.” In the preference-based condition, they instead read that “[the]
+algorithm analyses your choices from Part 1 and selects the best option for you
+in light of your Part-1 choices.”
+     If they did not delegate, they saw the table containing the eight options for up
+to eight more seconds, during which they had to choose one of the options. After
+each Part-2 decision, feedback provided full resolution of uncertainty: participants
+were shown the chosen option and the realized payoff from the randomly drawn
+state of the world for that round, together with the full table of options and
+payoffs. If they did not make a choice in the payoff-relevant task, they did not
+earn a bonus payment from the experiment. The total payoff from the experiment
+was GBP 2.00 plus the points earned in one randomly selected round of Part 2,
+converted at a rate of 1 penny per point (participants could earn up to GBP 8.90 in
+addition to the base payoff). On average, participants earned GBP 4.14 including
+the base payoff for a median time of just under 16 minutes.
+
+3.3     Procedure
+After being welcomed to the study, participants saw a symbolic representation
+of a bicycle (two red tires and two triangles in yellow and green that together
+formed the frame), being asked to indicate what that figure represented (a banana,
+a traffic light, darts games, a bicycle, a robot, or ‘nothing, it’s randomly placed
+shapes’). At the time, the agentic AIs would typically choose the traffic light, pre-
+sumably because of the colouring of the shapes making up the bicycle. Following
+that, participants would read a broad overview of the experiment, including the
+range of possible payments (GBP 2 for participating and GBP 0 to GBP 8.90 as a
+bonus, depending on decisions and on chance). Then, they would have to give
+consent to participating and to our using of their data for the purposes of this
+publication, which was followed by a final attention and ‘system’ check (‘Please
+select “Disagree” on the following question’ and ‘please click on the white line in
+such a way that the appearing blue dot is close to a value of 50.’).4
+    After these checks, Part 1 (preference elicitation) started, followed by a ques-
+tion on how satisfied they were with their choices from Part 1 overall. Then,
+participants completed Part 2 (delegation decisions with round-by-round out-
+come feedback), followed by a question of whether they would delegate to the
+algorithm in case they had to choose to delegate or not for 10 (hypothetical) addi-
+tional tasks. After indicating that choice, participants estimated (on a 0–10 integer
+scale) in how many of those 10 tasks the algorithm would choose a non-preferred
+option and in how many it would choose a “completely weird” option. Before the
+   4
+     The ‘system check’ was meant to screen out certain types of bots, as, in a box below the
+displayed white line and invisible to the participants, there was a ‘50’ being displayed right next
+to the (visible) end-of-the-scale ‘100’.
+
+                                                15
+final post-task questionnaire containing demographics and attitudinal items, we
+asked them for self-reported reasons for their choice in the hypothetical choice
+at the end of Part 2. Because our theoretical focus is reliance behavior, primary
+outcomes are behavioral rather than attitudinal.
+
+3.4    Ethics approval
+The study received ethics approval from the Institutional Review Board of the
+Gesellschaft für experimentelle Wirtschaftsforschung e.V. (GfeW; German As-
+sociation for Experimental Economic Research), certificate no. 19HBJNwQ (sta-
+tus: approved; expedited review; approval date: 11/13/2025; certificate validity
+through 11/13/2027; see https://gfew.de/ethik/19HBJNwQ). All participants
+provided informed consent before participation.
+
+3.5    Preregistered outcomes and analyses
+The preregistered hypothesis (H1) predicted higher delegation to the EV-maximizing
+algorithm than to the preference-based algorithm. The preregistration document
+is available at https://aspredicted.org/7un5qf.pdf.
+    Primary preregistered analyses were:
+
+   1. a one-sided Boschloo exact test for the treatment difference in delegation
+      in round 1 (first contact), and
+
+   2. a one-sided Wilcoxon–Mann–Whitney test comparing participant-level
+      average delegation rates across Part 2.
+
+    We additionally estimated a preregistered linear probability model with decision-
+set fixed effects and participant-clustered standard errors, including treatment-by-
+period interactions and the share of outcomes with a payoff of zero among prior
+delegated choices. Formally, for participant i in decision-set (task) j at within-part
+decision number t, the preregistered specification is
+
+ Delegatedijt = β0 + β1 EVi + β2 t + β3 (EVi × t)
+                                                                                 (1)
+                  + β4 ZeroSharei,<t + β5 (EVi × ZeroSharei,<t ) + δj + εijt ,
+
+where Delegatedijt ∈ {0, 1} is the binary delegation choice, EVi is an indicator
+for the EV-algorithm condition, t indexes the within-part decision number (1–8),
+ZeroSharei,<t is the share of zero-payoff outcomes among participant i’s prior
+delegated choices up to decision t − 1 (defined as 0 for participants with no
+prior delegated choices), δj are decision-set (task) fixed effects, and standard
+errors are clustered at the participant level. We further estimated an exploratory
+
+                                        16
+specification excluding round 1 to separate first-contact effects from choices made
+after feedback experience. The preregistration additionally specified a secondary
+hypothesis on switching to non-delegation after a zero-payoff delegation; the
+hypothesis and our test of it are described in Section 4.5.
+
+
+4      Results
+4.1    Overview
+Two empirical patterns organize the results. First, treatment differences are
+concentrated at first contact. Second, categorical non-delegation is substantially
+more common under preference-based personalization. Both patterns match the
+implications derived from the choice-authority framework in Section 1, and (as
+we show in Section 4.6) they arise despite participants crediting the personalized
+algorithm with superior preference-matching, the mechanism signature that
+separates authority-based from accuracy-based accounts.
+   Table 1 summarizes the two preregistered primary tests, the preregistered sec-
+ondary test on feedback, and the (non-preregistered) categorical non-delegation
+contrast, reported in full in the subsections below.
+
+Table 1: Summary of the preregistered tests and the categorical non-delegation
+contrast.
+Test                  Outcome                Statistic         p-value Effect size
+                                                                       (two-sided 95% CI)
+Boschloo exact        Round-1 delegation 66.9% (EV) vs.        0.041   RD = 11.1pp
+(1-sided, prereg.)                       55.8% (Pref)                  (Wald [−1.3, 23.7]);
+                                                                       OR = 1.60 ([0.91, 2.84])
+Wilcoxon–Mann–        Average delegation W = 6428              0.243   rrb ≈ 0.05
+Whitney (1-sided,     (rounds 1–8)                                     (boot. [−0.10, 0.20])
+prereg.)
+LPM interaction       Switch to            βPref×zero payoff   0.633   β = −0.023
+(1-sided, prereg.     non-delegation after                             (SE = 0.067)
+secondary)            a delegation with
+                      a zero payoff
+Boschloo exact         Categorical           15.7% (Pref) vs. < 0.001 RD = 12.3pp
+(1-sided, exploratory) non-delegation        3.4% (EV)                (Wald [4.9, 19.7]);
+                                                                      OR = 5.25 ([1.65, 22.07])
+
+
+
+
+                                              17
+                              0.7
+         Average delegation
+
+
+
+
+                              0.6
+
+
+
+                              0.5
+
+
+
+                              0.4
+
+
+
+
+                                    1   2     3         4         5          6      7   8
+                                                  Decision number (Part 2)
+
+                                            Algorithm       EV   Preference−based
+
+
+
+
+Figure 2: Average delegation over decisions in Part 2 by treatment condition.
+Whiskers indicate 95%-confidence bands.
+
+4.2    Primary test: first-contact delegation
+As a benchmark for interpreting delegation behavior, choice quality among non-
+delegated decisions was low in both treatments. The share of non-dominated
+self-chosen options was 34.1% in the EV condition and 35.1% in the preference-
+based condition, implying that roughly two-thirds of self-made choices were
+dominated. Hence, participants had a clear instrumental reason to delegate. On
+average, delegated decisions yielded 243.49 points (GBP 2.43), compared to 195.18
+points (GBP 1.95) for non-delegated decisions, a difference of approximately 25%.
+    In round 1, delegation was higher in the EV condition than in the preference-
+based condition (66.9% vs. 55.8%). The preregistered one-sided Boschloo exact
+test yields p = 0.041, supporting H1 for first-contact behavior. The corresponding
+effect size is a risk difference of 11.1 percentage points (Wald 95% CI [−1.3, 23.7])
+and an odds ratio of 1.60 (Fisher’s exact two-sided 95% CI [0.91, 2.84]). Note that
+the confidence intervals span 0 and 1, respectively, because we are reporting
+two-sided intervals here, while the pre-registered tests were one-sided tests.
+    Figure 2 visualizes the round-level profile and shows that there is a clear
+treatment gap in the first decision.
+
+4.3    Primary test: delegation across repeated decisions
+At the participant level, the preregistered one-sided Wilcoxon–Mann–Whitney
+test on average delegation across Part 2 yields W = 6428 and p = 0.243. The
+
+
+                                                            18
+corresponding effect size (rank-biserial correlation) is small, rrb ≈ 0.05 (bootstrap
+95% CI [−0.10, 0.20]), consistent with a confidence interval that comfortably
+spans zero. We therefore do not find evidence of a treatment difference in average
+delegation across rounds.
+     Descriptively, this non-difference reflects post-first-contact convergence that
+is driven by a strong decline in delegation in the EV condition after round 1
+(Figure 2). We treat this pattern as descriptive because our design was not op-
+timized to identify why delegation declines more under EV after first contact.
+Notwithstanding, we will report on how this pattern relates to ‘wins’ (rounds
+in which the realized outcome was positive) and ‘losses’ (rounds in which the
+realized outcome was zero). We do not read the convergence as evidence that
+authority-based resistance to personalization is overridden by performance feed-
+back. Two exploratory observations help to read it. First, average delegation in
+rounds 2–8 is the net of two offsetting differences of about six to seven percentage
+points each: more participants opt out entirely under personalization (Section 4.4),
+while the average delegation rate among participants who delegate at least once
+is lower under EV (49.8% vs. 56.4%). Second, part of the decline under EV is linked
+to the algorithm’s picks. An EV pick that differs from the participant’s own pre-
+ferred option pays zero more often and is followed by less delegation (Section 4.5);
+had the 28 round-1 EV delegators with such a pick continued as often as those
+whose pick matched their preference, round-2 delegation under EV would have
+been about six percentage points higher (participant-level bootstrap 95% CI [0.4,
+11.8]). By contrast, on an aggregate level participants react to a zero payoff in
+the same way in both conditions, and EV picks produced only modestly more
+zero payoffs overall (40.3% vs. 36.2% of delegated decisions; participant-clustered
+logit p = 0.178). Note that the decompositions are descriptive and imprecise, so
+a substantial part of the larger decline under EV remains unexplained.
+     The preregistered regression specification points in a similar direction. The
+EVAlgorithm coefficient is small and statistically insignificant (β = −0.049, SE
+= 0.083, p = 0.558). Likewise, both interaction terms are imprecisely estimated
+(EVAlgorithm × WithinPartDecisionNumber: β = 0.002, SE = 0.012, p = 0.871;
+EVAlgorithm × share[Payoff = 0]: β = −0.050, SE = 0.098, p = 0.612), indicating
+no robust treatment difference over repeated decisions. By contrast, the share of
+prior delegated outcomes with a payoff of zero is strongly negatively associated
+with subsequent delegation (β = −0.385, SE = 0.078, p < 0.001).5,6
+   5
+     Running an analogous regression with fixed effects for the task on round-1 data only yields
+the same result as the Boschloo test, with β = 0.113, SE = 0.065, and p = 0.041 (one-sided).
+   6
+     As a robustness check for the binary nature of the outcome, we re-estimated this specification
+as a logistic regression with the same fixed effects and cluster-robust standard errors. The
+qualitative pattern is unchanged: the EVAlgorithm coefficient remains small and insignificant
+(b = −0.241, OR = 0.79, p = 0.549), as do its interactions with period (b = 0.014, OR = 1.01,
+
+
+                                               19
+     Taken together, the preregistered tests indicate that the treatment effect is
+concentrated at first contact and does not persist over repeated decisions, while
+negative feedback (in particular prior zero-outcomes) is strongly associated with
+lower subsequent delegation. The EV algorithm’s picks carry a higher expected
+zero probability than the preference-based algorithm’s (41.7% vs. 34.8% per dele-
+gated decision), but realized zero shares differ by only 4.1 percentage points (40.3%
+vs. 36.2%; p = 0.178). The null effect for rounds 2–8 reflects lower delegation un-
+der EV after round 1 (66.9% in round 1 vs. 48.1% in rounds 2–8; preference-based:
+55.8% vs. 47.6%), not the preference-based algorithm gaining acceptance.
+     The regression evidence above is correlational across the whole sample, so we
+additionally probed the role of feedback using variation that is not confounded
+by the between-treatment difference in decision rule: conditional on having
+delegated in round 1, whether the realized payoff from that delegated choice
+happened to be zero or positive is plausibly as-good-as-random with respect to
+the participant’s own dispositions, since it depends on which lottery state was
+drawn. Within the EV condition, round-1 delegators who received a zero payoff
+delegated again in round 2 only 36.0% of the time, versus 64.8% among those who
+received a positive payoff (two-sided Boschloo exact test p = 0.020; OR = 0.31,
+95% CI [0.10, 0.91], based on Fisher’s exact test). The contrast has the same sign
+and a similar size in the preference-based condition (50.0% vs. 72.5%; Boschloo
+p = 0.078; OR = 0.39, 95% CI [0.11, 1.29]). The two within-treatment contrasts
+do not differ significantly from each other (treatment-by-payoff interaction in a
+logistic regression: p = 0.772), so the weaker significance in the preference-based
+condition mainly reflects the smaller number of round-1 delegators there (62 vs.
+79).
+     The cross-participant distribution aggregated over all rounds is shown in
+Figure 3. Note that the convergence in delegation behavior over rounds does not
+diminish the substantive relevance of first-contact effects: in many real settings,
+the initial adoption decision can determine whether users return to a system at all.
+Theoretically, this time profile is also in line with the choice-authority account:
+rule construal is the dominant cue only while no outcome feedback is available;
+once feedback accumulates, experienced outcomes become an additional driver
+of delegation.
+p = 0.799) and with the zero-outcome rate (b = −0.241, OR = 0.79, p = 0.611), while the
+zero-outcome history effect remains large, negative, and highly significant (b = −1.661, OR =
+0.19, p < 0.001). The conclusions drawn from the linear probability model are therefore not an
+artifact of the linear functional form.
+
+
+
+
+                                             20
+                                   1.00
+          Cumulative probability
+
+                                   0.75
+
+
+
+
+                                   0.50
+
+
+
+
+                                   0.25
+
+
+
+
+                                   0.00
+                                          0.00   0.25               0.50                 0.75   1.00
+                                                    Participant−level average delegation
+
+                                                   Algorithm     EV        Preference−based
+
+
+
+
+Figure 3: ECDF of participant-level average delegation by treatment condition.
+
+4.4    Categorical non-delegation
+This section reports the results of an exploratory analysis of categorical non-
+delegation that is complementary to the preregistered primary tests. The second
+clear pattern to be found in the data is categorical non-delegation, which can
+be seen from the left end of Figure 3. In the preference-based condition, 18 of
+115 participants never delegated (15.7%); in the EV condition, this applies to only
+4 of 118 participants (3.4%). A one-sided Boschloo exact test (in line with the
+directional prediction of the choice-authority framework that there will be more
+categorical non-delegation under personalization) yields p < 0.001 (two-sided:
+p = 0.001). The corresponding effect size is a risk difference of 12.3 percentage
+points (Wald 95% CI [4.9, 19.7]) and an odds ratio of 5.25 (95% CI [1.65, 22.07],
+based on Fisher’s exact test). This gap points to a distinct acceptance barrier under
+personalization for a subset of users.7 Note that although there also seems to be a
+treatment difference in always-delegators, this difference is far less pronounced
+(19.1% vs. 13.6%). The subgroup structure of the effect is consistent with the
+heterogeneity implication of the choice-authority framework: if the intrinsic
+valuation of decision rights is concentrated in a subset of users (Bartling et al.,
+2014; Owens et al., 2014), personalization-induced resistance should manifest
+primarily as categorical opt-out rather than as a uniform downward shift in
+delegation.
+   7
+     The same direction can be found when re-analysing the data of an earlier study with a
+different design (reported in Suraci’s PhD thesis): 32/190 never-delegators in preference-based
+treatments versus 17/187 in EV treatments (one-sided Boschloo exact test, p = 0.015).
+
+
+                                                                 21
+    Never-delegators were not meaningfully different in age from participants
+who delegated at least once (mean age 41.8 vs. 42.9 years; t = −0.329, p = 0.745),
+and we likewise find no clear association with household income (categorical; χ2
+= 13.171, df = 11, p = 0.282) or education (categorical; χ2 = 1.859, df = 5, p = 0.868).
+Also, both spent similar amounts of time in the experiment (mean number of
+seconds 1113 for delegators vs. 1237 for never-delegators, t = −0.971, p = 0.341).
+And while there is a tendency for male participants to be never-delegators more
+often than females (12.0% vs. 6.3%), the evidence is weak (Boschloo exact test, p =
+0.156). We also do not find meaningful differences in self-reported willingness to
+take financial risks (4.53 vs. 4.68; t = −0.224, p = 0.825), self-reported response
+reliability/care (6.91 vs. 6.91; t = −0.059, p = 0.954), or frequency of everyday
+AI use/interactions (categorical: 5.87 vs. 5.18; t = 0.866, p = 0.395).8 Within the
+preference-based condition, never-delegators actually reported slightly higher
+satisfaction with their Part-1 choices than delegators (7.94 vs. 7.56; t = −1.400,
+p = 0.169). This suggests that categorical non-delegation in this condition does
+not originate from dissatisfaction with the preference profile that served as the
+algorithm’s input. Note that these comparisons form an exploratory family of
+roughly ten tests that we did not correct for multiple testing, and the null results
+should be read with the sample size in mind: only 22 participants never delegated
+in total (18 in the preference-based condition, 4 in the EV condition), so the
+corresponding subgroup tests are underpowered to detect anything but huge
+characteristic differences. Thus, the absence of a significant contrast cannot be
+taken as evidence that never-delegators are indistinguishable from delegators on
+these dimensions.
+    Setting never-delegators aside, the first-contact gap largely disappears: among
+participants who delegated at least once, round-1 delegation is similar across
+conditions (preference-based: 65.6%, EV: 69.3%; one-sided Boschloo exact test p =
+0.289). Because never-delegation is defined over all eight rounds and therefore
+includes round 1, we repeat the comparison with “otherwise-never-delegators”,
+that is, participants who never delegate in rounds 2–8. They make up 16.8% of the
+preference-based and 7.6% of the EV participants (one-sided Boschloo p = 0.019).
+More importantly, round-1 delegation among the other participants is again very
+similar in the two treatments: 64.9% and 67.9%, respectively (p = 0.330). Bear in
+mind, however, that these comparisons build on an exploratory outcome and are
+purely descriptive, since they condition on later behavior.
+   8
+     All t-tests reported in this subsection use the Welch correction (unequal variances), and
+all null conclusions are confirmed by the non-parametric Wilcoxon rank-sum equivalent (age:
+p = 0.649; time in experiment: p = 0.105; risk-taking: p = 0.854; reliability: p = 0.956; AI
+experience: p = 0.445).
+
+
+
+
+                                             22
+4.5    Responses to feedback
+We analyze how participants react to feedback in four steps that differ in status
+and in what they add. First, the preregistered secondary hypothesis asks whether
+a zero payoff from a delegated choice makes participants in the preference-based
+condition more likely to abandon delegation than those in the EV condition (con-
+firmatory). Second, a win-stay/lose-shift model asks whether the two conditions
+react differently to any prior win or loss, using all rounds 2–8 rather than only
+rounds that follow a delegation (exploratory). In all regressions of this subsection
+the outcome is switching, so a positive coefficient means more switching; the
+exploratory models count any change of the previous round’s delegation status
+as a switch, whereas the preregistered test only counts switches from delegation
+to non-delegation. Third, we ask whether a loss weighs more heavily when the
+algorithm rather than the participant produced it (exploratory). Fourth, we ask
+whether the EV algorithm’s picks that differ from the participant’s own preferred
+option are followed by less delegation (exploratory). The take-home message is
+that losses, and especially losses produced by the algorithm, push participants
+away from delegation in both conditions, with no evidence that this reaction is
+stronger under personalization; the EV algorithm’s picks that differ from one’s
+own preference are an additional, exploratory candidate for why delegation
+declines more under EV.
+
+Preregistered test: switching to non-delegation after a zero payoff
+In the preregistration, we suggested one secondary hypothesis on how partic-
+ipants respond to feedback: after delegating to the algorithm and obtaining a
+payoff of zero, participants in the preference-based condition are more likely to
+switch to non-delegation in the following round than under any other circum-
+stances, in particular than under the same circumstances in the EV condition
+(“participants are less forgiving with respect to the PREF algorithm”). We did not
+pre-specify a test for this hypothesis. Here, we analyse it in a linear probability
+model of switching to non-delegation in those rounds 2–8 that follow a delegated
+round (799 observations from 209 participants), with task and decision-number
+fixed effects and participant-clustered standard errors. The regressors are an
+indicator for the preference-based condition, an indicator for a zero payoff in the
+previous (delegated) round, and their interaction; the preregistered prediction
+corresponds to a positive interaction, which we test one-sided.
+    The data do not support our hypothesis. Participants did switch to non-
+delegation much more often after a zero payoff than after a positive payoff from
+a delegated choice, in both conditions (EV: 55.6% vs. 30.3%; preference-based:
+45.3% vs. 21.5%). In the regression, this zero-payoff effect amounts to 0.254 (SE =
+
+
+                                        23
+0.048) in the EV condition and 0.250 (SE = 0.048) in the preference-based condition
+(p < 0.001 in both). It is, however, not larger in the preference-based condition:
+the interaction is slightly negative and insignificant (β = −0.023, SE = 0.067,
+one-sided p = 0.633; two-sided p = 0.734). The conclusion does not depend
+on how “any other circumstances” is read. Restricting attention to rounds that
+follow a zero-payoff delegation, switching to non-delegation was, if anything,
+less frequent in the preference-based than in the EV condition (β = −0.105, SE
+= 0.070, two-sided p = 0.140). Comparing instead with all other rounds 2–8,
+including those that follow a self-chosen option or a positive payoff, yields an
+insignificant interaction of the wrong sign (β = −0.071, SE = 0.071, one-sided
+p = 0.840; 1,615 observations from 233 participants). Hence, participants were
+not less forgiving with respect to the preference-based algorithm.
+
+Exploratory: win-stay/lose-shift
+The remaining analyses in this subsection were not preregistered and are ex-
+ploratory. To check whether the conclusion above depends on the narrow prereg-
+istered definition, we estimate a win-stay/lose-shift model on all rounds 2–8, with
+the full specification and estimates in Appendix B. Participants in both treatments
+are more likely to switch after a loss than after a win, and the size of this reaction
+does not differ between treatments (treatment × prior win: β = −0.009, SE =
+0.049, p = 0.857). The one treatment difference is a level shift: participants in the
+EV condition switch more often after a loss (β = 0.105, SE = 0.050, p = 0.036) and
+by a similar amount after a win. This reflects a general tendency of EV participants
+to switch more often rather than a stronger reaction to losses.
+
+Exploratory: who produced the loss?
+A more revealing picture emerges when we distinguish who produced the prior
+outcome, that is, whether the previous round was delegated (so that “the algo-
+rithm lost or won”) or self-chosen. Estimating the win-stay/lose-shift model
+separately by treatment and interacting a prior loss with prior delegation, the
+prior-loss × prior-delegation interaction is positive and significant in both condi-
+tions (EV: β = 0.185, SE = 0.070, p = 0.009; preference-based: β = 0.140, SE = 0.064,
+p = 0.030). That is, a loss prompts more switching in general, but a loss that the
+algorithm produced prompts substantially more switching than a self-inflicted
+loss. This is visible in the raw switching rates: after a delegated loss, the switching
+rate is the highest in both conditions (45.3% in the preference-based and 55.6% in
+the EV condition), well above the switching rate after a delegated win (21.5% and
+30.3%) and also above that after a self-chosen loss (32.3% and 41.7%). Note that
+“switching” means moving to self-choice after a delegated outcome but moving
+
+
+                                          24
+to delegation after a self-chosen one, so these comparisons are descriptive. This
+exploratory pattern connects to the broader finding that algorithmic mistakes
+tend to be forgiven less readily than one’s own (Dietvorst et al., 2018; Renier
+et al., 2021): participants abandon delegation disproportionately after the algo-
+rithm delivers a bad outcome, even though delegated choices were on average
+substantially more profitable.
+
+Exploratory: when the algorithm’s pick differs from one’s own preference
+Under the preference-based algorithm, the delegated option is by construction
+the participant’s own preferred option. Under EV, it coincides with that option
+in about two thirds of delegated rounds. Table 2 therefore splits the delegated
+rounds 1–7 into preference-based delegations and EV delegations whose pick
+matches or differs from the participant’s own preferred option. EV picks that
+differ from the participant’s preference pay zero more often (50.8%, against 36.3%
+for matching EV picks and 36.0% under preference-based delegation) and are
+followed by less delegation, especially after a zero payoff. In linear probability
+models with participant-clustered standard errors, delegation after matching EV
+picks is 8.4 percentage points lower than under preference-based delegation (95%
+CI [−18.7, 2.0], p = 0.112), an estimate that is compatible with no difference,
+but also with a sizeable reduction. After mismatching EV picks it is 14.5 points
+lower (95% CI [−26.9, −2.0], p = 0.023; 16.4 points, p = 0.012 with task fixed
+effects); the two EV groups do not differ significantly from each other (6.1 points,
+p = 0.266). Controlling for a zero payoff reduces the gap after mismatching picks
+only partly (to 10.8 points, p = 0.078). Within the EV condition, a zero payoff
+lowers continued delegation by 20.0 points after a matching and by 36.7 points
+after a mismatching pick (difference: 16.7 points, p = 0.083). The mismatch
+is, however, not randomly assigned, since it depends on the participant’s own
+preferences, and the pooled EV gap falls only from 10.3 to 9.1 points when a
+zero payoff is controlled for. We therefore read these results as pointing to one
+contributing channel, not as a full account of why delegation declines more under
+EV. The forgone payoffs that the feedback screen showed (the best available option
+minus the realized payoff) predict continued delegation on their own but not once
+a zero payoff is controlled for (unreported analysis, available in the supplementary
+materials).
+
+4.6    Exploratory mechanisms: expectations and post-task
+       reasons
+To better understand the behavioral patterns above, we draw on two sets of
+exploratory measures collected after Part 2: participants’ quantitative expectations
+
+                                        25
+Table 2: Delegated rounds 1–7 by whether the algorithm’s pick matched the
+participant’s own Part-1 preference (exploratory).
+                                                              Delegates again in the next round
+ Group                               n    Zero payoff   Overall   After a zero   After a positive payoff
+ Preference-based                   386        36.0%     69.9%          54.7%                     78.5%
+ EV, pick matches preference        281        36.3%     61.2%          49.0%                     68.2%
+ EV, pick differs from preference   132        50.8%     55.3%          37.3%                     73.8%
+
+
+about how the algorithm would perform, and their self-reported reasons for a
+hypothetical further delegation choice. We organize the discussion around three
+questions: (i) Did participants believe the preference-based algorithm actually
+captured their preferences? (ii) Which expectations are most tightly linked to
+delegation, and does this differ by algorithm type? (iii) What do the open- and
+closed-item reasons reveal about the motives of those who delegate sometimes or
+always versus those who never do?
+
+Did participants trust the personalized algorithm to match their prefer-
+ences?
+A natural concern about our design is that lower delegation under personalization
+might simply reflect participants doubting that the preference-based algorithm
+captured their preferences in the first place. The expectation data speak directly
+against this concern. After the incentivized rounds, participants estimated, out
+of 10 hypothetical further tasks, in how many tasks the algorithm would pick
+a non-preferred option and in how many it would pick a “completely weird”
+option. Participants in the preference-based condition expected the algorithm
+to make markedly fewer non-preferred choices than those in the EV condition
+(on average 3.78 vs. 5.00 out of 10; t = −4.15, p < 0.001; Wilcoxon rank-sum
+p < 0.001). Expectations about “completely weird” choices were also lower but
+not significantly so (1.57 vs. 1.78; t = −0.94, p = 0.351). Participants thus
+clearly credited the personalized algorithm with doing its job: relative to objective
+optimization, it was expected to select options aligned with their preferences
+substantially more often, without any rise in the perceived risk of grossly erratic
+choices. This holds even for the participants who opted out entirely: within the
+preference-based condition, never-delegators expected just as few non-preferred
+choices as delegators (3.83 vs. 3.77 out of 10; t = −0.11, p = 0.912). Categorical
+non-delegation under personalization thus cannot be attributed to a belief that
+the algorithm failed to capture one’s preferences, reinforcing the earlier finding
+(Section 4.4) that these never-delegators were, if anything, slightly more satisfied
+with the Part-1 choices that fed the algorithm. Restricting the sample to the 21%
+
+                                             26
+of participants who expect at most two mistakes leaves the treatment differences
+at least as large (for example, round-1 delegation of 100% under EV against 72.7%
+under preference-based delegation), although these subgroups are small and
+self-selected (see the replication code).
+
+Which reasons provided are most tightly linked to delegation?
+This makes the reduced delegation under personalization all the more striking.
+Even though participants believed the preference-based algorithm would more
+often choose in line with their preferences, they were no more (and at first
+contact significantly less) willing to delegate to it. The barrier therefore does
+not appear to lie in doubts about the algorithm’s accuracy. Consistent with this,
+the two explanation-demand items (“I find it unpleasant that I don’t know how
+exactly the computer chooses” and “I would have preferred more information
+about how the computer makes its decisions”) were selected only infrequently,
+as was the profiling-related item (“I don’t like to be analysed by an algorithm”;
+see Figure 4 below). Participants’ reservations were thus not primarily about
+understanding, transparency, or competence at preference-matching, pointing
+instead toward concerns about ceding choice authority itself, as we will show
+below. This is precisely the mechanism signature derived in Section 1: higher
+perceived preference-fit combined with equal or lower delegation speaks against
+accuracy-based trust accounts and is consistent with authority-based resistance
+(although, as noted in Section 5.4, the mechanism is not causally identified).
+
+What distinguishes delegators from never-delegators?
+Figure 4 shows the closed-item reasons that participants provided for their choice
+(not) to delegate the task for another hypothetical 10 rounds. Note that the
+percentages discussed in this subsection pool delegators and never-delegators
+across both treatments, whereas Figure 4 itself displays the same items split
+by treatment condition; the two views are complementary but not numerically
+identical, and the pooled figures reported here cannot be read directly off the by-
+treatment bars. We nonetheless display them separately to show that the reasons
+vary more by delegation type than by treatment. The only visible treatment
+contrast (larger never-delegator/delegator gaps in the EV condition) we do not
+interpret because of the low case numbers.
+    In terms of the difference between delegators and never-delegators, two pat-
+terns stand out. First, participants who delegated at least once were far more
+likely to cite performance-based motives: 70.1% indicated that the computer would
+choose better, against only 36.4% of never-delegators (that they would choose
+better). Second, never-delegators more often selected reasons centered on general
+
+
+                                        27
+distrust of the algorithm (50.0% vs. 32.2%; recall, however, that those who indicate
+the strongest belief in that the algorithm does its job do not exhibit a smaller
+treatment effect; if at all, the effect is stronger in that subset) and on responsibility
+for the choice (63.6% vs. 38.9%; see the note on this item below). At first glance,
+the prevalence of the “distrust” item among never-delegators might seem to sit
+uneasily with our claim that resistance is not accuracy-based: the expectation
+data (above) show that participants, including never-delegators, expected the
+personalized algorithm to match their preferences at least as well as the objective
+rule, yet about half of never-delegators still endorsed a distrust-worded item. We
+think this reflects a conflation built into the closed-item wording itself rather than
+a contradiction in the evidence: the item (“I don’t fully trust the computer”) does
+not distinguish distrust of the algorithm’s accuracy from a more diffuse distrust
+of ceding the choice to any algorithmic system, including one the respondent oth-
+erwise believes to be competent. Our quantitative expectation measures speak
+specifically to the former and speak against it as the dominant driver; the qualita-
+tive reason item plausibly picks up a mixture in which the latter, authority-related
+sense of “distrust” predominates among never-delegators. Future work using
+closed items that separate these two senses of distrust explicitly would allow
+a cleaner test of this reading. Overall, the reasons of never-delegators fit the
+treatment-level non-delegation pattern and are consistent with a subgroup that
+weights agency concerns more heavily than expected performance. Among the
+remaining items, finding the task too tedious appears (at a low level) only among
+delegators (10.9% vs. 0%), consistent with an effort-saving channel, and open-text
+responses repeatedly mention time pressure, a general choice-friction channel
+that does not isolate a treatment-specific mechanism.
+    The responsibility item needs a note, because it was worded according to
+the hypothetical choice: participants who chose to decide themselves could
+indicate that they wanted to be responsible for choosing, and participants who
+chose to delegate could indicate that they did not want to be. The hypothetical
+choice closely mirrors actual behavior (91% of never-delegators chose to decide
+themselves, and 95% of always-delegators chose to delegate; Spearman correlation
+between the hypothetical choice and the Part-2 delegation share: 0.68), so the
+contrast between never-delegators and the rest largely contrasts reasons for
+deciding oneself with reasons for delegating. Across all participants, 66.4% of
+those who chose to decide themselves endorsed wanting to be responsible for the
+choice, whereas 16.2% of those who chose to delegate endorsed not wanting to be.
+We therefore read the item as the dominant stated reason for deciding oneself, in
+a hypothetical choice that tracks the participant’s actual delegation behavior.
+    These mechanism patterns should be interpreted cautiously. The reason mea-
+sures are ex-post and refer to a hypothetical additional choice rather than to
+the incentivized rounds themselves, so they function as suggestive proxies for
+
+                                           28
+                   60%
+                                                                                                                                               Condition
+      Click rate
+
+
+
+
+                                                                                                                                                   Prefs−−Delegators (n=97)
+                   40%
+                                                                                                                                                   Prefs−−Never−delegators (n=18)
+                                                                                                                                                   EV−−Delegators (n=114)
+                                                                                                                                                   EV−−Never−delegators (n=4)
+                   20%
+
+
+
+                   0%
+                               ob
+
+
+
+
+                                                               st
+
+
+
+
+                                                                           er
+                                          n
+
+
+
+
+                                                              tly
+
+
+                                                                o
+
+
+
+
+                                                                                                                                          us
+                                                                                      ty
+
+
+                                                                                                    s
+
+
+                                                                                                                 e
+
+
+                                                                                                                               e
+                                                                                                   si
+                                                             nf
+                                          O
+
+
+
+
+                                                                                                                ic
+
+
+                                                                                                                            m
+                                                  ru
+
+
+
+
+                                                                                     si
+                                                                      th
+                                                           ac
+
+
+
+
+                                                                                                                                     io
+                          rJ
+
+
+
+
+                                                                                                ly
+
+
+                                                                                                           ho
+                                     ng
+
+
+
+
+                                                          eI
+
+
+
+
+                                                                                                                          co
+                                                                                    io
+                                                tT
+
+
+
+
+                                                                     O
+
+
+
+
+                                                                                                                                      d
+                         tte
+
+
+
+
+                                                                                              na
+                                                       Ex
+
+
+                                                        or
+
+
+
+
+                                                                                ur
+
+
+
+
+                                                                                                                                   Te
+                                                                                                          C
+                                     yi
+
+
+                                               on
+
+
+
+
+                                                                                                                       ut
+                     Be
+
+
+
+
+                                                                                           2A
+                                                      M
+
+
+
+
+                                                                                                          y4
+                                    el
+
+
+
+
+                                                                                C
+                                                     ow
+
+
+
+
+                                                                                                                      O
+                                              D
+
+
+
+
+                                                                           ce
+                                 R
+
+
+
+
+                                                                                                                  y4
+                                                                                                      ilit
+                                                                                         ce
+                                                    H
+                               ike
+
+
+
+
+                                                                       an
+
+
+
+
+                                                                                                   ib
+
+
+                                                                                                                lit
+                                                                                      an
+
+
+
+
+                                                                                                                  i
+                                                                                                ns
+                             l
+
+
+
+
+                                                                                                               ib
+                                                                       m
+                          is
+
+
+
+
+                                                                                    ct
+
+
+
+
+                                                                                                          ns
+                         D
+
+
+
+
+                                                                       r
+
+
+
+
+                                                                                              po
+                                                                                ea
+                                                                    fo
+
+
+
+
+                                                                                                        po
+                                                                                           es
+                                                                   r
+
+
+                                                                            R
+                                                                Pe
+
+
+
+
+                                                                                                     es
+                                                                                         R
+
+                                                                       Item                        R
+
+
+
+
+Figure 4: Distribution of reasons indicated for delegating or not 10 additional hy-
+pothetical tasks to the algorithm. Item labels correspond to the following verbatim
+statements presented to participants (wording adapted to whether the participant
+had chosen to delegate or not): DontTrust – “I don’t fully trust myself/the com-
+puter”; BetterJob – “I thought the computer/I could do a better job”; HowExactly
+– “I find it unpleasant that I don’t know how exactly the computer chooses an
+option for me”; MoreInfo – “I would have preferred more information about how
+the computer makes its decisions”; Responsibility4Choice – “I didn’t want/wanted
+to be responsible for choosing an/the option”; Responsibility4Outcome – “I didn’t
+want to be responsible if a low payment results”; DislikeRelyingOn – “I don’t like
+relying on myself/computers”; Reactance2Analysis – “I don’t like to be analysed by
+an algorithm”; PerformanceCuriosity – “I wanted to see how well the computer/I
+can do”; Tedious – “Doing it myself would have been too tedious” (delegators only).
+The items refer to the hypothetical choice, which mirrors actual behavior (91%
+of never-delegators chose to decide themselves, and 95% of always-delegators
+chose to delegate), so the comparison between delegation types largely contrasts
+reasons for deciding oneself with reasons for delegating.
+
+motives rather than as causal identification of psychological channels.
+
+
+5     Discussion
+5.1         Core finding
+This preregistered study shows that preference-based personalization can deter
+delegation rather than increase it. We observe this deterrence in two forms:
+lower delegation at first contact and a larger subgroup of participants who never
+
+
+                                                                                                      29
+delegate under personalization.
+    The first-contact finding is important because it captures behavior before
+participants can learn from outcome feedback. At that stage, delegation is driven
+primarily by how participants interpret the algorithmic rule itself. Our evidence
+is consistent with the interpretation that an impersonal EV rule is initially easier
+to accept as a legitimate external computation device than a profile-based person-
+alized rule based on the user’s own revealed preferences. Even though subsequent
+rounds show convergence in average delegation (driven by reduced delegation to
+the EV algorithm), first-contact differences remain practically important because
+initial adoption decisions can have path-dependent downstream effects in real-
+world deployment where customers may not constantly be prompted to make
+a delegation choice like in our experiment (think of immediate opt-out, lower
+willingness to return, and weaker opportunity for learning-by-use).
+
+5.2    Theoretical implications
+Our findings advance the theoretical understanding of algorithm adoption in
+three ways. First, they show that algorithm aversion is not a unitary phenomenon.
+The literature has largely treated reluctance to rely on algorithms as a problem of
+miscalibrated trust in algorithmic competence, to be remedied by demonstrating
+accuracy, providing explanations, or allowing output adjustment (Dietvorst et al.,
+2018; Leichtmann et al., 2023; Yeomans et al., 2019). Our evidence is most consis-
+tent with a second, conceptually distinct channel: authority-based resistance. Par-
+ticipants credited the personalized algorithm with superior preference-matching,
+and never-delegators were, if anything, more satisfied with the preference input
+that fed the algorithm—yet delegation was lower at first contact and categorical
+opt-out was more than four times as prevalent. Interventions targeting accuracy
+beliefs would not be expected to move this margin; indeed, among participants
+with the strongest confidence in the algorithm’s competence, the treatment effect
+was stronger, not weaker. Competence-oriented and authority-oriented barriers
+therefore call for different remedies, and conflating them risks systematically
+misdiagnosing adoption failures.
+    Second, the results identify rule construal as a theoretically meaningful de-
+terminant of delegation, distinct from the interface, control, and communication
+features studied so far (Dietvorst et al., 2018; Fink et al., 2024; Hildebrand &
+Bergner, 2021). Holding the delegation architecture fixed, merely changing what
+the algorithm is said to optimize (an impersonal criterion versus the user’s own
+preferences) changed behavior. In our perspective, this is because the decision
+rule shapes whether delegation is construed as outsourcing a computation or
+as surrendering one’s judgment, and only the latter construal affects the intrin-
+sic value people attach to holding decision rights (Bartling et al., 2014; Frey et
+
+                                        30
+al., 2004; Owens et al., 2014). This links the algorithm-adoption literature to a
+well-established body of evidence on choice authority and autonomy (Brehm,
+1966; Deci & Ryan, 2000; Leotti et al., 2010) that has so far played little role in
+explaining human–algorithm interaction, and it generates testable predictions:
+any design cue that strengthens the judgment-substitution construal (e.g., empha-
+sizing that the system “knows you” or “chooses as you would”) should increase
+resistance among high-authority-valuation users, while cues that support the
+computation-outsourcing construal should reduce it (testing these predictions
+requires a design that manipulates such cues, which ours does not).
+     Third, the heterogeneity structure of the effect, namely the concentration in
+categorical opt-out rather than a uniform shift of delegation propensities, matters
+for how personalization effects should be theorized and measured. If the intrin-
+sic valuation of decision rights is heterogeneous (Bartling et al., 2014; Owens
+et al., 2014), average treatment effects on delegation understate the behavioral
+consequences of personalization for the affected subgroup, who exit entirely.
+This has a general methodological implication for research on technology ac-
+ceptance: distributional and subgroup analyses (such as our cumulative density
+functions and never-delegator comparisons) can reveal adoption barriers that
+mean comparisons conceal.
+     Finally, our two-stage pattern suggests a simple integrative account of when
+rule characteristics matter: construal of the decision rule dominates at adoption,
+when no experiential evidence exists, whereas outcome feedback and the well-
+documented asymmetric forgiveness of algorithmic errors (Dietvorst et al., 2015;
+Renier et al., 2021) appear to dominate during continued use: in our exploratory
+feedback analyses, participants withdrew from delegation disproportionately after
+a bad outcome in both conditions, but we do not find that differential feedback
+explains the convergence. Personalization thus operates on the adoption margin,
+while error tolerance operates on the retention margin; theories of algorithm
+acceptance should model these margins separately.
+
+5.3    Interpretation and relation to prior work
+The categorical non-delegation pattern is particularly informative: many partici-
+pants entirely avoid delegation under personalization, consistent with work on
+autonomy, responsibility, and control as drivers of acceptance. Exploratory post-
+task reasons (Section 4.6) align with this interpretation, especially the stronger
+emphasis among never-delegators on distrust and the prominence of respon-
+sibility for the choice as a reason for deciding oneself, while concerns about
+being algorithmically analyzed appear comparatively rare. Because these reason
+measures are ex-post and refer to hypothetical choices, this evidence remains
+suggestive rather than causal. Crucially, the lower delegation under personaliza-
+
+                                        31
+tion does not stem from participants doubting that the personalized algorithm
+captured their preferences: they expected it to make significantly fewer non-
+preferred choices than the EV algorithm (3.78 vs. 5.00 out of 10; p < 0.001),
+while expectations about “completely weird” choices did not differ across condi-
+tions. Participants thus credited the preference-based algorithm with successfully
+matching their preferences, yet were no more willing—and at first contact less
+willing—to delegate to it. This strengthens the interpretation that the relevant
+barrier is the act of ceding choice authority itself rather than skepticism about
+the algorithm’s accuracy. A complementary channel operates through how al-
+gorithmic errors are treated once they occur: in both conditions, participants
+withdrew from delegation disproportionately after the algorithm produced a bad
+outcome (an exploratory finding; Section 4), echoing evidence that algorithmic
+mistakes are forgiven less readily than one’s own (Dietvorst et al., 2018; Renier et
+al., 2021). The preregistered prediction that participants would be less forgiving
+of the preference-based than of the EV algorithm was not supported.
+     Our findings are consistent with an earlier study on the same question (re-
+ported as a chapter in Suraci’s PhD thesis), which motivated and informed the
+design of the present preregistered experiment. In that study, the delegation gap
+between EV and preference-based treatments was larger (about 20 percentage
+points) and persisted over decisions. Recomputing the categorical non-delegation
+contrast for that earlier sample also yields a significant difference (32/190 in
+preference-based treatments vs. 17/187 in EV treatments; one-sided Boschloo
+exact test, p = 0.015).9
+     Two further accounts could produce similar behavior and deserve mention. A
+responsibility-offloading account holds that people delegate to an objective rule
+because it gives them someone to blame for bad outcomes, whereas a personalized
+rule leaves them feeling responsible for its errors. Our data speak to this only
+partly. Among participants who chose to decide themselves in the hypothetical
+choice, which closely mirrors actual delegation behavior, 66.4% said they wanted
+to be responsible for choosing, whereas only 16.2% of those who chose to delegate
+said they did not want to be. Wanting to keep responsibility is thus the dominant
+stated reason for deciding oneself, while a minority of delegators cites avoiding
+responsibility, so some responsibility shifting among delegators is not excluded.
+An HR experiment, moreover, found that blame avoidance was a weak motive for
+delegation relative to algorithm aversion (Maasland & Weißmüller, 2022). Closer
+to our setting, participants of Gogoll and Uhl (2018) had to delegate a task affecting
+a third party and chose a machine over a human only about a quarter of the time
+(26.5%). Neither lower perceived utility, lower trust, nor a weaker ability to pass on
+   9
+     Note that categorical non-delegation was not analyzed or reported in the earlier study, which
+is the reason for why we did not pre-register its analysis for the present study.
+
+
+                                               32
+responsibility to a machine accounted for this. Because everyone had to delegate
+to someone in that design, it speaks to the choice between agents rather than
+to the choice between delegating and deciding oneself, but it likewise suggests
+that a pure blame-shifting motive does not contribute too much to explaining
+reluctance to rely on algorithms. We did not measure anticipated blame directly,
+so offloading motives among delegators cannot be excluded.
+    A psychological-ownership account is also compatible with ours: if a system
+decides as the user would, the resulting choice may feel less like the user’s
+own. Work on AI-generated text finds that users do not feel they own what the
+AI produced and that their sense of ownership rises with their own influence
+on the output (Draxler et al., 2024). This is conceptually close to our choice-
+authority account. That evidence concerns text generation rather than delegated
+choices, though, and personalization did not alter ownership there, so it does
+not directly predict our result. Ownership and anticipated-blame measures are
+natural additions for future work.
+
+5.4    Limitations
+The findings should be interpreted in light of several limitations. First, the study
+is an online experiment with stylized financial lotteries, so external validity
+to field settings should be interpreted cautiously. The Part-2 lottery choices
+were real and incentivized, not hypothetical vignettes: one round was paid out
+for real money, contingent on the participant’s own choice or, if delegated, on
+the algorithm’s choice, so the delegation decisions we analyze carried genuine
+financial consequences rather than being merely described. What remains stylized
+is the task domain: our lotteries abstract away features of real investment or
+medical decisions such as ambiguous or delayed payoffs, product complexity,
+and social or institutional framing (e.g., a named bank or physician), any of
+which could independently affect how the loss of choice authority is experienced.
+This abstraction is what let us isolate the construal mechanism cleanly (see the
+theoretical framework above), but it also means we cannot yet speak to whether
+the same first-contact resistance and categorical opt-out would emerge, and at
+what magnitude, once real-world complexity and institutional trust cues are
+reintroduced; we return to this as a direction for future work below.
+     Second, although behavioral outcomes are well suited for studying reliance,
+the design does not causally identify the psychological mechanism behind first-
+contact hesitation or categorical non-delegation (e.g., perceived objectivity, pro-
+filing concerns, or accountability salience); our expectation data speak against
+accuracy-based accounts, and the post-task reasons point toward choice authority,
+but a direct manipulation of authority salience remains for future work. Relatedly,
+the two algorithm descriptions differ not only in decision rule but also in linguistic
+
+                                         33
+register: the EV description is phrased mechanically (“works out how much each
+option would yield on average”), while the preference-based description is phrased
+more personally (“analyses your choices…and selects the best option for you”).
+This asymmetry is partly deliberate. In our earlier study, the preference-based
+description said only that the algorithm would use “modern decision science”
+and the participant’s choices “to model your behaviour, and selects the lottery
+that it predicts you would select”, whereas the EV description said that it “uses
+mathematics to work out how much each lottery would yield on average, and
+selects the lottery for which this is highest”. That earlier contrast left open that
+the advantage of the EV algorithm reflected the missing optimization claim in
+the preference-based description rather than its personalization. We therefore
+added “selects the best option for you” to the preference-based description in the
+present study, so that both algorithms are described as optimizing, one for an
+impersonal criterion and one for the participant. The first-contact gap remained
+alive (11.1 percentage points, against about 20 in the earlier study), so the missing
+optimization claim cannot fully account for it, and the two studies also differ
+in other respects, which prevents us from clearly attributing the smaller gap to
+the changed wording. The two descriptions still differ in register, and we cannot
+fully rule out that some of the effect reflects this difference in tone rather than
+construal of the rule per se. A cleaner test would equate the two descriptions’
+register explicitly in future work.
+    Third, the EV and preference-based treatments differ along several dimensions
+at once: personalization narrowly defined, the perceived objectivity of the decision
+criterion, whether the rule explicitly draws on the user’s own prior choices
+(profiling), the criterion being optimized, and possibly expectations about financial
+performance. Our design therefore identifies a difference between two decision
+rules rather than a pure personalization effect, and it cannot tell whether the
+objective rule raises or the personalized rule lowers delegation relative to a
+neutral baseline. The data help to narrow down the candidates, but they do
+not eliminate them. Participants in the preference-based condition expected the
+algorithm to match their preferences better, not worse, which speaks against
+a lower-competence account at the level of preference matching. We did not,
+however, elicit expectations about payoffs, and the EV description promises the
+highest average yield, so a payoff-expectation account cannot be fully excluded.
+    A profiling-aversion account is unlikely to be the dominant driver, because
+the profiling-related reason item (“I don’t like to be analysed by an algorithm”)
+was selected only infrequently. What remains is the combination of perceived
+objectivity and the preference-based rule’s explicit reference to the user’s own
+judgment, which is the dimension our choice-authority account targets. The
+present design cannot separate the two, and future work could manipulate them
+independently (e.g., an objective rule that is explicitly based on the user’s own
+
+                                         34
+revealed data). Relatedly, outcome feedback is generated by the rule a participant
+is assigned to, so it can differ across conditions. In our data the difference in
+exposure to zero payoffs is small (40.3% vs. 36.2% of delegated decisions), but we
+cannot exclude that feedback contributes to the convergence in average delegation
+that can be seen in Figure 2. The feedback caveat does not extend to our two central
+results: the first-contact difference is measured before any outcome feedback
+exists, and categorical non-delegation by definition involves participants who
+never received algorithm-generated feedback.
+    Fourth, low choice quality in the self-chosen decisions (roughly two-thirds
+of self-made choices were dominated, see Section 4.2) raises the question of
+whether some non-delegation reflects task difficulty rather than a genuine val-
+uation of choice authority. We consider this unlikely to explain categorical
+non-delegation specifically: never-delegators’ non-dominated choice rate was
+statistically indistinguishable from that of participants who delegated at least
+once (participant-level averages of 34.7% for the 22 never-delegators vs. 33.6%
+for the 170 participants who delegated at least once but also made at least one
+decision themselves; Welch t = −0.25, p = 0.806; Wilcoxon p = 0.669), so never-
+delegators were not making better- or worse-informed choices than delegators,
+and if anything, participants who found the task difficult would be expected to
+delegate more, not less, which is the opposite of what categorical non-delegation
+implies. We cannot rule out that task difficulty contributes to delegation decisions
+among participants who delegate only sometimes, which future work could probe
+directly.
+    Fifth, the present analyses focus on short-run repeated interaction (eight
+incentivized rounds within a single session); longer-run adaptation to personalized
+systems remains an open question. Our within-session data already show that the
+treatment gap in average delegation narrows after the first round, which is at least
+consistent with some short-run adaptation as participants gain outcome feedback.
+However, this convergence occurred over a handful of rounds in one sitting and
+should not be extrapolated to long-term human–computer interaction in real
+investment scenarios, where the relevant time scale is months or years rather
+than minutes. Extended real-world use plausibly triggers mechanisms absent
+from our design in both directions: on one hand, an accumulating track record of
+satisfactory outcomes and growing familiarity with a personalized advisor could
+erode authority-based resistance and allow accuracy-based trust to dominate,
+consistent with evidence that reliance builds gradually through experience; on
+the other hand, real investment relationships involve continued or deepening
+profiling (the system knowing progressively more about the user), higher stakes,
+and switching costs that could instead sustain or amplify the loss of choice
+authority we document. Because our design cannot adjudicate between these
+possibilities, we see longitudinal field studies that track delegation to personalized
+
+                                         35
+versus objective financial decision aids over repeated, consequential interactions
+as a necessary next step, and we flag this explicitly as a direction for future research
+below rather than assume our first-contact and short-run results generalize to
+long-term use.
+    Sixth, our preregistration set the sample-size target (120 participants per
+condition, no fewer than 100 after exclusions) without reporting the underlying
+power analysis. The power analysis based on the effect sizes of our earlier study
+(Appendix C) made the design look adequately powered ex ante, but it also shows
+that the first-contact gap we observed (11.1 percentage points) lies below its
+minimum detectable effect (at 80% power) of 16–17 percentage points, which
+is a natural explanation for why the confirmed effect is significant only in the
+preregistered one-sided versions of the tests. Seventh, our sample was recruited
+through Prolific from a UK-based participant pool; while we see no principled
+reason to expect the direction of the effect to be culture- or platform-specific,
+the magnitude of resistance to ceding choice authority could plausibly vary with
+cultural background, familiarity with algorithmic systems, or the demographic
+composition of online panels, and we have not tested this.
+
+5.5    Implications and future research
+For designing algorithmic decision systems, the results imply that personalization
+should not be treated as a uniformly beneficial acceptance lever. In settings where
+objective criteria are salient and normatively legitimate, objective optimization
+may face lower initial resistance than preference-based personalization. This has
+direct implications for the design and communication of decision aids in finance
+and other high-stakes domains.
+    These extensions are speculative given the abstract, single-domain, and time-
+constrained nature of our lottery task, and we offer them as hypotheses for
+domain-specific replication rather than as established implications. Financial robo-
+advisors routinely face the choice between objective portfolio rules (e.g., mean-
+variance optimization) and preference-based personalization derived from risk
+profiling questionnaires (Capponi et al., 2022; Rühr, 2020). Our findings suggest
+that the very feature intended to increase subjective fit—tailoring the algorithm to
+the user’s profile—may inadvertently encroach on users’ sense of choice authority,
+deterring precisely those users who value exercising active control over their
+decisions. The same tension arises whenever algorithmic decision aids must be
+voluntarily adopted: in healthcare, treatment recommender systems can follow
+clinical-evidence guidelines or patient-preference protocols; in hiring, screening
+tools can apply standardized criteria or adaptively weight candidate profiles. In
+each case, the assumption that preference alignment promotes adoption deserves
+empirical scrutiny rather than being taken as a design axiom.
+
+                                          36
+     Future research should test mechanism-targeted interventions at first con-
+tact, including reframing of personalization logic, responsibility framing, and
+alternative explanation formats. The construal account developed here suggests
+concrete candidates: presenting a personalized system as a tool that implements
+the user’s prior decisions (computation-outsourcing framing) rather than one
+that decides as the user would (judgment-substitution framing) should reduce
+authority-based resistance without changing the underlying rule. Testing this
+requires a design that varies the framing while holding the rule fixed, so it is a
+task for future work and not something the present data can provide. Measuring
+individuals’ intrinsic valuation of decision rights (Bartling et al., 2014; Owens et
+al., 2014) before exposure would additionally allow a direct test of the predicted
+heterogeneity. It should also examine whether the non-delegator subgroup is
+stable across domains, stakes, and cultural contexts.
+
+5.6    Data and code availability
+Data, analysis code, and study materials will be deposited in a public repository
+upon acceptance/publication of this manuscript. In the meantime, a replication
+package containing the de-identified participant-level and decision-level data, the
+full analysis script reproducing every statistic and figure reported in this paper,
+and the complete set of Part-1 and Part-2 payoff matrices has been made available
+to the editor and reviewers for the purposes of this review. We have opted not to
+make this package publicly accessible prior to acceptance. [Note to reviewers: We
+do not consent to any of the materials being uploaded to any AI systems unless
+they are standalone implementations that are hosted on local servers.]
+
+5.7    Declaration of generative AI and AI-assisted technolo-
+       gies in the manuscript preparation process
+During the preparation of this work the authors used Claude Opus 4.8 in order
+to assist in content organization as well as improving language and readability
+of both the manuscript and the analysis code (at the same time as allowing for
+an additional check on the statistical analyses). After using this tool/service, the
+authors reviewed and edited the content as needed and take full responsibility
+for the content of the published article.
+
+
+
+
+                                        37
+References
+Aysolmaz, B., Müller, R., & Meacham, D. (2023). The public perceptions of
+      algorithmic decision-making systems: Results from a large-scale survey.
+      Telematics and Informatics, 79, 101954. https://doi.org/ 10.1016/j.tele.2023
+      .101954
+Bartling, B., Fehr, E., & Herz, H. (2014). The intrinsic value of decision rights.
+      Econometrica, 82(6), 2005–2039. https://doi.org/ 10.3982/ECTA11573
+Boulu-Reshef, B., Direr, A., & von Wilczur, N. (2026). Algorithmic vs. human
+      portfolio choice. Finance. (Forthcoming.) https://doi.org/ 10.3917/fina.pr
+      .0051
+Brehm, J. W. (1966). A theory of psychological reactance. New York: Academic
+      Press.
+Candrian, C., & Scherer, A. (2022). Rise of the machines: Delegating decisions to
+      autonomous AI. Computers in Human Behavior, 134, 107308. https://doi.org/
+      10.1016/j.chb.2022.107308
+Capponi, A., Olafsson, S., & Zariphopoulou, T. (2022). Personalized robo-advising:
+      Enhancing investment through client interaction. Management Science,
+      68(4), 2485–2512. https://doi.org/ 10.1287/mnsc.2021.4014
+Chen, G., Dang, J., & Liu, L. (2024). After opening the black box: Meta-
+      dehumanization matters in algorithm recommendation aversion. Computers
+      in Human Behavior, 161, 108411. https://doi.org/ 10.1016/j.chb.2024.108411
+Chugunova, M., & Sele, D. (2022). We and It: An interdisciplinary review of the
+      experimental evidence on how humans interact with machines. Journal
+      of Behavioral and Experimental Economics, 99, 101897. https://doi.org/
+      10.1016/j.socec.2022.101897
+Deci, E. L., & Ryan, R. M. (2000). The “What” and “Why” of goal pursuits: Human
+      needs and the self-determination of behavior. Psychological Inquiry, 11(4),
+      227–268. https://doi.org/ 10.1207/S15327965PLI1104 01
+Dietvorst, B. J., Simmons, J. P., & Massey, C. (2015). Algorithm aversion: People
+      erroneously avoid algorithms after seeing them err. Journal of Experimental
+      Psychology: General, 144(1), 114-126. https://doi.org/ 10.1037/xge0000046
+Dietvorst, B. J., Simmons, J. P., & Massey, C. (2018). Overcoming algorithm
+      aversion: People will use imperfect algorithms if they can (even slightly)
+      modify them. Management Science, 64(3), 1155-1170. https://doi.org/ 10.1287/
+      mnsc.2016.2643
+Draxler, F., Werner, A., Lehmann, F., Hoppe, M., Schmidt, A., Buschek, D., &
+      Welsch, R. (2024). The AI ghostwriter effect: When users do not per-
+      ceive ownership of AI-generated text but self-declare as authors. ACM
+      Transactions on Computer-Human Interaction, 31(2), 1–40. https://doi.org/
+      10.1145/3637875
+
+                                       38
+Ferraz, V., Houf, L., Pitz, T., Schwieren, C., & Sickmann, J. (2025). Trust in the
+       machine: How contextual factors and personality traits shape algorithm
+       aversion and collaboration. Computers in Human Behavior Reports, 17,
+       100578. https://doi.org/ 10.1016/j.chbr.2024.100578
+Figà-Talamanca, G., Tanzi, P. M., & D’Urzo, E. (2022, 06). Robo-advisor acceptance:
+       Do gender and generation matter? PLOS ONE, 17(6), 1-13. https://doi.org/
+       10.1371/journal.pone.0269454
+Fink, L., Newman, L., & Haran, U. (2024). Let me decide: Increasing user autonomy
+       increases recommendation acceptance. Computers in Human Behavior, 156,
+       108244. https://doi.org/ 10.1016/j.chb.2024.108244
+Fischbacher, U. (2007, June). z-Tree: Zurich toolbox for ready-made economic
+       experiments. Experimental Economics, 10(2), 171–178. https://doi.org/
+       10.1007/s10683-006-9159-4
+Frey, B. S., Benz, M., & Stutzer, A. (2004). Introducing procedural utility: Not
+       only what, but also how matters. Journal of Institutional and Theoretical
+       Economics, 160(3), 377–401. https://doi.org/ 10.1628/0932456041960560
+Gazit, L., Arazy, O., & Hertz, U. (2023). Choosing between human and algorithmic
+       advisors: The role of responsibility sharing. Computers in Human Behavior:
+       Artificial Humans, 1(2), 100009. https://doi.org/ 10.1016/j.chbah.2023.100009
+Gogoll, J., & Uhl, M. (2018). Rage against the machine: Automation in the moral
+       domain. Journal of Behavioral and Experimental Economics, 74, 97–103.
+       https://doi.org/ 10.1016/j.socec.2018.04.003
+Hildebrand, C., & Bergner, A. (2021). Conversational robo advisors as surrogates
+       of trust: Onboarding experience, firm perception, and consumer financial
+       decision making. Journal of the Academy of Marketing Science, 49(4), 659–
+       676. https://doi.org/ 10.1007/s11747-020-00753-z
+Hoenig, J. M., & Heisey, D. M. (2001). The abuse of power: The pervasive fallacy
+       of power calculations for data analysis. The American Statistician, 55(1),
+       19–24. https://doi.org/ 10.1198/000313001300339897
+Hu, P., Zeng, Y., Wang, D., & Teng, H. (2024). Too much light blinds: The
+       transparency-resistance paradox in algorithmic management. Computers in
+       Human Behavior, 161, 108403. https://doi.org/ 10.1016/j.chb.2024.108403
+Höddinghaus, M., Sondern, D., & Hertel, G. (2021). The automation of leadership
+       functions: Would people trust decision algorithms? Computers in Human
+       Behavior, 116, 106635. https://doi.org/ 10.1016/j.chb.2020.106635
+Ismagilova, Z., & Ploner, M. (2025). Ain’t blaming you: Delegation of financial de-
+       cisions to humans and algorithms. Computers in Human Behavior: Artificial
+       Humans, 4, 100147. https://doi.org/ 10.1016/j.chbah.2025.100147
+Ivanova-Stenzel, R., & Tolksdorf, M. (2025). Delegating in the age of AI: Preferences
+       for decision autonomy (Discussion Paper No. 558). München und Berlin:
+       Ludwig-Maximilians-Universität München und Humboldt-Universität zu
+       Berlin, Collaborative Research Center Transregio 190 - Rationality and
+
+
+                                         39
+       Competition. https://hdl.handle.net/10419/336608
+Kim, H. (2026). Beyond algorithm aversion: The impact of psychological readi-
+       ness on algorithmic advice. Computers in Human Behavior, 174, 108824.
+       https://doi.org/ 10.1016/j.chb.2025.108824
+Kim, S., Ahn, D., Choi, B.-g., Park, J., Yang, J., Yoo, B., & Yum, K. (2025). Control-
+       lability in algorithmic decision-making: Field evidence from a robo-advisor.
+       In ICIS 2025 proceedings. AIS. https://aisel.aisnet.org/
+       icis2025/fintech/fintech/4
+Kirchkamp, O., & Strobel, C. (2019). Sharing responsibility with a machine.
+       Journal of Behavioral and Experimental Economics, 80, 25-33. https://doi.org/
+      10.1016/j.socec.2019.02.010
+Klingbeil, A., Grützner, C., & Schreck, P. (2024). Trust and reliance on AI — An
+       experimental study on the extent and costs of overreliance on AI. Computers
+       in Human Behavior, 160, 108352. https://doi.org/ 10.1016/j.chb.2024.108352
+Kou, G., Li, Y., Wang, H., & Wang, X. (2026). Human–AI hybrid finance: From
+      AI tools to decision systems. Financial Innovation, 12, 125. https://doi.org/
+      10.1186/s40854-026-00941-w
+Lambrecht, M., Oechssler, J., & Weidenholzer, S. (2026). On the benefits of robo-
+       advice in financial markets. The Economic Journal, ueag076. https://doi.org/
+      10.1093/ej/ueag076
+Leichtmann, B., Humer, C., Hinterreiter, A., Streit, M., & Mara, M. (2023). Effects of
+       explainable artificial intelligence on trust and human behavior in a high-risk
+       decision task. Computers in Human Behavior, 139, 107539. https://doi.org/
+      10.1016/j.chb.2022.107539
+Leotti, L. A., Iyengar, S. S., & Ochsner, K. N. (2010). Born to choose: The origins and
+      value of the need for control. Trends in Cognitive Sciences, 14(10), 457–463.
+       https://doi.org/ 10.1016/j.tics.2010.08.001
+Logg, J. M., Minson, J. A., & Moore, D. A. (2019). Algorithm appreciation: People
+       prefer algorithmic to human judgment. Organizational Behavior and Human
+       Decision Processes, 151, 90-103. https://doi.org/ 10.1016/j.obhdp.2018.12.005
+Maasland, C., & Weißmüller, K. S. (2022). Blame the machine? Insights from
+       an experiment on algorithm aversion and blame avoidance in computer-
+       aided human resource management. Frontiers in Psychology, 13, 779028.
+       https://doi.org/ 10.3389/fpsyg.2022.779028
+Mahmud, H., Islam, A. N., Ahmed, S. I., & Smolander, K. (2022). What in-
+       fluences algorithmic decision-making? A systematic literature review on
+       algorithm aversion. Technological Forecasting and Social Change, 175, 121390.
+       https://doi.org/ 10.1016/j.techfore.2021.121390
+Mahmud, H., Islam, N., & Krishnan, S. (2025). Human-robo-advisor collabo-
+       ration in decision-making: Evidence from a multiphase mixed methods
+       experimental study. Decision Support Systems, 198, 114541. https://doi.org/
+      10.1016/j.dss.2025.114541
+
+
+                                          40
+Ning, X., Lu, Y., Li, W., & Gupta, S. (2024). How transparency affects algorithmic
+       advice utilization: The mediating roles of trusting beliefs. Decision Support
+       Systems, 183, 114273. https://doi.org/ 10.1016/j.dss.2024.114273
+Owens, D., Grossman, Z., & Fackler, R. (2014). The control premium: A preference
+       for payoff autonomy. American Economic Journal: Microeconomics, 6(4),
+       138–161. https://doi.org/ 10.1257/mic.6.4.138
+Renier, L. A., Schmid Mast, M., & Bekbergenova, A. (2021). To err is human, not
+       algorithmic – Robust reactions to erring algorithms. Computers in Human
+       Behavior, 124, 106879. https://doi.org/ 10.1016/j.chb.2021.106879
+Rühr, A. (2020). Robo-advisor configuration: An investigation of user preferences
+       and the performance-control dilemma. In Proceedings of the 28th European
+       Conference on Information Systems (ECIS), An Online AIS Conference, June
+       15-17, 2020. AIS. https://aisel.aisnet.org/ecis2020 rp/
+       94
+Schaap, G., Bosse, T., & Hendriks Vettehen, P. (2024, August). The ABC of
+       algorithmic aversion: Not agent, but benefits and control determine the
+       acceptance of automated decision-making. AI & SOCIETY , 39(4), 1947–1960.
+       https://doi.org/ 10.1007/s00146-023-01649-6
+Schreibelmayr, S., & Mara, M. (2025). Determinants of self-reported and behav-
+       ioral trust in an AI advisor within a cooperative problem-solving game.
+       Computers in Human Behavior: Artificial Humans, 6, 100235. https://doi.org/
+       10.1016/j.chbah.2025.100235
+Sele, D., & Chugunova, M. (2024, 02). Putting a human in the loop: Increasing
+       uptake, but decreasing accuracy of automated decision-making. PLOS ONE,
+       19(2), 1-14. https://doi.org/ 10.1371/journal.pone.0298037
+Shin, D., & Park, Y. J. (2019). Role of fairness, accountability, and transparency
+       in algorithmic affordance. Computers in Human Behavior, 98, 277-284.
+       https://doi.org/ 10.1016/j.chb.2019.04.019
+Sun, Y., Liao, M. M., Sundar, S. S., & Walther, J. B. (2026). Does transparency
+       matter when an AI system meets performance expectations? An experiment
+       with an online dating site. Computers in Human Behavior, 177, 108875.
+       https://doi.org/ 10.1016/j.chb.2025.108875
+Werner, J., Suraci, L., & Wolff, I. (2026). In losses we trust: Delegating decisions to
+       artificial intelligence. (Mimeo.)
+Westphal, M., Vössing, M., Satzger, G., Yom-Tov, G. B., & Rafaeli, A. (2023).
+       Decision control and explanations in human-AI collaboration: Improving
+       user perceptions and compliance. Computers in Human Behavior, 144,
+       107714. https://doi.org/ 10.1016/j.chb.2023.107714
+Yang, R., Li, S., Qi, Y., Liu, J., He, Q., & Zhao, H. (2025). Unveiling users’ al-
+       gorithm trust: The role of task objectivity, time pressure, and cognitive
+       load. Computers in Human Behavior Reports, 18, 100667. https://doi.org/
+       10.1016/j.chbr.2025.100667
+
+
+                                          41
+Yeomans, M., Shah, A., Mullainathan, S., & Kleinberg, J. (2019). Making sense of
+    recommendations. Journal of Behavioral Decision Making, 32(4), 403-414.
+    https://doi.org/ 10.1002/bdm.2118
+
+
+
+
+                                      42
+A     Appendix: Full task matrices
+This appendix reports the complete numeric payoff matrices for all 12 Part-1
+binary lottery-choice tasks and all 8 Part-2 option sets actually used in the ex-
+periment, as referenced in Section 3. Columns S1–S10 give the payoff (in points)
+in each of the ten equiprobable states; “Order” (Table 3) gives an example of the
+randomized presentation order of the 12 Part-1 tasks; “P1 task” and “P2 order”
+(Table 4) link each Part-2 option set back to its Part-1 anchor task and give its
+randomized position within Part 2 (for the particular realization of the random-
+ization displayed). In Table 4, the eight options listed for each OptionsetID are
+the transformed anchor options (derived from the corresponding Part-1 task)
+plus the six state-wise dominated decoy options described in Section 3; they are
+reproduced here in the exact within-task display order used on screen.
+
+          Table 3: Part-1 lottery tasks (12 binary choices). Each row is one
+          option; “Opt” links each option to the corresponding Part-2 option
+          in Table 4. The variable “Ord.” gives an example for the randomized
+          presentation orders used in the experiment.
+
+           OSID Opt S1 S2 S3 S4 S5 S6 S7 S8 S9 S10 Ord.
+             1     3   525 525 525 525 525 0 0 0                0    0   2
+             1     6   225 225 225 225 225 225 225 205          0    0   2
+             2     5   670 670 670 610 0 0 0                0   0    0   3
+             2     7   255 255 255 255 255 235 205          0   0    0   3
+             3     2   625 625 625 625 525 0 0              0   0    0   7
+             3     7   290 290 290 290 290 290 230          0   0    0   7
+             4     4   390 390 390 390 360 330         0    0   0    0   6
+             4     8   890 890 860 800 0 0             0    0   0    0   6
+             5     4   340 340 340 340 340 0 0 0                0    0   9
+             5     8   235 235 235 235 235 235 235 205          0    0   9
+             6     4   435 435 435 405 0 0 0                0   0    0   1
+             6     5   265 265 265 265 265 265 235          0   0    0   1
+             7     4   320 320 320 320 320 320 220          0   0    0   5
+             7     5   525 525 525 505 0 0 0                0   0    0   5
+             8     4   390 390 390 390 390 360 330          0   0    0   4
+             8     8   860 860 830 0 0 0 0                  0   0    0   4
+             9     6   525 525 525 505 0 0 0 0                  0    0 10
+             9     7   230 230 230 230 230 230 230 200          0    0 10
+            10     6   260 260 260 260 260 260 230          0   0    0 12
+
+
+
+                                          43
+ OSID Opt S1 S2 S3 S4 S5 S6 S7 S8 S9 S10 Ord.
+   10     7   435 435 435 435 405           0       0    0   0   0 12
+   11     2   860 860 830 0 0 0 0 0                          0   0 11
+   11     5   280 280 280 280 280 280 260 230                0   0 11
+   12     4   585 585 585 585 535 0                 0    0   0   0       8
+   12     7   390 390 390 390 390 360               0    0   0   0       8
+
+
+Table 4: Part-2 lottery tasks (8 option sets of 8 options each, as used
+in the experiment). The presentation within each Task/Option set
+(“OSID”) followed the displayed fixed pre-specified order in the
+Table (by variable “Opt”); P1 links each set back to its Part-1 anchor
+task, P2 gives its randomized position in Part 2.
+
+ OSID Opt S1 S2 S3 S4 S5 S6 S7 S8 S9 S10 P1 P2
+   1     1    225 225 0 225 0 225 225 225 225 0                      2   4
+   1     2    525 0 505 0 525 0 0 0 525 505                          2   4
+   1     3    525 0 525 0 525 0 0 0 525 525                          2   4
+   1     4    225 225 0 225 205 205 205 225 225 0                    2   4
+   1     5    225 205 0 205 205 225 225 205 225 0                    2   4
+   1     6    225 225 0 225 205 225 225 225 225 0                    2   4
+   1     7    525 0 525 0 525 0 0 0 225 525                          2   4
+   1     8    505 0 525 0 505 0 0 0 505 525                          2   4
+   2     1      0 0 670 0 0 610 670 0 0 610                          3   1
+   2     2      0 255 235 235 205 0 235 255 235 0                    3   1
+   2     3      0 255 205 255 205 0 235 255 255 0                    3   1
+   2     4      0 235 255 255 205 0 235 235 255 0                    3   1
+   2     5      0 0 670 0 0 610 670 0 0 670                          3   1
+   2     6      0 0 370 0 0 610 670 0 0 670                          3   1
+   2     7      0 255 255 255 205 0 235 255 255 0                    3   1
+   2     8      0 0 610 0 0 610 610 0 0 670                          3   1
+   3     1      0 0 625        0 525 0 625 0 625 525                 7   7
+   3     2      0 0 625        0 625 0 625 0 625 525                 7   7
+   3     3    290 290 0        0 230 290 230 290 290 0               7   7
+   3     4      0 0 525        0 625 0 625 0 625 525                 7   7
+   3     5    260 260 0        0 290 290 230 290 290 0               7   7
+   3     6    290 290 0        0 290 290 230 290 200 0               7   7
+   3     7    290 290 0        0 290 290 230 290 290 0               7   7
+   3     8      0 0 605        0 625 0 625 0 605 525                 7   7
+   4     1 360 390        0 360     0 390       0       0 360 330 6 6
+   4     2 360 390        0 390     0 300       0       0 390 330 6 6
+
+
+                                  44
+OSID Opt S1 S2 S3 S4 S5 S6 S7 S8 S9 S10 P1 P2
+ 4   3   890 0 800 0      0 0 800     0 0 890     6   6
+ 4   4   360 390 0 390    0 390 0     0 390 330   6   6
+ 4   5   890 0 860 0      0 0 800     0 0 800     6   6
+ 4   6   360 330 0 390    0 390 0     0 390 330   6   6
+ 4   7   690 0 860 0      0 0 800     0 0 890     6   6
+ 4   8   890 0 860 0      0 0 800     0 0 890     6   6
+ 5   1   205 205 235 0 0 235 235 205 205 235      9   3
+ 5   2   235 205 205 0 0 235 235 205 235 205      9   3
+ 5   3     0 0 340 310 340 0 0 340 0 310          9   3
+ 5   4     0 0 340 340 340 0 0 340 0 340          9   3
+ 5   5   235 235 235 0 0 205 205 205 235 235      9   3
+ 5   6     0 0 240 340 340 0 0 340 0 340          9   3
+ 5   7     0 0 340 340 340 0 0 240 0 340          9   3
+ 5   8   235 235 235 0 0 235 235 205 235 235      9   3
+ 6   1   265 265 205 235 265 265 0    0 0 265     1   8
+ 6   2   235 235 265 235 265 265 0    0 0 265     1   8
+ 6   3     0 435 105 0 0 0 435        0 435 0     1   8
+ 6   4     0 435 405 0 0 0 435        0 435 0     1   8
+ 6   5   265 265 265 235 265 265 0    0 0 265     1   8
+ 6   6   265 265 265 235 265 265 0    0 0 205     1   8
+ 6   7     0 405 405 0 0 0 435        0 405 0     1   8
+ 6   8     0 265 405 0 0 0 405        0 435 0     1   8
+ 7   1   220 320   0 0 320 0 300 320 300 320      5   5
+ 7   2   525 0     0 525 0 525 0 0 0 325          5   5
+ 7   3   220 320   0 0 320 0 320 320 320 220      5   5
+ 7   4   220 320   0 0 320 0 320 320 320 320      5   5
+ 7   5   525 0     0 525 0 525 0 0 0 505          5   5
+ 7   6   220 220   0 0 320 0 320 320 320 320      5   5
+ 7   7   505 0     0 505 0 525 0 0 0 505          5   5
+ 7   8   525 0     0 525 0 325 0 0 0 505          5   5
+ 8   1   390 330   0 360 360 390   0 0 360 390    4   2
+ 8   2   300 330   0 390 360 390   0 0 390 390    4   2
+ 8   3     0 830   0 0 800 0       0 860 0 0      4   2
+ 8   4   390 330   0 390 360 390   0 0 390 390    4   2
+ 8   5     0 860   0 0 830 0       0 800 0 0      4   2
+ 8   6   390 330   0 390 360 300   0 0 390 390    4   2
+ 8   7     0 800   0 0 830 0       0 860 0 0      4   2
+ 8   8     0 860   0 0 830 0       0 860 0 0      4   2
+
+
+
+
+                         45
+B     Appendix: Pooled win-stay/lose-shift model
+Table 5 reports the exploratory win-stay/lose-shift model summarized in Sec-
+tion 4.5; it was not preregistered. The outcome is whether the participant switches,
+that is, whether her delegation status differs from the previous round’s (1 = differ-
+ent status), in rounds 2–8 (1,615 observations from 233 participants). A positive
+coefficient therefore means more switching. The model is a linear probability
+model with task and decision-number fixed effects and participant-clustered stan-
+dard errors. A prior win is a previous-round payoff larger than zero, so a prior
+zero outcome (“loss”) is the reference category and the coefficient on the EV
+condition is the difference in switching between conditions after a zero outcome.
+Adding the interaction gives the corresponding difference after a win (0.096, SE
+= 0.038, p = 0.011), so participants in the EV condition switch more often after
+both outcomes.
+
+Table 5: Pooled win-stay/lose-shift model (exploratory). Dependent variable:
+switching, that is, a delegation status that differs from the previous round’s.
+                                                  Estimate     SE         p
+              EV condition (after a prior loss)     0.105    0.050     0.036
+              Prior win                            −0.169    0.035   < 0.001
+              EV condition × prior win             −0.009    0.049     0.857
+
+
+
+
+C     Appendix: Ex-ante power analysis
+Our preregistration set the sample-size target (120 participants per condition, no
+fewer than 100 after exclusions) without stating an explicit power analysis. We
+provide that analysis here: In our earlier study reported in Suraci’s PhD thesis,
+the EV-versus-preference-based gap was approximately 22 percentage points
+at first contact (67.4% vs. 45.8%, pooling across an additional feedback-timing
+factor absent from the present design) and approximately 19 percentage points in
+average delegation across all decisions.
+    At n = 100–120 per arm, the minimum detectable risk difference at 80%
+power (one-sided α = 0.05) for a first-contact-type proportion comparison is
+approximately 16–17 percentage points, comfortably below the earlier study’s
+first-contact gap; correspondingly, power to re-detect an effect of the earlier
+study’s magnitude was approximately 91–95% (exact-test simulation; 93–96%
+under the standard normal approximation). For the average-delegation (Wilcoxon–
+Mann–Whitney-type) comparison, the analogous minimum detectable effect is
+approximately 10–11 percentage points (using the earlier study’s within-condition
+variance), again well below the earlier study’s roughly 19-percentage-point gap,
+
+
+                                             46
+with approximately 99.7–99.9% power to re-detect an effect of that size. On this
+basis, a sample of 100–120 per condition looked more than adequately powered
+at the design stage.
+     With hindsight, the first-contact gap we actually observed in the present
+design was smaller than the earlier study’s gap (11.1 percentage points, 66.9% vs.
+55.8%, p = 0.041 one-sided), falling below the design’s 16–17-percentage-point de-
+tection threshold, which offers a natural explanation for why this confirmed effect
+is significant only under the preregistered one-sided tests. We deliberately stop
+short of computing a “power” figure for this realized effect itself: retrospective
+power calculated from a study’s own observed effect size is a deterministic func-
+tion of the p-value and provides no additional information beyond it (Hoenig &
+Heisey, 2001). For the same reason, we do not interpret the null average-delegation
+result (p = 0.243) through a post-hoc power lens; instead, the regression evidence
+and the round-level pattern in Figure 2 indicate that the EV-versus-preference-
+based difference genuinely converges to approximately zero after round 1, mainly
+through a decline in the EV condition (see Section 4.3).
+
+
+
+
+                                        47
+

@@ -1,0 +1,110 @@
+LANGUAGE EDITS FOR AIms2_CHBR_R1.pdf  (shortest list; page numbers refer to the PDF)
+=====================================================================================
+The prose is already at publication level. Only the points below would make me stumble
+as a native-speaking psychologist reader. Everything not listed I would leave as it is.
+
+A. ERRORS AND WRONG OR LOOSE WORDING
+------------------------------------
+1.  Abstract (p.1): "...it deterred delegation in two ways. At first contact, ... And
+    second, categorical non-delegation..."
+    -> "...in two ways. First, at first contact, ...; second, categorical non-delegation..."
+
+2.  Acknowledgements footnote (p.1): the list is ungrammatical ("...the lively research
+    group at the TWI, participants of numerous workshops and conferences").
+    -> "We are grateful to Chris Starmer and Robin Cubitt, to whom we owe several
+    aspects of the design, to the research group at the TWI, and to participants at
+    numerous workshops and conferences. We also thank the editor and three anonymous
+    reviewers."
+
+3.  Hypothesis label (p.6): typeset "H 1." but cited everywhere as "H1".
+    -> "H1." (the label comes from \newtheorem{hyp}{H}; remove the space).
+
+4.  Sec. 5.2 (p.31): "our cumulative density functions" is the wrong term.
+    -> "our empirical cumulative distribution functions".
+
+5.  Sec. 3.1 (p.12): a sentence begins with a numeral ("240 participants completed...").
+    -> "In total, 240 participants completed the study."
+
+6.  Sec. 3.3 (p.15), first paragraph: tense and syntax drift ("being asked to indicate",
+    "would read", "would have to give consent to ... our using of their data").
+    -> plain simple past: "participants saw ... and were asked to indicate ... They then
+    read ... and consented to the use of their data for this publication ...".
+    Also: "At the time, the agentic AIs would typically choose the traffic light"
+    -> "[At the time, ]Agentic AI tools typically answered 'traffic light', presumably because of the
+    colors of the shapes."
+
+7.  Sec. 4.6 (p.27): the run-in heading "Which reasons provided are most tightly linked
+    to delegation?" does not match the text below it (expectations), or question (ii)
+    on p.26 ("Which expectations are most tightly linked ..."). -> use the same wording
+    in both places, e.g. "Do expectations or reasons point to an accuracy-based barrier?"
+
+8.  Sec. 4.3 (p.19): code-style names in running text ("EVAlgorithm",
+    "WithinPartDecisionNumber", "share[Payoff = 0]").
+    -> use the notation of Eq. (1): "the EV coefficient", "EV x decision number",
+    "EV x zero share".
+
+9.  Figure 4 (p.29): axis labels are variable names (DontTrust, Responsibility4Choice,
+    Reactance2Analysis, DislikeRelyingOn ...). -> plain-English labels ("Don't trust",
+    "Wants responsibility for choice", "Dislikes being analyzed", ...).
+    Caption: "Distribution of reasons indicated for delegating or not 10 additional
+    hypothetical tasks" -> "Reasons for (not) delegating 10 additional hypothetical
+    tasks"; delete the last caption sentence (91%/95%), which repeats the text.
+[LEAVE AS IS]
+
+10. Figure 4 placement (pp.28-29): the float interrupts a sentence ("...suggestive
+    proxies for [figure] motives rather than as causal identification..."). -> re-anchor
+    the float so the paragraph is unbroken.
+[LEAVE AS IS]
+
+11. Colloquial phrases (replace one-for-one):
+    - "the first-contact gap remained alive" (p.34)                  -> "persisted"
+    - "does not contribute too much to explaining" (p.33)           -> "contributes little to explaining"
+    - "anything but huge characteristic differences" (p.22)         -> "anything but very large differences"
+    - "the reason for why we did not pre-register" (fn. 9, p.32)    -> "the reason we did not preregister"
+
+B. CONSISTENCY OF CONVENTIONS (the friction here is inconsistency, not the choice itself)
+-----------------------------------------------------------------------------------------
+12. Spelling and dates: the paper is American ("behavioral", "optimization", "tires")
+    but has "colouring" (p.15), "we analyse it" (p.23) and "re-analysing" (fn. 7, p.21).
+    -> "coloring", "analyze", "reanalyzing" (keep "analysed" inside the verbatim
+    participant items on pp.27 and 34).
+    Dates: "15th October, 2026" (p.1) -> "October 15, 2026"; "11/13/2025" (p.16)
+    -> "November 13, 2025".
+[Could we make it all British?]
+
+13. Hyphenation: "preregistered" (about 50 times) vs. "pre-registered" / "pre-register"
+    (pp.18, 32) and "pre-specify" / "pre-specified" (pp.13, 23).
+    -> "preregistered", "prespecified" throughout.
+[let's keep the hyphens in for both]
+
+14. One term per concept: "never-delegators" (about 30 times) vs. "non-delegators"
+    (p.3, p.37). -> "never-delegators" in both places.
+    [CAREFUL: these are different concepts! Never-delegators should be the term for all instances where we are talking about those who do not delegate throughout all rounds 1-8; "non-delegators" should be used when referring to those who chose not to delegate in the hypothetical delegation choice at the end; not sure how often the latter are referred to, though]
+    Small slips: "aversion/ appreciation" (p.12) -> "aversion/appreciation";
+    heading 2.3 "Transparency, and interpretive cues" (p.9) -> delete the comma.
+
+
+15. APA-7 statistics (the paper itself declares APA 7 via apacite):
+    - no leading zero for p: "p = .041", "p < .001"
+    - report degrees of freedom: "t(df) = -4.15", "chi2(11) = 13.17" (currently
+      "t = -4.15" and "chi2 = 13.171, df = 11"); use two decimals consistently
+    - Fig. 2 caption: "95%-confidence bands" -> "95% confidence intervals".
+
+16. References (pp.38-42):
+    a) every DOI prints as "https://doi.org/ 10.xxxx" with a space -> fix the DOI/URL
+       handling so that each link is unbroken;
+    b) months appear in only some entries ("2022, 06", "2024, 02", "2024, August",
+       "2007, June") -> drop them for journal articles (APA 7);
+    c) "Suraci's PhD thesis" is cited several times (pp.6, 21, 32, 46) but has no
+       reference entry -> add one and cite it as (Suraci, year).
+       [The reference would be:  @phdthesis{suraci_2024, title={Investigating automation reliance: three experiments}, url={https://repository.nottingham.ac.uk/handle/123456789/56151}, school={University of Nottingham}, author={Suraci, Lara}, year={2024}, month=Jul, keywords={Automation} }]
+
+C. OPTIONAL (only if you want zero residual friction)
+-----------------------------------------------------
+17. "Note that ..." opens 9 sentences; keep about three and fold the rest into the
+    surrounding sentences.
+[LEAVE AS IS, I will check them manually myself]
+18. "Hence" (pp.18, 24) and "striking" (pp.9, 27) are each used twice; vary one of each.
+19. Sec. 5.5 (p.36): "These extensions are speculative" has no antecedent
+    -> "These applications are speculative".
+[Leave as is, I will check that manually, too]
