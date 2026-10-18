@@ -392,7 +392,7 @@ Figà-Talamanca, G.%
 \end{APACrefauthors}%
 \unskip\
 \newblock
-\APACrefYearMonthDay{2022}{06}{}.
+\APACrefYearMonthDay{2022}{}{}.
 \newblock
 {\BBOQ}\APACrefatitle {Robo-advisor acceptance: Do gender and generation
   matter?} {Robo-advisor acceptance: Do gender and generation matter?}{\BBCQ}
@@ -445,7 +445,7 @@ Fischbacher, U.%
 \end{APACrefauthors}%
 \unskip\
 \newblock
-\APACrefYearMonthDay{2007}{{\APACmonth{06}}}{}.
+\APACrefYearMonthDay{2007}{}{}.
 \newblock
 {\BBOQ}\APACrefatitle {{z-Tree}: {Z}urich toolbox for ready-made economic
   experiments} {{z-Tree}: {Z}urich toolbox for ready-made economic
@@ -1212,7 +1212,7 @@ Schaap, G.%
 \end{APACrefauthors}%
 \unskip\
 \newblock
-\APACrefYearMonthDay{2024}{{\APACmonth{08}}}{}.
+\APACrefYearMonthDay{2024}{}{}.
 \newblock
 {\BBOQ}\APACrefatitle {The {ABC} of algorithmic aversion: {N}ot agent, but
   benefits and control determine the acceptance of automated decision-making}
@@ -1273,7 +1273,7 @@ Sele, D.%
 \end{APACrefauthors}%
 \unskip\
 \newblock
-\APACrefYearMonthDay{2024}{02}{}.
+\APACrefYearMonthDay{2024}{}{}.
 \newblock
 {\BBOQ}\APACrefatitle {Putting a human in the loop: Increasing uptake, but
   decreasing accuracy of automated decision-making} {Putting a human in the
@@ -1342,6 +1342,34 @@ Sun, Y.%
 \APACjournalVolNumPages{Computers in Human Behavior}{177}{}{108875}.
 \newblock
 \begin{APACrefDOI} \doi{10.1016/j.chb.2025.108875} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Suraci%
+}{%
+Suraci%
+}{%
+{\protect \APACyear {2024}}%
+}]{%
+suraci_2024}
+\APACinsertmetastar {%
+suraci_2024}%
+\begin{APACrefauthors}%
+Suraci, L.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2024}.
+\unskip\
+\newblock
+\APACrefbtitle {Investigating automation reliance: three experiments}
+  {Investigating automation reliance: three experiments}\
+  \APACtypeAddressSchool {\BPhD}{}{University of Nottingham}.
+\unskip\
+\newblock
+\begin{APACrefURL}
+  \url{https://repository.nottingham.ac.uk/handle/123456789/56151}
+  \end{APACrefURL}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%

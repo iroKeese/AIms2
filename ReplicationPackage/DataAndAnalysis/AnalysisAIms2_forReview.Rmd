@@ -93,11 +93,15 @@ algo_cols <- c("Pref" = col_pref, "EV" = col_ev)
 Paths are relative to this script's location (replication-package layout).
 
 ```{r load-data}
-choices <- read.delim("260206_1528_537_lotteryChoices.xls")
+choices <- read.delim("260206_1528_537_lotteryChoices.csv")
 subjects <- read.csv("allSubjects.csv", header = TRUE)
 prolificData <- read.csv("prolific_demographic_export_approved.csv")
 
 choicesP1 <- subset(choices, Part == 1)
+
+choices$ProlificID <- choices$participantID
+subjects$ProlificID <- subjects$participantID
+prolificData$ProlificID <- prolificData$participantID
 ```
 
 ## Preregistered exclusions

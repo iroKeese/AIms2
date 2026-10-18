@@ -1,0 +1,72 @@
+\documentclass[a4paper, 12pt, fleqn]{article}
+% ============================================================
+\usepackage{libertine}
+\usepackage[utf8]{inputenc} 
+\usepackage[normalem]{ulem}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheoremstyle{hypstyle}{\topsep}{\topsep}{\normalfont}{}{\bfseries}{.}{.5em}{\thmname{#1}\thmnumber{#2}}
+\theoremstyle{hypstyle}
+\newtheorem{hyp}{H} 
+\usepackage[natbibapa]{apacite} % APA 7th-style citations and reference list (loads natbib internally); requires \bibliographystyle{apacite7} (see below)
+\setcitestyle{notesep={; }}
+% apacite follows the APA 6 conventions; APA 7 drops "Retrieved from" and prints DOIs as https://doi.org/... links
+\AtBeginDocument{%
+	\renewcommand{\BRetrievedFrom}{}%
+	\renewcommand{\BRetrieved}[1]{}%
+	\renewcommand{\doiprefix}{https://doi.org/\ignorespaces}%
+}
+
+\usepackage[pdfborder={0 0 0}, breaklinks=true, hyperfootnotes=false, hypertexnames=false]{hyperref}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{graphicx}
+\usepackage{pdflscape}
+\usepackage{float}
+\usepackage{pdfpages}
+\usepackage{floatflt}
+\newcommand{\symbolfootnote}[1]{\begingroup%
+	\renewcommand{\thefootnote}{\fnsymbol{footnote}}\footnote{#1}\endgroup}
+\usepackage{array}
+\newcommand{\inew}[1]{{\color{blue} #1\color{black}}}
+\usepackage{comment}
+\specialcomment{icomm}{\color{red}\footnotesize [\textsc{iren}: }{] \normalsize\color{black}}
+\newcommand{\iout}[1]{{\color{red}\sout{#1}}}
+\newcommand{\old}[1]{{\color{lightgray} #1\color{black}}}
+
+\newcommand{\mytitle}{{\Large \textsc{When personalisation deters delegation to algorithms: Evidence from a pre-registered experiment}}}
+
+%opening
+\title{\mytitle}
+\date{}
+
+\usepackage{setspace}
+%\doublespacing
+
+\begin{document}
+	
+	\thispagestyle{empty}
+	\begin{center}
+		\mytitle\symbolfootnote{We are grateful to Chris Starmer and Robin Cubitt, to whom we owe several aspects of the design, to the research group at the TWI, and to participants at numerous workshops and conferences. We also thank our editor and three anonymous reviewers.}
+		\vspace{.25cm}\\
+		Irenaeus Wolff\symbolfootnote{Corresponding author. Thurgau Institute of Economics, Hafenstrasse 6, 8280 Kreuzlingen, Switzerland, \textit{wolff@twi-kreuzlingen.ch}.} \qquad\qquad\qquad Lara Suraci
+		\\\vspace{.15cm}
+		\begin{small}
+			\textit{Thurgau Institute of Economics\phantom{text} \qquad\qquad DG Cities\phantom{moretext} \\ (TWI) / University of Konstanz \qquad\qquad \phantom{moretext University} } 
+			\vspace{.03cm}\\
+			\vspace{.3cm}
+			{This version: 18$^\text{th}$ October, 2026}
+			\vspace{.3cm}
+		\end{small}
+	\end{center}
+	
+	\begin{abstract}
+		Algorithmic decision aids increasingly act on users’ behalf, and in many instances users can either retain control or delegate decisions to an algorithm altogether. A common design assumption is that personalising an algorithm to users' own preferences increases acceptance. Drawing on accounts of the intrinsic value of decision rights, we argue the opposite can hold: a rule that claims to decide as the user would substitutes for the user's own judgement, making the loss of choice authority salient at the moment of delegation. In a pre-registered between-subjects experiment (N = 233), participants repeatedly chose whether to decide themselves or to delegate to an algorithm that selected the option with the highest expected value (in one treatment) or implemented participants' previously elicited preferences (in the other). Personalisation did not increase delegation at any point of the task; instead, it deterred delegation in two ways. First, at first contact, participants were significantly less likely to delegate to the preference-based than to the optimisation-based algorithm; in subsequent decisions, delegation rates were statistically indistinguishable. Second, categorical non-delegation (never delegating) was substantially more prevalent under personalisation (15.7\% vs. 3.4\%, exploratory analysis). 
+		This resistance does not appear to be accuracy-based: participants expected the personalised algorithm to match their preferences \emph{better} than the objective rule, yet were no more willing to delegate to it, and never-delegators emphasised retaining responsibility for the choice. Accuracy-based trust and authority-based resistance thus emerge as distinct channels of algorithm acceptance: personalisation can improve the former while aggravating the latter.
+		
+		\vspace{.25cm}
+		\textit{Keywords:} {AI delegation, human-AI delegation, personalisation, choice authority, decision autonomy, algorithm appreciation, algorithm aversion, trust in AI, financial decision-making, pre-registered experiment.}
+	\end{abstract}
+	
+\end{document}
